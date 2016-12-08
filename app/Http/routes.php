@@ -11,12 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
+
+
+Route::group(['prefix' => '/'], function () {
+    require_once("Routes/User/routes.php");   
+});
+
+Route::group(['prefix' => 'admin'], function () {
+  require_once("Routes/Admin/routes.php");    
+});

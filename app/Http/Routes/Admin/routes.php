@@ -5,4 +5,4 @@
 // login
 Route::get('login', 'Admin\UserController@login');
 // index admin
-Route::get('/', 'Admin\UserController@index');
+Route::get('/', 'Admin\IndexController@index');

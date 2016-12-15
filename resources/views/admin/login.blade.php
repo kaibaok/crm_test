@@ -30,16 +30,27 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="" method="post">
+            <form action="/login" method="post">
               <h1>Đăng nhập</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Tài Khoản" required="" />
+                {{ csrf_field() }}
+              <div  class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+              <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
+                 @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+              </div>
+              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <input id="password" type="password" class="form-control"  placeholder="Mật Khẩu" name="password" required="" >
+                 @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Mật Khẩu" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Đăng nhập</a>
+                <button type="submit" class="btn btn-default submit">Đăng nhập</button>
                 <a class="reset_pass" href="#">Quên mật khẩu ?</a>
               </div>
 

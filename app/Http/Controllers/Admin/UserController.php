@@ -4,21 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
-	public function __construct()
-    {
-        // $this->middleware('auth');
-    }
-
     public function login (){
+		if (Auth::check()) return redirect()->guest("admin");
     	return view("admin.login");
-    }
-
-     public function index (){
-    	return view("admin.index");
     }
 }

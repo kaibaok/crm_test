@@ -10,16 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// 403 - default 404
+Route::get('403', function(){
+    return view("errors.403");
+});
 
 Route::auth();
 
-// Route::get('/home', 'HomeController@index');
-
-
 Route::group(['prefix' => '/'], function () {
-    require_once("Routes/User/routes.php");   
+    require_once("Routes/User/routes.php");
 });
 
 Route::group(['prefix' => 'admin'], function () {
-  require_once("Routes/Admin/routes.php");    
+  require_once("Routes/Admin/routes.php");
 });
+
+
+

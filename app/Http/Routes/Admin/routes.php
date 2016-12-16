@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 /* UserController------------------------------*/
 
-// login
-Route::get('login', 'Admin\UserController@login');
 // index admin
 Route::get('/', 'Admin\IndexController@index');
+// login
+Route::get('login', 'Admin\LoginController@login');
+
+Route::get('user', 'Admin\UserController@listUser');

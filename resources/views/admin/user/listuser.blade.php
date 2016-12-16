@@ -15,6 +15,11 @@
             </span>
           </div>
         </div>
+        <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
+          <div class="input-group">
+            <a class="btn btn-primary" href="/admin/user/add">Thêm mới</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -28,6 +33,7 @@
               <table class="table table-striped jambo_table bulk_action">
                 <thead>
                   <tr class="headings">
+                    <th class="column-title">No</th>
                     <th class="column-title">Name </th>
                     <th class="column-title">Email </th>
                     <th class="column-title">Created At </th>
@@ -39,15 +45,20 @@
                 </thead>
 
                 <tbody>
+                  @php
+                    $no         = 1;
+                    $permission = $view['list_permission'];
+                  @endphp
+
                   @foreach ($view['list_user'] as $value)
                   <tr class="even pointer">
+                    <td class=" ">{{$no++}}</td>
                     <td class=" ">{{$value['name']}}</td>
                     <td class=" ">{{$value['email']}}</td>
                     <td class=" "><i class="success fa fa-clock-o"></i> {{$value['created_at']}}</td>
                     <td class=" "><i class="success fa fa-clock-o"></i> {{$value['updated_at']}}</td>
-                    <td class="a-right a-right "><i class="success fa fa-user"></i> {{$value['permission']}}</td>
-                    <td class=" last">
-                      <a href="#"><i class="success fa fa-edit"></i> Sửa</a> | <a href="#"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td class="a-right a-right "><i class="success fa fa-user"></i> {{$permission[$value['permission']]}}</td>
+                    <td class=" last"> <a href="/admin/user/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/user/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends  Authenticatable
 {
 
     protected $table = 'users';
@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','created_at','updated_at'
+        'name', 'email', 'password',
     ];
 
     /**

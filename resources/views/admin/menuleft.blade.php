@@ -84,14 +84,10 @@
                   <li><a><i class="fa fa-users"></i> Quản Lý User <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/admin/user">Danh sách User</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="project_detail.html">Project Detail</a></li>
-                      <li><a href="contacts.html">Contacts</a></li>
-                      <li><a href="profile.html">Profile</a></li>
                     </ul>
                   </li>
-                  <li><a href="javascript:void(0)"><i class="fa fa-home"></i> Trang Chủ</a></li>
-                  <li><a href="javascript:void(0)"><i class="fa fa-sign-out"></i> Đăng Xuất  </a></li>
+                  <li><a href="/"><i class="fa fa-home"></i>Trang Chủ</a></li>
+                  <li><a href="/admin/logout"><i class="fa fa-sign-out"></i>Đăng Xuất</a></li>
                 </ul>
               </div>
 

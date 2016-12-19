@@ -30,22 +30,18 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form action="/login" method="post">
+            <form action="" method="post">
+            <input type="hidden" name="redirect" value="admin"/>
               <h1>Đăng nhập</h1>
                 {{ csrf_field() }}
-              <div  class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-              <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
-                 @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
+              <div  class="form-group">
+              <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ isset($_POST['email']) ? $_POST['email'] : '' }} ">
               </div>
-              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+              <div class="form-group">
                 <input id="password" type="password" class="form-control"  placeholder="Mật Khẩu" name="password" required="" >
-                 @if ($errors->has('password'))
+                 @if ($errors['error'])
                     <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
+                        <strong>Vui lòng kiểm tra lại Email hoặc Password</strong>
                     </span>
                 @endif
               </div>
@@ -66,7 +62,7 @@
 
                 <div>
                   <h1><i class="fa fa-paw"></i> CRM Qa Coffee Shop</h1>
-                  <p>© <?php echo date("Y") ?> All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                  <p>© {{date("Y")}} All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                 </div>
               </div>
             </form>

@@ -15,7 +15,7 @@ Route::get('403', function(){
     return view("errors.403");
 });
 
-Route::auth();
+// Route::auth();
 
 Route::group(['prefix' => '/'], function () {
     require_once("Routes/User/routes.php");

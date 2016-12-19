@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class User extends  Authenticatable
@@ -16,7 +17,7 @@ class User extends  Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'name', 'email', 'password',
+		'name', 'email', 'password','permission','gender'
 	];
 
 	/**
@@ -37,11 +38,29 @@ class User extends  Authenticatable
 					'password'   => bcrypt(htmlspecialchars(trim($data['password']))),
 					'email'      => htmlspecialchars(trim($data['email'])),
 					'gender'     => (isset($data['gender'])) ? htmlspecialchars(trim($data['gender'])) : 0,
-					'permission' => htmlspecialchars(trim($data['permission'])),
+					'permission' => (int)$data['permission']
 				));
 			} catch (QueryException $ex){
 				return $status;
 			}
+		}
+		return $status;
+	}
+
+	public static function editUser($data){
+		$status = false;
+		if(isset($data)){
+			$arr_update  = array(
+				"name"       => htmlspecialchars(trim($data['name'])),
+				"email"      => htmlspecialchars(trim($data['email'])),
+				"gender"     => htmlspecialchars(trim($data['gender'])),
+				"permission" => (int)$data['permission'],
+			);
+
+			if(!empty($data['password'])) $arr_update["password"]   = bcrypt(htmlspecialchars(trim($data['password'])));
+
+			return User::where('id',$data['id'])->update($arr_update);
+
 		}
 		return $status;
 	}

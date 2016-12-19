@@ -11,5 +11,5 @@ Route::get('logout', 'Admin\LoginController@logout');
 // xu ly user
 Route::get('user', 'Admin\UserController@listUser');
 Route::any('user/add', 'Admin\UserController@addUser');
-// Route::any('user/edit/{id?}', 'Admin\UserController@editUser');
-// Route::get('user/del/{id?}', 'Admin\UserController@delUser');
+Route::any('user/edit/{id?}', 'Admin\UserController@editUser');
+Route::get('user/del/{id?}', 'Admin\UserController@delUser');

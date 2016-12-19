@@ -27,7 +27,7 @@ class UserController extends Controller
 
     //  crod User
     public function addUser(){
-        $title  = "Add New User";
+        $title  = "Thêm mới User";
         $errors = NULL;
         $list_permission = Permission::getList();
         $list_gender     = $this->listGender();
@@ -46,12 +46,25 @@ class UserController extends Controller
             "errors"          => $errors));
     }
 
-    public function delUser(){
-
+    public function editUser($id){
+        $title  = "Sửa User";
+        $errors = NULL;
+        if(!empty($_POST)){
+            $errors = User::editUser($_POST);
+        }
+        $get_user = User::findOrFail((int)$id);
+        $list_permission = Permission::getList();
+        $list_gender     = $this->listGender();
+        return view("admin.user.editUser")->with("view",array("title" => $title ,
+            "list_permission" => $list_permission,
+            "list_gender"     => $list_gender,
+            "detail_user"     => $get_user,
+            "id"              => (int)$id,
+            "errors"          => $errors));
     }
 
-    public function editUser(){
-
+    public function delUser($id){
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
-
 }

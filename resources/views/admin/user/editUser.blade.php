@@ -24,25 +24,26 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
 					{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{$view['id']}}"/>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ Tên <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" required="required" value="{{isset($_POST['name']) ? $_POST['name'] : '' }}">
+						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" required="required" value="{{$view['detail_user']['name']}}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="email" id="email" class="form-control col-md-7 col-xs-12" name="email" data-parsley-trigger="change" value="{{ isset($_POST['email']) ? $_POST['email'] : '' }}" required />
+						<input type="email" id="email" class="form-control col-md-7 col-xs-12" name="email" data-parsley-trigger="change" value="{{$view['detail_user']['email']}}" required />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mật khẩu <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="password" id="password" required="required" class="form-control col-md-7 col-xs-12" name="password" value="{{ isset($_POST['password']) ? $_POST['password'] : '' }}">
+						<input type="password" class="form-control col-md-7 col-xs-12" name="password" value="">
 						</div>
 					</div>
 					<div class="form-group">
@@ -51,11 +52,11 @@
 						<div id="gender" class="btn-group" data-toggle="buttons">
 							@if (isset($view['list_gender']))
 
-							<label class="btn btn-default {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" name="gender" value="0" {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'checked' : '' }}> &nbsp; Nam &nbsp;
+							<label class="btn btn-default {{ ($view['detail_user']['gender'] == 0) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+							<input type="radio" name="gender" value="0" {{ ($view['detail_user']['gender'] == 0) ? 'checked' : '' }}> &nbsp; Nam &nbsp;
 							</label>
-							<label class="btn btn-primary {{ (isset($_POST['gender']) && $_POST['gender'] == 1) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" name="gender" value="1" {{ (isset($_POST['gender']) && $_POST['gender'] == 1) ? 'checked' : '' }}> &nbsp; Nữ &nbsp;&nbsp;
+							<label class="btn btn-primary {{ ($view['detail_user']['gender'] == 1) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+							<input type="radio" name="gender" value="1" {{ ($view['detail_user']['gender'] == 1) ? 'checked' : '' }}> &nbsp; Nữ &nbsp;&nbsp;
 							</label>
 							@endif
 						</div>
@@ -67,7 +68,7 @@
 							<select class="form-control" name="permission">
 							@if (isset($view['list_permission']))
 								@foreach ($view['list_permission'] as $key => $value)
-									<?php $selected = ""; if(isset($_POST['permission']) && $key == $_POST['permission']) $selected = "selected"; ?>
+									<?php $selected = ""; if($key == $view['detail_user']['permission']) $selected = "selected"; ?>
 										<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 								@endforeach
 							@endif
@@ -79,9 +80,9 @@
 						<span class="help-block">
 							<strong>
 							@if ( $view['errors'] != NULL && $view['errors'] == true)
-								Thêm tài khoản thành công
+								Sửa tài khoản thành công
 							@elseif ( $view['errors'] != NULl && $view['errors'] == false)
-								Tài khoản đã tồn tại
+								Sửa thất bại
 							@endif
 							</strong>
 						</span>

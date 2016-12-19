@@ -2258,15 +2258,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   Parsley.addMessages('en', {
     defaultMessage: "This value seems to be invalid.",
     type: {
-      email: "This value should be a valid email.",
-      url: "This value should be a valid url.",
-      number: "This value should be a valid number.",
-      integer: "This value should be a valid integer.",
-      digits: "This value should be digits.",
-      alphanum: "This value should be alphanumeric."
+      email: "Định dạng email không đúng.",
+      url: "Định dạng url không đúng.",
+      number: "Giá trị không phải là số.",
+      integer: "Giá trị phải là số nguyên.",
+      digits: "Giá trị phải là chữ số.",
+      alphanum: "Giá trị phải là ký tự."
     },
     notblank: "This value should not be blank.",
-    required: "This value is required.",
+    required: "Vui lòng thông tin vào ô trên.",
     pattern: "This value seems to be invalid.",
     min: "This value should be greater than or equal to %s.",
     max: "This value should be lower than or equal to %s.",

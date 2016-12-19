@@ -11,4 +11,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+    public function listGender(){
+    	return array( 0 => "Nam" , 1 => "Nữ" );
+    }
+
 }
+

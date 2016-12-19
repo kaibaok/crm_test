@@ -94,5 +94,27 @@
     <!-- bootstrap-daterangepicker -->
     <script src="/public/js/moment/min/moment.min.js"></script>
     <script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Parsley -->
+    <script src="/public/js/parsleyjs/dist/parsley.js"></script>
+    <script>
+        $(document).ready(function() {
+        $.listen('parsley:field:validate', function() {
+          validateFront();
+        });
+        $('#demo-form .btn-submit').on('click', function() {
+          $('#demo-form').parsley().validate();
+          validateFront();
+        });
+        var validateFront = function() {
+          if (true === $('#demo-form').parsley().isValid()) {
+            $('.bs-callout-info').removeClass('hidden');
+            $('.bs-callout-warning').addClass('hidden');
+          } else {
+            $('.bs-callout-info').addClass('hidden');
+            $('.bs-callout-warning').removeClass('hidden');
+          }
+        };
+      });
+    </script>
   </body>
 </html>

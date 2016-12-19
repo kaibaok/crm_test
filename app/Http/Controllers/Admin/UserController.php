@@ -27,9 +27,23 @@ class UserController extends Controller
 
     //  crod User
     public function addUser(){
-        // return view("admin.user.addUser")->with("view",array("title" => "Add New User"));
-        $title           = "Add New User";
-        return view("admin.user.addUser")->with("view",array("title" => $title));
+        $title  = "Add New User";
+        $errors = NULL;
+        $list_permission = Permission::getList();
+        $list_gender     = $this->listGender();
+        if(!empty($_POST)){
+            $s_new_user = User::addUser($_POST);
+            if($s_new_user) {
+                $_POST  = empty($_POST);
+                $errors = true;
+            }else{
+                $errors = false;
+            }
+        }
+        return view("admin.user.addUser")->with("view",array("title" => $title ,
+            "list_permission" => $list_permission,
+            "list_gender"     => $list_gender,
+            "errors"          => $errors));
     }
 
     public function delUser(){

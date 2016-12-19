@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Log;
 class LoginController extends Controller
 {
     public function login (){
-        $errors = NULL;        
+        $errors = NULL;
 		if (Auth::check()) return redirect()->guest("admin");
     	if(!empty($_POST)){
 			$email    = htmlspecialchars(trim($_POST['email']));
-			$password = htmlspecialchars(trim($_POST['password']));   	
+			$password = htmlspecialchars(trim($_POST['password']));
             $remember = str_random(10);
     		if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
-		    	return redirect()->guest('/admin');    	  	
+		    	return redirect()->guest('/admin');
     	  	}else{
                 $errors = array("error"=>"has-error");
             }

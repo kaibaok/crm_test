@@ -19,9 +19,11 @@ class UserController extends Controller
 		$title           = "Danh Sách User";
 		$list_user       = User::paginate(20);
 		$list_permission = Permission::getList();
+        $list_gender     = $this->listGender();
     	return view("admin.user.listUser")
     			->with("view",array("title"           => $title,
 									"list_user"       =>$list_user,
+                                    "list_gender"     => $list_gender,
 									"list_permission" =>$list_permission));
     }
 
@@ -35,9 +37,9 @@ class UserController extends Controller
             $s_new_user = User::addUser($_POST);
             if($s_new_user) {
                 $_POST  = empty($_POST);
-                $errors = true;
+                $errors = "Thêm thành công";
             }else{
-                $errors = false;
+                $errors = "Thêm thất bại";
             }
         }
         return view("admin.user.addUser")->with("view",array("title" => $title ,
@@ -51,6 +53,8 @@ class UserController extends Controller
         $errors = NULL;
         if(!empty($_POST)){
             $errors = User::editUser($_POST);
+            if($errors) $errors = "Sủa thành công";
+            else $errors = "Sửa thất bại";
         }
         $get_user = User::findOrFail((int)$id);
         $list_permission = Permission::getList();
@@ -64,6 +68,7 @@ class UserController extends Controller
     }
 
     public function delUser($id){
+        User::find($id)->delete();
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }

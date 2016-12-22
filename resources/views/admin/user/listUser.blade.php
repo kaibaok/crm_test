@@ -34,11 +34,12 @@
                 <thead>
                   <tr class="headings">
                     <th class="column-title">No</th>
-                    <th class="column-title">Name </th>
-                    <th class="column-title">Email </th>
-                    <th class="column-title">Created At </th>
-                    <th class="column-title">Updated At </th>
-                    <th class="column-title">Permission</th>
+                    <th class="column-title">Họ tên</th>
+                    <th class="column-title">Giới tính</th>
+                    <th class="column-title">Email</th>
+                    <th class="column-title">Ngày tạo</th>
+                    <th class="column-title">Ngày cập nhật</th>
+                    <th class="column-title">Quyền hạn</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                   </tr>
@@ -54,6 +55,7 @@
                   <tr class="even pointer">
                     <td class=" ">{{$no++}}</td>
                     <td class=" ">{{$value['name']}}</td>
+                    <td class=" ">{{$view['list_gender'][$value['gender']]}}</td>
                     <td class=" ">{{$value['email']}}</td>
                     <td class=" "><i class="success fa fa-clock-o"></i> {{$value['created_at']}}</td>
                     <td class=" "><i class="success fa fa-clock-o"></i> {{$value['updated_at']}}</td>

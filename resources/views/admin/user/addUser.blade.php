@@ -78,11 +78,7 @@
 						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-							@if ( $view['errors'] != NULL && $view['errors'] == true)
-								Thêm tài khoản thành công
-							@elseif ( $view['errors'] != NULl && $view['errors'] == false)
-								Tài khoản đã tồn tại
-							@endif
+								{{$view['errors'] }}
 							</strong>
 						</span>
 						</div>

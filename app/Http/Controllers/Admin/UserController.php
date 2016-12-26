@@ -72,4 +72,18 @@ class UserController extends Controller
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
+
+    public function ajaxSearchUser(){
+        $list_user = NULL;
+        if(!empty($_POST)){
+            $txt_search  = htmlspecialchars(trim(strip_tags($_POST['txt_search'])));
+            $list_user = User::searchOption($txt_search);
+            $list_permission = Permission::getList();
+            $list_gender     = $this->listGender();
+        }
+        return view("admin.user.ajaxListUser")->with("view",array("list_user" => $list_user,
+                "list_gender"     => $list_gender,
+                "list_permission" =>$list_permission));
+    }
+
 }

@@ -2,119 +2,102 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
+    {{-- Meta, title, CSS, favicons, etc. --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield("title")</title>
 
-    <!-- Bootstrap -->
+    {{-- Bootstrap --}}
     <link href="/public/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    {{-- Font Awesome --}}
     <link href="/public/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
+    {{-- NProgress --}}
     <link href="/public/js/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
+    {{-- bootstrap-progressbar --}}
     <link href="/public/js/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
+    {{-- bootstrap-daterangepicker --}}
     <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
+    {{-- Custom Theme Style --}}
     <link href="/public/css/custom.css" rel="stylesheet">
-    <!-- iCheck -->
+    {{-- iCheck --}}
     <link href="/public/js/iCheck/skins/flat/green.css" rel="stylesheet">
-      <!-- JQVMap -->
+      {{-- JQVMap --}}
     <link href="/public/js/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+
   </head>
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <!-- menu left -->
+        {{-- menu left --}}
        @include("admin.menuleft")
-        <!-- end menu lef -->
+        {{-- end menu lef --}}
 
-        <!-- top navigation -->
+        {{-- top navigation --}}
         @include("admin.menutop")
-        <!-- /top navigation -->
+        {{-- /top navigation --}}
 
-        <!-- page content -->
+        {{-- page content --}}
         <div class="right_col" role="main">
          @yield("rightcontent")
         </div>
-        <!-- /page content -->
+        {{-- /page content --}}
 
-        <!-- footer content -->
+        {{-- footer content --}}
         <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="/">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
-        <!-- /footer content -->
+        {{-- /footer content --}}
       </div>
     </div>
 
-    <!-- jQuery -->
+    {{-- jQuery --}}
     <script src="/public/js/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
+    {{-- Bootstrap --}}
     <script src="/public/js/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- NProgress -->
+    {{-- NProgress --}}
     <script src="/public/js/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
+    {{-- bootstrap-progressbar --}}
     <script src="/public/js/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- Custom Theme Scripts -->
+    {{-- Custom Theme Scripts --}}
     <script src="/public/js/custom.js"></script>
-    <!-- FastClick -->
+    {{-- FastClick --}}
     <script src="/public/js/fastclick/lib/fastclick.js"></script>
-     <!-- Chart.js -->
+     {{-- Chart.js --}}
     <script src="/public/js/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
+    {{-- gauge.js --}}
     <script src="/public/js/gauge.js/dist/gauge.min.js"></script>
-    <!-- iCheck -->
+    {{-- iCheck --}}
     <script src="/public/js/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
+    {{-- Skycons --}}
     <script src="/public/js/skycons/skycons.js"></script>
-    <!-- Flot -->
+    {{-- Flot --}}
     <script src="/public/js/Flot/jquery.flot.js"></script>
     <script src="/public/js/Flot/jquery.flot.pie.js"></script>
     <script src="/public/js/Flot/jquery.flot.time.js"></script>
     <script src="/public/js/Flot/jquery.flot.stack.js"></script>
     <script src="/public/js/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
+    {{-- Flot plugins --}}
     <script src="/public/js/flot.orderbars/js/jquery.flot.orderBars.js"></script>
     <script src="/public/js/flot-spline/js/jquery.flot.spline.min.js"></script>
     <script src="/public/js/flot.curvedlines/curvedLines.js"></script>
-    <!-- DateJS -->
+    {{-- DateJS --}}
     <script src="/public/js/DateJS/build/date.js"></script>
-    <!-- JQVMap -->
+    {{-- JQVMap --}}
     <script src="/public/js/jqvmap/dist/jquery.vmap.js"></script>
     <script src="/public/js/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="/public/js/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
+    {{-- bootstrap-daterangepicker --}}
     <script src="/public/js/moment/min/moment.min.js"></script>
     <script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <!-- Parsley -->
+    {{-- Parsley --}}
     <script src="/public/js/parsleyjs/dist/parsley.js"></script>
-    <script>
-        $(document).ready(function() {
-        $.listen('parsley:field:validate', function() {
-          validateFront();
-        });
-        $('#demo-form .btn-submit').on('click', function() {
-          $('#demo-form').parsley().validate();
-          validateFront();
-        });
-        var validateFront = function() {
-          if (true === $('#demo-form').parsley().isValid()) {
-            $('.bs-callout-info').removeClass('hidden');
-            $('.bs-callout-warning').addClass('hidden');
-          } else {
-            $('.bs-callout-info').addClass('hidden');
-            $('.bs-callout-warning').removeClass('hidden');
-          }
-        };
-      });
-    </script>
+    {{-- check user --}}
+    <script src="/public/js/cus_admin.js"></script>
   </body>
 </html>

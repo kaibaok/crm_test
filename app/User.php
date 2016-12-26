@@ -65,4 +65,13 @@ class User extends  Authenticatable
 		return $status;
 	}
 
+	public static function searchOption($txt_search){
+		$m_user = User::where('name','like',"%{$txt_search}%")->orWhere('email','like',"%{$txt_search}%")->get();
+		$arr_data = NULL;
+		if($m_user){
+			$arr_data = $m_user->toArray();
+		}
+		return $arr_data;
+	}
+
 }

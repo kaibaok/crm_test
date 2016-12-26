@@ -13,3 +13,5 @@ Route::get('user', 'Admin\UserController@listUser');
 Route::any('user/add', 'Admin\UserController@addUser');
 Route::any('user/edit/{id?}', 'Admin\UserController@editUser');
 Route::get('user/del/{id?}', 'Admin\UserController@delUser');
+
+Route::any('user/ajax-suser', 'Admin\UserController@ajaxSearchUser');

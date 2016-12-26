@@ -9,10 +9,11 @@
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button" id="btn_search">Tìm</button>
-            </span>
+              <input type="hidden" name="_token" id="token_aluser" value="{{ csrf_token() }}">
+              <input type="text" class="form-control" placeholder="Tìm kiếm..." id="txt_aluser">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="btn_search_aluser">Tìm</button>
+              </span>
           </div>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
@@ -29,8 +30,8 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_content">
-            <div class="table-responsive">
-              <table class="table table-striped jambo_table bulk_action">
+            <div class="table-responsive" id="">
+              <table class="table table-striped jambo_table bulk_action" >
                 <thead>
                   <tr class="headings">
                     <th class="column-title">No</th>
@@ -45,7 +46,7 @@
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="tbl_aluser">
                   @php
                     $no         = 1;
                     $permission = $view['list_permission'];

@@ -14,11 +14,11 @@
   $x        = 125;  // barcode center
   $y        = 125;  // barcode center
   $height   = 50;   // barcode height in 1D ; module size in 2D
-  $width    = 10;    // barcode height in 1D ; not use in 2D
-  $angle    = 90;   // rotation in degrees : nb : non horizontable barcode might not be usable because of pixelisation
+  $width    = 2;    // barcode height in 1D ; not use in 2D
+  $angle    = 0;   // rotation in degrees : nb : non horizontable barcode might not be usable because of pixelisation
 
-  $code     = '2111111111112'; // barcode, of course ;)
-  $type     = 'datamatrix';
+  $code     = '123456789012'; // barcode, of course ;)
+  $type     = 'ean13';
 
   // -------------------------------------------------- //
   //                    USEFUL
@@ -35,8 +35,8 @@
   $im     = imagecreatetruecolor(300, 300);
   $black  = ImageColorAllocate($im,0x00,0x00,0x00);
   $white  = ImageColorAllocate($im,0xff,0xff,0xff);
-  $red    = ImageColorAllocate($im,0xff,0x00,0x00);
-  $blue   = ImageColorAllocate($im,0x00,0x00,0xff);
+  // $red    = ImageColorAllocate($im,0xff,0x00,0x00);
+  // $blue   = ImageColorAllocate($im,0x00,0x00,0xff);
   imagefilledrectangle($im, 0, 0, 300, 300, $white);
 
   // -------------------------------------------------- //
@@ -93,14 +93,14 @@
   // -------------------------------------------------- //
   //                    MIDDLE AXE
   // -------------------------------------------------- //
-  imageline($im, $x, 0, $x, 250, $red);
-  imageline($im, 0, $y, 250, $y, $red);
+  // imageline($im, $x, 0, $x, 250, $red);
+  // imageline($im, 0, $y, 250, $y, $red);
 
   // -------------------------------------------------- //
   //                  BARCODE BOUNDARIES
   // -------------------------------------------------- //
   for($i=1; $i<5; $i++){
-    drawCross($im, $blue, $data['p'.$i]['x'], $data['p'.$i]['y']);
+    // drawCross($im, $blue, $data['p'.$i]['x'], $data['p'.$i]['y']);
   }
 
   // -------------------------------------------------- //

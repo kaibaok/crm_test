@@ -16,25 +16,24 @@ class Product extends Model
         'id', 'idCate',"name","desc","price","type","limitDate","createdDate","updatedDate"
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    // protected $hidden = [
-    //     'password', 'remember_token',
-    // ];
-
-    // public static function getList(){
-    //     $get_all  = self::all();
-    //     $arr_data = NULL;
-    //     if($get_all){
-    //         $list_data = $get_all->toArray();
-    //         foreach ($get_all as $key => $value) {
-    //             $arr_data[$value['id']] = $value['title'];
-    //         }
-    //     }
-    //     return $arr_data;
-    // }
+    public static function addProduct($data){
+        $status = false;
+        if(isset($data)){
+            try{
+                $status = User::create(array(
+                    'idCate'      => htmlspecialchars(trim($data['idCate'])),
+                    'name'        => htmlspecialchars(trim($data['name'])),
+                    'desc'        => htmlspecialchars(trim($data['desc'])),
+                    'price'       => htmlspecialchars(trim($data['price'])),
+                    'type'        => htmlspecialchars(trim($data['type'])),
+                    'limitDate'   => htmlspecialchars(trim($data['limitDate'])),
+                    'createdDate' => htmlspecialchars(trim($data['createdDate'])),
+                ));
+            } catch (QueryException $ex){
+                return $status;
+            }
+        }
+        return $status;
+    }
 
 }

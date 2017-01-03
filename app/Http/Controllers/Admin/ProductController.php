@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
 use App\Models\Admin\ProductType;
+use DateTime;
 
 class ProductController extends Controller
 {
@@ -77,7 +78,7 @@ class ProductController extends Controller
 			"errors"        => $errors));
     }
 
-     public function editCateProduct($id){
+    public function editCateProduct($id){
         $title  = "Sửa loại sản phẩm";
         $errors = NULL;
         if(!empty($_POST)){
@@ -125,7 +126,7 @@ class ProductController extends Controller
             "errors"        => $errors));
     }
 
-     public function editTypeProduct($id){
+    public function editTypeProduct($id){
         $title  = "Sửa trọng lượng sản phẩm";
         $errors = NULL;
         if(!empty($_POST)){

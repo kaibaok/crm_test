@@ -13,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        "id", "idCate","codeID","title","desc","price","type","limit_date","created_date","updated_date","stastus","ord"
+        "id", "id_cate","code_id","title","desc","price","type","limit_date","created_date","updated_date","stastus","ord"
     ];
 
     public static function addProduct($data){
@@ -21,17 +21,17 @@ class Product extends Model
         if(isset($data)){
             try{
                 $status = User::create(array(
-                    "idCate"      => (int)htmlspecialchars(trim($date["idCate"])),
-                    "codeID"      => (int)htmlspecialchars(trim($date["codeID"])),
-                    "title"        => htmlspecialchars(trim($date["title"])),
-                    "desc"        => htmlspecialchars(trim($date["desc"])),
-                    "price"       => (int)htmlspecialchars(trim($date["price"])),
-                    "type"        => (int)htmlspecialchars(trim($date["type"])),
-                    "limit_date"   => htmlspecialchars(trim($date["limit_date"])),
-                    "created_date" => htmlspecialchars(trim($date["created_date"])),
-                    "updated_date" => htmlspecialchars(trim($date["updated_date"])),
-                    "stastus"     => (int)htmlspecialchars(trim($date["stastus"])),
-                    "ord"         => (int)htmlspecialchars(trim($date["ord"])),
+                    "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
+                    "code_id"      => (int)$data['code_id'],
+                    "title"        => htmlspecialchars(trim($data["title"])),
+                    "desc"         => htmlspecialchars(trim($data["desc"])),
+                    "price"        => (int)$data["price"],
+                    "type"         => (int)$data["type"],
+                    "limit_date"   => htmlspecialchars(trim($data["limit_date"])),
+                    "created_date" => htmlspecialchars(trim($data["created_date"])),
+                    "updated_date" => htmlspecialchars(trim($data["updated_date"])),
+                    "stastus"      => (int)$data["stastus"],
+                    "ord"          => (int)$data["ord"],
                 ));
             } catch (QueryException $ex){
                 return $status;

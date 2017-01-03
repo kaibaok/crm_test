@@ -17,7 +17,8 @@
   $width    = 2;    // barcode height in 1D ; not use in 2D
   $angle    = 0;   // rotation in degrees : nb : non horizontable barcode might not be usable because of pixelisation
 
-  $code     = '123456789012'; // barcode, of course ;)
+  // $code     = '123456789012'; // barcode, of course ;)
+  $code = "QS586b39af9da2d";
   $type     = 'ean13';
 
   // -------------------------------------------------- //

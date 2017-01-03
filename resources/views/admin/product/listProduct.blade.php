@@ -4,7 +4,7 @@
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Danh sách sản phẩm</h3>
+        <h3>{{$view['title']}}</h3>
       </div>
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -66,14 +66,14 @@
                         <i class="success fa fa-eye-slash" title="Ẩn"></i>
                       @endif
                     </td>
-                    <td>{{$value['codeID']}}</td>
-                    <td>{{$value['name']}}</td>
-                    <td>{{$category[$value['idCate']]}}</td>
+                    <td>{{$value['code_id']}}</td>
+                    <td>{{$value['title']}}</td>
+                    <td>{{$category[$value['id_cate']]}}</td>
                     <td>{{$value['price']}}</td>
                     <td>{{$type[$value['type']]}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value['limitDate']}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value['createdDate']}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value['updatedDate']}}</td>
+                    <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value['limit_date']}}</td>
+                    <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value['created_date']}}</td>
+                    <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value['updated_date']}}</td>
                     <td class="last"> <a href="/admin/product/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach

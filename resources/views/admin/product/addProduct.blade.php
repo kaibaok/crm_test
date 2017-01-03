@@ -24,7 +24,53 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
 					{{ csrf_field() }}
+					<input type="hidden" name="code_id" value="{{time()}}">
 					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Loại sản phảm <span class="required">*</span></label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<select class="form-control" name="id_cate">
+								@if (isset($view['list_category']))
+									@foreach ($view['list_category'] as $key => $value)
+										<?php $selected = ""; if(isset($_POST['id_cate']) && $key == $_POST['id_cate']) $selected = "selected"; ?>
+											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<select class="form-control" name="type">
+								@if (isset($view['list_type']))
+									@foreach ($view['list_type'] as $key => $value)
+										<?php $selected = ""; if(isset($_POST['type']) && $key == $_POST['type']) $selected = "selected"; ?>
+											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div id="editor" class="editor-wrapper"></div>
+                  			<textarea name="descr" id="descr" style="display:none;"></textarea>
+						</div>
+					</div>
+
+
+
+					{{-- <div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ Tên <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
@@ -44,36 +90,8 @@
 						<div class="col-md-6 col-sm-6 col-xs-12">
 						<input type="password" id="password" required="required" class="form-control col-md-7 col-xs-12" name="password" value="{{ isset($_POST['password']) ? $_POST['password'] : '' }}">
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						<div id="gender" class="btn-group" data-toggle="buttons">
-							@if (isset($view['list_gender']))
+					</div> --}}
 
-							<label class="btn btn-default {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" name="gender" value="0" {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'checked' : '' }}> &nbsp; Nam &nbsp;
-							</label>
-							<label class="btn btn-primary {{ (isset($_POST['gender']) && $_POST['gender'] == 1) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" name="gender" value="1" {{ (isset($_POST['gender']) && $_POST['gender'] == 1) ? 'checked' : '' }}> &nbsp; Nữ &nbsp;&nbsp;
-							</label>
-							@endif
-						</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Quyền hạn</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<select class="form-control" name="permission">
-							@if (isset($view['list_permission']))
-								@foreach ($view['list_permission'] as $key => $value)
-									<?php $selected = ""; if(isset($_POST['permission']) && $key == $_POST['permission']) $selected = "selected"; ?>
-										<option value="{{$key}}" {{$selected}}>{{$value}}</option>
-								@endforeach
-							@endif
-							</select>
-						</div>
-					</div>
 					<div class="form-group">
 						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
 						<span class="help-block">

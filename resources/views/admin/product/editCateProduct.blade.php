@@ -9,7 +9,7 @@
 		<div class="title_right">
 	        <div class=" pull-right">
 	          <div class="input-group">
-	            <a class="btn btn-primary" href="/admin/type-product/">Trở về</a>
+	            <a class="btn btn-primary" href="/admin/cate-product/">Trở về</a>
 	          </div>
 	        </div>
 	      </div>
@@ -24,20 +24,20 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
 					{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{$view['category']['id']}}"/>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Tên loại <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($view['category']['title']) ? $view['category']['title'] : '' }}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Hiển thị</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
-		                        <label>
-		                        <input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label> <label><input type="radio" class="flat" name="status"  value="1" /> Hiện
-		                        </label>
+		                      <label><input type="radio" class="flat" name="status" value="0" @if(isset($view['category']['status']) && $view['category']['status'] == 0) checked @endif /> Ẩn </label>&nbsp;
+		                      <label><input type="radio" class="flat" name="status"  value="1" @if(isset($view['category']['status']) && $view['category']['status'] == 1) checked @endif /> Hiện</label>
 							</div>
 						</div>
 					</div>

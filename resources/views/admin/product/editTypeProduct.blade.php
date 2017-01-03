@@ -24,21 +24,12 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
 					{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{$view['type']['id']}}"/>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Tên loại <span class="required">*</span>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Loại trọng lượng <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Hiển thị</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<div id="status" class="btn-group" data-toggle="buttons">
-		                        <label>
-		                        <input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label> <label><input type="radio" class="flat" name="status"  value="1" /> Hiện
-		                        </label>
-							</div>
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($view['type']['title']) ? $view['type']['title'] : '' }}">
 						</div>
 					</div>
 					<div class="form-group">

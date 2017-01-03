@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/user/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/product/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
                     <td>
                       @if ($value['status'] == 1)
                         <i class="success fa fa-eye" title="Hiển thị"></i>
-                      @else        
+                      @else
                         <i class="success fa fa-eye-slash" title="Ẩn"></i>
                       @endif
                     </td>

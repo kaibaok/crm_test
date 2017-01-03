@@ -13,7 +13,7 @@ class ProductCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title','status'
+        'id', 'title','status','updated_at','created_at'
     ];
 
     /**
@@ -39,17 +39,27 @@ class ProductCategory extends Model
 
     public static function addCateProduct($data){
         $status = false;
-        var_dump($data);
-        die;
         if(isset($data)){
             try{
                 $status = ProductCategory::create(array(
-                    'status' => (int)htmlspecialchars(trim($data['status'])),
+                    'status' => (int)$data['status'],
                     'title'  => htmlspecialchars(trim($data['title'])),
                 ));
             } catch (QueryException $ex){
                 return $status;
             }
+        }
+        return $status;
+    }
+
+    public static function editCateProduct($data){
+        $status = false;
+        if(isset($data)){
+            $arr_update  = array(
+                'status' => (int)$data['status'],
+                'title'  => htmlspecialchars(trim($data['title'])),
+            );
+            return ProductCategory::where('id',(int)$data['id'])->update($arr_update);
         }
         return $status;
     }

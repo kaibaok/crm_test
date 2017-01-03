@@ -13,7 +13,7 @@ class ProductType extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title'
+        'id', 'title','created_at','updated_at'
     ];
 
     /**
@@ -35,6 +35,31 @@ class ProductType extends Model
             }
         }
         return $arr_data;
+    }
+
+    public static function addTypeProduct($data){
+        $status = false;
+        if(isset($data)){
+            try{
+                $status = ProductType::create(array(
+                    'title'  => htmlspecialchars(trim($data['title'])),
+                ));
+            } catch (QueryException $ex){
+                return $status;
+            }
+        }
+        return $status;
+    }
+
+    public static function editTypeProduct($data){
+        $status = false;
+        if(isset($data)){
+            $arr_update  = array(
+                'title'  => htmlspecialchars(trim($data['title'])),
+            );
+            return ProductType::where('id',(int)$data['id'])->update($arr_update);
+        }
+        return $status;
     }
 
 }

@@ -10,21 +10,21 @@ use App\Models\Admin\Permission;
 
 class UserController extends Controller
 {
-	public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
 
     public function listUser (){
-		$title           = "Danh Sách User";
-		$list_user       = User::paginate(20);
-		$list_permission = Permission::getList();
+        $title           = "Danh Sách User";
+        $list_user       = User::orderBy('id','DESC')->orderBy('created_at','DESC')->paginate(20);
+        $list_permission = Permission::getList();
         $list_gender     = $this->listGender();
-    	return view("admin.user.listUser")
-    			->with("view",array("title"           => $title,
-									"list_user"       =>$list_user,
+        return view("admin.user.listUser")
+                ->with("view",array("title"           => $title,
+                                    "list_user"       =>$list_user,
                                     "list_gender"     => $list_gender,
-									"list_permission" =>$list_permission));
+                                    "list_permission" =>$list_permission));
     }
 
     //  crod User

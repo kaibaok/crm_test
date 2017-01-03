@@ -13,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'idCate',"name","desc","price","type","limitDate","createdDate","updatedDate"
+        "id", "idCate","codeID","name","desc","price","type","limitDate","createdDate","updatedDate","stastus","ord"
     ];
 
     public static function addProduct($data){
@@ -21,13 +21,17 @@ class Product extends Model
         if(isset($data)){
             try{
                 $status = User::create(array(
-                    'idCate'      => htmlspecialchars(trim($data['idCate'])),
-                    'name'        => htmlspecialchars(trim($data['name'])),
-                    'desc'        => htmlspecialchars(trim($data['desc'])),
-                    'price'       => htmlspecialchars(trim($data['price'])),
-                    'type'        => htmlspecialchars(trim($data['type'])),
-                    'limitDate'   => htmlspecialchars(trim($data['limitDate'])),
-                    'createdDate' => htmlspecialchars(trim($data['createdDate'])),
+                    "idCate"      => (int)htmlspecialchars(trim($date["idCate"])),
+                    "codeID"      => (int)htmlspecialchars(trim($date["codeID"])),
+                    "name"        => htmlspecialchars(trim($date["name"])),
+                    "desc"        => htmlspecialchars(trim($date["desc"])),
+                    "price"       => (int)htmlspecialchars(trim($date["price"])),
+                    "type"        => (int)htmlspecialchars(trim($date["type"])),
+                    "limitDate"   => htmlspecialchars(trim($date["limitDate"])),
+                    "createdDate" => htmlspecialchars(trim($date["createdDate"])),
+                    "updatedDate" => htmlspecialchars(trim($date["updatedDate"])),
+                    "stastus"     => (int)htmlspecialchars(trim($date["stastus"])),
+                    "ord"         => (int)htmlspecialchars(trim($date["ord"])),
                 ));
             } catch (QueryException $ex){
                 return $status;

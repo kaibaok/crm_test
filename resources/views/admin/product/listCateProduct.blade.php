@@ -4,7 +4,7 @@
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Danh sách sản phẩm</h3>
+        <h3>Danh sách loại sản phẩm</h3>
       </div>
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/user/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/cate-product/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -36,14 +36,7 @@
                   <tr class="headings">
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
-                    <th class="column-title">Mã Barcode</th>
-                    <th class="column-title">Tên sản phẩm</th>
-                    <th class="column-title">Loại sản phẩm</th>
-                    <th class="column-title">Giá</th>
-                    <th class="column-title">Trọng lượng</th>
-                    <th class="column-title">Ngày hết hạn</th>
-                    <th class="column-title">Ngày nhập hàng</th>
-                    <th class="column-title">Ngày cập nhật</th>
+                    <th class="column-title">Tên loại sản phẩm</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
@@ -51,12 +44,9 @@
 
                 <tbody id="tbl_aluser">
                   @php
-                    $no       = 1;
-                    $category = $view['list_category'];
-                    $type     = $view['list_type'];
+                    $no = 1;
                   @endphp
-
-                  @foreach ($view['list_product'] as $value)
+                  @foreach ($view['list_category'] as $value)
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>
@@ -66,21 +56,14 @@
                         <i class="success fa fa-eye-slash" title="Ẩn"></i>
                       @endif
                     </td>
-                    <td>{{$value['codeID']}}</td>
-                    <td>{{$value['name']}}</td>
-                    <td>{{$category[$value['idCate']]}}</td>
-                    <td>{{$value['price']}}</td>
-                    <td>{{$type[$value['type']]}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value['limitDate']}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value['createdDate']}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value['updatedDate']}}</td>
+                    <td>{{$value['title']}}</td>
                     <td class="last"> <a href="/admin/product/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$view['list_product']->links() }}
+                {{$view['list_category']->links() }}
               </div>
             </div>
           </div>

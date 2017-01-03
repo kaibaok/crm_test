@@ -13,7 +13,7 @@ class ProductCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title'
+        'id', 'title','status'
     ];
 
     /**
@@ -37,4 +37,20 @@ class ProductCategory extends Model
         return $arr_data;
     }
 
+    public static function addCateProduct($data){
+        $status = false;
+        var_dump($data);
+        die;
+        if(isset($data)){
+            try{
+                $status = ProductCategory::create(array(
+                    'status' => (int)htmlspecialchars(trim($data['status'])),
+                    'title'  => htmlspecialchars(trim($data['title'])),
+                ));
+            } catch (QueryException $ex){
+                return $status;
+            }
+        }
+        return $status;
+    }
 }

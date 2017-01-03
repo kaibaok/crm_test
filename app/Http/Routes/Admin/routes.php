@@ -16,4 +16,10 @@ Route::get('user/del/{id?}', 'Admin\UserController@delUser');
 
 Route::any('user/ajax-suser', 'Admin\UserController@ajaxSearchUser');
 
+// List Product
 Route::any('product', 'Admin\ProductController@listProduct');
+
+// list cate product
+Route::any('cate-product', 'Admin\ProductController@listCateProduct');
+Route::any('cate-product/add', 'Admin\ProductController@addCateProduct');
+

@@ -16,5 +16,9 @@ class Controller extends BaseController
     	return array( 0 => "Nam" , 1 => "Nữ" );
     }
 
+    public function listStatus(){
+    	return array( 0 => "Hiển thị" , 1 => "Ản" );
+    }
+
 }
 

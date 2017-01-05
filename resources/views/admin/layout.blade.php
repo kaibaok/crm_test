@@ -18,14 +18,14 @@
     {{-- bootstrap-progressbar --}}
     <link href="/public/js/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     {{-- bootstrap-daterangepicker --}}
-    <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    {{-- <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"> --}}
     {{-- Custom Theme Style --}}
     <link href="/public/css/custom.css" rel="stylesheet">
     {{-- iCheck --}}
     <link href="/public/js/iCheck/skins/flat/green.css" rel="stylesheet">
-      {{-- JQVMap --}}
-    <link href="/public/js/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-
+    
+    @yield("css")
+    
   </head>
 
   <body class="nav-md">
@@ -68,36 +68,21 @@
     <script src="/public/js/custom.js"></script>
     {{-- FastClick --}}
     <script src="/public/js/fastclick/lib/fastclick.js"></script>
-     {{-- Chart.js --}}
-    <script src="/public/js/Chart.js/dist/Chart.min.js"></script>
+    {{-- Chart.js --}}
+    {{-- <script src="/public/js/Chart.js/dist/Chart.min.js"></script> --}}
     {{-- gauge.js --}}
     <script src="/public/js/gauge.js/dist/gauge.min.js"></script>
     {{-- iCheck --}}
     <script src="/public/js/iCheck/icheck.min.js"></script>
-    {{-- Skycons --}}
-    <script src="/public/js/skycons/skycons.js"></script>
-    {{-- Flot --}}
-    <script src="/public/js/Flot/jquery.flot.js"></script>
-    <script src="/public/js/Flot/jquery.flot.pie.js"></script>
-    <script src="/public/js/Flot/jquery.flot.time.js"></script>
-    <script src="/public/js/Flot/jquery.flot.stack.js"></script>
-    <script src="/public/js/Flot/jquery.flot.resize.js"></script>
-    {{-- Flot plugins --}}
-    <script src="/public/js/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="/public/js/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="/public/js/flot.curvedlines/curvedLines.js"></script>
     {{-- DateJS --}}
-    <script src="/public/js/DateJS/build/date.js"></script>
-    {{-- JQVMap --}}
-    <script src="/public/js/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="/public/js/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="/public/js/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    {{-- bootstrap-daterangepicker --}}
-    <script src="/public/js/moment/min/moment.min.js"></script>
-    <script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+    {{-- <script src="/public/js/DateJS/build/date.js"></script> --}}
+
     {{-- Parsley --}}
     <script src="/public/js/parsleyjs/dist/parsley.js"></script>
     {{-- check user --}}
     <script src="/public/js/cus_admin.js"></script>
+
+    @yield("js")
+
   </body>
 </html>

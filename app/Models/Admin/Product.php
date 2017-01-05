@@ -13,24 +13,22 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        "id", "id_cate","code_id","title","desc","price","type","limit_date","created_date","updated_date","stastus","ord"
+        "id", "id_cate","code_id","title","desc","price","type","limit_at","created_at","updated_at","status","ord"
     ];
 
     public static function addProduct($data){
         $status = false;
         if(isset($data)){
             try{
-                $status = User::create(array(
+                $status = Product::create(array(
                     "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
                     "code_id"      => (int)$data['code_id'],
                     "title"        => htmlspecialchars(trim($data["title"])),
                     "desc"         => htmlspecialchars(trim($data["desc"])),
                     "price"        => (int)$data["price"],
                     "type"         => (int)$data["type"],
-                    "limit_date"   => htmlspecialchars(trim($data["limit_date"])),
-                    "created_date" => htmlspecialchars(trim($data["created_date"])),
-                    "updated_date" => htmlspecialchars(trim($data["updated_date"])),
-                    "stastus"      => (int)$data["stastus"],
+                    "limit_at"   => htmlspecialchars(trim($data["limit_at"])),
+                    "status"       => (int)$data["status"],
                     "ord"          => (int)$data["ord"],
                 ));
             } catch (QueryException $ex){

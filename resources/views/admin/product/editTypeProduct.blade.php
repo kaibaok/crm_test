@@ -26,14 +26,14 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{$view['type']['id']}}"/>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Loại trọng lượng <span class="required">*</span>
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Loại trọng lượng <span class="required">*</span>
 						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="col-md-4 col-sm-4 col-xs-12">
 						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($view['type']['title']) ? $view['type']['title'] : '' }}">
 						</div>
 					</div>
 					<div class="form-group">
-						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
 								{{$view['errors'] }}
@@ -43,7 +43,7 @@
 					</div>
 					<div class="ln_solid"></div>
 					<div class="form-group">
-						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+						<div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
 						<button type="reset" class="btn btn-primary">Reset</button>
 						<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 						</div>

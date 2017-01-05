@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2017 at 02:56 AM
+-- Generation Time: Jan 05, 2017 at 07:02 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -147,15 +147,15 @@ INSERT INTO `permission` (`id`, `title`) VALUES
 
 CREATE TABLE IF NOT EXISTS `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCate` int(11) NOT NULL,
-  `codeID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_cate` int(11) NOT NULL,
+  `code_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `desc` text COLLATE utf8_unicode_ci,
   `price` int(11) NOT NULL,
   `type` int(11) NOT NULL,
-  `limitDate` date DEFAULT NULL,
-  `createdDate` date DEFAULT NULL,
-  `updatedDate` date DEFAULT NULL,
+  `limit_at` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `ord` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -165,8 +165,8 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `idCate`, `codeID`, `name`, `desc`, `price`, `type`, `limitDate`, `createdDate`, `updatedDate`, `status`, `ord`) VALUES
-(1, 1, 'QA101014', 'ovanteen', 'san pham pepsi', 100, 1, '2016-12-01', '2016-12-01', '2016-12-11', 0, 0);
+INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `desc`, `price`, `type`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`) VALUES
+(1, 1, 'QA101014', 'ovanteen', 'san pham pepsi', 100, 1, '2016-12-01', '2016-12-01 08:00:00', '2016-12-11 08:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -178,15 +178,18 @@ CREATE TABLE IF NOT EXISTS `product_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `product_category`
 --
 
-INSERT INTO `product_category` (`id`, `status`, `title`) VALUES
-(1, 0, 'Nước giải khát');
+INSERT INTO `product_category` (`id`, `status`, `title`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Nước giải khát', '2017-01-05 15:06:59', '2017-01-05 15:07:17'),
+(2, 1, 'Thức ăn nhanh', '2017-01-05 15:07:54', '2017-01-05 23:07:54');
 
 -- --------------------------------------------------------
 
@@ -197,15 +200,20 @@ INSERT INTO `product_category` (`id`, `status`, `title`) VALUES
 CREATE TABLE IF NOT EXISTS `product_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `product_type`
 --
 
-INSERT INTO `product_type` (`id`, `title`) VALUES
-(1, 'Chai');
+INSERT INTO `product_type` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(1, 'Chai', '2017-01-05 15:08:30', '0000-00-00 00:00:00'),
+(2, 'Thùng', '2017-01-05 15:09:02', '2017-01-05 23:09:02'),
+(3, 'Kg', '2017-01-05 23:09:15', '2017-01-05 23:09:15'),
+(4, 'Lốc', '2017-01-05 23:09:28', '2017-01-05 23:09:28');
 
 -- --------------------------------------------------------
 

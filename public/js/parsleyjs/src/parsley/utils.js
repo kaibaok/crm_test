@@ -84,7 +84,7 @@ var ParsleyUtils = {
 
   warn: function () {
     if (window.console && 'function' === typeof window.console.warn)
-      window.console.warn(...arguments);
+      // window.console.warn(...arguments);
   },
 
   warnOnce: function(msg) {

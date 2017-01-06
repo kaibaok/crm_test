@@ -35,6 +35,7 @@ class ProductController extends Controller
 		$list_category = ProductCategory::getList();
 		$list_type     = ProductType::getList();
         if(!empty($_POST)){
+            var_dump($_FILES);
             $s_new_product = Product::addProduct($_POST);
             if($s_new_Product) {
                 $_POST  = empty($_POST);

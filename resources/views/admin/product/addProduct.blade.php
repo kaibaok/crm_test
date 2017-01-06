@@ -1,6 +1,6 @@
 @extends("admin.layout")
 @section('title') {{$view['title']}} @endsection
-@section('css') 
+@section('css')
   <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 @endsection
 
@@ -24,16 +24,27 @@
 
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="">
+				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
 					{{ csrf_field() }}
-					<input type="hidden" name="code_id" value="{{time()}}">
+
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div id="status" class="btn-group" data-toggle="buttons">
+		                        <label>
+		                        <input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label> <label><input type="radio" class="flat" name="status"  value="1" /> Hiện
+		                        </label>
+							</div>
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
 						</div>
 					</div>
 
@@ -66,7 +77,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-10 col-xs-12">
                   			<textarea  name="desc" id="desc">
                   				@if(isset($_POST['desc']))
@@ -80,7 +91,7 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="price" class="form-control col-md-7 col-xs-12" name="price" required="required" value="{{isset($_POST['price']) ? $_POST['price'] : '' }}">
+						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($_POST['price']) ? $_POST['price'] : '' }}">
 						</div>
 					</div>
 
@@ -95,10 +106,61 @@
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Number <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="number" id="price" name="price" required="required"  class="form-control">
+	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($_POST['numbers']) ? $_POST['numbers'] : '' }}">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span>
+						</label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img_list" name="img_list" class="form-control">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span>
+						</label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img_detail" name="img_detail" class="form-control">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img1" name="img1" class="form-control">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2 </label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img2" name="img2" class="form-control">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img3" name="img3" class="form-control">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img4" name="img4" class="form-control">
+                      	</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                       <input type="file" id="img5" name="img5" class="form-control">
                       	</div>
 					</div>
 
@@ -114,18 +176,20 @@
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-3">
-						<button type="reset" class="btn btn-primary">Reset</button>
-						<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
+						<button type ="reset" class="btn btn-primary">Reset</button>
+						<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
+						<input  type ="hidden" value="{{time()}}" name="code_id">
 						</div>
 					</div>
 					</form>
 			  </div>
+			</div>
 		</div>
 	</div>
 </div>
 @endsection
 
-@section('js') 
+@section('js')
 <script src="/public/js/ckeditor/ckeditor.js"></script>
 {{-- bootstrap-daterangepicker --}}
 <script src="/public/js/moment/min/moment.min.js"></script>

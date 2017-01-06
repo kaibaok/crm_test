@@ -24,13 +24,7 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
 					{{ csrf_field() }}
-					<div class="form-group">
-						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại <span class="required">*</span>
-						</label>
-						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
-						</div>
-					</div>
+
 					<div class="form-group">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12">Hiển thị</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
@@ -41,6 +35,15 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại <span class="required">*</span>
+						</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
+						</div>
+					</div>
+
 					<div class="form-group">
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">

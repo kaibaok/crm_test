@@ -13,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        "id", "id_cate","code_id","title","desc","price","type","limit_at","created_at","updated_at","status","ord"
+        "id", "id_cate","code_id","title","desc","price","type","numbers","limit_at","created_at","updated_at","status","ord"
     ];
 
     public static function addProduct($data){
@@ -27,7 +27,8 @@ class Product extends Model
                     "desc"         => htmlspecialchars(trim($data["desc"])),
                     "price"        => (int)$data["price"],
                     "type"         => (int)$data["type"],
-                    "limit_at"   => htmlspecialchars(trim($data["limit_at"])),
+                    "numbers"      => (int)$data['numbers'],
+                    "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
                     "status"       => (int)$data["status"],
                     "ord"          => (int)$data["ord"],
                 ));

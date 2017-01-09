@@ -29,12 +29,30 @@ class Product extends Model
                     "type"         => (int)$data["type"],
                     "numbers"      => (int)$data['numbers'],
                     "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
-                    "status"       => (int)$data["status"],
-                    "ord"          => (int)$data["ord"],
+                    "status"       => (int)$data["status"],                    
                 ));
             } catch (QueryException $ex){
                 return $status;
             }
+        }
+        return $status;
+    }
+
+    public static function editProduct($data){
+        $status = false;
+        if(isset($data)){
+            $arr_update  = array(
+                "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
+                "code_id"      => (int)$data['code_id'],
+                "title"        => htmlspecialchars(trim($data["title"])),
+                "desc"         => htmlspecialchars(trim($data["desc"])),
+                "price"        => (int)$data["price"],
+                "type"         => (int)$data["type"],
+                "numbers"      => (int)$data['numbers'],
+                "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
+                "status"       => (int)$data["status"],   
+            );
+            return Product::where('id',(int)$data['id'])->update($arr_update);
         }
         return $status;
     }

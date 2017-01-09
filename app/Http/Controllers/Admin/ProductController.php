@@ -35,9 +35,8 @@ class ProductController extends Controller
 		$list_category = ProductCategory::getList();
 		$list_type     = ProductType::getList();
         if(!empty($_POST)){
-            var_dump($_FILES);
             $s_new_product = Product::addProduct($_POST);
-            if($s_new_Product) {
+            if($s_new_product) {
                 $_POST  = empty($_POST);
                 $errors = "Thêm thành công";
             }else{
@@ -49,6 +48,32 @@ class ProductController extends Controller
             "list_category" => $list_category,
             "list_type"     => $list_type,
             "errors"        => $errors));
+    }
+
+    public function editProduct($id){
+        $title  = "Sửa sản phẩm";
+        $errors = NULL;
+        $list_category = ProductCategory::getList();
+        $list_type     = ProductType::getList();
+        if(!empty($_POST)){
+            var_dump($_POST['id']);
+            die();
+            $errors = Product::editProduct($_POST);
+            if($errors) $errors = "Sủa thành công";
+            else        $errors = "Sửa thất bại";
+        }
+        $get_product = Product::findOrFail((int)$id);
+        return view("admin.product.editProduct")->with("view",array("title" => $title ,
+            "product" => $get_product,
+            "list_category" => $list_category,
+            "list_type"     => $list_type,
+            "errors"  => $errors));
+    }
+
+    public function delProduct($id){
+        Product::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
 
     //  crod CateProduct

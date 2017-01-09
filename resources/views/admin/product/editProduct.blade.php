@@ -28,14 +28,13 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
 					{{ csrf_field() }}
-					<input type="hidden" name="id" value="{{$view['product']['id']}}"/>
+
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Hiển thị</label>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
-		                        <label>
-		                        <input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label> <label><input type="radio" class="flat" name="status"  value="1" /> Hiện
-		                        </label>
+		                        <label><input type="radio" class="flat" name="status" value="0" @if(isset($view['product']['status']) && $view['product']['status'] == 0) checked @endif /> Ẩn </label>&nbsp;
+		                      <label><input type="radio" class="flat" name="status"  value="1" @if(isset($view['product']['status']) && $view['product']['status'] == 1) checked @endif /> Hiện</label>
 							</div>
 						</div>
 					</div>
@@ -44,7 +43,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}" required>
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset( $view['product']['title']) ?  $view['product']['title'] : '' }}" required>
 						</div>
 					</div>
 
@@ -54,7 +53,7 @@
 							<select class="form-control" name="id_cate">
 								@if (isset($view['list_category']))
 									@foreach ($view['list_category'] as $key => $value)
-										<?php $selected = ""; if(isset($_POST['id_cate']) && $key == $_POST['id_cate']) $selected = "selected"; ?>
+										<?php $selected = ""; if(isset( $view['product']['id_cate']) && $key ==  $view['product']['id_cate']) $selected = "selected"; ?>
 											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 									@endforeach
 								@endif
@@ -68,7 +67,7 @@
 							<select class="form-control" name="type">
 								@if (isset($view['list_type']))
 									@foreach ($view['list_type'] as $key => $value)
-										<?php $selected = ""; if(isset($_POST['type']) && $key == $_POST['type']) $selected = "selected"; ?>
+										<?php $selected = ""; if(isset( $view['product']['type']) && $key ==  $view['product']['type']) $selected = "selected"; ?>
 											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 									@endforeach
 								@endif
@@ -80,8 +79,8 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-12 col-sm-12 col-xs-12">
                   			<textarea  name="desc" id="desc">
-                  				@if(isset($_POST['desc']))
-                  					{{$_POST['desc']}}
+                  				@if(isset( $view['product']['desc']))
+                  					{{ $view['product']['desc']}}
                   				@endif
                   			</textarea>
 						</div>
@@ -91,7 +90,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($_POST['price']) ? $_POST['price'] : '' }}" required>
+						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset( $view['product']['price']) ?  $view['product']['price'] : '' }}" required>
 						</div>
 					</div>
 					
@@ -99,7 +98,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($_POST['numbers']) ? $_POST['numbers'] : '' }}" required>
+	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset( $view['product']['numbers']) ?  $view['product']['numbers'] : '' }}" required>
                       	</div>
 					</div>
 
@@ -107,7 +106,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
-	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $_POST['limit_at']) ?  $_POST['limit_at'] : '' }}">
+	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $view['product']['limit_at']) ?  $view['product']['limit_at'] : '' }}">
 	                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 	                        <span id="inputSuccess2Status" class="sr-only">(success)</span>
                       	</div>

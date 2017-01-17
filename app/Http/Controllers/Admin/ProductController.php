@@ -56,8 +56,6 @@ class ProductController extends Controller
         $list_category = ProductCategory::getList();
         $list_type     = ProductType::getList();
         if(!empty($_POST)){
-            var_dump($_POST['id']);
-            die();
             $errors = Product::editProduct($_POST);
             if($errors) $errors = "Sủa thành công";
             else        $errors = "Sửa thất bại";

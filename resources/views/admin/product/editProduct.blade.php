@@ -28,7 +28,7 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
 					{{ csrf_field() }}
-
+					<input type="hidden" name="id" value="{{isset( $view['product']['id']) ?  $view['product']['id'] : '' }}"/>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Hiển thị</label>
 						<div class="col-md-3 col-sm-3 col-xs-12">
@@ -93,7 +93,7 @@
 						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset( $view['product']['price']) ?  $view['product']['price'] : '' }}" required>
 						</div>
 					</div>
-					
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>

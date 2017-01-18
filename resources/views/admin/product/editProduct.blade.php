@@ -30,8 +30,8 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{isset( $view['product']['id']) ?  $view['product']['id'] : '' }}"/>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Hiển thị</label>
-						<div class="col-md-3 col-sm-3 col-xs-12">
+						<label class="control-label col-md-2 col-sm-2b col-xs-12">Hiển thị</label>
+						<div class="col-md-1 col-sm-1 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
 		                        <label><input type="radio" class="flat" name="status" value="0" @if(isset($view['product']['status']) && $view['product']['status'] == 0) checked @endif /> Ẩn </label>&nbsp;
 		                      <label><input type="radio" class="flat" name="status"  value="1" @if(isset($view['product']['status']) && $view['product']['status'] == 1) checked @endif /> Hiện</label>
@@ -40,15 +40,17 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset( $view['product']['title']) ?  $view['product']['title'] : '' }}" required>
 						</div>
 					</div>
 
+
+
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Loại sản phảm <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phảm <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="id_cate">
 								@if (isset($view['list_category']))
@@ -62,7 +64,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="type">
 								@if (isset($view['list_type']))
@@ -76,8 +78,8 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả <span class="required">*</span></label>
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
+						<div class="col-md-10 col-sm-10 col-xs-12">
                   			<textarea  name="desc" id="desc">
                   				@if(isset( $view['product']['desc']))
                   					{{ $view['product']['desc']}}
@@ -87,7 +89,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Giá <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset( $view['product']['price']) ?  $view['product']['price'] : '' }}" required>
@@ -95,7 +97,7 @@
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Số Lượng <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset( $view['product']['numbers']) ?  $view['product']['numbers'] : '' }}" required>
@@ -103,7 +105,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
 	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $view['product']['limit_at']) ?  $view['product']['limit_at'] : '' }}">
@@ -114,7 +116,7 @@
 
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img_list" name="img_list" class="form-control">
@@ -122,7 +124,7 @@
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img_detail" name="img_detail" class="form-control">
@@ -130,42 +132,42 @@
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh item 1 </label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img1" name="img1" class="form-control">
                       	</div>
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh item 2 </label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2 </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img2" name="img2" class="form-control">
                       	</div>
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh item 3 </label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img3" name="img3" class="form-control">
                       	</div>
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh item 4 </label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img4" name="img4" class="form-control">
                       	</div>
 					</div>
 
 					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh item 5 </label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                       <input type="file" id="img5" name="img5" class="form-control">
                       	</div>
 					</div>
 
 					<div class="form-group">
-						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
 								{{$view['errors'] }}
@@ -175,7 +177,7 @@
 					</div>
 					<div class="ln_solid"></div>
 					<div class="form-group">
-						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3">
+						<div class="col-md-1 col-sm-1 col-xs-12 col-md-offset-3">
 						<button type ="reset" class="btn btn-primary">Reset</button>
 						<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 						<input  type ="hidden" value="{{time()}}" name="code_id">

@@ -210,7 +210,7 @@ toolbarGroups: [
 	],
 });
 
-CKFinder.setupCKEditor( editor );
+CKFinder.setupCKEditor( editor,"/public/js/ckeditor/ckfinder/");
 
 $('#limit_at').daterangepicker({
 	locale: {format: 'YYYY-MM-DD'},

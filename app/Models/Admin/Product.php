@@ -21,15 +21,22 @@ class Product extends Model
         if(isset($data)){
             try{
                 $status = Product::create(array(
-                    "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
-                    "code_id"      => (int)$data['code_id'],
-                    "title"        => htmlspecialchars(trim($data["title"])),
-                    "desc"         => htmlspecialchars(trim($data["desc"])),
-                    "price"        => (int)$data["price"],
-                    "type"         => (int)$data["type"],
-                    "numbers"      => (int)$data['numbers'],
-                    "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
-                    "status"       => (int)$data["status"],                    
+                    "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
+                    "code_id"    => (int)$data['code_id'],
+                    "title"      => htmlspecialchars(trim($data["title"])),
+                    "desc"       => htmlspecialchars(trim($data["desc"])),
+                    "price"      => (int)$data["price"],
+                    "type"       => (int)$data["type"],
+                    "numbers"    => (int)$data['numbers'],
+                    "limit_at"   => htmlspecialchars(trim($data["limit_at"])),
+                    "status"     => (int)$data["status"],
+                    "img_list"   => $data['img_list'],
+                    "img_detail" => $data['img_detail'],
+                    "img1"       => $data['img1'],
+                    "img2"       => $data['img2'],
+                    "img3"       => $data['img3'],
+                    "img4"       => $data['img4'],
+                    "img5"       => $data['img5'],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -42,15 +49,22 @@ class Product extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
-                "code_id"      => (int)$data['code_id'],
-                "title"        => htmlspecialchars(trim($data["title"])),
-                "desc"         => htmlspecialchars(trim($data["desc"])),
-                "price"        => (int)$data["price"],
-                "type"         => (int)$data["type"],
-                "numbers"      => (int)$data['numbers'],
-                "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
-                "status"       => (int)$data["status"],   
+                "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
+                "code_id"    => (int)$data['code_id'],
+                "title"      => htmlspecialchars(trim($data["title"])),
+                "desc"       => htmlspecialchars(trim($data["desc"])),
+                "price"      => (int)$data["price"],
+                "type"       => (int)$data["type"],
+                "numbers"    => (int)$data['numbers'],
+                "limit_at"   => htmlspecialchars(trim($data["limit_at"])),
+                "status"     => (int)$data["status"],
+                "img_list"   => $data['img_list'],
+                "img_detail" => $data['img_detail'],
+                "img1"       => $data['img1'],
+                "img2"       => $data['img2'],
+                "img3"       => $data['img3'],
+                "img4"       => $data['img4'],
+                "img5"       => $data['img5'],
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }

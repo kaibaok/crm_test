@@ -60,7 +60,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/images/upload/';
+$baseUrl = 'http://crm.local/public/upload/editor/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -202,8 +202,8 @@ $config['ResourceType'][] = Array(
 
 $config['ResourceType'][] = Array(
 		'name' => 'Images',
-		'url' => $baseUrl . 'Image',
-		'directory' => $baseDir . 'Image',
+		'url' => $baseUrl . 'images',
+		'directory' => $baseDir . 'images',
 		'maxSize' => 0,
 		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
 		'deniedExtensions' => '');
@@ -324,6 +324,16 @@ For more complex configuration options visit our Developer's Guide
   http://docs.cksource.com/CKFinder_2.x/Developers_Guide/PHP
 */
 $config['XSendfile'] = false;
+
+/*
+Enables protection in the connector.
+The default CSRF protection mechanism is based on double submit cookies, where
+connector checks if the request contains a valid token that matches the token
+sent in the cookie
+
+https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet#Double_Submit_Cookies
+*/
+$config['EnableCsrfProtection'] = true;
 
 
 include_once "plugins/imageresize/plugin.php";

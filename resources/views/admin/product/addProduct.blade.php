@@ -2,6 +2,8 @@
 @section('title') {{$view['title']}} @endsection
 @section('css')
   <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  {{-- CSS img upload  --}}
+  <link href="/public/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
 @endsection
 
 @section('rightcontent')
@@ -26,7 +28,7 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
+				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
@@ -112,56 +114,116 @@
                       	</div>
 					</div>
 
-
-					<div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span>
-						</label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img_list" name="img_list" class="form-control">
-                      	</div>
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img_list">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span>
-						</label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img_detail" name="img_detail" class="form-control">
-                      	</div>
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img_detail">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
-					<div class="item form-group">
+					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img1" name="img1" class="form-control">
-                      	</div>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img1">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2 </label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img2" name="img2" class="form-control">
-                      	</div>
+					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2</label>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img2">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
-					<div class="item form-group">
+					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img3" name="img3" class="form-control">
-                      	</div>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img3">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
-					<div class="item form-group">
+					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img4" name="img4" class="form-control">
-                      	</div>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img4">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
-					<div class="item form-group">
+					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
-	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="file" id="img5" name="img5" class="form-control">
-                      	</div>
+						 <div class="col-md-4 col-sm-4 col-xs-12 ">
+							<div class="imageupload">
+				                <div class="file-tab">
+				                    <label class="btn btn-dark btn-file">
+				                        <span>Browse</span>
+				                        <!-- The file is stored here. -->
+				                        <input type="file" name="img5">
+				                    </label>
+				                    <button type="button" class="btn btn-danger">Remove</button>
+					            </div>
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
@@ -173,6 +235,7 @@
 						</span>
 						</div>
 					</div>
+
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-2 col-sm-2 col-xs-12 col-md-offset-3">
@@ -181,15 +244,17 @@
 						<input  type ="hidden" value="{{time()}}" name="code_id">
 						</div>
 					</div>
-					</form>
+				</form>
 			  </div>
 			</div>
 		</div>
 	</div>
 </div>
+
 @endsection
 
 @section('js')
+<script src="/public/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
 <script src="/public/js/ckeditor/ckeditor.js"></script>
 <script src="/public/js/ckeditor/ckfinder/ckfinder.js"></script>
 {{-- bootstrap-daterangepicker --}}
@@ -216,5 +281,8 @@ $('#limit_at').daterangepicker({
 	locale: {format: 'YYYY-MM-DD'},
 	singleDatePicker: true, singleClasses: "picker_1",
 });
+
+var $imageupload = $('.imageupload');
+$imageupload.imageupload();
 </script>
 @endsection

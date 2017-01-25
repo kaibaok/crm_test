@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
 use App\Models\Admin\ProductType;
-use DateTime;
+use App\Events\Img;
+use DateTime,Session;
 
 class ProductController extends Controller
 {
@@ -30,15 +31,24 @@ class ProductController extends Controller
 	}
 
     public function addProduct(){
+
 		$title         = "Thêm mới sản phẩm";
 		$errors        = NULL;
 		$list_category = ProductCategory::getList();
 		$list_type     = ProductType::getList();
         if(!empty($_POST)){
-            $s_new_product = Product::addProduct($_POST);
+            $params = $_POST;
+            $cls_img = new Img();
+            $result = $cls_img->uploadImages();
+
+            foreach ($_FILES as $key => $value) {
+                $params[$key] = $result[$key];
+            }
+
+            $s_new_product = Product::addProduct($params);
             if($s_new_product) {
-                $_POST  = empty($_POST);
-                $errors = "Thêm thành công";
+                $_POST   = empty($_POST);
+                $errors  = "Thêm thành công";
             }else{
                 $errors = "Thêm thất bại";
             }

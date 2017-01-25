@@ -190,4 +190,9 @@ class Img
     	}
       return $result;
     }
+
+    public function removeImages($file_name){
+      $url = getcwd().$this->url_upload.$file_name;
+      unlink($url);
+    }
 }

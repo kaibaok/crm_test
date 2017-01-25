@@ -61,11 +61,29 @@ class ProductController extends Controller
     }
 
     public function editProduct($id){
+         $cls_img = new Img();
+         $cls_img->removeImages("IMG_0156_CR2 (3rd copy).jpg")
+        die();
+
         $title  = "Sửa sản phẩm";
         $errors = NULL;
         $list_category = ProductCategory::getList();
         $list_type     = ProductType::getList();
         if(!empty($_POST)){
+            $params = $_POST;
+
+            $result = $cls_img->uploadImages();
+
+            foreach ($_FILES as $key => $value) {
+                if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
+                    $params[$key] = $result[$key];
+                    // unlink("/var/www/crm/public/upload/editor/images")
+                }
+                else
+                    $params[$key] = $params[$key."_url"];
+            }
+
+
             $errors = Product::editProduct($_POST);
             if($errors) $errors = "Sủa thành công";
             else        $errors = "Sửa thất bại";

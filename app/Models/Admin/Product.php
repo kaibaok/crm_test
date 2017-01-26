@@ -13,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        "id", "id_cate","code_id","title","desc","price","type","numbers","limit_at","created_at","updated_at","status","ord"
+        "id", "id_cate","code_id","title","desc","price","type","numbers","limit_at","created_at","updated_at","status","ord","img_list","img_detail","img1","img2","img3","img4","img5"
     ];
 
     public static function addProduct($data){
@@ -69,6 +69,18 @@ class Product extends Model
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }
         return $status;
+    }
+
+    public static function searchOption($txt_search){
+        $m_product = Product::where('code_id', 'like', "%{$txt_search}%")
+                    ->orWhere('title','like',"%{$txt_search}%")
+                    ->orWhere('desc','like',"%{$txt_search}%")
+                    ->get();
+        $arr_data = NULL;
+        if($m_product){
+            $arr_data = $m_product->toArray();
+        }
+        return $arr_data;
     }
 
 }

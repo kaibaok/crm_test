@@ -51,3 +51,50 @@ $(document).on('keyup', '#txt_aluser', function(event) {
   }
 });
 
+// list product
+$(document).on('click', '#btn_search_alproduct', function(event) {
+  var txt_alproduct = $("#txt_alproduct").val();
+  var token = $("#token_alproduct").val();
+  if(txt_alproduct != ""){
+    $.ajax({
+      url: '/admin/product/ajax-sproduct',
+      type: 'POST',
+      dataType: 'html',
+      data: {txt_search:txt_alproduct,_token:token},
+    }).done(function(data) {
+      $("#tbl_alproduct").empty().append(data);
+    });
+  }
+});
+
+$(document).on('keyup', '#txt_alproduct', function(event) {
+  var txt_alproduct = $("#txt_alproduct").val();
+  var token = $("#token_alproduct").val();
+  if(txt_alproduct != ""){
+    $.ajax({
+      url: '/admin/product/ajax-sproduct',
+      type: 'POST',
+      dataType: 'html',
+      data: {txt_search:txt_alproduct,_token:token},
+    }).done(function(data) {
+      $("#tbl_alproduct").empty().append(data);
+    });
+
+  }
+});
+
+$(document).on('click', '.btn_status_product', function(event) {
+  var txt_alproduct = $("#txt_alproduct").val();
+  var token = $("#token_alproduct").val();
+  if(txt_alproduct != ""){
+    $.ajax({
+      url: '/admin/product/ajax-sproduct',
+      type: 'POST',
+      dataType: 'html',
+      data: {txt_search:txt_alproduct,_token:token},
+    }).done(function(data) {
+      $("#tbl_alproduct").empty().append(data);
+    });
+  }
+});
+

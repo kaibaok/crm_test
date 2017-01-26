@@ -31,7 +31,6 @@ class ProductController extends Controller
 	}
 
     public function addProduct(){
-
 		$title         = "Thêm mới sản phẩm";
 		$errors        = NULL;
 		$list_category = ProductCategory::getList();
@@ -61,39 +60,36 @@ class ProductController extends Controller
     }
 
     public function editProduct($id){
-         $cls_img = new Img();
-         $cls_img->removeImages("IMG_0156_CR2 (3rd copy).jpg")
-        die();
-
-        $title  = "Sửa sản phẩm";
-        $errors = NULL;
+        $cls_img       = new Img();
+        $title         = "Sửa sản phẩm";
+        $errors        = NULL;
         $list_category = ProductCategory::getList();
         $list_type     = ProductType::getList();
+        $get_product   = Product::findOrFail((int)$id);
         if(!empty($_POST)){
             $params = $_POST;
-
             $result = $cls_img->uploadImages();
-
             foreach ($_FILES as $key => $value) {
                 if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                     $params[$key] = $result[$key];
-                    // unlink("/var/www/crm/public/upload/editor/images")
+                    $cls_img->removeImages($get_product[$key]);
                 }
-                else
+                else {
+                    if(empty($params[$key."_url"])) $cls_img->removeImages($get_product[$key]);
                     $params[$key] = $params[$key."_url"];
+                }
             }
-
-
-            $errors = Product::editProduct($_POST);
+            $errors = Product::editProduct($params);
             if($errors) $errors = "Sủa thành công";
             else        $errors = "Sửa thất bại";
         }
-        $get_product = Product::findOrFail((int)$id);
+        // reload data again
+        $get_product   = Product::findOrFail((int)$id);
         return view("admin.product.editProduct")->with("view",array("title" => $title ,
-            "product" => $get_product,
+            "product"       => $get_product,
             "list_category" => $list_category,
             "list_type"     => $list_type,
-            "errors"  => $errors));
+            "errors"        => $errors));
     }
 
     public function delProduct($id){
@@ -197,5 +193,31 @@ class ProductController extends Controller
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
+    // end typeproduct
 
+    // search Product
+    public function ajaxSearchProduct(){
+        $list_product = NULL;
+        if(!empty($_POST)){
+            $txt_search    = htmlspecialchars(trim(strip_tags($_POST['txt_search'])));
+            $list_product  = Product::searchOption($txt_search);
+            $list_category = ProductCategory::getList();
+            $list_type     = ProductType::getList();
+        }
+        return view("admin.product.ajaxListProduct")->with("view",array(
+            "list_product"  => $list_product,
+            "list_category" => $list_category,
+            "list_type"     => $list_type));
+    }
+
+    public function statusProduct($id){
+        $get_product = Product::findOrFail((int)$id);
+        if(!empty($get_product)){
+            if($get_product->status)
+                $get_product->status = 0;
+            else
+                $get_product->status = 1;
+        }
+        return $get_product->save();
+    }
 }

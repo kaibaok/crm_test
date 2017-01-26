@@ -7,6 +7,9 @@
 @endsection
 
 @section('rightcontent')
+{{-- set default url link --}}
+@php $url = "/public/upload/images/"  @endphp
+
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -32,13 +35,13 @@
                     {{ csrf_field() }}
 
                     <input type="hidden" name="id" value="{{isset( $view['product']['id']) ?  $view['product']['id'] : '' }}"/>
-                    <input type="hidden" name="img_list_url" value="{{isset( $view['product']['img_list']) ?  $view['product']['img_list'] : '' }}"/>
-                    <input type="hidden" name="img_detail_url" value="{{isset( $view['product']['img_detail']) ?  $view['product']['img_detail'] : '' }}"/>
-                    <input type="hidden" name="img1_url" value="{{isset( $view['product']['img1']) ?  $view['product']['img1'] : '' }}"/>
-                    <input type="hidden" name="img2_url" value="{{isset( $view['product']['img2']) ?  $view['product']['img2'] : '' }}"/>
-                    <input type="hidden" name="img_3_url" value="{{isset( $view['product']['img_3']) ?  $view['product']['img_3'] : '' }}"/>
-                    <input type="hidden" name="img_4_url" value="{{isset( $view['product']['img_4']) ?  $view['product']['img_4'] : '' }}"/>
-                    <input type="hidden" name="img_5_url" value="{{isset( $view['product']['img_5']) ?  $view['product']['img_5'] : '' }}"/>
+                    <input type="hidden" id="img_list_url" name="img_list_url" value="{{isset( $view['product']['img_list']) ?  $view['product']['img_list'] : '' }}"/>
+                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="{{isset( $view['product']['img_detail']) ?  $view['product']['img_detail'] : '' }}"/>
+                    <input type="hidden" id="img1_url" name="img1_url" value="{{isset( $view['product']['img1']) ?  $view['product']['img1'] : '' }}"/>
+                    <input type="hidden" id="img2_url" name="img2_url" value="{{isset( $view['product']['img2']) ?  $view['product']['img2'] : '' }}"/>
+                    <input type="hidden" id="img3_url" name="img3_url" value="{{isset( $view['product']['img3']) ?  $view['product']['img3'] : '' }}"/>
+                    <input type="hidden" id="img4_url" name="img4_url" value="{{isset( $view['product']['img4']) ?  $view['product']['img4'] : '' }}"/>
+                    <input type="hidden" id="img5_url" name="img5_url" value="{{isset( $view['product']['img5']) ?  $view['product']['img5'] : '' }}"/>
 
                     <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2b col-xs-12">Hiển thị</label>
@@ -129,15 +132,19 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <label class="btn btn-dark btn-file">
-                                    @if(isset($view['product']['img_list'] && !empty($view['product']['img_list']])))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img_list'] }}" />
+                                    @if(isset($view['product']['img_list']) && !empty($view['product']['img_list']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img_list'] }}" />
                                     @endif
+                                    <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img_list">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($view['product']['img_list']) && !empty($view['product']['img_list']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_list_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img_list_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -148,15 +155,19 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <label class="btn btn-dark btn-file">
-                                    @if(isset($view['product']['img_detail'] && !empty($view['product']['img_detail']])))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img_detail'] }}" />
+                                    @if(isset($view['product']['img_detail']) && !empty($view['product']['img_detail']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img_detail'] }}" />
                                     @endif
+                                    <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img_detail">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                     @if(isset($view['product']['img_detail']) && !empty($view['product']['img_detail']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     @else
+                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                     @endif
                                 </div>
                             </div>
                         </div>
@@ -167,53 +178,65 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <label class="btn btn-dark btn-file">
-                                    @if(isset($view['product']['img1'] && !empty($view['product']['img1']])))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img1'] }}" />
+                                    @if(isset($view['product']['img1']) && !empty($view['product']['img1']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img1'] }}" />
                                     @endif
+                                    <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img1">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($view['product']['img1']) && !empty($view['product']['img1']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img1_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img1_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2</label>
+                     <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                @if(isset($view['product']['img2'] && !empty($view['product']['img2']])))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img2'] }}" />
-                                @endif
+                                    @if(isset($view['product']['img2']) && !empty($view['product']['img2']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img2'] }}" />
+                                    @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img2">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($view['product']['img2']) && !empty($view['product']['img2']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img2_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img2_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                     <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                @if(isset($view['product']['img3'] && !empty($view['product']['img3']])))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img3'] }}" />
-                                @endif
+                                    @if(isset($view['product']['img3']) && !empty($view['product']['img3']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img3'] }}" />
+                                    @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img3">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($view['product']['img3']) && !empty($view['product']['img3']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img3_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img3_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -224,15 +247,19 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <label class="btn btn-dark btn-file">
-                                    @if(isset($view['product']['img4'] && !empty($view['product']['img4']])))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img4'] }}" />
+                                    @if(isset($view['product']['img4']) && !empty($view['product']['img4']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img4'] }}" />
                                     @endif
+                                    <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img4">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($view['product']['img4']) && !empty($view['product']['img4']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img4_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img4_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -243,15 +270,19 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <label class="btn btn-dark btn-file">
-                                    @if(isset($view['product']['img5'] && !empty($view['product']['img5']])))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $view['product']['img5'] }}" />
+                                    @if(isset($view['product']['img5']) && !empty($view['product']['img5']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$view['product']['img5'] }}" />
                                     @endif
+                                    <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
                                         <input type="file" name="img5">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($view['product']['img5']) && !empty($view['product']['img5']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img5_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img5_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -313,5 +344,12 @@ $('#limit_at').daterangepicker({
 
 var $imageupload = $('.imageupload');
 $imageupload.imageupload();
+
+$(".btn-danger").click(function(event) {
+    id = $(this).attr('rel');
+    $("#"+id).val("");
+});
+
+
 </script>
 @endsection

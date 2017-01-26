@@ -193,6 +193,8 @@ class Img
 
     public function removeImages($file_name){
       $url = getcwd().$this->url_upload.$file_name;
-      unlink($url);
+      if(!empty($file_name) && file_exists($url))  unlink($url);
+
+
     }
 }

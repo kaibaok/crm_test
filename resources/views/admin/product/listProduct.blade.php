@@ -9,10 +9,10 @@
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-              <input type="hidden" name="_token" id="token_aluser" value="{{ csrf_token() }}">
-              <input type="text" class="form-control" placeholder="Tìm kiếm..." id="txt_aluser">
+              <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
+              <input type="text" class="form-control" placeholder="Tìm kiếm..." id="txt_alproduct">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="btn_search_aluser">Tìm</button>
+                <button class="btn btn-default" type="button" id="btn_search_alproduct">Tìm</button>
               </span>
           </div>
         </div>
@@ -49,7 +49,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="tbl_aluser">
+                <tbody id="tbl_alproduct">
                   @php
                     $no       = 1;
                     $category = $view['list_category'];
@@ -61,9 +61,9 @@
                     <td>{{$no++}}</td>
                     <td>
                       @if ($value['status'] == 1)
-                        <i class="success fa fa-eye" title="Hiển thị"></i>
+                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <i class="success fa fa-eye-slash" title="Ẩn"></i>
+                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
                     <td>{{$value['code_id']}}</td>

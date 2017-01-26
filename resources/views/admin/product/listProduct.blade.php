@@ -61,9 +61,9 @@
                     <td>{{$no++}}</td>
                     <td>
                       @if ($value['status'] == 1)
-                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}" rel="{{$value['id']}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}" rel="{{$value['id']}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
                     <td>{{$value['code_id']}}</td>

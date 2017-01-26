@@ -29,6 +29,7 @@ Route::any('cate-product', 'Admin\ProductController@listCateProduct');
 Route::any('cate-product/add', 'Admin\ProductController@addCateProduct');
 Route::any('cate-product/edit/{id?}', 'Admin\ProductController@editCateProduct');
 Route::get('cate-product/del/{id?}', 'Admin\ProductController@delCateProduct');
+Route::get('cate-product/status/{id?}', 'Admin\ProductController@statusCateProduct');
 // list type product
 Route::any('type-product', 'Admin\ProductController@listTypeProduct');
 Route::any('type-product/add', 'Admin\ProductController@addTypeProduct');

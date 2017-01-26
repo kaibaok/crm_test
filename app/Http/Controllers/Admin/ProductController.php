@@ -218,6 +218,19 @@ class ProductController extends Controller
             else
                 $get_product->status = 1;
         }
-        return $get_product->save();
+        echo $get_product->save();
+        die;
+    }
+
+    public function statusCateProduct($id){
+        $get_cproduct = ProductCategory::findOrFail((int)$id);
+        if(!empty($get_cproduct)){
+            if($get_cproduct->status)
+                $get_cproduct->status = 0;
+            else
+                $get_cproduct->status = 1;
+        }
+        echo $get_cproduct->save();
+        die;
     }
 }

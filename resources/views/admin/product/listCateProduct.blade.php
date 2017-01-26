@@ -42,9 +42,9 @@
                     <td>{{$no++}}</td>
                     <td>
                       @if ($value['status'] == 1)
-                        <i class="success fa fa-eye" title="Hiển thị"></i>
+                        <a href="/admin/cate-product/status/{{$value['id']}}" class="btn_status_cproduct" rel="{{$value['id']}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <i class="success fa fa-eye-slash" title="Ẩn"></i>
+                        <a href="/admin/cate-product/status/{{$value['id']}}" class="btn_status_cproduct" rel="{{$value['id']}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
                     <td>{{$value['title']}}</td>

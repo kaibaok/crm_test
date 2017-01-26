@@ -29,7 +29,7 @@
 			<div class="x_panel">
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
-					{{ csrf_field() }}
+				{{ csrf_field() }}
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">

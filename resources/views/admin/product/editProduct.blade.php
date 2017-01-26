@@ -32,8 +32,7 @@
             <div class="x_panel">
               <div class="x_content">
                 <form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
-                    {{ csrf_field() }}
-
+                {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{isset( $view['product']['id']) ?  $view['product']['id'] : '' }}"/>
                     <input type="hidden" id="img_list_url" name="img_list_url" value="{{isset( $view['product']['img_list']) ?  $view['product']['img_list'] : '' }}"/>
                     <input type="hidden" id="img_detail_url" name="img_detail_url" value="{{isset( $view['product']['img_detail']) ?  $view['product']['img_detail'] : '' }}"/>

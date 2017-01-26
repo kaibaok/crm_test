@@ -23,7 +23,7 @@
 			<div class="x_panel">
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
-					{{ csrf_field() }}
+				{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{$view['id']}}"/>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ Tên <span class="required">*</span>

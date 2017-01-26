@@ -23,7 +23,7 @@
 			<div class="x_panel">
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
-					{{ csrf_field() }}
+				{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{$view['type']['id']}}"/>
 					<div class="form-group">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Loại trọng lượng <span class="required">*</span>

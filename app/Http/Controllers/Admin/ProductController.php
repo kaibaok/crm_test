@@ -233,4 +233,20 @@ class ProductController extends Controller
         echo $get_cproduct->save();
         die;
     }
+
+    //  crod Cart Product
+    public function listCart (){
+        $title         = "Danh Sách Đặt Hàng";
+        $list_product  = Product::paginate(20);
+        $list_category = ProductCategory::getList();
+        $list_type     = ProductType::getList();
+        return view("admin.product.listCart")->with("view",array(
+            "title"         => $title,
+            "list_product"  => $list_product,
+            "list_category" => $list_category,
+            "list_type"     => $list_type,));
+    }
+
+
+
 }

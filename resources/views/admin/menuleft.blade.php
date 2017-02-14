@@ -21,7 +21,7 @@
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu ">
               <div class="menu_section">
                 <h3>Quản lý </h3>
                 <ul class="nav side-menu">
@@ -35,6 +35,7 @@
                   </li>
                   <li><a><i class="fa fa-book"></i> Đặt hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="/admin/product/cart">Danh sách đặt hàng</a></li>
                       <li><a href="/admin/delivery">Giao hàng</a></li>
                       <li><a href="/admin/re-product">Trả hàng</a></li>
                     </ul>

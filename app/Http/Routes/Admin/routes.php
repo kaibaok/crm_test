@@ -35,3 +35,7 @@ Route::any('type-product', 'Admin\ProductController@listTypeProduct');
 Route::any('type-product/add', 'Admin\ProductController@addTypeProduct');
 Route::any('type-product/edit/{id?}', 'Admin\ProductController@editTypeProduct');
 Route::get('type-product/del/{id?}', 'Admin\ProductController@delTypeProduct');
+
+// Cart Product
+Route::any('product/cart', 'Admin\ProductController@listCart');
+

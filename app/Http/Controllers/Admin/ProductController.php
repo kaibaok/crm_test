@@ -265,17 +265,17 @@ class ProductController extends Controller
     public function addCart(){
         $title         = "Thêm đơn hàng";
         $errors        = NULL;
-        $list_status   = $this->getOption('listStatus');
-        if(!empty($_POST)){
-            $s_new_typeproduct = ProductType::addTypeProduct($_POST);
-            if($s_new_typeproduct) {
-                $_POST  = empty($_POST);
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
-            }
-        }
-        return view("admin.product.addTypeProduct")->with("view",array(
+        // $list_status   = $this->getOption('listStatus');
+        // if(!empty($_POST)){
+        //     $s_new_typeproduct = ProductType::addTypeProduct($_POST);
+        //     if($s_new_typeproduct) {
+        //         $_POST  = empty($_POST);
+        //         $errors = "Thêm thành công";
+        //     }else{
+        //         $errors = "Thêm thất bại";
+        //     }
+        // }
+        return view("admin.product.addCart")->with("view",array(
             "title" => $title,
             "errors"        => $errors));
     }

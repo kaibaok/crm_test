@@ -9,6 +9,9 @@ use App\Models\Admin\ProductCategory;
 use App\Models\Admin\ProductType;
 use App\Events\Img;
 use DateTime,Session;
+use App\User;
+
+use App\Models\Admin\Cart;
 
 class ProductController extends Controller
 {
@@ -111,7 +114,7 @@ class ProductController extends Controller
     public function addCateProduct(){
 		$title         = "Thêm mới loại sản phẩm";
 		$errors        = NULL;
-		$list_status   = $this->listStatus();
+		$list_status   = $this->getOption('listStatus');
         if(!empty($_POST)){
             $s_new_cateproduct = ProductCategory::addCateProduct($_POST);
             if($s_new_cateproduct) {
@@ -159,7 +162,7 @@ class ProductController extends Controller
     public function addTypeProduct(){
         $title         = "Thêm mới trọng lượng sản phẩm";
         $errors        = NULL;
-        $list_status   = $this->listStatus();
+        $list_status   = $this->getOption('listStatus');
         if(!empty($_POST)){
             $s_new_typeproduct = ProductType::addTypeProduct($_POST);
             if($s_new_typeproduct) {
@@ -236,17 +239,44 @@ class ProductController extends Controller
 
     //  crod Cart Product
     public function listCart (){
-        $title         = "Danh Sách Đặt Hàng";
-        $list_product  = Product::paginate(20);
-        $list_category = ProductCategory::getList();
-        $list_type     = ProductType::getList();
+        $title     = "Danh Sách Đặt Hàng";
+        $m_cart = new Cart();
+        if(isset($_GET) && !empty($_GET)){
+            if(isset($_GET['userid']) && !empty($_GET['userid'])) $m_cart = $m_cart->where('userid','like',"%{$_GET['userid']}%");
+            if(isset($_GET['name']) && !empty($_GET['name'])) $m_cart = $m_cart->where('name','like',"%{$_GET['name']}%");
+            if(isset($_GET['email']) && !empty($_GET['email'])) $m_cart = $m_cart->where('email','like',"%{$_GET['email']}%");
+            if(isset($_GET['address']) && !empty($_GET['address'])) $m_cart = $m_cart->where('address','like',"%{$_GET['address']}%");
+            if(isset($_GET['registered_date']) && !empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
+            if(isset($_GET['ship_date']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
+            if(isset($_GET['paid']) && !empty($_GET['paid'])) $m_cart = $m_cart->where('paid','=',$_GET['paid']);
+            if(isset($_GET['type']) && !empty($_GET['type'])) $m_cart = $m_cart->where('userid','!=',"");
+        }
+        $list_cart     = $m_cart->paginate(20);
+        $list_type = $this->getOption('typePaid');
+        $list_paid = $this->getOption('listPaid');
         return view("admin.product.listCart")->with("view",array(
             "title"         => $title,
-            "list_product"  => $list_product,
-            "list_category" => $list_category,
-            "list_type"     => $list_type,));
+            "list_cart"     => $list_cart,
+            "list_type"     => $list_type,
+            "list_paid"     => $list_paid,
+        ));
     }
 
-
-
+    public function addCart(){
+        $title         = "Thêm đơn hàng";
+        $errors        = NULL;
+        $list_status   = $this->getOption('listStatus');
+        if(!empty($_POST)){
+            $s_new_typeproduct = ProductType::addTypeProduct($_POST);
+            if($s_new_typeproduct) {
+                $_POST  = empty($_POST);
+                $errors = "Thêm thành công";
+            }else{
+                $errors = "Thêm thất bại";
+            }
+        }
+        return view("admin.product.addTypeProduct")->with("view",array(
+            "title" => $title,
+            "errors"        => $errors));
+    }
 }

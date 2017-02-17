@@ -19,7 +19,7 @@ class UserController extends Controller
         $title           = "Danh Sách User";
         $list_user       = User::orderBy('id','DESC')->orderBy('created_at','DESC')->paginate(20);
         $list_permission = Permission::getList();
-        $list_gender     = $this->listGender();
+        $list_gender     = $this->getOption('listGender');
         return view("admin.user.listUser")
                 ->with("view",array("title"           => $title,
                                     "list_user"       =>$list_user,
@@ -32,7 +32,7 @@ class UserController extends Controller
         $title  = "Thêm mới User";
         $errors = NULL;
         $list_permission = Permission::getList();
-        $list_gender     = $this->listGender();
+        $list_gender     = $this->getOption('listGender');
         if(!empty($_POST)){
             $s_new_user = User::addUser($_POST);
             if($s_new_user) {
@@ -58,7 +58,7 @@ class UserController extends Controller
         }
         $get_user = User::findOrFail((int)$id);
         $list_permission = Permission::getList();
-        $list_gender     = $this->listGender();
+        $list_gender     = $this->getOption('listGender');
         return view("admin.user.editUser")->with("view",array("title" => $title ,
             "list_permission" => $list_permission,
             "list_gender"     => $list_gender,
@@ -76,10 +76,10 @@ class UserController extends Controller
     public function ajaxSearchUser(){
         $list_user = NULL;
         if(!empty($_POST)){
-            $txt_search  = htmlspecialchars(trim(strip_tags($_POST['txt_search'])));
-            $list_user = User::searchOption($txt_search);
+            $txt_search      = htmlspecialchars(trim(strip_tags($_POST['txt_search'])));
+            $list_user       = User::searchOption($txt_search);
             $list_permission = Permission::getList();
-            $list_gender     = $this->listGender();
+            $list_gender     = $this->getOption('listGender');
         }
         return view("admin.user.ajaxListUser")->with("view",array("list_user" => $list_user,
                 "list_gender"     => $list_gender,

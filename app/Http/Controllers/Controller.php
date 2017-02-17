@@ -12,13 +12,24 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
-    public function listGender(){
-    	return array( 0 => "Nam" , 1 => "Nữ" );
+    public function getOption($type){
+    	switch ($type) {
+    		case 'listGender':
+    			return array( 0 => "Nam" , 1 => "Nữ" );
+    		break;
+    		case 'listStatus':
+    			return array( 0 => "Hiển thị" , 1 => "Ản" );
+    		break;
+    		case 'listPaid':
+    			return array( '' => "Tất cả" , 1 => "Đã thanh toán" , 2 => 'Chưa thanh toán' );
+    		break;
+    		case 'typePaid':
+    			return array( '' => "Tất cả" , 1 => "Có đăng ký" , 2 => 'Ko đăng ký' );
+    		break;
+    		default:
+    			return NULL;
+    		break;
+    	}
     }
-
-    public function listStatus(){
-    	return array( 0 => "Hiển thị" , 1 => "Ản" );
-    }
-
 }
 

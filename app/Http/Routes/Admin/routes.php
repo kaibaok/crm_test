@@ -38,4 +38,5 @@ Route::get('type-product/del/{id?}', 'Admin\ProductController@delTypeProduct');
 
 // Cart Product
 Route::any('product/cart', 'Admin\ProductController@listCart');
+Route::any('product/cart/add', 'Admin\ProductController@addCart');
 

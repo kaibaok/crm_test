@@ -24,7 +24,7 @@ class Controller extends BaseController
     			return array( '' => "Tất cả" , 1 => "Đã thanh toán" , 2 => 'Chưa thanh toán' );
     		break;
     		case 'typePaid':
-    			return array( '' => "Tất cả" , 1 => "Có đăng ký" , 2 => 'Ko đăng ký' );
+    			return array( '' => "Tất cả" , 1 => "Member đặt" , 2 => 'Admin đặt' );
     		break;
     		default:
     			return NULL;

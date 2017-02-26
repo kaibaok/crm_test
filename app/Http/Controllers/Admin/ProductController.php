@@ -246,10 +246,10 @@ class ProductController extends Controller
             if(isset($_GET['name']) && !empty($_GET['name'])) $m_cart = $m_cart->where('name','like',"%{$_GET['name']}%");
             if(isset($_GET['email']) && !empty($_GET['email'])) $m_cart = $m_cart->where('email','like',"%{$_GET['email']}%");
             if(isset($_GET['address']) && !empty($_GET['address'])) $m_cart = $m_cart->where('address','like',"%{$_GET['address']}%");
-            if(isset($_GET['registered_date']) && !empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
-            if(isset($_GET['ship_date']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
-            if(isset($_GET['paid']) && !empty($_GET['paid'])) $m_cart = $m_cart->where('paid','=',$_GET['paid']);
-            if(isset($_GET['type']) && !empty($_GET['type'])) $m_cart = $m_cart->where('userid','!=',"");
+            // if(isset($_GET['registered_date']) && !empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
+            // if(isset($_GET['ship_date']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
+            if(isset($_GET['paid']) && !empty($_GET['paid'])) $m_cart = $m_cart->where('paid','like',"%{$_GET['paid']}%");
+            if(isset($_GET['type']) && !empty($_GET['type'])) $m_cart = $m_cart->where('type','like',"%{$_GET['type']}%");
         }
         $list_cart     = $m_cart->paginate(20);
         $list_type = $this->getOption('typePaid');

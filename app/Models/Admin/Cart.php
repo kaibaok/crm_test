@@ -13,7 +13,7 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'userid', 'name','email', 'address', 'phone', 'registered_date', 'ship_date', 'paid', 'note',
+        'id', 'userid', 'name','email', 'address', 'phone', 'registered_date', 'ship_date', 'paid', 'note','type',
     ];
 
     public static function addCart($data){

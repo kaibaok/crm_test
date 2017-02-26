@@ -161,9 +161,9 @@
                                     <td>{{$value['email']}}</td>
                                     <td>{{$value['address']}}</td>
                                     <td>{{$value['phone']}}</td>
-                                    <td>{{$value['registered_date']}}</td>
                                     <td><i class="success fa fa-clock-o" title="Ngày đặt hàng"></i> {{$value['registered_date']}}</td>
                                     <td><i class="success fa fa-clock-o" title="Ngày giao hàng"></i> {{$value['ship_date']}}</td>
+                                    <td>{{$value['registered_date']}}</td>
                                     <td>{{$value['paid']}}</td>
                                     <td class="last"> <a href="/admin/product/cart/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/cart/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                                 </tr>

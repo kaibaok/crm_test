@@ -21,10 +21,10 @@ class Controller extends BaseController
     			return array( 0 => "Hiển thị" , 1 => "Ản" );
     		break;
     		case 'listPaid':
-    			return array( '' => "Tất cả" , 1 => "Đã thanh toán" , 2 => 'Chưa thanh toán' );
+    			return array( 'all' => "Tất cả" , 1 => "Đã thanh toán" , 2 => 'Chưa thanh toán' );
     		break;
     		case 'typePaid':
-    			return array( '' => "Tất cả" , 1 => "Member đặt" , 2 => 'Admin đặt' );
+    			return array( 'all' => "Tất cả" , 1 => "Member đặt" , 2 => 'Admin đặt' );
     		break;
     		default:
     			return NULL;

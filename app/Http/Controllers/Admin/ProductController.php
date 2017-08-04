@@ -241,17 +241,24 @@ class ProductController extends Controller
     public function listCart (){
         $title     = "Danh Sách Đặt Hàng";
         $m_cart = new Cart();
-        if(isset($_GET) && !empty($_GET)){
-            if(isset($_GET['userid']) && !empty($_GET['userid'])) $m_cart = $m_cart->where('userid','like',"%{$_GET['userid']}%");
-            if(isset($_GET['name']) && !empty($_GET['name'])) $m_cart = $m_cart->where('name','like',"%{$_GET['name']}%");
-            if(isset($_GET['email']) && !empty($_GET['email'])) $m_cart = $m_cart->where('email','like',"%{$_GET['email']}%");
-            if(isset($_GET['address']) && !empty($_GET['address'])) $m_cart = $m_cart->where('address','like',"%{$_GET['address']}%");
-            // if(isset($_GET['registered_date']) && !empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
-            // if(isset($_GET['ship_date']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
-            if(isset($_GET['paid']) && !empty($_GET['paid'])) $m_cart = $m_cart->where('paid','like',"%{$_GET['paid']}%");
-            if(isset($_GET['type']) && !empty($_GET['type'])) $m_cart = $m_cart->where('type','like',"%{$_GET['type']}%");
+        if(!empty($_GET)){
+            if(!empty($_GET['userid'])) $m_cart  = $m_cart->where('userid','like',"%{$_GET['userid']}%");
+            if(!empty($_GET['name'])) $m_cart    = $m_cart->where('name','like',"%{$_GET['name']}%");
+            if(!empty($_GET['email'])) $m_cart   = $m_cart->where('email','like',"%{$_GET['email']}%");
+            if(!empty($_GET['address'])) $m_cart = $m_cart->where('address','like',"%{$_GET['address']}%");
+            if(!empty($_GET['phone'])) $m_cart   = $m_cart->where('phone','like',"%{$_GET['phone']}%");
+            if(!empty($_GET['paid'])) {
+                $paid      = ($_GET['paid'] == "all" || $_GET['paid'] == "") ? "" : $_GET['paid'] ;
+                $m_cart    = $m_cart->where('paid','like',"%{$paid}%");
+            }
+            if(!empty($_GET['type'])) {
+                $type      = ($_GET['type'] == "all" || $_GET['type'] == "") ? "" : $_GET['type'] ;
+                $m_cart    = $m_cart->where('type','like',"%{$type}%");
+            }
+            if(!empty($_GET['cb_dat']) &&!empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
+            if(!empty($_GET['cb_ship']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
         }
-        $list_cart     = $m_cart->paginate(20);
+        $list_cart = $m_cart->paginate(20);
         $list_type = $this->getOption('typePaid');
         $list_paid = $this->getOption('listPaid');
         return view("admin.product.listCart")->with("view",array(
@@ -265,8 +272,8 @@ class ProductController extends Controller
     public function addCart(){
         $title         = "Thêm đơn hàng";
         $errors        = NULL;
-        // $list_status   = $this->getOption('listStatus');
-        // if(!empty($_POST)){
+        $list_type = $this->getOption('typePaid');
+        if(!empty($_POST)){
         //     $s_new_typeproduct = ProductType::addTypeProduct($_POST);
         //     if($s_new_typeproduct) {
         //         $_POST  = empty($_POST);
@@ -274,9 +281,10 @@ class ProductController extends Controller
         //     }else{
         //         $errors = "Thêm thất bại";
         //     }
-        // }
+        }
         return view("admin.product.addCart")->with("view",array(
             "title" => $title,
+            "list_type"     => $list_type,
             "errors"        => $errors));
     }
 }

@@ -44,39 +44,47 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Userid
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="userid" name="userid" class="form-control col-md-7 col-xs-12" value="{{isset($_GET['userid']) ? $_GET['userid'] : '' }}">
+                                <input type="text" id="userid" name="userid" class="form-control col-md-7 col-xs-12" value="{{!empty($_GET['userid']) ? $_GET['userid'] : '' }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên khách hàng
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12" value="{{isset($_GET['name']) ? $_GET['name'] : '' }}">
+                                <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12" value="{{!empty($_GET['name']) ? $_GET['name'] : '' }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="email" class="form-control col-md-7 col-xs-12" type="text" name="email" value="{{isset($_GET['email']) ? $_GET['email'] : '' }}">
+                                <input id="email" class="form-control col-md-7 col-xs-12" type="text" name="email" value="{{!empty($_GET['email']) ? $_GET['email'] : '' }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address" value="{{isset($_GET['address']) ? $_GET['address'] : '' }}">
+                                <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address" value="{{!empty($_GET['address']) ? $_GET['address'] : '' }}">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="phone" class="form-control col-md-7 col-xs-12" type="text" name="phone" value="{{!empty($_GET['phone']) ? $_GET['phone'] : '' }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày đặt hàng</label>
                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" id="registered_date" aria-describedby="inputSuccess2Status" name="registered_date" value="{{isset($_GET['registered_date']) ? $_GET['registered_date'] : '' }}">
+                            <label class=" col-md-3 col-sm-3 "> Chọn <input name='cb_dat' type="checkbox" {{!empty($_GET['cb_dat']) ? 'checked' : '' }}/></label>
+                                <input type="text" class="form-control has-feedback-left" id="registered_date" aria-describedby="inputSuccess2Status" name="registered_date" value="{{!empty($_GET['registered_date']) ? $_GET['registered_date'] : '' }}">
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày giao hàng</label>
                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" id="ship_date" aria-describedby="inputSuccess2Status" name="ship_date" value="{{isset($_GET['ship_date']) ? $_GET['ship_date'] : '' }}">
+                            <label class=" col-md-3 col-sm-3 "> Chọn <input name='cb_ship' type="checkbox" {{!empty($_GET['cb_ship']) ? 'checked' : '' }}/></label>
+                                <input type="text" class="form-control has-feedback-left" id="ship_date" aria-describedby="inputSuccess2Status" name="ship_date" value="{{!empty($_GET['ship_date']) ? $_GET['ship_date'] : '' }}">
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -87,7 +95,7 @@
                                     @php
                                         foreach ($view['list_paid'] as $key => $value) {
                                             $select = "";
-                                            if(isset($_GET['paid']) && $key == $_GET['paid']) $select = "checked";
+                                            if(!empty($_GET['paid']) && $key == $_GET['paid']) $select = "checked";
                                     @endphp
                                         <label> <input type="radio" class="flat" name="paid" value="{{$key}}" {{$select}} /> {{$value}} </label>
                                     @php } @endphp
@@ -102,7 +110,7 @@
                                     @php
                                         foreach ($view['list_type'] as $key => $value) {
                                             $select = "";
-                                            if(isset($_GET['type']) && $key == $_GET['type']) $select = "checked";
+                                            if(!empty($_GET['type']) && $key == $_GET['type']) $select = "checked";
                                     @endphp
                                         <label> <input type="radio" class="flat" name="type" value="{{$key}}" {{$select}} /> {{$value}} </label>
                                     @php } @endphp
@@ -153,7 +161,7 @@
                                 <tr class="even pointer">
                                     <td>{{$no++}}</td>
                                     <td>
-                                        @php if(isset($info_user[0]['name']))
+                                        @php if(!empty($info_user[0]['name']))
                                             echo "<a href='/admin/user/edit/{$value['userid']}'>".$info_user[0]['name']." </a>"
                                         @endphp
                                     </td>

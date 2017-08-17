@@ -36,6 +36,12 @@ Route::any('type-product/add', 'Admin\ProductController@addTypeProduct');
 Route::any('type-product/edit/{id?}', 'Admin\ProductController@editTypeProduct');
 Route::get('type-product/del/{id?}', 'Admin\ProductController@delTypeProduct');
 
+// List Product
+Route::any('colors', 'Admin\ProductController@listColors');
+Route::any('colors/add', 'Admin\ProductController@addColors');
+Route::any('colors/edit/{id?}', 'Admin\ProductController@editColors');
+Route::get('colors/del/{id?}', 'Admin\ProductController@delColors');
+
 // Cart Product
 Route::any('product/cart', 'Admin\ProductController@listCart');
 Route::any('product/cart/add', 'Admin\ProductController@addCart');

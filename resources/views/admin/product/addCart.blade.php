@@ -1,5 +1,9 @@
 @extends("admin.layout")
 @section('title') {{$view['title']}} @endsection
+@section('css')
+    <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ @endsection
 @section('rightcontent')
 <div class="">
     <div class="page-title">
@@ -81,7 +85,75 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+             <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Star Rating</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã sản phẩm
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="tags" name="name" class="form-control col-md-7 col-xs-12" value="{{!empty($_POST['name']) ? $_POST['name'] : '' }}">
+                            </div>
+                        </div>
+                  </div>
+                </div>
+        </div>
+    </div>
 </div>
-@endsection
 
+
+@endsection
+@section('js')
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="/public/js/custom.js"></script>
+<script src="/public/js/moment/min/moment.min.js"></script>
+<script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script>
+$('#registered_date,#ship_date').daterangepicker({
+    locale: {
+        format: 'YYYY-MM-DD'
+    },
+    singleDatePicker: true,
+    singleClasses: "picker_1",
+});
+</script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+@endsection
 

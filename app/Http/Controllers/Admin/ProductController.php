@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\Colors;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
 use App\Models\Admin\ProductType;
@@ -20,14 +21,67 @@ class ProductController extends Controller
 		$this->middleware('auth');
 	}
 
+    //  crod Colors
+    public function listColors(){
+        $title         = "Danh Sách Màu";
+        $list_colors  = Colors::paginate(20);
+        return view("admin.product.listColors")->with("view",array(
+            "title"         => $title,
+            "list_colors"  => $list_colors));
+    }
+
+    public function addColors(){
+        $title         = "Thêm mới màu";
+        $errors        = NULL;
+        if(!empty($_POST)){
+            $params = $_POST;
+            $s_new_colors = Colors::addColors($params);
+            if($s_new_colors) {
+                $_POST   = empty($_POST);
+                $errors  = "Thêm thành công";
+            }else{
+                $errors = "Thêm thất bại";
+            }
+        }
+        return view("admin.product.addColors")->with("view",array(
+            "title"         => $title,
+            "errors"        => $errors));
+    }
+
+    public function editColors($id){
+        $cls_img       = new Img();
+        $title         = "Sửa sản phẩm";
+        $errors        = NULL;
+        $get_colors   = Colors::findOrFail((int)$id);
+        if(!empty($_POST)){
+            $params = $_POST;
+            $errors = Colors::editColors($params);
+            if($errors) $errors = "Sủa thành công";
+            else        $errors = "Sửa thất bại";
+        }
+        // reload data again
+        $get_colors   = Colors::findOrFail((int)$id);
+        return view("admin.product.editColors")->with("view",array("title" => $title ,
+            "colors"       => $get_colors,
+            "errors"        => $errors));
+    }
+
+    public function delColors($id){
+        Colors::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
     //  crod Product
-	public function listProduct (){
-		$title         = "Danh Sách Sản Phẩm";
-		$list_product  = Product::paginate(20);
-		$list_category = ProductCategory::getList();
-		$list_type     = ProductType::getList();
+	public function listProduct(){
+        $title         = "Danh Sách Sản Phẩm";
+        $list_product  = Product::paginate(20);
+        $list_colors   = Colors::getList();
+        $list_category = ProductCategory::getList();
+        $list_type     = ProductType::getList();
 		return view("admin.product.listProduct")->with("view",array(
             "title"         => $title,
+            "list_colors"   => $list_colors,
             "list_product"  => $list_product,
             "list_category" => $list_category,
             "list_type"     => $list_type,));
@@ -36,17 +90,14 @@ class ProductController extends Controller
     public function addProduct(){
 		$title         = "Thêm mới sản phẩm";
 		$errors        = NULL;
+        $list_colors   = Colors::getList();
 		$list_category = ProductCategory::getList();
 		$list_type     = ProductType::getList();
         if(!empty($_POST)){
             $params = $_POST;
             $cls_img = new Img();
             $result = $cls_img->uploadImages();
-
-            foreach ($_FILES as $key => $value) {
-                $params[$key] = $result[$key];
-            }
-
+            foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
             $s_new_product = Product::addProduct($params);
             if($s_new_product) {
                 $_POST   = empty($_POST);
@@ -57,6 +108,7 @@ class ProductController extends Controller
         }
         return view("admin.product.addProduct")->with("view",array(
             "title"         => $title,
+            "list_colors"   => $list_colors,
             "list_category" => $list_category,
             "list_type"     => $list_type,
             "errors"        => $errors));
@@ -66,6 +118,7 @@ class ProductController extends Controller
         $cls_img       = new Img();
         $title         = "Sửa sản phẩm";
         $errors        = NULL;
+        $list_colors   = Colors::getList();
         $list_category = ProductCategory::getList();
         $list_type     = ProductType::getList();
         $get_product   = Product::findOrFail((int)$id);
@@ -90,6 +143,7 @@ class ProductController extends Controller
         $get_product   = Product::findOrFail((int)$id);
         return view("admin.product.editProduct")->with("view",array("title" => $title ,
             "product"       => $get_product,
+            "list_colors"   => $list_colors,
             "list_category" => $list_category,
             "list_type"     => $list_type,
             "errors"        => $errors));
@@ -272,8 +326,8 @@ class ProductController extends Controller
     public function addCart(){
         $title         = "Thêm đơn hàng";
         $errors        = NULL;
-        $list_type = $this->getOption('typePaid');
         if(!empty($_POST)){
+
         //     $s_new_typeproduct = ProductType::addTypeProduct($_POST);
         //     if($s_new_typeproduct) {
         //         $_POST  = empty($_POST);
@@ -284,7 +338,6 @@ class ProductController extends Controller
         }
         return view("admin.product.addCart")->with("view",array(
             "title" => $title,
-            "list_type"     => $list_type,
             "errors"        => $errors));
     }
 }

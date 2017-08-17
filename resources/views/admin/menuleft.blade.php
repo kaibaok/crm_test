@@ -30,6 +30,7 @@
                       <li><a href="/admin/product">Sản phẩm</a></li>
                       <li><a href="/admin/cate-product">Loại sản phẩm</a></li>
                       <li><a href="/admin/type-product">Loại trọng lượng</a></li>
+                      <li><a href="/admin/colors">Màu sắc</a></li>
                       <li><a href="/admin/inventory">Tồn kho</a></li>
                     </ul>
                   </li>

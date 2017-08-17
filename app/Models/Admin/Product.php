@@ -13,7 +13,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        "id", "id_cate","code_id","title","desc","price","type","numbers","limit_at","created_at","updated_at","status","ord","img_list","img_detail","img1","img2","img3","img4","img5"
+        "id", "id_cate","code_id","title","desc","price","type","numbers","limit_at","created_at","updated_at","status","ord","img_list","img_detail","img1","img2","img3","img4","img5","colors"
     ];
 
     public static function addProduct($data){
@@ -37,6 +37,7 @@ class Product extends Model
                     "img3"       => $data['img3'],
                     "img4"       => $data['img4'],
                     "img5"       => $data['img5'],
+                    "colors"     => implode("|", $data['colors']),
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -65,6 +66,7 @@ class Product extends Model
                 "img3"       => $data['img3'],
                 "img4"       => $data['img4'],
                 "img5"       => $data['img5'],
+                "colors"     => implode("|", $data['colors']),
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }
@@ -82,5 +84,15 @@ class Product extends Model
         }
         return $arr_data;
     }
+
+    public static function getList(){
+        $get_all  = self::all();
+        $arr_data = NULL;
+        if($get_all){
+            $arr_data = $get_all->toArray();
+        }
+        return $arr_data;
+    }
+
 
 }

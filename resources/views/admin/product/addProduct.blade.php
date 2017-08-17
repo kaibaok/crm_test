@@ -104,6 +104,22 @@
                       	</div>
 					</div>
 
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Màu sắc<span class="required">*</span> </label>
+	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
+	                    @php
+							$colors        = $view['list_colors'];
+							$choose_colors = (!empty($_POST['colors'])) ? $_POST['colors'] : array();
+							$count = 0;
+	                    @endphp
+	                    @foreach ($colors as $key => $item)
+	                    	@php $checked = in_array($key,$choose_colors) ? "checked" : ""; $count++; @endphp
+		                    <input type="checkbox" name="colors[]" value="{{$key}}" class="flat" <?= $checked; ?> />
+		                    <span style="background: {{$item['code']}}; vertical-align:bottom; width: 20px; height: 20px; display: inline-block; margin-right: 5px;border-radius: 50%"></span>
+		                @endforeach
+                      	</div>
+					</div>
+
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>

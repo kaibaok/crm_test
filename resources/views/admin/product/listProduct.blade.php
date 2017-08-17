@@ -41,6 +41,7 @@
                     <th class="column-title">Loại sản phẩm</th>
                     <th class="column-title">Giá</th>
                     <th class="column-title">Trọng lượng</th>
+                    <th class="column-title">Màu sắc</th>
                     <th class="column-title">Ngày hết hạn</th>
                     <th class="column-title">Ngày nhập hàng</th>
                     <th class="column-title">Ngày cập nhật</th>
@@ -54,9 +55,14 @@
                     $no       = 1;
                     $category = $view['list_category'];
                     $type     = $view['list_type'];
+                    $colors   = $view['list_colors'];
                   @endphp
 
                   @foreach ($view['list_product'] as $value)
+                      @php
+                        $color_choose = explode("|", $value['colors']);
+                      @endphp
+
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>
@@ -71,6 +77,10 @@
                     <td>{{$category[$value['id_cate']]}}</td>
                     <td>{{$value['price']}}</td>
                     <td>{{$type[$value['type']]}}</td>
+                    <td> @foreach ($color_choose as $item)
+                        <span style="background: {{$colors[$item]['code']}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
+                        @endforeach
+                    </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value['limit_at']}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value['created_at']}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value['updated_at']}}</td>

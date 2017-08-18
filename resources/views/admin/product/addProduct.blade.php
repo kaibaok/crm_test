@@ -4,6 +4,8 @@
   <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   {{-- CSS img upload  --}}
   <link href="/public/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
+
+  	<link href="/public/js/pnotify/dist/pnotify.css" rel="stylesheet">
 @endsection
 
 @section('rightcontent')
@@ -258,6 +260,13 @@
 						<button type ="reset" class="btn btn-primary">Reset</button>
 						<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 						<input  type ="hidden" value="{{time()}}" name="code_id">
+
+						<button class="btn btn-default source" onclick="new PNotify({
+                                  title: "{{$view['errors'] }}",
+                                  text: 'That thing that you were trying to do worked!',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });">Success</button>
 						</div>
 					</div>
 				</form>
@@ -266,6 +275,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 @endsection
 
@@ -301,4 +312,9 @@ $('#limit_at').daterangepicker({
 var $imageupload = $('.imageupload');
 $imageupload.imageupload();
 </script>
+
+ <!-- PNotify -->
+<script src="/public/js/pnotify/dist/pnotify.js"></script>
+
+
 @endsection

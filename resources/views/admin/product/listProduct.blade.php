@@ -1,20 +1,23 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>{{$view['title']}}</h3>
+        <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <form method="get">
           <div class="input-group">
-              <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
-              <input type="text" class="form-control" placeholder="Tìm kiếm..." id="txt_alproduct">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="btn_search_alproduct">Tìm</button>
-              </span>
+                <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
+                <input type="hidden" name="page" value="1">
+                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit" >Tìm</button>
+                </span>
           </div>
+          </form>
         </div>
         <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
           <div class="input-group">
@@ -53,44 +56,44 @@
                 <tbody id="tbl_alproduct">
                   @php
                     $no       = 1;
-                    $category = $view['list_category'];
-                    $type     = $view['list_type'];
-                    $colors   = $view['list_colors'];
+                    $category = $listCategory;
+                    $type     = $listType;
+                    $colors   = $listColors;
                   @endphp
 
-                  @foreach ($view['list_product'] as $value)
+                  @foreach ($listProduct as $value)
                       @php
-                        $color_choose = explode("|", $value['colors']);
+                        $colorChoose = explode("|", $value->colors);
                       @endphp
 
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>
-                      @if ($value['status'] == 1)
-                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}" rel="{{$value['id']}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                      @if ($value->status == 1)
+                        <a class="btn_status_product" href="/admin/product/status/{{$value->id}}" rel="{{$value->id}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <a class="btn_status_product" href="/admin/product/status/{{$value['id']}}" rel="{{$value['id']}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a class="btn_status_product" href="/admin/product/status/{{$value->id}}" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
-                    <td>{{$value['code_id']}}</td>
-                    <td>{{$value['title']}}</td>
-                    <td>{{$category[$value['id_cate']]}}</td>
-                    <td>{{$value['price']}}</td>
-                    <td>{{$type[$value['type']]}}</td>
-                    <td> @foreach ($color_choose as $item)
+                    <td>{{$value->code_id}}</td>
+                    <td>{{$value->title}}</td>
+                    <td>{{$category[$value->id_cate]}}</td>
+                    <td>{{$value->price}}</td>
+                    <td>{{$type[$value->type]}}</td>
+                    <td> @foreach ($colorChoose as $item)
                         <span style="background: {{$colors[$item]['code']}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         @endforeach
                     </td>
-                    <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value['limit_at']}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value['created_at']}}</td>
-                    <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value['updated_at']}}</td>
-                    <td class="last"> <a href="/admin/product/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value->limit_at}}</td>
+                    <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value->created_at}}</td>
+                    <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value->updated_at}}</td>
+                    <td class="last"> <a href="/admin/product/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$view['list_product']->links() }}
+                  {{$listProduct->appends($conditionPage)->links()}}
               </div>
             </div>
           </div>

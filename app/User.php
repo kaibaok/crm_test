@@ -66,12 +66,8 @@ class User extends  Authenticatable
     }
 
     public static function searchOption($txt_search){
-        $m_user = User::where('name','like',"%{$txt_search}%")->orWhere('email','like',"%{$txt_search}%")->get();
-        $arr_data = NULL;
-        if($m_user){
-            $arr_data = $m_user->toArray();
-        }
-        return $arr_data;
+        $m_user = User::select()->where('name','like',"%{$txt_search}%")->orWhere('email','like',"%{$txt_search}%");
+        return $m_user;
     }
 
     public function getInfoByUserid($userid){

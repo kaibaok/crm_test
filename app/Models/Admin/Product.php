@@ -37,7 +37,7 @@ class Product extends Model
                     "img3"       => $data['img3'],
                     "img4"       => $data['img4'],
                     "img5"       => $data['img5'],
-                    "colors"     => implode("|", $data['colors']),
+                    "colors"     => isset($data['colors']) ? implode("|", $data['colors']) : "",
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -66,7 +66,7 @@ class Product extends Model
                 "img3"       => $data['img3'],
                 "img4"       => $data['img4'],
                 "img5"       => $data['img5'],
-                "colors"     => implode("|", $data['colors']),
+                "colors"     => isset($data['colors']) ? implode("|", $data['colors']) : "",
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }

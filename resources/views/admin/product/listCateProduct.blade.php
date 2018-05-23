@@ -1,10 +1,10 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>{{$view['title']}}</h3>
+        <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
         <div class="form-group pull-right">
@@ -37,24 +37,24 @@
                   @php
                     $no = 1;
                   @endphp
-                  @foreach ($view['list_category'] as $value)
+                  @foreach ($listCategory as $value)
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>
-                      @if ($value['status'] == 1)
-                        <a href="/admin/cate-product/status/{{$value['id']}}" class="btn_status_cproduct" rel="{{$value['id']}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                      @if ($value->status == 1)
+                        <a href="/admin/cate-product/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <a href="/admin/cate-product/status/{{$value['id']}}" class="btn_status_cproduct" rel="{{$value['id']}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a href="/admin/cate-product/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
-                    <td>{{$value['title']}}</td>
-                    <td class="last"> <a href="/admin/cate-product/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cate-product/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td>{{$value->title}}</td>
+                    <td class="last"> <a href="/admin/cate-product/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cate-product/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$view['list_category']->links() }}
+                {{$listCategory->links() }}
               </div>
             </div>
           </div>

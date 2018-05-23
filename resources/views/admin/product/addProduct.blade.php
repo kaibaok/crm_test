@@ -1,5 +1,5 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('css')
   <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   {{-- CSS img upload  --}}
@@ -12,7 +12,7 @@
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$view['title']}}</h3>
+			<h3>{{$title}}</h3>
 		</div>
 		<div class="title_right">
 	        <div class=" pull-right">
@@ -47,7 +47,7 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}" required>
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}" required>
 						</div>
 					</div>
 
@@ -55,9 +55,9 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phảm <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="id_cate">
-								@if (isset($view['list_category']))
-									@foreach ($view['list_category'] as $key => $value)
-										<?php $selected = ""; if(isset($_POST['id_cate']) && $key == $_POST['id_cate']) $selected = "selected"; ?>
+								@if (isset($listCategory))
+									@foreach ($listCategory as $key => $value)
+										<?php $selected = ""; if(isset($params['id_cate']) && $key == $params['id_cate']) $selected = "selected"; ?>
 											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 									@endforeach
 								@endif
@@ -69,9 +69,9 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="type">
-								@if (isset($view['list_type']))
-									@foreach ($view['list_type'] as $key => $value)
-										<?php $selected = ""; if(isset($_POST['type']) && $key == $_POST['type']) $selected = "selected"; ?>
+								@if (isset($listType))
+									@foreach ($listType as $key => $value)
+										<?php $selected = ""; if(isset($params['type']) && $key == $params['type']) $selected = "selected"; ?>
 											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 									@endforeach
 								@endif
@@ -83,8 +83,8 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="desc" id="desc">
-                  				@if(isset($_POST['desc']))
-                  					{{$_POST['desc']}}
+                  				@if(isset($params['desc']))
+                  					{{$params['desc']}}
                   				@endif
                   			</textarea>
 						</div>
@@ -94,7 +94,7 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($_POST['price']) ? $_POST['price'] : '' }}" required>
+						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($params['price']) ? $params['price'] : '' }}" required>
 						</div>
 					</div>
 
@@ -102,7 +102,7 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($_POST['numbers']) ? $_POST['numbers'] : '' }}" required>
+	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($params['numbers']) ? $params['numbers'] : '' }}" required>
                       	</div>
 					</div>
 
@@ -110,12 +110,12 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Màu sắc<span class="required">*</span> </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                    @php
-							$colors        = $view['list_colors'];
-							$choose_colors = (!empty($_POST['colors'])) ? $_POST['colors'] : array();
+							$colors        = $listColors;
+							$chooseColors = (!empty($params['colors'])) ? $params['colors'] : array();
 							$count = 0;
 	                    @endphp
 	                    @foreach ($colors as $key => $item)
-	                    	@php $checked = in_array($key,$choose_colors) ? "checked" : ""; $count++; @endphp
+	                    	@php $checked = in_array($key,$chooseColors) ? "checked" : ""; $count++; @endphp
 		                    <input type="checkbox" name="colors[]" value="{{$key}}" class="flat" <?= $checked; ?> />
 		                    <span style="background: {{$item['code']}}; vertical-align:bottom; width: 20px; height: 20px; display: inline-block; margin-right: 5px;border-radius: 50%"></span>
 		                @endforeach
@@ -126,7 +126,7 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
-	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $_POST['limit_at']) ?  $_POST['limit_at'] : '' }}">
+	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $params['limit_at']) ?  $params['limit_at'] : '' }}">
 	                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 	                        <span id="inputSuccess2Status" class="sr-only">(success)</span>
                       	</div>
@@ -248,7 +248,7 @@
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								{{$view['errors'] }}
+								{{$errors }}
 							</strong>
 						</span>
 						</div>
@@ -262,7 +262,7 @@
 						<input  type ="hidden" value="{{time()}}" name="code_id">
 
 						<button class="btn btn-default source" onclick="new PNotify({
-                                  title: "{{$view['errors'] }}",
+                                  title: "{{$errors }}",
                                   text: 'That thing that you were trying to do worked!',
                                   type: 'success',
                                   styling: 'bootstrap3'

@@ -89,7 +89,41 @@
         <div class="col-md-6 col-xs-12">
              <div class="x_panel">
                   <div class="x_title">
-                    <h2>Star Rating</h2>
+                    <h2>Sản Phẩm</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã sản phẩm
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="tags" name="name" class="form-control col-md-7 col-xs-12" value="{{!empty($_POST['name']) ? $_POST['name'] : '' }}">
+                            </div>
+                        </div>
+                  </div>
+                   <div class="x_content">
+                        <div class="form-group">
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Màu sắc</th>
+                                <th>Xử lý</th>
+                            </thead>
+                            </table>
+                            </div>
+                        </div>
+                  </div>
+            </div>
+        </div>
+
+         <div class="col-md-6 col-xs-12">
+             <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Giỏ hàng</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -109,8 +143,6 @@
 
 @endsection
 @section('js')
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="/public/js/custom.js"></script>
 <script src="/public/js/moment/min/moment.min.js"></script>
 <script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script>
@@ -123,37 +155,5 @@ $('#registered_date,#ship_date').daterangepicker({
 });
 </script>
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
-  </script>
 @endsection
 

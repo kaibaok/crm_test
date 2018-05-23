@@ -1,10 +1,10 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>{{$view['title']}}</h3>
+        <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
         <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
@@ -38,18 +38,18 @@
                     $no       = 1;
                   @endphp
 
-                  @foreach ($view['list_colors'] as $value)
+                  @foreach ($listColors as $value)
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
-                    <td>{{$value['name']}}</td>
-                    <td> <span style="background: {{$value['code']}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span> </td>
-                    <td class="last"> <a href="/admin/colors/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/colors/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td>{{$value->name}}</td>
+                    <td> <span style="background: {{$value->code}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span> </td>
+                    <td class="last"> <a href="/admin/colors/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/colors/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$view['list_colors']->links() }}
+                {{$listColors->links() }}
               </div>
             </div>
           </div>

@@ -1,10 +1,10 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$view['title']}}</h3>
+			<h3>{{$title}}</h3>
 		</div>
 		<div class="title_right">
 	        <div class=" pull-right">
@@ -39,7 +39,7 @@
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($_POST['title']) ? $_POST['title'] : '' }}">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($params['title']) ? $params['title'] : ''}}">
 						</div>
 					</div>
 
@@ -47,7 +47,7 @@
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								{{$view['errors'] }}
+								{{$errors}}
 							</strong>
 						</span>
 						</div>

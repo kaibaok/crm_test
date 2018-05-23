@@ -1,10 +1,10 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>{{$view['title']}}</h3>
+        <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
         <div class="form-group pull-right">
@@ -36,17 +36,17 @@
                   @php
                     $no = 1;
                   @endphp
-                  @foreach ($view['list_type'] as $value)
+                  @foreach ($listType as $value)
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
-                    <td>{{$value['title']}}</td>
-                    <td class="last"> <a href="/admin/type-product/edit/{{$value['id']}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/type-product/del/{{$value['id']}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td>{{$value->title}}</td>
+                    <td class="last"> <a href="/admin/type-product/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/type-product/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$view['list_type']->links() }}
+                {{$listType->links() }}
               </div>
             </div>
           </div>

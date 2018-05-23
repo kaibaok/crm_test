@@ -76,8 +76,8 @@ $(document).on('keyup', '#txt_alproduct', function(event) {
 $(document).on('click', '.btn_status_product', function(event) {
   event.preventDefault();
   var token = $('meta[name="csrf-token"]').attr('content');
-  var id = $(this).attr('rel');
-  child = $(this).children('i');
+  var id    = $(this).attr('rel');
+  child     = $(this).children('i');
   $.ajax({
     url: '/admin/product/status/'+id,
     type: 'GET',
@@ -92,8 +92,8 @@ $(document).on('click', '.btn_status_product', function(event) {
 $(document).on('click', '.btn_status_cproduct', function(event) {
   event.preventDefault();
   var token = $('meta[name="csrf-token"]').attr('content');
-  var id = $(this).attr('rel');
-  child = $(this).children('i');
+  var id    = $(this).attr('rel');
+  child     = $(this).children('i');
   $.ajax({
     url: '/admin/cate-product/status/'+id,
     type: 'GET',

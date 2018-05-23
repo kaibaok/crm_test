@@ -1,10 +1,10 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$view['title']}}</h3>
+			<h3>{{$title}}</h3>
 		</div>
 		<div class="title_right">
 	        <div class=" pull-right">
@@ -24,13 +24,13 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
 				{{ csrf_field() }}
-					<input type="hidden" name="id" value="{{$view['category']['id']}}"/>
+					<input type="hidden" name="id" value="{{$category->id}}"/>
 					<div class="form-group">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12">Hiển thị</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
-		                      <label><input type="radio" class="flat" name="status" value="0" @if(isset($view['category']['status']) && $view['category']['status'] == 0) checked @endif /> Ẩn </label>&nbsp;
-		                      <label><input type="radio" class="flat" name="status"  value="1" @if(isset($view['category']['status']) && $view['category']['status'] == 1) checked @endif /> Hiện</label>
+		                      <label><input type="radio" class="flat" name="status" value="0" @if(isset($category->status) && $category->status == 0) checked @endif /> Ẩn </label>&nbsp;
+		                      <label><input type="radio" class="flat" name="status"  value="1" @if(isset($category->status) && $category->status == 1) checked @endif /> Hiện</label>
 							</div>
 						</div>
 					</div>
@@ -39,7 +39,7 @@
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($view['category']['title']) ? $view['category']['title'] : '' }}">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($category->title) ? $category->title : '' }}">
 						</div>
 					</div>
 
@@ -47,7 +47,7 @@
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								{{$view['errors'] }}
+								{{$errors }}
 							</strong>
 						</span>
 						</div>

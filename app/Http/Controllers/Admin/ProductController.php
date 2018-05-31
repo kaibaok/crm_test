@@ -51,7 +51,7 @@ class ProductController extends Controller
             ->with("params", $params);
     }
 
-    public function editColors($id){
+    public function editColors(Request $request){
         $title     = "Sửa sản phẩm";
         $id        = (int) $request->route('id');
         $cls_img   = new Img();
@@ -357,5 +357,41 @@ class ProductController extends Controller
         return view("admin.product.addCart")->with("view",array(
             "title" => $title,
             "errors"        => $errors));
+    }
+
+
+    public function sortProduct(Request $request){
+        $title        = "Sắp Xếp Sản Phẩm";
+        $page         = isset($request->page) ? $request->page: 1;
+        $builder      = Product::select();
+        $listColors   = Colors::getList();
+        $listCategory = ProductCategory::getList();
+        $listType     = ProductType::getList();
+
+        $builder->orderByRaw("ord ASC, id DESC");
+        $totalResult = $builder->count();
+        $listProduct = $builder->paginate(self::LIMIT_PAGE);
+        return view("admin.product.sortProduct")
+            ->with("title", $title)
+            ->with("listColors", $listColors)
+            ->with("listCategory", $listCategory)
+            ->with("listType", $listType)
+            ->with("listProduct", $listProduct)
+            ->with("page", $page);
+    }
+
+    public function ajaxSortProduct(Request $request){
+        $params  = $request->all();
+        if(!empty($params)) {
+            parse_str($params['data'], $data);
+            $page = !empty($params['page']) ? $params['page'] : 1;
+            if($page > 1) $page = ($page - 1) * self::LIMIT_PAGE + 1;
+            foreach ($data['item'] as $key => $idProduct) {
+                $product = Product::find((int)$idProduct);
+                $product->ord = $page + ($key) ;
+                $product->save();
+            }
+        }
+        return response()->json(["status" => true]);
     }
 }

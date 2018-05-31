@@ -7,7 +7,7 @@
         <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
           <form method="get">
           <div class="input-group">
                 <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
@@ -19,9 +19,10 @@
           </div>
           </form>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
+        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/product/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/product/add">Thêm mới</a> &nbsp;
+            <a class="btn btn-success" href="/admin/product/sort-product">Sắp xếp</a>
           </div>
         </div>
       </div>

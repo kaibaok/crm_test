@@ -11,6 +11,7 @@
 
     {{-- Bootstrap --}}
     <link href="/public/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/js/jquery/dist/jquery-ui.min.css" rel="stylesheet">
     {{-- Font Awesome --}}
     <link href="/public/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     {{-- NProgress --}}
@@ -58,6 +59,7 @@
 
     {{-- jQuery --}}
     <script src="/public/js/jquery/dist/jquery.min.js"></script>
+    <script src="/public/js/jquery/dist/jquery-ui.min.js"></script>
     {{-- Bootstrap --}}
     <script src="/public/js/bootstrap/dist/js/bootstrap.min.js"></script>
     {{-- NProgress --}}
@@ -81,7 +83,7 @@
     <script src="/public/js/parsleyjs/dist/parsley.js"></script>
     {{-- check user --}}
     <script src="/public/js/cus_admin.js"></script>
-
+    <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
     @yield("js")
 
   </body>

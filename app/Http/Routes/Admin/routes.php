@@ -22,6 +22,8 @@ Route::any('product/add', 'Admin\ProductController@addProduct');
 Route::any('product/edit/{id?}', 'Admin\ProductController@editProduct');
 Route::get('product/del/{id?}', 'Admin\ProductController@delProduct');
 Route::get('product/status/{id?}', 'Admin\ProductController@statusProduct');
+Route::any('product/sort-product', 'Admin\ProductController@sortProduct');
+Route::post('product/ajax-sort-product', 'Admin\ProductController@ajaxSortProduct');
 
 // list cate product
 Route::any('cate-product', 'Admin\ProductController@listCateProduct');

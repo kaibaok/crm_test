@@ -53,6 +53,17 @@
                     </div>
 
                     <div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div id="status" class="btn-group" data-toggle="buttons">
+                                <input type="checkbox" name="is_new" value="1" class="flat" 
+                                @if(isset($product->status) && $product->status == 0) checked @endif
+								<?= (isset($params['is_new']) && $params['is_new'] == 1) ? "checked" : '' ?> />		                        
+							</div>
+						</div>
+					</div>
+
+                    <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">

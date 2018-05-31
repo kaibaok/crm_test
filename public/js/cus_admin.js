@@ -16,7 +16,6 @@ $(document).ready(function() {
         }
     };
 
-
     if($("tbody").hasClass('sortable')) {
         var data = null;
         switch(idSortable){
@@ -27,7 +26,6 @@ $(document).ready(function() {
                         data = $(this).sortable('serialize');
                     }
                 });
-
                 $("#btn_save").bind('click', function(event) {
                     event.preventDefault();
                     $.ajax({
@@ -39,11 +37,12 @@ $(document).ready(function() {
                             page : curentPage,
                             _token : _token
                         },
-                    }).done(function() {
-                        console.log("success");
+                    }).done(function(data) {
+                        if(data.status) {
+                            location.href = "/admin/product/";
+                        }
                     });
                 });
-
             break;
         }
     }

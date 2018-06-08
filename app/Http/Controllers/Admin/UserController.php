@@ -10,21 +10,16 @@ use App\Models\Admin\Permission;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function listUser (){
         $title           = "Danh Sách User";
         $list_user       = User::orderBy('id','DESC')->orderBy('created_at','DESC')->paginate(20);
         $list_permission = Permission::getList();
         $list_gender     = $this->getOption('listGender');
         return view("admin.user.listUser")
-                ->with("view",array("title"           => $title,
-                                    "list_user"       =>$list_user,
-                                    "list_gender"     => $list_gender,
-                                    "list_permission" =>$list_permission));
+                ->with("title", $title)
+                ->with("list_user", $list_user)
+                ->with("list_gender", $list_gender)
+                ->with("list_permission", $list_permission);
     }
 
     //  crod User
@@ -42,10 +37,11 @@ class UserController extends Controller
                 $errors = "Thêm thất bại";
             }
         }
-        return view("admin.user.addUser")->with("view",array("title" => $title ,
-            "list_permission" => $list_permission,
-            "list_gender"     => $list_gender,
-            "errors"          => $errors));
+        return view("admin.user.addUser")
+            ->with("title", $title)
+            ->with("list_permission", $list_permission)
+            ->with("list_gender", $list_gender)
+            ->with("errors", $errors);
     }
 
     public function editUser($id){
@@ -59,12 +55,13 @@ class UserController extends Controller
         $get_user = User::findOrFail((int)$id);
         $list_permission = Permission::getList();
         $list_gender     = $this->getOption('listGender');
-        return view("admin.user.editUser")->with("view",array("title" => $title ,
-            "list_permission" => $list_permission,
-            "list_gender"     => $list_gender,
-            "detail_user"     => $get_user,
-            "id"              => (int)$id,
-            "errors"          => $errors));
+        return view("admin.user.editUser")
+            ->with("title", $title)
+            ->with("list_permission", $list_permission)
+            ->with("list_gender", $list_gender)
+            ->with("detail_user", $get_user)
+            ->with("id", (int)$id)
+            ->with("errors", $errors);
     }
 
     public function delUser($id){
@@ -81,9 +78,10 @@ class UserController extends Controller
             $list_permission = Permission::getList();
             $list_gender     = $this->getOption('listGender');
         }
-        return view("admin.user.ajaxListUser")->with("view",array("list_user" => $list_user,
-                "list_gender"     => $list_gender,
-                "list_permission" =>$list_permission));
+        return view("admin.user.ajaxListUser")
+            ->with("list_user", $list_user)
+            ->with("list_gender", $list_gender)
+            ->with("list_permission", $list_permission);
     }
 
 }

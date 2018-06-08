@@ -10,20 +10,20 @@
     <title>@yield("title")</title>
 
     {{-- Bootstrap --}}
-    <link href="/public/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/public/js/jquery/dist/jquery-ui.min.css" rel="stylesheet">
+    <link href="/public/admin/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/admin/js/jquery/dist/jquery-ui.min.css" rel="stylesheet">
     {{-- Font Awesome --}}
-    <link href="/public/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/public/admin/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     {{-- NProgress --}}
-    <link href="/public/js/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/public/admin/js/nprogress/nprogress.css" rel="stylesheet">
     {{-- bootstrap-progressbar --}}
-    <link href="/public/js/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="/public/admin/js/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     {{-- bootstrap-daterangepicker --}}
-    {{-- <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"> --}}
+    {{-- <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"> --}}
     {{-- Custom Theme Style --}}
-    <link href="/public/css/custom.css" rel="stylesheet">
+    <link href="/public/admin/css/custom.css" rel="stylesheet">
     {{-- iCheck --}}
-    <link href="/public/js/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="/public/admin/js/iCheck/skins/flat/green.css" rel="stylesheet">
 
     @yield("css")
 
@@ -58,31 +58,31 @@
     </div>
 
     {{-- jQuery --}}
-    <script src="/public/js/jquery/dist/jquery.min.js"></script>
-    <script src="/public/js/jquery/dist/jquery-ui.min.js"></script>
+    <script src="/public/admin/js/jquery/dist/jquery.min.js"></script>
+    <script src="/public/admin/js/jquery/dist/jquery-ui.min.js"></script>
     {{-- Bootstrap --}}
-    <script src="/public/js/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/public/admin/js/bootstrap/dist/js/bootstrap.min.js"></script>
     {{-- NProgress --}}
-    <script src="/public/js/nprogress/nprogress.js"></script>
+    <script src="/public/admin/js/nprogress/nprogress.js"></script>
     {{-- bootstrap-progressbar --}}
-    <script src="/public/js/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="/public/admin/js/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     {{-- Custom Theme Scripts --}}
-    <script src="/public/js/custom.js"></script>
+    <script src="/public/admin/js/custom.js"></script>
     {{-- FastClick --}}
-    <script src="/public/js/fastclick/lib/fastclick.js"></script>
+    <script src="/public/admin/js/fastclick/lib/fastclick.js"></script>
     {{-- Chart.js --}}
-    {{-- <script src="/public/js/Chart.js/dist/Chart.min.js"></script> --}}
+    {{-- <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script> --}}
     {{-- gauge.js --}}
-    <script src="/public/js/gauge.js/dist/gauge.min.js"></script>
+    <script src="/public/admin/js/gauge.js/dist/gauge.min.js"></script>
     {{-- iCheck --}}
-    <script src="/public/js/iCheck/icheck.min.js"></script>
+    <script src="/public/admin/js/iCheck/icheck.min.js"></script>
     {{-- DateJS --}}
-    {{-- <script src="/public/js/DateJS/build/date.js"></script> --}}
+    {{-- <script src="/public/admin/js/DateJS/build/date.js"></script> --}}
 
     {{-- Parsley --}}
-    <script src="/public/js/parsleyjs/dist/parsley.js"></script>
+    <script src="/public/admin/js/parsleyjs/dist/parsley.js"></script>
     {{-- check user --}}
-    <script src="/public/js/cus_admin.js"></script>
+    <script src="/public/admin/js/cus_admin.js"></script>
     <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
     @yield("js")
 

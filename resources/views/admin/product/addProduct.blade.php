@@ -1,11 +1,11 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('css')
-  <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+  <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
   {{-- CSS img upload  --}}
-  <link href="/public/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
+  <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
 
-  	<link href="/public/js/pnotify/dist/pnotify.css" rel="stylesheet">
+  	<link href="/public/admin/js/pnotify/dist/pnotify.css" rel="stylesheet">
 @endsection
 
 @section('rightcontent')
@@ -36,7 +36,7 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
-		                        <label><input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label> 
+		                        <label><input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label>
 								<label><input type="radio" class="flat" name="status"  value="1" /> Hiện </label>
 							</div>
 						</div>
@@ -45,9 +45,9 @@
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
-							<div id="status" class="btn-group" data-toggle="buttons">
+							<div id="is_new" class="btn-group" data-toggle="buttons">
 								<input type="checkbox" name="is_new" value="1" class="flat"
-								@if (isset($params['is_new']) && $params['is_new'] == 1) checked @endif />		                        
+								@if (isset($params['is_new']) && $params['is_new'] == 1) checked @endif />
 							</div>
 						</div>
 					</div>
@@ -55,9 +55,9 @@
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm bán chạy</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
-							<div id="status" class="btn-group" data-toggle="buttons">
-								<input type="checkbox" name="is_best_sell" value="1" class="flat" 
-								@if (isset($params['is_best_sell']) && $params['is_best_sell'] == 1) checked @endif />		                        
+							<div id="editProduct" class="btn-group" data-toggle="buttons">
+								<input type="checkbox" name="is_best_sell" value="1" class="flat"
+								@if (isset($params['is_best_sell']) && $params['is_best_sell'] == 1) checked @endif />
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phảm <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phẩm <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="id_cate">
 								@if (isset($listCategory))
@@ -85,7 +85,7 @@
 					</div>
 
 					<div class="form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại trọng lượng <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Thể loại <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="type">
 								@if (isset($listType))
@@ -278,7 +278,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
 							<button type ="reset" class="btn btn-primary">Reset</button>
 							<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-							<input  type ="hidden" value="{{time()}}" name="code_id">						
+							<input  type ="hidden" value="{{time()}}" name="code_id">
 						</div>
 					</div>
 				</form>
@@ -293,12 +293,12 @@
 @endsection
 
 @section('js')
-<script src="/public/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
-<script src="/public/js/ckeditor/ckeditor.js"></script>
-<script src="/public/js/ckeditor/ckfinder/ckfinder.js"></script>
+<script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
+<script src="/public/admin/js/ckeditor/ckeditor.js"></script>
+<script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
 {{-- bootstrap-daterangepicker --}}
-<script src="/public/js/moment/min/moment.min.js"></script>
-<script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/public/admin/js/moment/min/moment.min.js"></script>
+<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- validator -->
 <script type="text/javascript">
 var editor = CKEDITOR.replace( 'desc', {
@@ -314,7 +314,7 @@ toolbarGroups: [
 	],
 });
 
-CKFinder.setupCKEditor( editor,"/public/js/ckeditor/ckfinder/");
+CKFinder.setupCKEditor( editor,"/public/admin/js/ckeditor/ckfinder/");
 
 $('#limit_at').daterangepicker({
 	locale: {format: 'YYYY-MM-DD'},
@@ -326,7 +326,7 @@ $imageupload.imageupload();
 </script>
 
  <!-- PNotify -->
-<script src="/public/js/pnotify/dist/pnotify.js"></script>
+<script src="/public/admin/js/pnotify/dist/pnotify.js"></script>
 
 
 @endsection

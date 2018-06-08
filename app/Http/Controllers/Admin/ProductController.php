@@ -9,6 +9,7 @@ use App\Models\Admin\Colors;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
 use App\Models\Admin\ProductType;
+use App\Models\Admin\ProductItem;
 use App\Events\Img;
 use DateTime,Session;
 use App\User;
@@ -17,11 +18,6 @@ use App\Models\Admin\Cart;
 class ProductController extends Controller
 {
     const LIMIT_PAGE   = 5;
-
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
 
     //  crod Colors
     public function listColors(){
@@ -183,19 +179,22 @@ class ProductController extends Controller
 
     //  crod CateProduct
     public function listCateProduct(){
-		$title         = "Danh Sách Loại Sản Phẩm";
-		$listCategory  = ProductCategory::orderBy('id','DESC')
+        $title        = "Danh Sách Loại Sản Phẩm";
+        $listItem     = ProductItem::getList();
+        $listCategory = ProductCategory::orderBy('id','DESC')
             ->paginate(self::LIMIT_PAGE);
 		return view("admin.product.listCateProduct")
 			->with("title", $title)
+            ->with("listItem", $listItem)
 			->with("listCategory", $listCategory);
 	}
 
     public function addCateProduct(Request $request){
-        $title       = "Thêm mới loại sản phẩm";
-        $errors      = NULL;
+        $title      = "Thêm mới loại sản phẩm";
+        $errors     = NULL;
         $listStatus = $this->getOption('listStatus');
-        $params      = $request->all();
+        $listItem   = ProductItem::getList();
+        $params     = $request->all();
         if ($request->isMethod('post')) {
             $s_new_cateproduct = ProductCategory::addCateProduct($params);
             if($s_new_cateproduct) {
@@ -208,7 +207,8 @@ class ProductController extends Controller
         return view("admin.product.addCateProduct")
         	->with("title", $title)
 			->with("errors", $errors)
-            ->with("params", $params);
+            ->with("params", $params)
+            ->with("listItem", $listItem);
     }
 
     public function editCateProduct(Request $request){
@@ -216,6 +216,7 @@ class ProductController extends Controller
         $id     = (int) $request->route('id');
         $errors = NULL;
         $params = $request->all();
+        $listItem   = ProductItem::getList();
         if ($request->isMethod('post')) {
             $errors = ProductCategory::editCateProduct($params);
             if($errors) $errors = "Sủa thành công";
@@ -225,7 +226,8 @@ class ProductController extends Controller
         return view("admin.product.editCateProduct")
             ->with("title", $title)
             ->with("category", $getCate)
-            ->with("errors"  , $errors);
+            ->with("errors"  , $errors)
+            ->with("listItem"  , $listItem);
     }
 
     public function delCateProduct($id){
@@ -236,7 +238,7 @@ class ProductController extends Controller
 
     //  crod TypeProduct
     public function listTypeProduct(){
-        $title    = "Danh sách trọng lượng sản phẩm";
+        $title    = "Danh sách thể loại sản phẩm";
         $listType = ProductType::orderBy('id','DESC')->paginate(self::LIMIT_PAGE);
         return view("admin.product.listTypeProduct")
             ->with("title", $title)
@@ -244,7 +246,7 @@ class ProductController extends Controller
     }
 
     public function addTypeProduct(Request $request){
-        $title  = "Thêm mới trọng lượng sản phẩm";
+        $title  = "Thêm mới thể loại sản phẩm";
         $errors = NULL;
         $params = $request->all();
         if ($request->isMethod('post')) {
@@ -263,7 +265,7 @@ class ProductController extends Controller
     }
 
     public function editTypeProduct(Request $request){
-        $title  = "Sửa trọng lượng sản phẩm";
+        $title  = "Sửa thể loại sản phẩm";
         $errors = NULL;
         $params = $request->all();
         $id     = (int) $request->route('id');
@@ -294,6 +296,18 @@ class ProductController extends Controller
                 $get_product->status = 1;
         }
         echo $get_product->save();
+        die;
+    }
+
+    public function statusItemProduct($id){
+        $getItemroduct = ProductItem::findOrFail((int)$id);
+        if(!empty($getItemroduct)){
+            if($getItemroduct->status)
+                $getItemroduct->status = 0;
+            else
+                $getItemroduct->status = 1;
+        }
+        echo $getItemroduct->save();
         die;
     }
 
@@ -360,9 +374,63 @@ class ProductController extends Controller
     }
 
 
+    //  crod ProductItem
+    public function listItemProduct(){
+        $title    = "Danh sách mục sản phẩm";
+        $listItem = ProductItem::orderBy('id','DESC')->paginate(self::LIMIT_PAGE);
+        return view("admin.product.listItemProduct")
+            ->with("title", $title)
+            ->with("listItem", $listItem);
+    }
+
+    public function addItemProduct(Request $request){
+        $title      = "Thêm mới danh mục sản phẩm";
+        $errors     = NULL;
+        $listStatus = $this->getOption('listStatus');
+        $listItem   = ProductItem::getList();
+        $params     = $request->all();
+        if ($request->isMethod('post')) {
+            $newItemProduct = ProductItem::addItemProduct($params);
+            if($newItemProduct) {
+                $params  = null;
+                $errors = "Thêm thành công";
+            }else{
+                $errors = "Thêm thất bại";
+            }
+        }
+        return view("admin.product.addItemProduct")
+        	->with("title", $title)
+			->with("errors", $errors)
+            ->with("params", $params)
+            ->with("listItem", $listItem);
+    }
+
+    public function editItemProduct(Request $request){
+        $title  = "Sửa danh mục sản phẩm";
+        $id     = (int) $request->route('id');
+        $errors = NULL;
+        $params = $request->all();
+        if ($request->isMethod('post')) {
+            $errors = ProductItem::editItemProduct($params);
+            if($errors) $errors = "Sủa thành công";
+            else        $errors = "Sửa thất bại";
+        }
+        $getItem = ProductItem::findOrFail((int)$id);
+        return view("admin.product.editItemProduct")
+            ->with("title", $title)
+            ->with("item", $getItem)
+            ->with("errors"  , $errors);
+    }
+
+    public function delItemProduct($id){
+        ProductItem::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
     public function sortProduct(Request $request){
         $title        = "Sắp Xếp Sản Phẩm";
-        $page         = isset($request->page) ? $request->page: 1;
+        $page         = isset($request->page) ? $request->page : 1;
         $builder      = Product::select();
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
@@ -371,27 +439,38 @@ class ProductController extends Controller
         $builder->orderByRaw("ord ASC, id DESC");
         $totalResult = $builder->count();
         $listProduct = $builder->paginate(self::LIMIT_PAGE);
+
         return view("admin.product.sortProduct")
             ->with("title", $title)
+            ->with("page", $page)
             ->with("listColors", $listColors)
             ->with("listCategory", $listCategory)
             ->with("listType", $listType)
-            ->with("listProduct", $listProduct)
-            ->with("page", $page);
+            ->with("listProduct", $listProduct);
     }
 
     public function ajaxSortProduct(Request $request){
-        $params  = $request->all();
+        $params = $request->all();
         if(!empty($params)) {
-            parse_str($params['data'], $data);
-            $page = !empty($params['page']) ? $params['page'] : 1;
-            if($page > 1) $page = ($page - 1) * self::LIMIT_PAGE + 1;
-            foreach ($data['item'] as $key => $idProduct) {
-                $product = Product::find((int)$idProduct);
-                $product->ord = $page + ($key) ;
+            parse_str($params['data'],$data);
+            $page      = (int) $params['page'];
+            $limitPage = self::LIMIT_PAGE;
+            $offset    = $limitPage * ($page - 1);
+            $listProduct = Product::orderByRaw("ord ASC, id DESC")->get();
+            foreach ($listProduct as $key => $value) {
+                $product = Product::find($value->id);
+                $product->ord = $key+1;
+                $product->save();
+            }
+
+            foreach ($data['item'] as $key => $value) {
+                $key += $offset;
+                $product = Product::find($value);
+                $product->ord = $key;
                 $product->save();
             }
         }
-        return response()->json(["status" => true]);
+
+        return response()->json(array("status" => true));
     }
 }

@@ -44,7 +44,7 @@
                     <th class="column-title">Tên sản phẩm</th>
                     <th class="column-title">Loại sản phẩm</th>
                     <th class="column-title">Giá</th>
-                    <th class="column-title">Trọng lượng</th>
+                    <th class="column-title">Thể loại</th>
                     <th class="column-title">Màu sắc</th>
                     <th class="column-title">Ngày hết hạn</th>
                     <th class="column-title">Ngày nhập hàng</th>

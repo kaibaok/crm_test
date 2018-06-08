@@ -47,3 +47,24 @@ Route::get('colors/del/{id?}', 'Admin\ProductController@delColors');
 Route::any('product/cart', 'Admin\ProductController@listCart');
 Route::any('product/cart/add', 'Admin\ProductController@addCart');
 
+// tag
+Route::any('tag', 'Admin\TagController@index');
+Route::any('tag/add', 'Admin\TagController@addTag');
+Route::any('tag/edit/{id?}', 'Admin\TagController@editTag');
+Route::get('tag/del/{id?}', 'Admin\TagController@delTag');
+
+// list type product
+Route::any('item-product', 'Admin\ProductController@listItemProduct');
+Route::any('item-product/add', 'Admin\ProductController@addItemProduct');
+Route::any('item-product/edit/{id?}', 'Admin\ProductController@editItemProduct');
+Route::get('item-product/del/{id?}', 'Admin\ProductController@delItemProduct');
+Route::get('item-product/status/{id?}', 'Admin\ProductController@statusItemProduct');
+
+// List Product
+Route::any('news', 'Admin\NewsController@index');
+Route::any('news/add', 'Admin\NewsController@addNews');
+Route::any('news/edit/{id?}', 'Admin\NewsController@editNews');
+Route::get('news/del/{id?}', 'Admin\NewsController@delNews');
+Route::get('news/status/{id?}', 'Admin\NewsController@statusNews');
+Route::any('news/sort-news', 'Admin\NewsController@sortNews');
+Route::post('news/ajax-sort-news', 'Admin\NewsController@ajaxSortNews');

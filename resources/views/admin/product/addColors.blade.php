@@ -1,8 +1,8 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('css')
-<link rel="stylesheet" href="/public/js/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
-<link rel="stylesheet" href="/public/js/cropper/dist/cropper.min.css">
+<link rel="stylesheet" href="/public/admin/js/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
+<link rel="stylesheet" href="/public/admin/js/cropper/dist/cropper.min.css">
 @endsection
 
 @section('rightcontent')
@@ -73,7 +73,7 @@
 @endsection
 
 @section('js')
-<script src="/public/js/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
+<script src="/public/admin/js/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
 <script> $(".code").colorpicker();</script>
 @endsection
 

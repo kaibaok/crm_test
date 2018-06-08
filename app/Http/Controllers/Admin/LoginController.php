@@ -9,20 +9,23 @@ use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-    public function login (){
+    public function login (Request $request){
         $errors = NULL;
-		if (Auth::check()) return redirect()->guest("admin");
-    	if(!empty($_POST)){
-			$email    = htmlspecialchars(trim($_POST['email']));
-			$password = htmlspecialchars(trim($_POST['password']));
-            $remember = str_random(10);
+        $params   = $request->all();
+        if (Auth::check()) return redirect()->guest("admin");
+        if ($request->isMethod('post')) {
+            $remember = !empty($params['remember']) ? true : false;
+            $email    = htmlspecialchars(trim($params['email']));
+            $password = htmlspecialchars(trim($params['password']));
     		if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
 		    	return redirect()->guest('/admin');
     	  	}else{
                 $errors = array("error"=>"has-error");
             }
     	}
-    	return view("admin.login")->with("errors",$errors);
+    	return view("admin.login")
+            ->with("errors",$errors)
+            ->with("params",$params);
     }
 
     public function logout(){

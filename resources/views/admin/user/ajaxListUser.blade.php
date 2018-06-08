@@ -1,13 +1,13 @@
 @php
   $no         = 1;
-  $permission = $view['list_permission'];
+  $permission = $list_permission;
 @endphp
 
-@foreach ($view['list_user'] as $value)
+@foreach ($list_user as $value)
 <tr class="even pointer">
   <td class=" ">{{$no++}}</td>
   <td class=" ">{{$value['name']}}</td>
-  <td class=" ">{{$view['list_gender'][$value['gender']]}}</td>
+  <td class=" ">{{$list_gender[$value['gender']]}}</td>
   <td class=" ">{{$value['email']}}</td>
   <td class=" "><i class="success fa fa-clock-o"></i> {{$value['created_at']}}</td>
   <td class=" "><i class="success fa fa-clock-o"></i> {{$value['updated_at']}}</td>

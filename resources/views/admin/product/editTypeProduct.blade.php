@@ -26,7 +26,7 @@
 				{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{$type->id}}"/>
 					<div class="form-group">
-						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Loại trọng lượng <span class="required">*</span>
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên Loại <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($type->title) ? $type->title : '' }}">

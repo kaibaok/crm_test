@@ -1,7 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$view['title']}} @endsection
 @section('css')
-    <link href="/public/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  @endsection
 @section('rightcontent')
@@ -143,8 +143,8 @@
 
 @endsection
 @section('js')
-<script src="/public/js/moment/min/moment.min.js"></script>
-<script src="/public/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="/public/admin/js/moment/min/moment.min.js"></script>
+<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script>
 $('#registered_date,#ship_date').daterangepicker({
     locale: {

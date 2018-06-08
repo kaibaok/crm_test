@@ -28,6 +28,7 @@
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
                     <th class="column-title">Tên loại sản phẩm</th>
+                    <th class="column-title">Tên mục sản phẩm</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
@@ -48,6 +49,7 @@
                       @endif
                     </td>
                     <td>{{$value->title}}</td>
+                    <td>{{$listItem[$value->item_id]}}</td>
                     <td class="last"> <a href="/admin/cate-product/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cate-product/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach

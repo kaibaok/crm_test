@@ -10,16 +10,16 @@
     <title>Login CRM</title>
 
     <!-- Bootstrap -->
-    <link href="/public/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/admin/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="/public/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/public/admin/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="/public/js/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/public/admin/js/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="/public/js/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/public/admin/js/animate.css/animate.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="/public/css/custom.min.css" rel="stylesheet">
+    <link href="/public/admin/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="login">
@@ -35,11 +35,15 @@
               <h1>Đăng nhập</h1>
                 {{ csrf_field() }}
               <div  class="form-group">
-              <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ isset($_POST['email']) ? $_POST['email'] : '' }} ">
+              <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ isset($params['email']) ? $params['email'] : '' }}" required="">
               </div>
               <div class="form-group">
                 <input id="password" type="password" class="form-control"  placeholder="Mật Khẩu" name="password" required="" >
-                 @if ($errors['error'])
+
+              </div>
+              <div  class="form-group">
+                <input type="checkbox" name="remember" value="1" {{!empty($params['remember']) ? "checked" : "" }}> Ghi nhớ <br>
+                @if ($errors['error'])
                     <span class="help-block">
                         <strong>Vui lòng kiểm tra lại Email hoặc Password</strong>
                     </span>
@@ -57,7 +61,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> CRM Qa Coffee Shop</h1>
+                  <h1><i class="fa fa-paw"></i> CRM </h1>
                   <p>© {{date("Y")}} All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                 </div>
               </div>

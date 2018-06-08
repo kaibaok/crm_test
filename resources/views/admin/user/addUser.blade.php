@@ -1,10 +1,10 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('rightcontent')
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$view['title']}}</h3>
+			<h3>{{$title}}</h3>
 		</div>
 		<div class="title_right">
 	        <div class=" pull-right">
@@ -49,7 +49,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 						<div id="gender" class="btn-group" data-toggle="buttons">
-							@if (isset($view['list_gender']))
+							@if (isset($list_gender))
 
 							<label class="btn btn-default {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 							<input type="radio" name="gender" value="0" {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'checked' : '' }}> &nbsp; Nam &nbsp;
@@ -65,8 +65,8 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Quyền hạn</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<select class="form-control" name="permission">
-							@if (isset($view['list_permission']))
-								@foreach ($view['list_permission'] as $key => $value)
+							@if (isset($list_permission))
+								@foreach ($list_permission as $key => $value)
 									<?php $selected = ""; if(isset($_POST['permission']) && $key == $_POST['permission']) $selected = "selected"; ?>
 										<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 								@endforeach
@@ -78,7 +78,7 @@
 						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								{{$view['errors'] }}
+								{{$errors }}
 							</strong>
 						</span>
 						</div>

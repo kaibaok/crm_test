@@ -12,12 +12,15 @@ class Product extends Model
      *
      * @var array
      */
+
+    //attribute dac sac, xu huong, tre trung, thanh lich
+
     protected $fillable = [
         "id", "id_cate","code_id","title","desc",
         "price","type","numbers","limit_at",
         "created_at","updated_at","status","ord",
         "img_list","img_detail","img1","img2","img3",
-        "img4","img5","colors","is_new","is_best_sell"
+        "img4","img5","colors","is_new","is_best_sell","attribute"
     ];
 
     public static function addProduct($data){
@@ -41,8 +44,8 @@ class Product extends Model
                     "img3"         => $data['img3'],
                     "img4"         => $data['img4'],
                     "img5"         => $data['img5'],
-                    "is_new"       => (int)$data["is_new"],
-                    "is_best_sell" => (int)$data["is_best_sell"],
+                    "is_new"       => isset($data["is_new"]) ? (int) $data["is_new"] : 0,
+                    "is_best_sell" => isset($data["is_best_sell"]) ? (int) $data["is_best_sell"] : 0,
                     "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
                 ));
             } catch (QueryException $ex){
@@ -72,8 +75,8 @@ class Product extends Model
                 "img3"         => $data['img3'],
                 "img4"         => $data['img4'],
                 "img5"         => $data['img5'],
-                "is_new"       => (int)$data["is_new"],
-                "is_best_sell" => (int)$data["is_best_sell"],
+                "is_new"       => isset($data["is_new"]) ? (int) $data["is_new"] : 0,
+                "is_best_sell" => isset($data["is_best_sell"]) ? (int) $data["is_best_sell"] : 0,
                 "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);

@@ -44,6 +44,20 @@
 					</div>
 
 					<div class="form-group">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Thể loại <span class="required">*</span></label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+							<select class="form-control" name="item_id">
+								@if (isset($listItem))
+									@foreach ($listItem as $key => $value)
+										<?php $selected = ""; if(isset($params['item_id']) && $key == $params['item_id']) $selected = "selected"; ?>
+											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
 							<strong>

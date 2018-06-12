@@ -1,13 +1,5 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
-@section('css')
-  <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-  {{-- CSS img upload  --}}
-  <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
-
-  	<link href="/public/admin/js/pnotify/dist/pnotify.css" rel="stylesheet">
-@endsection
-
 @section('rightcontent')
 <div class="">
 	<div class="page-title">
@@ -101,7 +93,7 @@
 					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
-                  			<textarea  name="desc" id="desc">
+                  			<textarea  name="desc" id="desc" class="ckedit">
                   				@if(isset($params['desc']))
                   					{{$params['desc']}}
                   				@endif
@@ -289,44 +281,3 @@
 </div>
 
 
-
-@endsection
-
-@section('js')
-<script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
-<script src="/public/admin/js/ckeditor/ckeditor.js"></script>
-<script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
-{{-- bootstrap-daterangepicker --}}
-<script src="/public/admin/js/moment/min/moment.min.js"></script>
-<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- validator -->
-<script type="text/javascript">
-var editor = CKEDITOR.replace( 'desc', {
-language: 'vi',
-toolbarGroups: [
-		{"name":"basicstyles","groups":["basicstyles"]},
-		{"name":"links","groups":["links"]},
-		{"name":"paragraph","groups":["list","blocks"]},
-		{"name":"document","groups":["mode"]},
-		{"name":"insert","groups":["insert"]},
-		{"name":"styles","groups":["styles"]},
-		{"name":"about","groups":["about"]}
-	],
-});
-
-CKFinder.setupCKEditor( editor,"/public/admin/js/ckeditor/ckfinder/");
-
-$('#limit_at').daterangepicker({
-	locale: {format: 'YYYY-MM-DD'},
-	singleDatePicker: true, singleClasses: "picker_1",
-});
-
-var $imageupload = $('.imageupload');
-$imageupload.imageupload();
-</script>
-
- <!-- PNotify -->
-<script src="/public/admin/js/pnotify/dist/pnotify.js"></script>
-
-
-@endsection

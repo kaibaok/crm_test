@@ -68,3 +68,10 @@ Route::get('news/del/{id?}', 'Admin\NewsController@delNews');
 Route::get('news/status/{id?}', 'Admin\NewsController@statusNews');
 Route::any('news/sort-news', 'Admin\NewsController@sortNews');
 Route::post('news/ajax-sort-news', 'Admin\NewsController@ajaxSortNews');
+
+// cate news
+Route::any('news-cate', 'Admin\NewsController@listNewsCate');
+Route::any('news-cate/add', 'Admin\NewsController@addNewsCate');
+Route::any('news-cate/edit/{id?}', 'Admin\NewsController@editNewsCate');
+Route::get('news-cate/del/{id?}', 'Admin\NewsController@delNewsCate');
+Route::get('news-cate/status/{id?}', 'Admin\NewsController@statusNewsCate');

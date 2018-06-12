@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 
-	link_url = 'http://crm.local/public/js/ckeditor/ckfinder/';
+	link_url = 'http://dev.crm.com/public/admin/js/ckeditor/ckfinder/';
 	config.filebrowserBrowseUrl = link_url+'ckfinder.html';
 	config.filebrowserImageBrowseUrl = link_url+'ckfinder.html?type=Images';
 	config.filebrowserFlashBrowseUrl = link_url+'ckfinder.html?type=Flash';

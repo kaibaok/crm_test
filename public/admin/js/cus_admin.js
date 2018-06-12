@@ -46,6 +46,39 @@ $(document).ready(function() {
             break;
         }
     }
+
+
+    if($("textarea").hasClass('ckedit')) {
+        $(".ckedit").each(function(index, el) {
+            var id = $(this).attr('id');
+            var editor = CKEDITOR.replace( id, {
+                language: 'vi',
+                toolbarGroups: [
+                    {"name":"basicstyles","groups":["basicstyles"]},
+                    {"name":"links","groups":["links"]},
+                    {"name":"paragraph","groups":["list","blocks"]},
+                    {"name":"document","groups":["mode"]},
+                    {"name":"insert","groups":["insert"]},
+                    {"name":"styles","groups":["styles"]},
+                    {"name":"about","groups":["about"]}
+                ],
+            });
+            CKFinder.setupCKEditor( editor,"/public/admin/js/ckeditor/ckfinder/");
+        });
+    }
+
+
+    if($("input[type=text]").hasClass('date_picker')) {
+        $('#limit_at').daterangepicker({
+            locale: {format: 'YYYY-MM-DD'},
+            singleDatePicker: true, singleClasses: "picker_1",
+        });
+    }
+
+    if($("input[type=text]").hasClass('imageupload')) {
+        var $imageupload = $('.imageupload');
+        $imageupload.imageupload();
+    }
 });
 
 

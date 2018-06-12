@@ -25,6 +25,12 @@
     {{-- iCheck --}}
     <link href="/public/admin/js/iCheck/skins/flat/green.css" rel="stylesheet">
 
+    <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    {{-- CSS img upload  --}}
+    <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
+
+    <link href="/public/admin/js/pnotify/dist/pnotify.css" rel="stylesheet">
+
     @yield("css")
 
   </head>
@@ -81,9 +87,19 @@
 
     {{-- Parsley --}}
     <script src="/public/admin/js/parsleyjs/dist/parsley.js"></script>
-    {{-- check user --}}
-    <script src="/public/admin/js/cus_admin.js"></script>
+
+    {{-- ckeditor --}}
+    <script src="/public/admin/js/ckeditor/ckeditor.js"></script>
+    <script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
+
+    <script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
+    <script src="/public/admin/js/moment/min/moment.min.js"></script>
+    <script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/public/admin/js/pnotify/dist/pnotify.js"></script>
+
+
     <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
+    <script src="/public/admin/js/cus_admin.js"></script>
     @yield("js")
 
   </body>

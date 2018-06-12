@@ -296,19 +296,21 @@ class ProductController extends Controller
                 $get_product->status = 1;
         }
         echo $get_product->save();
-        die;
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
 
     public function statusItemProduct($id){
-        $getItemroduct = ProductItem::findOrFail((int)$id);
-        if(!empty($getItemroduct)){
-            if($getItemroduct->status)
-                $getItemroduct->status = 0;
+        $getItemProduct = ProductItem::findOrFail((int)$id);
+        if(!empty($getItemProduct)){
+            if($getItemProduct->status)
+                $getItemProduct->status = 0;
             else
-                $getItemroduct->status = 1;
+                $getItemProduct->status = 1;
         }
-        echo $getItemroduct->save();
-        die;
+        echo $getItemProduct->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
 
     public function statusCateProduct($id){
@@ -320,7 +322,8 @@ class ProductController extends Controller
                 $get_cproduct->status = 1;
         }
         echo $get_cproduct->save();
-        die;
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
 
     //  crod Cart Product

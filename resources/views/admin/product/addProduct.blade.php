@@ -130,7 +130,7 @@
                       	@if(isset($errors['numbers'])) <div class="alert">{{$errors['numbers']}}</div> @endif
 					</div>
 
-					<div class="item form-group">
+					<div class="item form-group @if(isset($errors['colors'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Màu sắc<span class="required">*</span> </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
 	                    @php
@@ -144,6 +144,7 @@
 		                    <span style="background: {{$item['code']}}; vertical-align:bottom; width: 20px; height: 20px; display: inline-block; margin-right: 5px;border-radius: 50%"></span>
 		                @endforeach
                       	</div>
+                      	@if(isset($errors['colors'])) <div class="alert">{{$errors['colors']}}</div> @endif
 					</div>
 
 					<div class="form-group">
@@ -272,7 +273,9 @@
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								{{-- {{$errors }} --}}
+								@if(isset($errors['finish']))
+                  					{{$errors['finish']}}
+                  				@endif
 							</strong>
 						</span>
 						</div>

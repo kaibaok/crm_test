@@ -114,8 +114,8 @@ class ProductController extends Controller
             if(empty($params['title'])) $errors['title']     = "Vui lòng nhập tiêu đề";
             if(empty($params['price'])) $errors['price']     = "Vui lòng nhập giá (Nhập 0 = SĐT)";
             if(empty($params['numbers'])) $errors['numbers'] = "Vui lòng nhập số lượng";
-
-            if(!empty($errors)) {
+            if(empty($params['colors'])) $errors['colors'] = "Vui lòng chọn màu sắc";
+            if(empty($errors)) {
                 $clsImg = new Img();
                 $result = $clsImg->uploadImages();
                 foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
@@ -150,23 +150,30 @@ class ProductController extends Controller
         $getProduct   = Product::findOrFail((int)$id);
         $params       = $request->all();
         if ($request->isMethod('post')) {
-            $result = $cls_img->uploadImages();
-            foreach ($_FILES as $key => $value) {
-                if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
-                    $params[$key] = $result[$key];
-                    $cls_img->removeImages($getProduct[$key]);
+            if(empty($params['title'])) $errors['title']     = "Vui lòng nhập tiêu đề";
+            if(empty($params['price'])) $errors['price']     = "Vui lòng nhập giá (Nhập 0 = SĐT)";
+            if(empty($params['numbers'])) $errors['numbers'] = "Vui lòng nhập số lượng";
+            if(empty($params['colors'])) $errors['colors'] = "Vui lòng chọn màu sắc";
+            if(empty($errors)) {
+                $result = $cls_img->uploadImages();
+                foreach ($_FILES as $key => $value) {
+                    if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
+                        $params[$key] = $result[$key];
+                        $cls_img->removeImages($getProduct[$key]);
+                    }
+                    else {
+                        if(empty($params[$key."_url"])) $cls_img->removeImages($getProduct[$key]);
+                        $params[$key] = $params[$key."_url"];
+                    }
                 }
-                else {
-                    if(empty($params[$key."_url"])) $cls_img->removeImages($getProduct[$key]);
-                    $params[$key] = $params[$key."_url"];
-                }
+                $statusUpdate = Product::editProduct($params);
+                if($statusUpdate) $errors['finish'] = "Thêm thành công";
+                else        $errors['finish'] = "Thêm thất bại";
             }
-            $errors = Product::editProduct($params);
-            if($errors) $errors = "Sủa thành công";
-            else        $errors = "Sửa thất bại";
+            // $getProduct = (object) $params;
          }
         // reload data again
-        $getProduct   = Product::findOrFail((int)$id);
+        // $getProduct   = Product::findOrFail((int)$id);
         return view("admin.product.editProduct")
             ->with("title" , $title )
             ->with("product", $getProduct)

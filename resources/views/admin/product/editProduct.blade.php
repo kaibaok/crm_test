@@ -1,11 +1,5 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
-@section('css')
-  <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    {{-- CSS img upload  --}}
-  <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
-@endsection
-
 @section('rightcontent')
 {{-- set default url link --}}
 @php $url = "/public/upload/images/"  @endphp
@@ -42,7 +36,7 @@
                     <input type="hidden" id="img4_url" name="img4_url" value="{{isset($product->img4) ?  $product->img4 : '' }}"/>
                     <input type="hidden" id="img5_url" name="img5_url" value="{{isset($product->img5) ?  $product->img5 : '' }}"/>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2b col-xs-12">Hiển thị</label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div id="status" class="btn-group" data-toggle="buttons">
@@ -52,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_new" class="btn-group" data-toggle="buttons">
@@ -62,7 +56,7 @@
 						</div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_best_sell" class="btn-group" data-toggle="buttons">
@@ -72,15 +66,16 @@
 						</div>
 					</div>
 
-                    <div class="form-group">
+                    <div class="item form-group @if(isset($errors['title'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($product->title) ?  $product->title : '' }}" required>
+                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($product->title) ?  $product->title : '' }}" >
                         </div>
+                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phẩm <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select class="form-control" name="id_cate">
@@ -94,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Thể loại <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select class="form-control" name="type">
@@ -108,10 +103,21 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn<span class="required">*</span></label>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <textarea  name="short_desc" id="short_desc" class="ckedit">
+                                @if(isset($product->short_desc))
+                                    {{ $product->short_desc }}
+                                @endif
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
                         <div class="col-md-10 col-sm-10 col-xs-12">
-                            <textarea  name="desc" id="desc">
+                            <textarea  name="desc" id="desc" class="ckedit">
                                 @if(isset($product->desc))
                                     {{ $product->desc }}
                                 @endif
@@ -119,23 +125,25 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group @if(isset($errors['price'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($product->price) ?  $product->price : '' }}" required>
+                        <input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($product->price) ?  $product->price : '' }}" >
                         </div>
+                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
                     </div>
 
-                    <div class="item form-group">
+                    <div class="item form-group @if(isset($errors['numbers'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12 ">
-                           <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($product->numbers) ?  $product->numbers : '' }}" required>
+                           <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($product->numbers) ?  $product->numbers : '' }}" >
                         </div>
+                        @if(isset($errors['numbers'])) <div class="alert">{{$errors['numbers']}}</div> @endif
                     </div>
 
-                    <div class="item form-group">
+                    <div class="item form-group @if(isset($errors['colors'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Màu sắc<span class="required">*</span> </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         @php
@@ -148,9 +156,10 @@
                             <span style="background: {{$item['code']}}; vertical-align:bottom; width: 20px; height: 20px; display: inline-block; margin-right: 5px;border-radius: 50%"></span>
                         @endforeach
                         </div>
+                        @if(isset($errors['colors'])) <div class="alert">{{$errors['colors']}}</div> @endif
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
@@ -161,7 +170,7 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -184,7 +193,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -207,7 +216,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -230,7 +239,7 @@
                         </div>
                     </div>
 
-                     <div class="form-group">
+                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -253,7 +262,7 @@
                         </div>
                     </div>
 
-                     <div class="form-group">
+                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -276,7 +285,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -299,7 +308,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
@@ -322,17 +331,19 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="item form-group">
                         <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
                         <span class="help-block">
                             <strong>
-                                {{$errors }}
+                                @if(isset($errors['finish']))
+                                    {{$errors['finish']}}
+                                @endif
                             </strong>
                         </span>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
-                    <div class="form-group">
+                    <div class="item form-group">
                         <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
                         <button type ="reset" class="btn btn-primary">Reset</button>
                         <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
@@ -345,45 +356,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('js')
-<script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
-<script src="/public/admin/js/ckeditor/ckeditor.js"></script>
-<script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
-{{-- bootstrap-daterangepicker --}}
-<script src="/public/admin/js/moment/min/moment.min.js"></script>
-<script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- validator -->
-<script type="text/javascript">
-var editor = CKEDITOR.replace( 'desc', {
-language: 'vi',
-toolbarGroups: [
-        {"name":"basicstyles","groups":["basicstyles"]},
-        {"name":"links","groups":["links"]},
-        {"name":"paragraph","groups":["list","blocks"]},
-        {"name":"document","groups":["mode"]},
-        {"name":"insert","groups":["insert"]},
-        {"name":"styles","groups":["styles"]},
-        {"name":"about","groups":["about"]}
-    ],
-});
-
-CKFinder.setupCKEditor( editor,"/public/admin/js/ckeditor/ckfinder/");
-
-$('#limit_at').daterangepicker({
-    locale: {format: 'YYYY-MM-DD'},
-    singleDatePicker: true, singleClasses: "picker_1",
-});
-
-var $imageupload = $('.imageupload');
-$imageupload.imageupload();
-
-$(".btn-danger").click(function(event) {
-    id = $(this).attr('rel');
-    $("#"+id).val("");
-});
-
-
-</script>
 @endsection

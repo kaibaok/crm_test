@@ -62,12 +62,12 @@ Route::get('item-product/status/{id?}', 'Admin\ProductController@statusItemProdu
 
 // List Product
 Route::any('news', 'Admin\NewsController@index');
-Route::any('news/add', 'Admin\NewsController@addNews');
-Route::any('news/edit/{id?}', 'Admin\NewsController@editNews');
-Route::get('news/del/{id?}', 'Admin\NewsController@delNews');
-Route::get('news/status/{id?}', 'Admin\NewsController@statusNews');
-Route::any('news/sort-news', 'Admin\NewsController@sortNews');
-Route::post('news/ajax-sort-news', 'Admin\NewsController@ajaxSortNews');
+Route::any('news/add', 'Admin\NewsController@add');
+Route::any('news/edit/{id?}', 'Admin\NewsController@edit');
+Route::get('news/del/{id?}', 'Admin\NewsController@del');
+Route::get('news/status/{id?}', 'Admin\NewsController@status');
+Route::any('news/sort-news', 'Admin\NewsController@sort');
+Route::post('news/ajax-sort-news', 'Admin\NewsController@ajaxSort');
 
 // cate news
 Route::any('news-cate', 'Admin\NewsController@listNewsCate');

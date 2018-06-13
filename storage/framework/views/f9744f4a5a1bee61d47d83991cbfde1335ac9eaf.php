@@ -1,11 +1,10 @@
-@extends("admin.layout")
-@section('title') {{$title}} @endsection
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 
-@section('rightcontent')
+<?php $__env->startSection('rightcontent'); ?>
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>{{$title}}</h3>
+            <h3><?php echo e($title); ?></h3>
         </div>
         <div class="title_right">
             <div class=" pull-right">
@@ -24,7 +23,8 @@
             <div class="x_panel">
               <div class="x_content">
                 <form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                <?php echo e(csrf_field()); ?>
+
                     <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
@@ -40,7 +40,7 @@
                         <div class="col-md-2 col-sm-2 col-xs-12">
                             <div id="is_hot" class="btn-group" data-toggle="buttons">
                                 <input type="checkbox" name="is_hot" value="1" class="flat"
-                                @if (isset($params['is_hot']) && $params['is_hot'] == 1) checked @endif />
+                                <?php if(isset($params['is_hot']) && $params['is_hot'] == 1): ?> checked <?php endif; ?> />
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tiêu đề <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}" required>
+                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>" required>
                         </div>
                     </div>
 
@@ -57,12 +57,12 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Loại tin <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select class="form-control" name="id_cate">
-                                @if (isset($listNewsCate))
-                                    @foreach ($listNewsCate as $key => $value)
+                                <?php if(isset($listNewsCate)): ?>
+                                    <?php foreach($listNewsCate as $key => $value): ?>
                                         <?php $selected = ""; if(isset($params['id_cate']) && $key == $params['id_cate']) $selected = "selected"; ?>
-                                            <option value="{{$key}}" {{$selected}}>{{$value}}</option>
-                                    @endforeach
-                                @endif
+                                            <option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </select>
                         </div>
                     </div>
@@ -71,9 +71,10 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <textarea  name="short_desc" id="short_desc" class="ckedit">
-                                @if(isset($params['short_desc']))
-                                    {{$params['short_desc']}}
-                                @endif
+                                <?php if(isset($params['short_desc'])): ?>
+                                    <?php echo e($params['short_desc']); ?>
+
+                                <?php endif; ?>
                             </textarea>
                         </div>
                     </div>
@@ -83,9 +84,10 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <textarea  name="desc" id="desc" class="ckedit">
-                                @if(isset($params['desc']))
-                                    {{$params['desc']}}
-                                @endif
+                                <?php if(isset($params['desc'])): ?>
+                                    <?php echo e($params['desc']); ?>
+
+                                <?php endif; ?>
                             </textarea>
                         </div>
                     </div>
@@ -126,7 +128,8 @@
                         <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
                         <span class="help-block">
                             <strong>
-                                {{$errors }}
+                                <?php echo e($errors); ?>
+
                             </strong>
                         </span>
                         </div>
@@ -148,5 +151,7 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -17,12 +17,10 @@ use App\Models\Admin\Cart;
 
 class ProductController extends Controller
 {
-    const LIMIT_PAGE   = 5;
-
     //  crod Colors
     public function listColors(){
         $title      = "Danh Sách Màu";
-        $listColors = Colors::paginate(self::LIMIT_PAGE);
+        $listColors = Colors::paginate(LIMIT_PAGE);
         return view("admin.product.listColors")
             ->with("title", $title)
             ->with("listColors", $listColors);
@@ -90,7 +88,7 @@ class ProductController extends Controller
 
         $builder->orderByRaw("ord ASC, id DESC");
         $totalResult = $builder->count();
-        $listProduct = $builder->paginate(self::LIMIT_PAGE);
+        $listProduct = $builder->paginate(LIMIT_PAGE);
 
         $conditionPage = array(
             'txtSearch' => $txtSearch
@@ -113,15 +111,22 @@ class ProductController extends Controller
         $listType     = ProductType::getList();
         $params       = $request->all();
         if ($request->isMethod('post')) {
-            $clsImg = new Img();
-            $result = $clsImg->uploadImages();
-            foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
-            $s_new_product = Product::addProduct($params);
-            if($s_new_product) {
-                $params = array();
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
+            if(empty($params['title'])) $errors['title']     = "Vui lòng nhập tiêu đề";
+            if(empty($params['price'])) $errors['price']     = "Vui lòng nhập giá (Nhập 0 = SĐT)";
+            if(empty($params['numbers'])) $errors['numbers'] = "Vui lòng nhập số lượng";
+
+            if(!empty($errors)) {
+                $clsImg = new Img();
+                $result = $clsImg->uploadImages();
+                foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
+                $s_new_product = Product::addProduct($params);
+
+                if($s_new_product) {
+                    $params = array();
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
             }
         }
 
@@ -182,7 +187,7 @@ class ProductController extends Controller
         $title        = "Danh Sách Loại Sản Phẩm";
         $listItem     = ProductItem::getList();
         $listCategory = ProductCategory::orderBy('id','DESC')
-            ->paginate(self::LIMIT_PAGE);
+            ->paginate(LIMIT_PAGE);
 		return view("admin.product.listCateProduct")
 			->with("title", $title)
             ->with("listItem", $listItem)
@@ -239,7 +244,7 @@ class ProductController extends Controller
     //  crod TypeProduct
     public function listTypeProduct(){
         $title    = "Danh sách thể loại sản phẩm";
-        $listType = ProductType::orderBy('id','DESC')->paginate(self::LIMIT_PAGE);
+        $listType = ProductType::orderBy('id','DESC')->paginate(LIMIT_PAGE);
         return view("admin.product.listTypeProduct")
             ->with("title", $title)
             ->with("listType", $listType);
@@ -347,7 +352,7 @@ class ProductController extends Controller
             if(!empty($_GET['cb_dat']) &&!empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
             if(!empty($_GET['cb_ship']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
         }
-        $list_cart = $m_cart->paginate(self::LIMIT_PAGE);
+        $list_cart = $m_cart->paginate(LIMIT_PAGE);
         $list_type = $this->getOption('typePaid');
         $list_paid = $this->getOption('listPaid');
         return view("admin.product.listCart")->with("view",array(
@@ -380,7 +385,7 @@ class ProductController extends Controller
     //  crod ProductItem
     public function listItemProduct(){
         $title    = "Danh sách mục sản phẩm";
-        $listItem = ProductItem::orderBy('id','DESC')->paginate(self::LIMIT_PAGE);
+        $listItem = ProductItem::orderBy('id','DESC')->paginate(LIMIT_PAGE);
         return view("admin.product.listItemProduct")
             ->with("title", $title)
             ->with("listItem", $listItem);
@@ -441,7 +446,7 @@ class ProductController extends Controller
 
         $builder->orderByRaw("ord ASC, id DESC");
         $totalResult = $builder->count();
-        $listProduct = $builder->paginate(self::LIMIT_PAGE);
+        $listProduct = $builder->paginate(LIMIT_PAGE);
 
         return view("admin.product.sortProduct")
             ->with("title", $title)
@@ -457,7 +462,7 @@ class ProductController extends Controller
         if(!empty($params)) {
             parse_str($params['data'],$data);
             $page      = (int) $params['page'];
-            $limitPage = self::LIMIT_PAGE;
+            $limitPage = LIMIT_PAGE;
             $offset    = $limitPage * ($page - 1);
             $listProduct = Product::orderByRaw("ord ASC, id DESC")->get();
             foreach ($listProduct as $key => $value) {

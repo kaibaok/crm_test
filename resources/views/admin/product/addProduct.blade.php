@@ -53,13 +53,13 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="form-group">
+					<div class="item form-group  @if(isset($errors['title'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}" required>
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}" >
 						</div>
+						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
 					</div>
 
 					<div class="form-group">
@@ -91,6 +91,17 @@
 					</div>
 
 					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
+						<div class="col-md-10 col-sm-12 col-xs-12">
+                  			<textarea  name="short_desc" id="short_desc" class="ckedit">
+                  				@if(isset($params['short_desc']))
+                  					{{$params['short_desc']}}
+                  				@endif
+                  			</textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="desc" id="desc" class="ckedit">
@@ -101,20 +112,22 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['price'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($params['price']) ? $params['price'] : '' }}" required>
+						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($params['price']) ? $params['price'] : '' }}" >
 						</div>
+						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
 					</div>
 
-					<div class="item form-group">
+					<div class="item form-group @if(isset($errors['numbers'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($params['numbers']) ? $params['numbers'] : '' }}" required>
+	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($params['numbers']) ? $params['numbers'] : '' }}" >
                       	</div>
+                      	@if(isset($errors['numbers'])) <div class="alert">{{$errors['numbers']}}</div> @endif
 					</div>
 
 					<div class="item form-group">
@@ -259,7 +272,7 @@
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								{{$errors }}
+								{{-- {{$errors }} --}}
 							</strong>
 						</span>
 						</div>
@@ -279,5 +292,5 @@
 		</div>
 	</div>
 </div>
-
+@endsection
 

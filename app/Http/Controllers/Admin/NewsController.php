@@ -58,7 +58,7 @@ class NewsController extends Controller
             ->with("errors", $errors)
             ->with("params", $params)
             ->with("listNewsCate", $listNewsCate);
-    }
+}
 
     public function editNewsCate(Request $request){
         $title  = "Sửa thể loại tin";
@@ -103,14 +103,14 @@ class NewsController extends Controller
             'txtSearch' => $txtSearch
         );
 
-        return view("admin.news.listNews")
+        return view("admin.news.index")
             ->with("title", $title)
             ->with("listNewsCate", $listNewsCate)
             ->with("listNews", $listNews)
             ->with("conditionPage", $conditionPage);
     }
 
-    public function addNews(Request $request){
+    public function add(Request $request){
         $title        = "Thêm mới tin tức";
         $errors       = NULL;
         $listNewsCate = NewsCategory::getList();
@@ -127,10 +127,55 @@ class NewsController extends Controller
                 $errors = "Thêm thất bại";
             }
         }
-        return view("admin.news.addNews")
+        return view("admin.news.add")
             ->with("title", $title)
             ->with("listNewsCate", $listNewsCate)
             ->with("errors", $errors)
             ->with("params", $params);
     }
+
+    public function edit(Request $request){
+        $title        = "Sửa tin tức";
+        $id           = (int) $request->route('id');
+        $cls_img      = new Img();
+        $errors       = NULL;
+        $listColors   = Colors::getList();
+        $listCategory = ProductCategory::getList();
+        $listType     = ProductType::getList();
+        $getProduct   = Product::findOrFail((int)$id);
+        $params       = $request->all();
+        if ($request->isMethod('post')) {
+            $result = $cls_img->uploadImages();
+            foreach ($_FILES as $key => $value) {
+                if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
+                    $params[$key] = $result[$key];
+                    $cls_img->removeImages($getProduct[$key]);
+                }
+                else {
+                    if(empty($params[$key."_url"])) $cls_img->removeImages($getProduct[$key]);
+                    $params[$key] = $params[$key."_url"];
+                }
+            }
+            $errors = Product::editProduct($params);
+            if($errors) $errors = "Sủa thành công";
+            else        $errors = "Sửa thất bại";
+         }
+        // reload data again
+        $getProduct   = Product::findOrFail((int)$id);
+        return view("admin.product.editProduct")
+            ->with("title" , $title )
+            ->with("product", $getProduct)
+            ->with("listColors", $listColors)
+            ->with("listCategory", $listCategory)
+            ->with("listType", $listType)
+            ->with("errors", $errors);
+    }
+
+    public function delProduct($id){
+        Product::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
+
 }

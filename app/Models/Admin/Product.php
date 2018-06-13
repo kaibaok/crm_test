@@ -16,11 +16,11 @@ class Product extends Model
     //attribute dac sac, xu huong, tre trung, thanh lich
 
     protected $fillable = [
-        "id", "id_cate","code_id","title","desc",
+        "id", "id_cate","code_id","title","short_desc","desc",
         "price","type","numbers","limit_at",
         "created_at","updated_at","status","ord",
         "img_list","img_detail","img1","img2","img3",
-        "img4","img5","colors","is_new","is_best_sell","attribute"
+        "img4","img5","colors","is_new","is_best_sell","attribute","seo_link"
     ];
 
     public static function addProduct($data){
@@ -31,7 +31,8 @@ class Product extends Model
                     "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
                     "code_id"      => (int)$data['code_id'],
                     "title"        => htmlspecialchars(trim($data["title"])),
-                    "desc"         => htmlspecialchars(trim($data["desc"])),
+                    "short_desc"   => $data["short_desc"],
+                    "desc"         => $data["desc"],
                     "price"        => (int)$data["price"],
                     "type"         => (int)$data["type"],
                     "numbers"      => (int)$data['numbers'],
@@ -47,6 +48,7 @@ class Product extends Model
                     "is_new"       => isset($data["is_new"]) ? (int) $data["is_new"] : 0,
                     "is_best_sell" => isset($data["is_best_sell"]) ? (int) $data["is_best_sell"] : 0,
                     "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
+                    "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -62,7 +64,8 @@ class Product extends Model
                 "id_cate"      => (int)htmlspecialchars(trim($data["id_cate"])),
                 "code_id"      => (int)$data['code_id'],
                 "title"        => htmlspecialchars(trim($data["title"])),
-                "desc"         => htmlspecialchars(trim($data["desc"])),
+                "short_desc"   => $data["short_desc"],
+                "desc"         => $data["desc"],
                 "price"        => (int)$data["price"],
                 "type"         => (int)$data["type"],
                 "numbers"      => (int)$data['numbers'],
@@ -78,6 +81,7 @@ class Product extends Model
                 "is_new"       => isset($data["is_new"]) ? (int) $data["is_new"] : 0,
                 "is_best_sell" => isset($data["is_best_sell"]) ? (int) $data["is_best_sell"] : 0,
                 "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
+                "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }
@@ -88,6 +92,7 @@ class Product extends Model
         $m_product = Product::where('code_id', 'like', "%{$txt_search}%")
                     ->orWhere('title','like',"%{$txt_search}%")
                     ->orWhere('desc','like',"%{$txt_search}%")
+                    ->orWhere('short_desc','like',"%{$txt_search}%")
                     ->get();
         $arr_data = NULL;
         if($m_product){

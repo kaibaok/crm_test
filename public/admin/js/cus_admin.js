@@ -68,12 +68,13 @@ $(document).ready(function() {
     }
 
 
-    if($("input[type=text]").hasClass('date_picker')) {
+    // if($("input").hasClass('limit_at')) {
         $('#limit_at').daterangepicker({
             locale: {format: 'YYYY-MM-DD'},
-            singleDatePicker: true, singleClasses: "picker_1",
+            singleDatePicker: true,
+            singleClasses: "picker_1",
         });
-    }
+    // }
 
     if($("input[type=text]").hasClass('imageupload')) {
         var $imageupload = $('.imageupload');

@@ -53,13 +53,13 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="form-group">
+					<div class="item form-group  <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>" required>
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>" >
 						</div>
+						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
 
 					<div class="form-group">
@@ -91,6 +91,18 @@
 					</div>
 
 					<div class="form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
+						<div class="col-md-10 col-sm-12 col-xs-12">
+                  			<textarea  name="short_desc" id="short_desc" class="ckedit">
+                  				<?php if(isset($params['short_desc'])): ?>
+                  					<?php echo e($params['short_desc']); ?>
+
+                  				<?php endif; ?>
+                  			</textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="desc" id="desc" class="ckedit">
@@ -102,20 +114,22 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group <?php if(isset($errors['price'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="<?php echo e(isset($params['price']) ? $params['price'] : ''); ?>" required>
+						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="<?php echo e(isset($params['price']) ? $params['price'] : ''); ?>" >
 						</div>
+						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
 
-					<div class="item form-group">
+					<div class="item form-group <?php if(isset($errors['numbers'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="number" id="numbers" name="numbers" class="form-control" value="<?php echo e(isset($params['numbers']) ? $params['numbers'] : ''); ?>" required>
+	                       <input type="number" id="numbers" name="numbers" class="form-control" value="<?php echo e(isset($params['numbers']) ? $params['numbers'] : ''); ?>" >
                       	</div>
+                      	<?php if(isset($errors['numbers'])): ?> <div class="alert"><?php echo e($errors['numbers']); ?></div> <?php endif; ?>
 					</div>
 
 					<div class="item form-group">
@@ -260,8 +274,7 @@
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								<?php echo e($errors); ?>
-
+								<?php /* <?php echo e($errors); ?> */ ?>
 							</strong>
 						</span>
 						</div>
@@ -281,7 +294,7 @@
 		</div>
 	</div>
 </div>
-
+<?php $__env->stopSection(); ?>
 
 
 <?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,5 +1,7 @@
 <?php
 
+defined('DEFAULT_PHONE')||define('DEFAULT_PHONE','0937472503');
+defined('LIMIT_PAGE')||define('LIMIT_PAGE', 5);
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

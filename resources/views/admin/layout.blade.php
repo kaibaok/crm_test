@@ -82,12 +82,12 @@
     {{-- <script src="/public/admin/js/DateJS/build/date.js"></script> --}}
     {{-- Parsley --}}
     <script src="/public/admin/js/parsleyjs/dist/parsley.js"></script>
-    <script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
     <script src="/public/admin/js/ckeditor/ckeditor.js"></script>
     <script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
     <script src="/public/admin/js/moment/min/moment.min.js"></script>
     <script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src="/public/admin/js/pnotify/dist/pnotify.js"></script>
+    <script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
     <script src="/public/admin/js/cus_admin.js"></script>
     <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
     @yield("js")

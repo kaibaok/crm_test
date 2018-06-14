@@ -31,12 +31,15 @@ class ProductController extends Controller
         $errors = NULL;
         $params = $request->all();
         if ($request->isMethod('post')) {
-            $s_new_colors = Colors::addColors($params);
-            if($s_new_colors) {
-                $params = null;
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tiêu đề";
+            if(empty($errors)) {
+                $s_new_colors = Colors::addColors($params);
+                if($s_new_colors) {
+                    $params = null;
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
             }
         }
         return view("admin.product.addColors")
@@ -51,14 +54,17 @@ class ProductController extends Controller
         $cls_img   = new Img();
         $errors    = NULL;
         $params    = $request->all();
-        $getColors = Colors::findOrFail((int)$id);
+        $getColors = Colors::findOrFail((int)$id)->toArray();
         if ($request->isMethod('post')) {
-            $errors = Colors::editColors($params);
-            if($errors) $errors = "Sủa thành công";
-            else        $errors = "Sửa thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tiêu đề";
+            if(empty($errors)) {
+                $editColors = Colors::editColors($params);
+                if($editColors) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
+            $getColors = $params;
         }
         // reload data again
-        $getColors = Colors::findOrFail((int)$id);
         return view("admin.product.editColors")
             ->with("title", $title)
             ->with("colors", $getColors)
@@ -111,10 +117,11 @@ class ProductController extends Controller
         $listType     = ProductType::getList();
         $params       = $request->all();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title']     = "Vui lòng nhập tiêu đề";
-            if(empty($params['price'])) $errors['price']     = "Vui lòng nhập giá (Nhập 0 = SĐT)";
-            if(empty($params['numbers'])) $errors['numbers'] = "Vui lòng nhập số lượng";
-            if(empty($params['colors'])) $errors['colors'] = "Vui lòng chọn màu sắc";
+            if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tiêu đề";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($params['price'])) $errors['price']       = "Vui lòng nhập giá (Nhập 0 = SĐT)";
+            if(empty($params['numbers'])) $errors['numbers']   = "Vui lòng nhập số lượng";
+            if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
             if(empty($errors)) {
                 $clsImg = new Img();
                 $result = $clsImg->uploadImages();
@@ -129,7 +136,6 @@ class ProductController extends Controller
                 }
             }
         }
-
         return view("admin.product.addProduct")
             ->with("title", $title)
             ->with("listColors", $listColors)
@@ -147,13 +153,14 @@ class ProductController extends Controller
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
-        $getProduct   = Product::findOrFail((int)$id);
+        $getProduct   = Product::findOrFail((int)$id)->toArray();
         $params       = $request->all();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title']     = "Vui lòng nhập tiêu đề";
-            if(empty($params['price'])) $errors['price']     = "Vui lòng nhập giá (Nhập 0 = SĐT)";
-            if(empty($params['numbers'])) $errors['numbers'] = "Vui lòng nhập số lượng";
-            if(empty($params['colors'])) $errors['colors'] = "Vui lòng chọn màu sắc";
+            if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tiêu đề";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($params['price'])) $errors['price']       = "Vui lòng nhập giá (Nhập 0 = SĐT)";
+            if(empty($params['numbers'])) $errors['numbers']   = "Vui lòng nhập số lượng";
+            if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
             if(empty($errors)) {
                 $result = $cls_img->uploadImages();
                 foreach ($_FILES as $key => $value) {
@@ -168,12 +175,10 @@ class ProductController extends Controller
                 }
                 $statusUpdate = Product::editProduct($params);
                 if($statusUpdate) $errors['finish'] = "Thêm thành công";
-                else        $errors['finish'] = "Thêm thất bại";
+                else $errors['finish'] = "Thêm thất bại";
             }
-            // $getProduct = (object) $params;
-         }
-        // reload data again
-        // $getProduct   = Product::findOrFail((int)$id);
+            $getProduct = $params;
+        }
         return view("admin.product.editProduct")
             ->with("title" , $title )
             ->with("product", $getProduct)
@@ -208,12 +213,16 @@ class ProductController extends Controller
         $listItem   = ProductItem::getList();
         $params     = $request->all();
         if ($request->isMethod('post')) {
-            $s_new_cateproduct = ProductCategory::addCateProduct($params);
-            if($s_new_cateproduct) {
-                $params  = null;
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên loại";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $s_new_cateproduct = ProductCategory::addCateProduct($params);
+                if($s_new_cateproduct) {
+                    $params  = null;
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
             }
         }
         return view("admin.product.addCateProduct")
@@ -224,27 +233,33 @@ class ProductController extends Controller
     }
 
     public function editCateProduct(Request $request){
-        $title  = "Sửa loại sản phẩm";
-        $id     = (int) $request->route('id');
-        $errors = NULL;
-        $params = $request->all();
-        $listItem   = ProductItem::getList();
+        $title    = "Sửa loại sản phẩm";
+        $id       = (int) $request->route('id');
+        $errors   = NULL;
+        $listItem = ProductItem::getList();
+        $getCate  = ProductCategory::findOrFail((int)$id)->toArray();
+        $params   = $request->all();
         if ($request->isMethod('post')) {
-            $errors = ProductCategory::editCateProduct($params);
-            if($errors) $errors = "Sủa thành công";
-            else        $errors = "Sửa thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên loại";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $editCateProduct = ProductCategory::editCateProduct($params);
+                if($editCateProduct) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
+            $getCate = $params;
         }
-        $getCate = ProductCategory::findOrFail((int)$id);
         return view("admin.product.editCateProduct")
             ->with("title", $title)
             ->with("category", $getCate)
-            ->with("errors"  , $errors)
-            ->with("listItem"  , $listItem);
+            ->with("errors", $errors)
+            ->with("listItem", $listItem);
     }
 
     public function delCateProduct($id){
-        ProductCategory::find((int)$id)->delete();
-        $back_url = redirect()->getUrlGenerator()->previous();
+        $existProduct = Product::where("id_cate","=" , $id)->count();
+        if(!$existProduct) ProductCategory::find((int)$id)->delete();
+        $back_url     = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
 
@@ -262,12 +277,16 @@ class ProductController extends Controller
         $errors = NULL;
         $params = $request->all();
         if ($request->isMethod('post')) {
-            $s_new_typeproduct = ProductType::addTypeProduct($params);
-            if($s_new_typeproduct) {
-                $params = null;
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên thể loại";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $s_new_typeproduct = ProductType::addTypeProduct($params);
+                if($s_new_typeproduct) {
+                    $params = null;
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
             }
         }
         return view("admin.product.addTypeProduct")
@@ -282,9 +301,13 @@ class ProductController extends Controller
         $params = $request->all();
         $id     = (int) $request->route('id');
         if ($request->isMethod('post')) {
-            $errors = ProductType::editTypeProduct($params);
-            if($errors) $errors = "Sủa thành công";
-            else        $errors = "Sửa thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên thể loại";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $editTypeProduct = ProductType::editTypeProduct($params);
+                if($editTypeProduct) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
         }
         $getType = ProductType::findOrFail((int)$id);
         return view("admin.product.editTypeProduct")
@@ -294,7 +317,8 @@ class ProductController extends Controller
     }
 
     public function delTypeProduct($id){
-        ProductType::find((int)$id)->delete();
+        $existProduct = Product::where("type","=" , $id)->count();
+        if(!$existProduct) ProductType::find((int)$id)->delete();
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
@@ -405,12 +429,16 @@ class ProductController extends Controller
         $listItem   = ProductItem::getList();
         $params     = $request->all();
         if ($request->isMethod('post')) {
-            $newItemProduct = ProductItem::addItemProduct($params);
-            if($newItemProduct) {
-                $params  = null;
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên danh mục";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $newItemProduct = ProductItem::addItemProduct($params);
+                if($newItemProduct) {
+                    $params  = null;
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
             }
         }
         return view("admin.product.addItemProduct")
@@ -421,16 +449,21 @@ class ProductController extends Controller
     }
 
     public function editItemProduct(Request $request){
-        $title  = "Sửa danh mục sản phẩm";
-        $id     = (int) $request->route('id');
-        $errors = NULL;
-        $params = $request->all();
+        $title   = "Sửa danh mục sản phẩm";
+        $id      = (int) $request->route('id');
+        $errors  = NULL;
+        $getItem = ProductItem::findOrFail((int)$id)->toArray();
+        $params  = $request->all();
         if ($request->isMethod('post')) {
-            $errors = ProductItem::editItemProduct($params);
-            if($errors) $errors = "Sủa thành công";
-            else        $errors = "Sửa thất bại";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên danh mục";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $editItemProduct = ProductItem::editItemProduct($params);
+                if($editItemProduct) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
+            $getItem = $params;
         }
-        $getItem = ProductItem::findOrFail((int)$id);
         return view("admin.product.editItemProduct")
             ->with("title", $title)
             ->with("item", $getItem)
@@ -438,7 +471,8 @@ class ProductController extends Controller
     }
 
     public function delItemProduct($id){
-        ProductItem::find((int)$id)->delete();
+        $existProductCate = ProductCategory::where("item_id","=" , $id)->count();
+        if(!$existProductCate) ProductItem::find((int)$id)->delete();
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
@@ -450,10 +484,9 @@ class ProductController extends Controller
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
-
         $builder->orderByRaw("ord ASC, id DESC");
-        $totalResult = $builder->count();
-        $listProduct = $builder->paginate(LIMIT_PAGE);
+        $totalResult  = $builder->count();
+        $listProduct  = $builder->paginate(LIMIT_PAGE);
 
         return view("admin.product.sortProduct")
             ->with("title", $title)

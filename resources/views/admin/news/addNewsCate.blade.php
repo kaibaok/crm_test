@@ -22,9 +22,9 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
+				<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
 				{{ csrf_field() }}
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12">Hiển thị</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
@@ -35,25 +35,32 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['title'])) bad @endif">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại tin <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="{{isset($params['title']) ? $params['title'] : ''}}">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : ''}}">
 						</div>
+						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+					</div>
+					<div class="item form-group @if(isset($errors['seo_link'])) bad @endif">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Seo Link <span class="required">*</span>
+						</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($params['seo_link']) ? $params['seo_link'] : ''}}">
+						</div>
+						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
-							<strong>
-								{{$errors}}
-							</strong>
+							<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
 						</span>
 						</div>
 					</div>
 					<div class="ln_solid"></div>
-					<div class="form-group">
+					<div class="item form-group">
 						<div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
 						<button type="reset" class="btn btn-primary">Reset</button>
 						<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>

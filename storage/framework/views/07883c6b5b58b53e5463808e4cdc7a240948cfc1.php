@@ -1,14 +1,13 @@
-@extends("admin.layout")
-@section('title') {{$title}} @endsection
-@section('css')
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
 <link rel="stylesheet" href="/public/admin/js/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
 <link rel="stylesheet" href="/public/admin/js/cropper/dist/cropper.min.css">
-@endsection
-@section('rightcontent')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('rightcontent'); ?>
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$title}}</h3>
+			<h3><?php echo e($title); ?></h3>
 		</div>
 		<div class="title_right">
 	        <div class=" pull-right">
@@ -27,21 +26,22 @@
 			<div class="x_panel">
 	          <div class="x_content">
 				<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
-				{{ csrf_field() }}
-					<input type="hidden" name="id" value="{{$colors['id']}}"/>
-					<div class="item form-group @if(isset($errors['title'])) bad @endif">
+				<?php echo e(csrf_field()); ?>
+
+					<input type="hidden" name="id" value="<?php echo e($colors['id']); ?>"/>
+					<div class="item form-group <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên màu <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" value="{{isset($colors['name']) ? $colors['name'] : '' }}" >
+						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" value="<?php echo e(isset($colors['name']) ? $colors['name'] : ''); ?>" >
 						</div>
-						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Code màu sắc</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="input-group code">
-						    <input type="text" name='code' value="{{isset($colors['code']) ? $colors['code'] : '#e01ab5' }}" class="form-control" />
+						    <input type="text" name='code' value="<?php echo e(isset($colors['code']) ? $colors['code'] : '#e01ab5'); ?>" class="form-control" />
 						    <span class="input-group-addon"><i></i></span>
 						  </div>
 						</div>
@@ -50,7 +50,7 @@
 					<div class="item form-group">
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
-							<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
+							<strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
 						</span>
 						</div>
 					</div>
@@ -67,10 +67,11 @@
 		</div>
 	</div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 <script src="/public/admin/js/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
 <script> $(".code").colorpicker();</script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

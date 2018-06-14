@@ -13,7 +13,7 @@ class NewsCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'id','status','title','created_at','updated_at'
+        'id','status','title', 'seo_link', 'created_at','updated_at'
     ];
 
     /**
@@ -41,6 +41,7 @@ class NewsCategory extends Model
                 $status = NewsCategory::create(array(
                     'status' => (int) $data['status'],
                     'title'  => htmlspecialchars(trim($data['title'])),
+                    'seo_link'  => trim($data['seo_link']),
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -55,6 +56,7 @@ class NewsCategory extends Model
             $arr_update  = array(
                 'status' => (int) $data['status'],
                 'title'  => htmlspecialchars(trim($data['title'])),
+                'seo_link'  => trim($data['seo_link']),
             );
             return NewsCategory::where('id',(int)$data['id'])->update($arr_update);
         }

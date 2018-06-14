@@ -13,7 +13,7 @@ class ProductItem extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title','status','created_at','updated_at'
+        'id', 'title', 'seo_link','status','created_at','updated_at'
     ];
 
     /**
@@ -42,8 +42,9 @@ class ProductItem extends Model
         if(isset($data)){
             try{
                 $status = ProductItem::create(array(
-                    'status' => (int) $data['status'],
-                    'title'  => htmlspecialchars(trim($data['title'])),
+                    'status'   => (int) $data['status'],
+                    'title'    => htmlspecialchars(trim($data['title'])),
+                    'seo_link' => trim($data['seo_link']),
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -56,8 +57,9 @@ class ProductItem extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                'status' => (int) $data['status'],
-                'title'  => htmlspecialchars(trim($data['title'])),
+                'status'   => (int) $data['status'],
+                'title'    => htmlspecialchars(trim($data['title'])),
+                'seo_link' => trim($data['seo_link']),
             );
             return ProductItem::where('id',(int)$data['id'])->update($arr_update);
         }

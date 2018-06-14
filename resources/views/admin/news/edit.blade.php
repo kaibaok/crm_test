@@ -1,10 +1,12 @@
-<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+@extends("admin.layout")
+@section('title') {{$title}} @endsection
+@php $url = "/public/upload/images/"  @endphp
 
-<?php $__env->startSection('rightcontent'); ?>
+@section('rightcontent')
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3><?php echo e($title); ?></h3>
+            <h3>{{$title}}</h3>
         </div>
         <div class="title_right">
             <div class=" pull-right">
@@ -23,14 +25,16 @@
             <div class="x_panel">
               <div class="x_content">
                 <form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
-                <?php echo e(csrf_field()); ?>
-
+                {{ csrf_field() }}
+                    <input type="hidden" name="id" value="{{isset($news['id']) ?  $news['id'] : '' }}"/>
+                    <input type="hidden" id="img_list_url" name="img_list_url" value="{{isset($news['img_list']) ?  $news['img_list'] : '' }}"/>
+                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="{{isset($news['img_detail']) ?  $news['img_detail'] : '' }}"/>
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
                             <div id="status" class="btn-group" data-toggle="buttons">
-                                <label><input type="radio" class="flat" name="status" value="0" checked="" required /> Ẩn </label>
-                                <label><input type="radio" class="flat" name="status"  value="1" /> Hiện </label>
+                              <label><input type="radio" class="flat" name="status" value="0" @if(isset($news['status']) && $news['status'] == 0) checked @endif /> Ẩn </label>&nbsp;
+                              <label><input type="radio" class="flat" name="status"  value="1" @if(isset($news['status']) && $news['status'] == 1) checked @endif /> Hiện</label>
                             </div>
                         </div>
                     </div>
@@ -40,39 +44,39 @@
                         <div class="col-md-2 col-sm-2 col-xs-12">
                             <div id="is_hot" class="btn-group" data-toggle="buttons">
                                 <input type="checkbox" name="is_hot" value="1" class="flat"
-                                <?php if(isset($params['is_hot']) && $params['is_hot'] == 1): ?> checked <?php endif; ?> />
+                                @if (isset($news['is_hot']) && $news['is_hot'] == 1) checked @endif />
                             </div>
                         </div>
                     </div>
 
-                    <div class="item form-group <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
+                    <div class="item form-group @if(isset($errors['title'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tiêu đề <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>" required>
+                       <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($news['title']) ?  $news['title'] : '' }}" >
                         </div>
-                        <?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
+                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
                     </div>
 
-                     <div class="item form-group <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
+                    <div class="item form-group @if(isset($errors['seo_link'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="seo_link">Seo Link <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($params['seo_link']) ? $params['seo_link'] : ''); ?>" required>
+                        <input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($news['seo_link']) ?  $news['seo_link'] : '' }}" >
                         </div>
-                        <?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
+                        @if(isset($errors['seo_link'])) <div class="alert">{{$errors['seo_link']}}</div> @endif
                     </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Loại tin <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select class="form-control" name="id_cate">
-                                <?php if(isset($listNewsCate)): ?>
-                                    <?php foreach($listNewsCate as $key => $value): ?>
-                                        <?php $selected = ""; if(isset($params['id_cate']) && $key == $params['id_cate']) $selected = "selected"; ?>
-                                            <option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
+                                @if (isset($listNewsCate))
+                                    @foreach ($listNewsCate as $key => $value)
+                                        <?php $selected = ""; if(isset($news['id_cate']) && $key ==  $news['id_cate']) $selected = "selected"; ?>
+                                            <option value="{{$key}}" {{$selected}}>{{$value}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -81,10 +85,9 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <textarea  name="short_desc" id="short_desc" class="ckedit">
-                                <?php if(isset($params['short_desc'])): ?>
-                                    <?php echo e($params['short_desc']); ?>
-
-                                <?php endif; ?>
+                                @if(isset($news['short_desc']))
+                                    {{$news['short_desc']}}
+                                @endif
                             </textarea>
                         </div>
                     </div>
@@ -94,10 +97,9 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <textarea  name="desc" id="desc" class="ckedit">
-                                <?php if(isset($params['desc'])): ?>
-                                    <?php echo e($params['desc']); ?>
-
-                                <?php endif; ?>
+                                @if(isset($news['desc']))
+                                    {{$news['desc']}}
+                                @endif
                             </textarea>
                         </div>
                     </div>
@@ -107,12 +109,18 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
+                                    @if(isset($news['img_list']) && !empty($news['img_list']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$news['img_list'] }}" />
+                                    @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <!-- The file is stored here. -->
                                         <input type="file" name="img_list">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                    @if(isset($news['img_list']) && !empty($news['img_list']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_list_url">Remove</button>
+                                    @else
+                                        <button type="button" class="btn btn-danger" rel="img_list_url">Remove</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -123,12 +131,18 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
+                                    @if(isset($news['img_detail']) && !empty($news['img_detail']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$news['img_detail'] }}" />
+                                    @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <!-- The file is stored here. -->
                                         <input type="file" name="img_detail">
                                     </label>
-                                    <button type="button" class="btn btn-danger">Remove</button>
+                                     @if(isset($news['img_detail']) && !empty($news['img_detail']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     @else
+                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                     @endif
                                 </div>
                             </div>
                         </div>
@@ -137,7 +151,7 @@
                     <div class="item form-group">
                         <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
                         <span class="help-block">
-                            <strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
+                            <strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
                         </span>
                         </div>
                     </div>
@@ -155,7 +169,8 @@
         </div>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
 
 
-<?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+@endsection
+

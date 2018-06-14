@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2018 at 12:52 PM
+-- Generation Time: Jun 14, 2018 at 12:49 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -92,7 +92,7 @@ CREATE TABLE `colors` (
 --
 
 INSERT INTO `colors` (`id`, `name`, `code`, `updated_at`, `created_at`) VALUES
-(1, 'hồng', '#d11aaa', '2018-05-23 21:21:10', '2017-08-14 20:47:39'),
+(1, 'hồng', '#d11aaa', '2018-06-14 03:41:27', '2017-08-14 20:47:39'),
 (2, 'xanh duong', 'rgba(0,194,255,0.58)', '2017-08-15 06:58:51', '2017-08-14 23:58:15');
 
 -- --------------------------------------------------------
@@ -105,6 +105,7 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `id_cate` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `short_desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `desc` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -120,8 +121,9 @@ CREATE TABLE `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `id_cate`, `title`, `short_desc`, `desc`, `created_at`, `updated_at`, `status`, `ord`, `img_list`, `img_detail`, `is_hot`) VALUES
-(83, 1, '2313213', '<p>&aacute;das</p>\r\n', '<p>&aacute;da</p>\r\n', '2018-06-13 03:05:27', '2018-06-13 03:05:27', 1, 0, '', '', 1);
+INSERT INTO `news` (`id`, `id_cate`, `title`, `seo_link`, `short_desc`, `desc`, `created_at`, `updated_at`, `status`, `ord`, `img_list`, `img_detail`, `is_hot`) VALUES
+(83, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-06-14 03:35:21', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(84, 0, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-06-14 03:37:39', 1, 0, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -133,6 +135,7 @@ CREATE TABLE `news_category` (
   `id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -141,10 +144,10 @@ CREATE TABLE `news_category` (
 -- Dumping data for table `news_category`
 --
 
-INSERT INTO `news_category` (`id`, `status`, `title`, `updated_at`, `created_at`) VALUES
-(0, 1, 'Tin thời trang', '2018-05-23 21:20:18', '2017-01-02 20:29:22'),
-(1, 1, 'Tin khuyến mãi', '2018-05-23 02:31:35', '2017-01-02 20:29:20'),
-(2, 1, 'Tin thông báo', '2018-06-11 02:29:49', '2017-01-02 20:29:26');
+INSERT INTO `news_category` (`id`, `status`, `title`, `seo_link`, `updated_at`, `created_at`) VALUES
+(0, 1, 'Tin thời trang', '', '2018-05-23 21:20:18', '2017-01-02 20:29:22'),
+(1, 1, 'Tin khuyến mãi', '', '2018-05-23 02:31:35', '2017-01-02 20:29:20'),
+(2, 1, 'Tin thông báo', 'a', '2018-06-14 03:37:47', '2017-01-02 20:29:26');
 
 -- --------------------------------------------------------
 
@@ -205,20 +208,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `img_list`, `img_detail`, `img1`, `img2`, `img3`, `img4`, `img5`, `is_new`, `is_best_sell`, `seo_link`) VALUES
-(76, 0, '1485404873', '1', NULL, '', 1111, 1, 11123123, '1', '2017-01-26', '2017-01-25 21:27:59', '2018-06-07 03:42:17', 0, 6, '', '', '', '', '', '', '', 0, 0, NULL),
-(77, 0, '1527763437', '2', NULL, '', 1, 1, 1, '1', '2017-08-15', '2017-08-14 21:44:34', '2018-06-10 22:20:31', 1, 2, '', '', '', '', '', '', '', 1, 0, NULL),
-(78, 0, '1502772292', '3', NULL, '', 1, 1, 1, '1', '2017-08-15', '2017-08-14 21:44:57', '2018-06-07 03:42:05', 1, 5, '', '', '', '', '', '', '', 0, 0, NULL),
-(79, 0, '1528433214', '4', NULL, '', 1, 2, 1, '1', '2017-08-15', '2017-08-14 21:48:19', '2018-06-10 22:19:58', 0, 1, '', '', '', '', '', '', '', 0, 0, NULL),
-(80, 0, '1527589794', '5', NULL, '', 1, 1, 1, '1|2', '2018-05-23', '2018-05-23 02:13:26', '2018-06-07 03:42:18', 0, 5, '', '', '', '', '', '', '', 0, 0, NULL),
-(81, 0, '1527589794', '6', NULL, '', 1, 1, 1, '1|2', '2018-05-23', '2018-05-23 02:13:26', '2018-06-10 22:19:55', 0, 4, '', '', '', '', '', '', '', 0, 0, NULL),
-(82, 0, '1527589794', '7', NULL, '', 1, 1, 1, '1|2', '2018-05-23', '2018-05-23 02:13:26', '2018-06-10 22:19:56', 0, 3, '', '', '', '', '', '', '', 0, 0, NULL),
-(83, 0, '1528886487', '', '', '', 1, 1, 1, '', '2018-06-13', '2018-06-13 03:41:32', '2018-06-13 03:41:32', 0, 0, '', '', '', '', '', '', '', 0, 0, ''),
-(84, 0, '1528886487', '', '', '', 1, 1, 1, '', '2018-06-13', '2018-06-13 03:43:42', '2018-06-13 03:43:42', 0, 0, '', '', '', '', '', '', '', 0, 0, ''),
-(85, 0, '1528886487', '', '', '', 1, 1, 1, '', '2018-06-13', '2018-06-13 03:44:07', '2018-06-13 03:44:07', 0, 0, '', '', '', '', '', '', '', 0, 0, ''),
-(86, 0, '1528886969', '', '', '', 0, 1, 1, '', '2018-06-13', '2018-06-13 03:49:46', '2018-06-13 03:49:46', 0, 0, '', '', '', '', '', '', '', 0, 0, ''),
-(87, 0, '1528886969', '', '', '', 0, 1, 1, '', '2018-06-13', '2018-06-13 03:51:32', '2018-06-13 03:51:32', 0, 0, '', '', '', '', '', '', '', 0, 0, ''),
-(88, 0, '1528887092', '', '', '', 0, 1, 0, '', '2018-06-13', '2018-06-13 03:51:37', '2018-06-13 03:51:37', 0, 0, '', '', '', '', '', '', '', 0, 0, ''),
-(89, 0, '1528887097', '', '', '', 1, 1, 1, '', '2018-06-13', '2018-06-13 03:51:45', '2018-06-13 03:51:45', 0, 0, '', '', '', '', '', '', '', 0, 0, '');
+(80, 0, '1528944889', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-13 20:24:02', 0, 5, '5b21dfd189018_b4c2f263c742d7ce4565211b60e21568.jpg', '', '', '', '', '', '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -230,6 +220,7 @@ CREATE TABLE `product_category` (
   `id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `item_id` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
@@ -239,10 +230,8 @@ CREATE TABLE `product_category` (
 -- Dumping data for table `product_category`
 --
 
-INSERT INTO `product_category` (`id`, `status`, `title`, `item_id`, `updated_at`, `created_at`) VALUES
-(0, 1, 'Thức ăn thường', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22'),
-(1, 1, 'Nước giải khát1', 1, '2018-05-23 02:31:35', '2017-01-02 20:29:20'),
-(2, 1, 'Thức ăn nhanh', 1, '2018-06-10 22:30:04', '2017-01-02 20:29:26');
+INSERT INTO `product_category` (`id`, `status`, `title`, `seo_link`, `item_id`, `updated_at`, `created_at`) VALUES
+(0, 1, 'Thức ăn thường', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22');
 
 -- --------------------------------------------------------
 
@@ -254,6 +243,7 @@ CREATE TABLE `product_item` (
   `id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -262,10 +252,8 @@ CREATE TABLE `product_item` (
 -- Dumping data for table `product_item`
 --
 
-INSERT INTO `product_item` (`id`, `status`, `title`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Áo Khoác', '2018-05-23 02:31:35', '2017-01-02 20:29:20'),
-(2, 1, 'Áo Sơ mi', '2018-05-23 02:31:13', '2017-01-02 20:29:26'),
-(3, 1, 'Áo Thun', '2018-06-10 22:29:59', '2017-01-02 20:29:22');
+INSERT INTO `product_item` (`id`, `status`, `title`, `seo_link`, `updated_at`, `created_at`) VALUES
+(1, 1, 'Áo Khoác', '', '2018-05-23 02:31:35', '2017-01-02 20:29:20');
 
 -- --------------------------------------------------------
 
@@ -276,6 +264,7 @@ INSERT INTO `product_item` (`id`, `status`, `title`, `updated_at`, `created_at`)
 CREATE TABLE `product_type` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -284,11 +273,31 @@ CREATE TABLE `product_type` (
 -- Dumping data for table `product_type`
 --
 
-INSERT INTO `product_type` (`id`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'Đặc Sắc', NULL, '2018-05-20 19:58:21'),
-(2, 'Xu Hướng', '2017-01-02 21:12:12', '2018-05-20 19:58:07'),
-(3, 'Trẻ Trung', '2017-01-02 21:13:16', '2018-05-20 19:57:59'),
-(4, 'Thanh Lịch', '2017-01-02 21:13:16', '2018-05-20 19:57:59');
+INSERT INTO `product_type` (`id`, `title`, `seo_link`, `created_at`, `updated_at`) VALUES
+(1, 'Đặc Sắc', '', NULL, '2018-05-20 19:58:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slider`
+--
+
+CREATE TABLE `slider` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `img_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `img_detail`) VALUES
+(83, '2313213', '', '2018-06-13 03:05:27', '2018-06-13 03:05:27', 1, '');
 
 -- --------------------------------------------------------
 
@@ -403,6 +412,13 @@ ALTER TABLE `product_type`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indexes for table `tag`
 --
 ALTER TABLE `tag`
@@ -442,13 +458,13 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `news_category`
 --
 ALTER TABLE `news_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permission`
@@ -460,25 +476,31 @@ ALTER TABLE `permission`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_item`
 --
 ALTER TABLE `product_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_type`
 --
 ALTER TABLE `product_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `tag`

@@ -1,10 +1,9 @@
-@extends("admin.layout")
-@section('title') {{$title}} @endsection
-@section('rightcontent')
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('rightcontent'); ?>
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$title}}</h3>
+			<h3><?php echo e($title); ?></h3>
 		</div>
 		<div class="title_right">
 	        <div class=" pull-right">
@@ -23,29 +22,30 @@
 			<div class="x_panel">
 	          <div class="x_content">
 				<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
-				{{ csrf_field() }}
-					<input type="hidden" name="id" value="{{$type['id']}}"/>
-					<div class="item form-group  @if(isset($errors['title'])) bad @endif">
+				<?php echo e(csrf_field()); ?>
+
+					<input type="hidden" name="id" value="<?php echo e($type['id']); ?>"/>
+					<div class="item form-group  <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên Loại <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($type['title']) ? $type['title'] : '' }}">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($type['title']) ? $type['title'] : ''); ?>">
 						</div>
-						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
-					<div class="item form-group  @if(isset($errors['seo_link'])) bad @endif">
+					<div class="item form-group  <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Seo Link <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($type['seo_link']) ? $type['seo_link'] : '' }}">
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($type['seo_link']) ? $type['seo_link'] : ''); ?>">
 						</div>
-						@if(isset($errors['seo_link'])) <div class="alert">{{$errors['seo_link']}}</div> @endif
+						<?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
 					</div>
 					<div class="form-group">
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
 							<strong>
-								<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
+								<strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
 							</strong>
 						</span>
 						</div>
@@ -63,6 +63,8 @@
 		</div>
 	</div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
+
+<?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

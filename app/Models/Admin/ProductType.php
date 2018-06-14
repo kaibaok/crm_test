@@ -13,7 +13,7 @@ class ProductType extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title','status','created_at','updated_at'
+        'id', 'title', 'seo_link', 'created_at','updated_at'
     ];
 
     /**
@@ -42,8 +42,8 @@ class ProductType extends Model
         if(isset($data)){
             try{
                 $status = ProductType::create(array(
-                    'status' => (int) $data['status'],
                     'title'  => htmlspecialchars(trim($data['title'])),
+                    'seo_link'  => trim($data['seo_link']),
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -56,8 +56,8 @@ class ProductType extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                'status' => (int) $data['status'],
                 'title'  => htmlspecialchars(trim($data['title'])),
+                'seo_link'  => trim($data['seo_link']),
             );
             return ProductType::where('id',(int)$data['id'])->update($arr_update);
         }

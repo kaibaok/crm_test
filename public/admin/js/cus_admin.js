@@ -18,14 +18,14 @@ $(document).ready(function() {
 
     if($("tbody").hasClass('sortable')) {
         var data = null;
+        $( "#sortable" ).sortable({
+            axis:'y',
+            update: function (event,ui) {
+                data = $(this).sortable('serialize');
+            }
+        });
         switch(idSortable){
             case "product":
-                $( "#sortable" ).sortable({
-                    axis:'y',
-                    update: function (event,ui) {
-                        data = $(this).sortable('serialize');
-                    }
-                });
                 $("#btn_save").bind('click', function(event) {
                     event.preventDefault();
                     $.ajax({
@@ -40,6 +40,25 @@ $(document).ready(function() {
                     }).done(function(data) {
                         if(data.status) {
                             location.href = "/admin/product/";
+                        }
+                    });
+                });
+            break;
+            case "news":
+                $("#btn_save").bind('click', function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '/admin/news/ajax-sort-news',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            data: data,
+                            page : curentPage,
+                            _token : _token
+                        },
+                    }).done(function(data) {
+                        if(data.status) {
+                            location.href = "/admin/news/";
                         }
                     });
                 });
@@ -68,15 +87,17 @@ $(document).ready(function() {
     }
 
 
-    // if($("input").hasClass('limit_at')) {
-        $('#limit_at').daterangepicker({
-            locale: {format: 'YYYY-MM-DD'},
-            singleDatePicker: true,
-            singleClasses: "picker_1",
+    if($("input").hasClass('date_picker')) {
+        $(".date_picker").each(function(index, el) {
+            $("#"+ $(this).attr('id')).daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                singleDatePicker: true,
+                singleClasses: "picker_1",
+            });
         });
-    // }
+    }
 
-    if($("input[type=text]").hasClass('imageupload')) {
+    if($("div").hasClass('image_upload')) {
         var $imageupload = $('.imageupload');
         $imageupload.imageupload();
     }

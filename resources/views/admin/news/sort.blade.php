@@ -7,22 +7,9 @@
         <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
-          <form method="get">
+        <div class="form-group pull-right top_search">
           <div class="input-group">
-                <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
-                <input type="hidden" name="page" value="1">
-                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit" >Tìm</button>
-                </span>
-          </div>
-          </form>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <a class="btn btn-primary" href="/admin/news/add">Thêm mới</a> &nbsp;
-            <a class="btn btn-success" href="/admin/news/sort">Sắp xếp</a>
+            <button class="btn btn-primary" id="btn_save">Lưu</button>
           </div>
         </div>
       </div>
@@ -44,18 +31,17 @@
                     <th class="column-title">Mô tả ngắn</th>
                     <th class="column-title">Loại tin</th>
                     <th class="column-title">Ngày cập nhật</th>
-                    <th class="column-title no-link last"><span class="nobr">Xử lý</span>
-                    </th>
-                    </tr>
+                    <th class="column-title no-link last"><span class="nobr">Xử lý</span> </th>
+                  </tr>
                 </thead>
 
-                <tbody id="tbl_alproduct">
+                <tbody id="sortable" class="sortable">
                   @php
                     $no = 1;
                   @endphp
 
                   @foreach ($listNews as $value)
-                  <tr class="even pointer">
+                  <tr class="even pointer" id="item-{{$value->id}}">
                     <td>{{$no++}}</td>
                     <td>
                       @if ($value->status)
@@ -74,7 +60,7 @@
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                  {{$listNews->appends($conditionPage)->links()}}
+                 {{$listNews}}
               </div>
             </div>
           </div>
@@ -82,5 +68,13 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('js')
+<script>
+  var idSortable = "product";
+  var curentPage = "{{$page}}";
+
+</script>
 @endsection
 

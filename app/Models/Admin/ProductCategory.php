@@ -13,7 +13,7 @@ class ProductCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'title', 'item_id','status','updated_at','created_at'
+        'id', 'title', 'seo_link','item_id','status','updated_at','created_at'
     ];
 
     /**
@@ -42,9 +42,10 @@ class ProductCategory extends Model
         if(isset($data)){
             try{
                 $status = ProductCategory::create(array(
-                    'status' => (int) $data['status'],
-                    'title'  => htmlspecialchars(trim($data['title'])),
-                    'item_id' => (int) $data['item_id'],
+                    'status'   => (int) $data['status'],
+                    'title'    => htmlspecialchars(trim($data['title'])),
+                    'seo_link' => trim($data['seo_link']),
+                    'item_id'  => (int) $data['item_id'],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -59,6 +60,7 @@ class ProductCategory extends Model
             $arr_update  = array(
                 'status' => (int) $data['status'],
                 'title'  => htmlspecialchars(trim($data['title'])),
+                'seo_link' => trim($data['seo_link']),
                 'item_id'  => (int) $data['item_id'],
             );
             return ProductCategory::where('id',(int)$data['id'])->update($arr_update);

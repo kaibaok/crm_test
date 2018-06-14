@@ -24,7 +24,7 @@
 	          <div class="x_content">
 				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
 				{{ csrf_field() }}
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_new" class="btn-group" data-toggle="buttons">
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm bán chạy</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="editProduct" class="btn-group" data-toggle="buttons">
@@ -53,7 +53,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="item form-group  @if(isset($errors['title'])) bad @endif">
+					<div class="item form-group @if(isset($errors['title'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
@@ -61,8 +61,15 @@
 						</div>
 						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
 					</div>
-
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['seo_link'])) bad @endif">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Seo Link <span class="required">*</span>
+						</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($params['seo_link']) ? $params['seo_link'] : '' }}" >
+						</div>
+						@if(isset($errors['seo_link'])) <div class="alert">{{$errors['seo_link']}}</div> @endif
+					</div>
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phẩm <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="id_cate">
@@ -76,7 +83,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Thể loại <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="type">
@@ -90,7 +97,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="short_desc" id="short_desc" class="ckedit">
@@ -101,7 +108,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="desc" id="desc" class="ckedit">
@@ -147,17 +154,17 @@
                       	@if(isset($errors['colors'])) <div class="alert">{{$errors['colors']}}</div> @endif
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group ">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
-	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $params['limit_at']) ?  $params['limit_at'] : '' }}">
+	                        <input type="text" class="form-control has-feedback-left date_picker" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $params['limit_at']) ?  $params['limit_at'] : '' }}">
 	                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 	                        <span id="inputSuccess2Status" class="sr-only">(success)</span>
                       	</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -173,7 +180,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -189,7 +196,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -205,7 +212,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2</label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -221,7 +228,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -237,7 +244,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -253,7 +260,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -269,20 +276,16 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
-							<strong>
-								@if(isset($errors['finish']))
-                  					{{$errors['finish']}}
-                  				@endif
-							</strong>
+							<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
 						</span>
 						</div>
 					</div>
 
 					<div class="ln_solid"></div>
-					<div class="form-group">
+					<div class="item form-group">
 						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
 							<button type ="reset" class="btn btn-primary">Reset</button>
 							<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>

@@ -27,17 +27,18 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
+				<form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
 				{{ csrf_field() }}
-					<div class="form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên màu <span class="required">*</span></label>
+					<div class="item form-group @if(isset($errors['title'])) bad @endif">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên màu <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" value="{{isset($params['name']) ? $params['name'] : '' }}" required>
+						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" value="{{isset($params['name']) ? $params['name'] : '' }}" >
 						</div>
+						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Code màu sắc</label>
+					<div class="item form-group">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Code màu sắc</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="input-group code">
 						    <input type="text" name='code' value="{{isset($params['code']) ? $params['code'] : '#e01ab5' }}" class="form-control" />
@@ -46,18 +47,16 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
 						<span class="help-block">
-							<strong>
-								{{$errors}}
-							</strong>
+							<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
 						</span>
 						</div>
 					</div>
 
 					<div class="ln_solid"></div>
-					<div class="form-group">
+					<div class="item form-group">
 						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
 						<button type ="reset" class="btn btn-primary">Reset</button>
 						<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>

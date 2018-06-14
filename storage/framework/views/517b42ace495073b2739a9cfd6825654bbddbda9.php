@@ -149,17 +149,17 @@
                       	<?php if(isset($errors['colors'])): ?> <div class="alert"><?php echo e($errors['colors']); ?></div> <?php endif; ?>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
-	                        <input type="text" class="form-control has-feedback-left" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="<?php echo e(isset( $params['limit_at']) ?  $params['limit_at'] : ''); ?>">
+	                        <input type="text" class="form-control has-feedback-left date_picker" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="<?php echo e(isset( $params['limit_at']) ?  $params['limit_at'] : ''); ?>">
 	                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 	                        <span id="inputSuccess2Status" class="sr-only">(success)</span>
                       	</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -175,7 +175,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -191,7 +191,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -207,7 +207,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2</label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -223,7 +223,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -239,7 +239,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -255,7 +255,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -274,12 +274,7 @@
 					<div class="form-group">
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
-							<strong>
-								<?php if(isset($errors['finish'])): ?>
-                  					<?php echo e($errors['finish']); ?>
-
-                  				<?php endif; ?>
-							</strong>
+							<strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
 						</span>
 						</div>
 					</div>

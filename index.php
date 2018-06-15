@@ -2,6 +2,8 @@
 
 defined('DEFAULT_PHONE')||define('DEFAULT_PHONE','0937472503');
 defined('LIMIT_PAGE')||define('LIMIT_PAGE', 5);
+defined('BASE_IMG')||define('BASE_IMG', $_SERVER['DOCUMENT_ROOT']."/public/upload/images/");
+defined('URL_IMG')||define('URL_IMG', "/public/upload/images/");
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

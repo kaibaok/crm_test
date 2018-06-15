@@ -26,9 +26,8 @@ class Slider extends Model
         if(isset($data)){
             try{
                 $status = Slider::create(array(
-                    "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
                     "title"      => htmlspecialchars(trim($data["title"])),
-                    "link"      => trim($data["link"]),
+                    "link"       => trim($data["link"]),
                     "status"     => isset($data['status']) ? $data['status'] : 0,
                     "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
                     "img_detail" => $data['img_detail'],
@@ -44,9 +43,8 @@ class Slider extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
                 "title"      => htmlspecialchars(trim($data["title"])),
-                "link"      => trim($data["link"]),
+                "link"       => trim($data["link"]),
                 "status"     => isset($data['status']) ? $data['status'] : 0,
                 "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
                 "img_detail" => $data['img_detail'],

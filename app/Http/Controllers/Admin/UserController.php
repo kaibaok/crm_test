@@ -49,7 +49,7 @@ class UserController extends Controller
         $errors = NULL;
         if(!empty($_POST)){
             $errors = User::editUser($_POST);
-            if($errors) $errors = "Sủa thành công";
+            if($errors) $errors = "Sửa thành công";
             else $errors = "Sửa thất bại";
         }
         $get_user = User::findOrFail((int)$id);

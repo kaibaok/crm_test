@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2018 at 12:49 PM
+-- Generation Time: Jun 15, 2018 at 12:47 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -292,13 +292,6 @@ CREATE TABLE `slider` (
   `img_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `slider`
---
-
-INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `img_detail`) VALUES
-(83, '2313213', '', '2018-06-13 03:05:27', '2018-06-13 03:05:27', 1, '');
-
 -- --------------------------------------------------------
 
 --
@@ -500,7 +493,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `tag`

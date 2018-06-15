@@ -1,8 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
-{{-- set default url link --}}
-@php $url = "/public/upload/images/"  @endphp
+@php $url = URL_IMG."/product/"  @endphp
 
 <div class="">
     <div class="page-title">

@@ -75,3 +75,10 @@ Route::any('news-cate/add', 'Admin\NewsController@addNewsCate');
 Route::any('news-cate/edit/{id?}', 'Admin\NewsController@editNewsCate');
 Route::get('news-cate/del/{id?}', 'Admin\NewsController@delNewsCate');
 Route::get('news-cate/status/{id?}', 'Admin\NewsController@statusNewsCate');
+
+// slider
+Route::get('/slider', 'Admin\IndexController@slider');
+Route::any('slider/add', 'Admin\IndexController@addSlider');
+Route::any('slider/edit/{id?}', 'Admin\IndexController@editSlider');
+Route::get('slider/del/{id?}', 'Admin\IndexController@delSlider');
+Route::get('slider/status/{id?}', 'Admin\IndexController@statusSlider');

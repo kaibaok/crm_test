@@ -124,7 +124,7 @@ class ProductController extends Controller
             if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
             if(empty($errors)) {
                 $clsImg = new Img();
-                $result = $clsImg->uploadImages();
+                $result = $clsImg->uploadImages("product/");
                 foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
                 $s_new_product = Product::addProduct($params);
 
@@ -162,14 +162,14 @@ class ProductController extends Controller
             if(empty($params['numbers'])) $errors['numbers']   = "Vui lòng nhập số lượng";
             if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages();
+                $result = $cls_img->uploadImages("product/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages($getProduct[$key]);
+                        $cls_img->removeImages("product/",$getProduct[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $cls_img->removeImages($getProduct[$key]);
+                        if(empty($params[$key."_url"])) $cls_img->removeImages("product/",$getProduct[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }
@@ -189,7 +189,24 @@ class ProductController extends Controller
     }
 
     public function delProduct($id){
-        Product::find((int)$id)->delete();
+        $product = Product::find((int)$id)->delete();
+        if($product) {
+            if(!empty($product->img_list) && file_exists(BASE_IMG."product/".$product->img_list))
+               unlink(BASE_IMG."product/".$product->img_list);
+           if(!empty($product->img_detail) && file_exists(BASE_IMG."product/".$product->img_detail))
+               unlink(BASE_IMG."product/".$product->img_detail);
+           if(!empty($product->img1) && file_exists(BASE_IMG."product/".$product->img1))
+               unlink(BASE_IMG."product/".$product->img1);
+           if(!empty($product->img2) && file_exists(BASE_IMG."product/".$product->img2))
+               unlink(BASE_IMG."product/".$product->img2);
+           if(!empty($product->img3) && file_exists(BASE_IMG."product/".$product->img3))
+               unlink(BASE_IMG."product/".$product->img3);
+           if(!empty($product->img4) && file_exists(BASE_IMG."product/".$product->img4))
+               unlink(BASE_IMG."product/".$product->img4);
+           if(!empty($product->img5) && file_exists(BASE_IMG."product/".$product->img5))
+               unlink(BASE_IMG."product/".$product->img5);
+            $product->delete();
+        }
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }

@@ -171,9 +171,9 @@ class Img
     }
 
     // function upload
-    public function uploadImages(){
+    public function uploadImages($folder = ""){
       $result = array();
-      $url_upload = getcwd().$this->url_upload;
+      $url_upload = BASE_IMG.$folder;
       if(!empty($_FILES)){
         foreach ($_FILES as $key_name => $value) {
           $file_name = (!empty($value['name'])) ? $this->renamefile($value['name']) : "";
@@ -191,8 +191,8 @@ class Img
       return $result;
     }
 
-    public function removeImages($file_name){
-      $url = getcwd().$this->url_upload.$file_name;
+    public function removeImages($folder = "",$file_name){
+      $url = BASE_IMG.$folder.$file_name;
       if(!empty($file_name) && file_exists($url))  unlink($url);
 
 

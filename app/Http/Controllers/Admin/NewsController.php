@@ -14,8 +14,6 @@ use App\User;
 
 class NewsController extends Controller
 {
-    const LIMIT_PAGE   = 5;
-
     // news cate
     public function statusNewsCate($id){
         $newsCate = NewsCategory::findOrFail((int)$id);
@@ -32,7 +30,7 @@ class NewsController extends Controller
 
     public function listNewsCate(){
         $title    = "Danh sách thể loại tin";
-        $listNewsCate = NewsCategory::orderBy('id','DESC')->paginate(self::LIMIT_PAGE);
+        $listNewsCate = NewsCategory::orderBy('id','DESC')->paginate(LIMIT_PAGE);
         return view("admin.news.listNewsCate")
             ->with("title", $title)
             ->with("listNewsCate", $listNewsCate);
@@ -75,7 +73,7 @@ class NewsController extends Controller
             if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
             if(empty($errors)) {
                 $editNewsCate = NewsCategory::editNewsCate($params);
-                if($editNewsCate) $errors['finish'] = "Sủa thành công";
+                if($editNewsCate) $errors['finish'] = "Sửa thành công";
                 else $errors['finish'] = "Sửa thất bại";
             }
             $newsCate = $params;
@@ -120,7 +118,7 @@ class NewsController extends Controller
 
         $builder->orderByRaw("ord ASC, id DESC");
         $totalResult = $builder->count();
-        $listNews    = $builder->paginate(self::LIMIT_PAGE);
+        $listNews    = $builder->paginate(LIMIT_PAGE);
 
         $conditionPage = array(
             'txtSearch' => $txtSearch
@@ -143,7 +141,7 @@ class NewsController extends Controller
             if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
             if(empty($errors)) {
                 $clsImg = new Img();
-                $result = $clsImg->uploadImages();
+                $result = $clsImg->uploadImages("news/");
                 foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
                 $sNews = News::addNews($params);
                 if($sNews) {
@@ -173,11 +171,11 @@ class NewsController extends Controller
             if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên loại tin";
             if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages();
+                $result = $cls_img->uploadImages("news/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages($getNews[$key]);
+                        $cls_img->removeImages("news/",$getNews[$key]);
                     }
                     else {
                         if(empty($params[$key."_url"])) $cls_img->removeImages($getNews[$key]);
@@ -185,7 +183,7 @@ class NewsController extends Controller
                     }
                 }
                 $editNews = News::editNews($params);
-                if($editNews) $errors['finish'] = "Sủa thành công";
+                if($editNews) $errors['finish'] = "Sửa thành công";
                 else $errors['finish'] = "Sửa thất bại";
             }
             $getNews = $params;
@@ -198,7 +196,15 @@ class NewsController extends Controller
     }
 
     public function del($id){
-        News::find((int)$id)->delete();
+        $news = News::find((int)$id);
+        if($news) {
+            if(!empty($news->img_list) && file_exists(BASE_IMG."news/".$news->img_list))
+                unlink(BASE_IMG."news/".$news->img_list);
+             if(!empty($news->img_detail) && file_exists(BASE_IMG."news/".$news->img_detail))
+                unlink(BASE_IMG."news/".$news->img_detail);
+            $news->delete();
+        }
+
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }

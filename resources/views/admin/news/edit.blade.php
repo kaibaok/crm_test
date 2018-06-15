@@ -1,6 +1,6 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
-@php $url = "/public/upload/images/"  @endphp
+@php $url = URL_IMG."/news/"  @endphp
 
 @section('rightcontent')
 <div class="">

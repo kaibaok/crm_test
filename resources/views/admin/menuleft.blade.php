@@ -47,7 +47,12 @@
                     <ul class="nav child_menu">
                       <li><a href="/admin/news">Tin tức</a></li>
                       <li><a href="/admin/news-cate">Loại tin</a></li>
-                      <li><a href="/admin/slider">Slide quảng cáo</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-archive"></i> Top page <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/admin/slider">Slider</a></li>
+                      <li><a href="/admin/home-page">Home Page</a></li>
                     </ul>
                   </li>
                 </ul>

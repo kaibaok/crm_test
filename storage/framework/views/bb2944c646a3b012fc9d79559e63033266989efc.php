@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
-<?php  $url = "/public/upload/images/"   ?>
+<?php  $url = URL_IMG."/news/"   ?>
 
 <?php $__env->startSection('rightcontent'); ?>
 <div class="">

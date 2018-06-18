@@ -21,8 +21,7 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/news/add">Thêm mới</a> &nbsp;
-            <a class="btn btn-success" href="/admin/news/sort">Sắp xếp</a>
+            <a class="btn btn-primary" href="/admin/news/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -65,7 +64,7 @@
                       @endif
                     </td>
                     <td>{{$value->title}}</td>
-                    <td>{{$value->short_desc}}</td>
+                    <td>{{strip_tags($value->short_desc)}}</td>
                     <td>{{$listNewsCate[$value->id_cate]}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value->updated_at}}</td>
                     <td class="last"> <a href="/admin/news/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/news/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>

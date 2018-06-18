@@ -82,3 +82,6 @@ Route::any('slider/add', 'Admin\IndexController@addSlider');
 Route::any('slider/edit/{id?}', 'Admin\IndexController@editSlider');
 Route::get('slider/del/{id?}', 'Admin\IndexController@delSlider');
 Route::get('slider/status/{id?}', 'Admin\IndexController@statusSlider');
+
+// home page
+Route::any('home-page', 'Admin\IndexController@homePage');

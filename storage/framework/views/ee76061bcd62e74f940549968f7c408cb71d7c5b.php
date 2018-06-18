@@ -18,10 +18,9 @@
           </div>
           </form>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+        <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/news/add">Thêm mới</a> &nbsp;
-            <a class="btn btn-success" href="/admin/news/sort">Sắp xếp</a>
+            <a class="btn btn-primary" href="/admin/news/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -64,7 +63,7 @@
                       <?php endif; ?>
                     </td>
                     <td><?php echo e($value->title); ?></td>
-                    <td><?php echo e($value->short_desc); ?></td>
+                    <td><?php echo e(strip_tags($value->short_desc)); ?></td>
                     <td><?php echo e($listNewsCate[$value->id_cate]); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> <?php echo e($value->updated_at); ?></td>
                     <td class="last"> <a href="/admin/news/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/news/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>

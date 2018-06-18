@@ -17,10 +17,11 @@ class IndexController extends Controller
     	return view("admin.index.index")->with("view",array("title"=>$title));
     }
 
-    public function statusSlider($id){
+    public function statusSlider($id)
+    {
         $slider = Slider::findOrFail((int)$id);
-        if(!empty($Slider)){
-            if($Slider->status)
+        if(!empty($slider)){
+            if($slider->status)
                 $slider->status = 0;
             else
                 $slider->status = 1;
@@ -55,7 +56,8 @@ class IndexController extends Controller
             ->with("conditionPage", $conditionPage);
     }
 
-    public function addSlider(Request $request){
+    public function addSlider(Request $request)
+    {
         $title        = "Thêm Mới Slider";
         $errors       = NULL;
         $params       = $request->all();
@@ -80,7 +82,8 @@ class IndexController extends Controller
             ->with("params", $params);
     }
 
-    public function editSlider(Request $request){
+    public function editSlider(Request $request)
+    {
         $title        = "Sửa Slider";
         $id           = (int) $request->route('id');
         $cls_img      = new Img();
@@ -113,7 +116,8 @@ class IndexController extends Controller
             ->with("errors", $errors);
     }
 
-    public function delSlider($id){
+    public function delSlider($id)
+    {
         $slider = Slider::find((int)$id);
         if($slider){
             if(!empty($slider->img_detail) && file_exists(BASE_IMG."slider/".$slider->img_detail))
@@ -123,4 +127,19 @@ class IndexController extends Controller
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
+
+    public function homePage(Request $request)
+    {
+        $title   = "Trang HomePage";
+        $cls_img = new Img();
+        $errors  = NULL;
+        $params  = $request->all();
+        if ($request->isMethod('post')) {
+
+        }
+        return view("admin.index.homePage")
+            ->with("title" , $title )
+            ->with("errors", $errors);
+    }
+
 }

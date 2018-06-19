@@ -27,13 +27,13 @@
                 <form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
                 {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{isset($product['id']) ?  $product['id'] : '' }}"/>
-                    <input type="hidden" id="img_list_url" name="img_list_url" value="{{isset($product['img_list']) ?  $product['img_list'] : '' }}"/>
-                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="{{isset($product['img_detail']) ?  $product['img_detail'] : '' }}"/>
-                    <input type="hidden" id="img1_url" name="img1_url" value="{{isset($product['img1']) ?  $product['img1'] : '' }}"/>
-                    <input type="hidden" id="img2_url" name="img2_url" value="{{isset($product['img2']) ?  $product['img2'] : '' }}"/>
-                    <input type="hidden" id="img3_url" name="img3_url" value="{{isset($product['img3']) ?  $product['img3'] : '' }}"/>
-                    <input type="hidden" id="img4_url" name="img4_url" value="{{isset($product['img4']) ?  $product['img4'] : '' }}"/>
-                    <input type="hidden" id="img5_url" name="img5_url" value="{{isset($product['img5']) ?  $product['img5'] : '' }}"/>
+                    <input type="hidden" id="pimg_list_url" name="pimg_list_url" value="{{isset($product['pimg_list']) ?  $product['pimg_list'] : '' }}"/>
+                    <input type="hidden" id="pimg_detail_url" name="pimg_detail_url" value="{{isset($product['pimg_detail']) ?  $product['pimg_detail'] : '' }}"/>
+                    <input type="hidden" id="pimg1_url" name="pimg1_url" value="{{isset($product['pimg1']) ?  $product['pimg1'] : '' }}"/>
+                    <input type="hidden" id="pimg2_url" name="pimg2_url" value="{{isset($product['pimg2']) ?  $product['pimg2'] : '' }}"/>
+                    <input type="hidden" id="pimg3_url" name="pimg3_url" value="{{isset($product['pimg3']) ?  $product['pimg3'] : '' }}"/>
+                    <input type="hidden" id="pimg4_url" name="pimg4_url" value="{{isset($product['pimg4']) ?  $product['pimg4'] : '' }}"/>
+                    <input type="hidden" id="pimg5_url" name="pimg5_url" value="{{isset($product['pimg5']) ?  $product['pimg5'] : '' }}"/>
 
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
@@ -186,17 +186,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img_list']) && !empty($product['img_list']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img_list'] }}" />
+                                    @if(isset($product['pimg_list']) && !empty($product['pimg_list']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg_list'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_list">
+                                        <input type="file" name="pimg_list">
                                     </label>
-                                    @if(isset($product['img_list']) && !empty($product['img_list']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_list_url">Remove</button>
+                                    @if(isset($product['pimg_list']) && !empty($product['pimg_list']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg_list_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img_list_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg_list_url">Remove</button>
                                     @endif
                                 </div>
                             </div>
@@ -208,17 +208,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img_detail']) && !empty($product['img_detail']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img_detail'] }}" />
+                                    @if(isset($product['pimg_detail']) && !empty($product['pimg_detail']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg_detail'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="pimg_detail">
                                     </label>
-                                     @if(isset($product['img_detail']) && !empty($product['img_detail']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     @if(isset($product['pimg_detail']) && !empty($product['pimg_detail']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg_detail_url">Remove</button>
                                      @else
-                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg_detail_url" >Remove</button>
                                      @endif
                                 </div>
                             </div>
@@ -230,17 +230,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img1']) && !empty($product['img1']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img1'] }}" />
+                                    @if(isset($product['pimg1']) && !empty($product['pimg1']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg1'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img1">
+                                        <input type="file" name="pimg1">
                                     </label>
-                                    @if(isset($product['img1']) && !empty($product['img1']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img1_url">Remove</button>
+                                    @if(isset($product['pimg1']) && !empty($product['pimg1']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg1_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img1_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg1_url">Remove</button>
                                     @endif
                                 </div>
                             </div>
@@ -252,17 +252,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img2']) && !empty($product['img2']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img2'] }}" />
+                                    @if(isset($product['pimg2']) && !empty($product['pimg2']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg2'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img2">
+                                        <input type="file" name="pimg2">
                                     </label>
-                                    @if(isset($product['img2']) && !empty($product['img2']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img2_url">Remove</button>
+                                    @if(isset($product['pimg2']) && !empty($product['pimg2']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg2_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img2_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg2_url">Remove</button>
                                     @endif
                                 </div>
                             </div>
@@ -274,17 +274,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img3']) && !empty($product['img3']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img3'] }}" />
+                                    @if(isset($product['pimg3']) && !empty($product['pimg3']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg3'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img3">
+                                        <input type="file" name="pimg3">
                                     </label>
-                                    @if(isset($product['img3']) && !empty($product['img3']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img3_url">Remove</button>
+                                    @if(isset($product['pimg3']) && !empty($product['pimg3']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg3_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img3_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg3_url">Remove</button>
                                     @endif
                                 </div>
                             </div>
@@ -296,17 +296,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img4']) && !empty($product['img4']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img4'] }}" />
+                                    @if(isset($product['pimg4']) && !empty($product['pimg4']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg4'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img4">
+                                        <input type="file" name="pimg4">
                                     </label>
-                                    @if(isset($product['img4']) && !empty($product['img4']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img4_url">Remove</button>
+                                    @if(isset($product['pimg4']) && !empty($product['pimg4']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg4_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img4_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg4_url">Remove</button>
                                     @endif
                                 </div>
                             </div>
@@ -318,17 +318,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($product['img5']) && !empty($product['img5']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img5'] }}" />
+                                    @if(isset($product['pimg5']) && !empty($product['pimg5']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$product['pimg5'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img5">
+                                        <input type="file" name="pimg5">
                                     </label>
-                                    @if(isset($product['img5']) && !empty($product['img5']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img5_url">Remove</button>
+                                    @if(isset($product['pimg5']) && !empty($product['pimg5']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg5_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img5_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg5_url">Remove</button>
                                     @endif
                                 </div>
                             </div>

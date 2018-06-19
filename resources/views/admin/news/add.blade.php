@@ -108,7 +108,7 @@
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
-                                        <input type="file" name="img_list">
+                                        <input type="file" name="nimg_list">
                                     </label>
                                     <button type="button" class="btn btn-danger">Remove</button>
                                 </div>
@@ -124,7 +124,7 @@
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="nimg_detail">
                                     </label>
                                     <button type="button" class="btn btn-danger">Remove</button>
                                 </div>

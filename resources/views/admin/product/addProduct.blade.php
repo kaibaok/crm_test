@@ -172,7 +172,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img_list">
+				                        <input type="file" name="pimg_list">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -188,7 +188,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img_detail">
+				                        <input type="file" name="pimg_detail">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -204,7 +204,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img1">
+				                        <input type="file" name="pimg1">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -220,7 +220,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img2">
+				                        <input type="file" name="pimg2">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -236,7 +236,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img3">
+				                        <input type="file" name="pimg3">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -252,7 +252,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img4">
+				                        <input type="file" name="pimg4">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -268,7 +268,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img5">
+				                        <input type="file" name="pimg5">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>

@@ -191,20 +191,20 @@ class ProductController extends Controller
     public function delProduct($id){
         $product = Product::find((int)$id)->delete();
         if($product) {
-            if(!empty($product->img_list) && file_exists(BASE_IMG."product/".$product->img_list))
-               unlink(BASE_IMG."product/".$product->img_list);
-           if(!empty($product->img_detail) && file_exists(BASE_IMG."product/".$product->img_detail))
-               unlink(BASE_IMG."product/".$product->img_detail);
-           if(!empty($product->img1) && file_exists(BASE_IMG."product/".$product->img1))
-               unlink(BASE_IMG."product/".$product->img1);
-           if(!empty($product->img2) && file_exists(BASE_IMG."product/".$product->img2))
-               unlink(BASE_IMG."product/".$product->img2);
-           if(!empty($product->img3) && file_exists(BASE_IMG."product/".$product->img3))
-               unlink(BASE_IMG."product/".$product->img3);
-           if(!empty($product->img4) && file_exists(BASE_IMG."product/".$product->img4))
-               unlink(BASE_IMG."product/".$product->img4);
-           if(!empty($product->img5) && file_exists(BASE_IMG."product/".$product->img5))
-               unlink(BASE_IMG."product/".$product->img5);
+            if(!empty($product->pimg_list) && file_exists(BASE_IMG."product/".$product->pimg_list))
+               unlink(BASE_IMG."product/".$product->pimg_list);
+           if(!empty($product->pimg_detail) && file_exists(BASE_IMG."product/".$product->pimg_detail))
+               unlink(BASE_IMG."product/".$product->pimg_detail);
+           if(!empty($product->pimg1) && file_exists(BASE_IMG."product/".$product->pimg1))
+               unlink(BASE_IMG."product/".$product->pimg1);
+           if(!empty($product->pimg2) && file_exists(BASE_IMG."product/".$product->pimg2))
+               unlink(BASE_IMG."product/".$product->pimg2);
+           if(!empty($product->pimg3) && file_exists(BASE_IMG."product/".$product->pimg3))
+               unlink(BASE_IMG."product/".$product->pimg3);
+           if(!empty($product->pimg4) && file_exists(BASE_IMG."product/".$product->pimg4))
+               unlink(BASE_IMG."product/".$product->pimg4);
+           if(!empty($product->pimg5) && file_exists(BASE_IMG."product/".$product->pimg5))
+               unlink(BASE_IMG."product/".$product->pimg5);
             $product->delete();
         }
         $back_url = redirect()->getUrlGenerator()->previous();

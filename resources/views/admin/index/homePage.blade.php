@@ -18,6 +18,8 @@
     </div>
 
     <div class="clearfix"></div>
+    <form action="">
+    <input type="hidden" id="himg1_url" name="himg1_url" value="{{isset($product['himg1']) ?  $product['himg1'] : '' }}"/>
     <div class="row">
       <div class="col-md-6 col-xs-12">
         <div class="x_panel">
@@ -28,22 +30,23 @@
           <div class="x_content">
             <br />
             <div class="form-horizontal form-label-left input_mask">
+
                 <div class="item form-group image_upload">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh banner 1 </label>
                      <div class="col-md-9 col-sm-9 col-xs-12">
                         <div class="imageupload">
                             <div class="file-tab">
-                                @if(isset($product['img1']) && !empty($product['img1']))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img1'] }}" />
+                                @if(isset($product['himg1']) && !empty($product['himg1']))
+                                    <img style="width: 250px" class="thumbnail" src="{{ $url.$product['himg1'] }}" />
                                 @endif
                                 <label class="btn btn-dark btn-file">
                                     <span>Browse</span>
-                                    <input type="file" name="img1">
+                                    <input type="file" name="himg1">
                                 </label>
-                                @if(isset($product['img1']) && !empty($product['img1']))
-                                    <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img1_url">Remove</button>
+                                @if(isset($product['himg1']) && !empty($product['himg1']))
+                                    <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg1_url">Remove</button>
                                 @else
-                                    <button type="button" class="btn btn-danger" rel="img1_url">Remove</button>
+                                    <button type="button" class="btn btn-danger" rel="himg1_url">Remove</button>
                                 @endif
                             </div>
                         </div>
@@ -273,6 +276,8 @@
         </div>
       </div>
     </div>
+
+    </form>
 </div>
 @endsection
 

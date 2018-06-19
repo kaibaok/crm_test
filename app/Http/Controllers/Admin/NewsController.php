@@ -198,10 +198,10 @@ class NewsController extends Controller
     public function del($id){
         $news = News::find((int)$id);
         if($news) {
-            if(!empty($news->img_list) && file_exists(BASE_IMG."news/".$news->img_list))
-                unlink(BASE_IMG."news/".$news->img_list);
-             if(!empty($news->img_detail) && file_exists(BASE_IMG."news/".$news->img_detail))
-                unlink(BASE_IMG."news/".$news->img_detail);
+            if(!empty($news->nimg_list) && file_exists(BASE_IMG."news/".$news->nimg_list))
+                unlink(BASE_IMG."news/".$news->nimg_list);
+             if(!empty($news->nimg_detail) && file_exists(BASE_IMG."news/".$news->nimg_detail))
+                unlink(BASE_IMG."news/".$news->nimg_detail);
             $news->delete();
         }
 

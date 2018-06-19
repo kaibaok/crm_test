@@ -27,8 +27,8 @@
                 <form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{isset($news['id']) ?  $news['id'] : '' }}"/>
-                    <input type="hidden" id="img_list_url" name="img_list_url" value="{{isset($news['img_list']) ?  $news['img_list'] : '' }}"/>
-                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="{{isset($news['img_detail']) ?  $news['img_detail'] : '' }}"/>
+                    <input type="hidden" id="nimg_list_url" name="nimg_list_url" value="{{isset($news['nimg_list']) ?  $news['nimg_list'] : '' }}"/>
+                    <input type="hidden" id="nimg_detail_url" name="nimg_detail_url" value="{{isset($news['nimg_detail']) ?  $news['nimg_detail'] : '' }}"/>
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
@@ -109,17 +109,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($news['img_list']) && !empty($news['img_list']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$news['img_list'] }}" />
+                                    @if(isset($news['nimg_list']) && !empty($news['nimg_list']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$news['nimg_list'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_list">
+                                        <input type="file" name="nimg_list">
                                     </label>
-                                    @if(isset($news['img_list']) && !empty($news['img_list']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_list_url">Remove</button>
+                                    @if(isset($news['nimg_list']) && !empty($news['nimg_list']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="nimg_list_url">Remove</button>
                                     @else
-                                        <button type="button" class="btn btn-danger" rel="img_list_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="nimg_list_url">Remove</button>
                                     @endif
                                 </div>
                             </div>
@@ -131,17 +131,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($news['img_detail']) && !empty($news['img_detail']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$news['img_detail'] }}" />
+                                    @if(isset($news['nimg_detail']) && !empty($news['nimg_detail']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$news['nimg_detail'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="nimg_detail">
                                     </label>
-                                     @if(isset($news['img_detail']) && !empty($news['img_detail']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     @if(isset($news['nimg_detail']) && !empty($news['nimg_detail']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="nimg_detail_url">Remove</button>
                                      @else
-                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="nimg_detail_url" >Remove</button>
                                      @endif
                                 </div>
                             </div>

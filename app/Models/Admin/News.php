@@ -18,7 +18,7 @@ class News extends Model
     protected $fillable = [
         "id","id_cate","title","short_desc","desc",
         "created_at","updated_at","status","ord",
-        "img_list","img_detail","is_hot","seo_link"
+        "nimg_list","nimg_detail","is_hot","seo_link"
     ];
 
     public static function addNews($data){
@@ -26,16 +26,16 @@ class News extends Model
         if(isset($data)){
             try{
                 $status = News::create(array(
-                    "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
-                    "title"      => htmlspecialchars(trim($data["title"])),
-                    "short_desc" => $data["short_desc"],
-                    "desc"       => $data["desc"],
-                    "status"     => isset($data['status']) ? $data['status'] : 0,
-                    "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
-                    "img_list"   => $data['img_list'],
-                    "img_detail" => $data['img_detail'],
-                    "is_hot"     => isset($data["is_hot"]) ? (int) $data["is_hot"] : 0,
-                    "seo_link"   => isset($data["seo_link"]) ? trim($data["seo_link"]) : '',
+                    "id_cate"     => (int)htmlspecialchars(trim($data["id_cate"])),
+                    "title"       => htmlspecialchars(trim($data["title"])),
+                    "short_desc"  => $data["short_desc"],
+                    "desc"        => $data["desc"],
+                    "status"      => isset($data['status']) ? $data['status'] : 0,
+                    "created_at"  => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
+                    "nimg_list"   => $data['nimg_list'],
+                    "nimg_detail" => $data['nimg_detail'],
+                    "is_hot"      => isset($data["is_hot"]) ? (int) $data["is_hot"] : 0,
+                    "seo_link"    => isset($data["seo_link"]) ? trim($data["seo_link"]) : '',
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -48,16 +48,16 @@ class News extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
-                "title"      => htmlspecialchars(trim($data["title"])),
-                "short_desc" => $data["short_desc"],
-                "desc"       => $data["desc"],
-                "status"     => isset($data['status']) ? $data['status'] : 0,
-                "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
-                "img_list"   => $data['img_list'],
-                "img_detail" => $data['img_detail'],
-                "is_hot"     => isset($data["is_hot"]) ? (int) $data["is_hot"] : 0,
-                "seo_link"   => isset($data["seo_link"]) ? trim($data["seo_link"]) : '',
+                "id_cate"     => (int)htmlspecialchars(trim($data["id_cate"])),
+                "title"       => htmlspecialchars(trim($data["title"])),
+                "short_desc"  => $data["short_desc"],
+                "desc"        => $data["desc"],
+                "status"      => isset($data['status']) ? $data['status'] : 0,
+                "created_at"  => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
+                "nimg_list"   => $data['nimg_list'],
+                "nimg_detail" => $data['nimg_detail'],
+                "is_hot"      => isset($data["is_hot"]) ? (int) $data["is_hot"] : 0,
+                "seo_link"    => isset($data["seo_link"]) ? trim($data["seo_link"]) : '',
             );
             return News::where('id',(int)$data['id'])->update($arr_update);
         }

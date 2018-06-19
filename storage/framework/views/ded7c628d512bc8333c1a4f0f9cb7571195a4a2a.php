@@ -1,6 +1,6 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
-<div class="">
+<div>
     <div class="page-title">
       <div class="title_left">
         <h3><?php echo e($title); ?></h3>
@@ -8,19 +8,19 @@
       <div class="title_right">
         <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
           <form method="get">
-            <div class="input-group">
-                  <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-                  <input type="hidden" name="page" value="1">
-                  <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit" >Tìm</button>
-                  </span>
-            </div>
+          <div class="input-group">
+                <input type="hidden" name="_token" id="token_alproduct" value="<?php echo e(csrf_token()); ?>">
+                <input type="hidden" name="page" value="1">
+                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit" >Tìm</button>
+                </span>
+          </div>
           </form>
         </div>
         <div class="form-group pull-right">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/cate-product/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/event/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -38,8 +38,10 @@
                   <tr class="headings">
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
-                    <th class="column-title">Tên loại sản phẩm</th>
-                    <th class="column-title">Tên mục sản phẩm</th>
+                    <th class="column-title">Tên danh mục</th>
+                    <th class="column-title">Hình ảnh</th>
+                    <th class="column-title">Time Open</th>
+                    <th class="column-title">Time Close</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
@@ -49,25 +51,31 @@
                   <?php 
                     $no = 1;
                    ?>
-                  <?php foreach($listCategory as $value): ?>
+                  <?php foreach($listEvent as $value): ?>
                   <tr class="even pointer">
                     <td><?php echo e($no++); ?></td>
                     <td>
                       <?php if($value->status == 1): ?>
-                        <a href="/admin/cate-product/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                        <a href="/admin/event/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       <?php else: ?>
-                        <a href="/admin/cate-product/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a href="/admin/event/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                      <?php endif; ?>
+                    </td>
+                    <td>
+                      <?php if(!empty($value->eimg_detail) && file_exists(BASE_IMG."event/{$value->eimg_detail}")): ?>
+                        <img width="50px" src="<?php echo e(URL_IMG."event/".$value->eimg_detail); ?>" alt="<?php echo e($value->title); ?>">
                       <?php endif; ?>
                     </td>
                     <td><?php echo e($value->title); ?></td>
-                    <td><?php echo e($listItem[$value->item_id]); ?></td>
-                    <td class="last"> <a href="/admin/cate-product/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cate-product/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td><?php echo e($value->time_open); ?></td>
+                    <td><?php echo e($value->time_close); ?></td>
+                    <td class="last"> <a href="/admin/event/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/event/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                <?php echo e($listCategory->appends($conditionPage)->links()); ?>
+                <?php echo e($listEvent->appends($conditionPage)->links()); ?>
 
               </div>
             </div>

@@ -70,9 +70,8 @@ $(document).ready(function() {
     if($("textarea").hasClass('ckedit')) {
         $(".ckedit").each(function(index, el) {
             var id = $(this).attr('id');
-            var editor = CKEDITOR.replace( id, {
-                language: 'vi',
-                toolbarGroups: [
+            var tool = $(this).attr('tool');
+            var toolbarGroups = [
                     {"name":"basicstyles","groups":["basicstyles"]},
                     {"name":"links","groups":["links"]},
                     {"name":"paragraph","groups":["list","blocks"]},
@@ -80,7 +79,12 @@ $(document).ready(function() {
                     {"name":"insert","groups":["insert"]},
                     {"name":"styles","groups":["styles"]},
                     {"name":"about","groups":["about"]}
-                ],
+                ];
+            if(tool == 'basic')
+                toolbarGroups = [{"name":"document","groups":["mode"]}];
+            var editor = CKEDITOR.replace( id, {
+                language: 'vi',
+                toolbarGroups: toolbarGroups,
             });
             CKFinder.setupCKEditor( editor,"/public/admin/js/ckeditor/ckfinder/");
         });
@@ -89,11 +93,26 @@ $(document).ready(function() {
 
     if($("input").hasClass('date_picker')) {
         $(".date_picker").each(function(index, el) {
-            $("#"+ $(this).attr('id')).daterangepicker({
-                locale: {format: 'YYYY-MM-DD'},
-                singleDatePicker: true,
-                singleClasses: "picker_1",
-            });
+            var id =   $(this).attr('id');
+            if(id != "time_event") {
+                $("#"+ id).daterangepicker({
+                    locale: {format: 'YYYY-MM-DD'},
+                    singleDatePicker: true,
+                    singleClasses: "picker_1",
+                });
+            } else {
+                 $("#"+ id).daterangepicker({
+                    singleClasses: "picker_1",
+                    timePicker: true,
+                    timePickerSeconds: true,
+                    timePicker24Hour:  true,
+                    startDate: moment().startOf('hour'),
+                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    locale: {
+                      format: 'YYYY-MM-DD HH:mm:ss'
+                    }
+                });
+            }
         });
     }
 

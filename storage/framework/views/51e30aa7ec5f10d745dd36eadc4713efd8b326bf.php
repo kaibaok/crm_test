@@ -41,6 +41,7 @@
                     <th class="column-title">Hiển thị</th>
                     <th class="column-title">Mã Barcode</th>
                     <th class="column-title">Tên sản phẩm</th>
+                    <th class="column-title">Thương hiệu</th>
                     <th class="column-title">Loại sản phẩm</th>
                     <th class="column-title">Giá</th>
                     <th class="column-title">Thể loại</th>
@@ -56,9 +57,6 @@
                 <tbody id="tbl_alproduct">
                   <?php 
                     $no       = 1;
-                    $category = $listCategory;
-                    $type     = $listType;
-                    $colors   = $listColors;
                    ?>
 
                   <?php foreach($listProduct as $value): ?>
@@ -77,11 +75,12 @@
                     </td>
                     <td><?php echo e($value->code_id); ?></td>
                     <td><?php echo e($value->title); ?></td>
-                    <td><?php echo e($category[$value->id_cate]); ?></td>
+                    <td><?php echo e($listBrand[$value->brand]); ?></td>
+                    <td><?php echo e($listCategory[$value->id_cate]); ?></td>
                     <td><?php echo e($value->price); ?></td>
-                    <td><?php echo e($type[$value->type]); ?></td>
+                    <td><?php echo e($listType[$value->type]); ?></td>
                     <td> <?php foreach($colorChoose as $item): ?>
-                        <span style="background: <?php echo e($colors[$item]['code']); ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
+                        <span style="background: <?php echo e($listColors[$item]['code']); ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         <?php endforeach; ?>
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> <?php echo e($value->limit_at); ?></td>

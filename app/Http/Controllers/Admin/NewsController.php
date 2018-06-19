@@ -28,11 +28,25 @@ class NewsController extends Controller
         return redirect()->guest($back_url);
     }
 
-    public function listNewsCate(){
-        $title    = "Danh sách thể loại tin";
-        $listNewsCate = NewsCategory::orderBy('id','DESC')->paginate(LIMIT_PAGE);
+    public function listNewsCate(Request $request){
+        $title     = "Danh sách thể loại tin";
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = NewsCategory::select();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) { $builder->where('title','like',"%{$txtSearch}%"); }
+
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listNewsCate  = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array(
+            'txtSearch' => $txtSearch
+        );
+
         return view("admin.news.listNewsCate")
             ->with("title", $title)
+            ->with("conditionPage", $conditionPage)
             ->with("listNewsCate", $listNewsCate);
     }
 
@@ -60,7 +74,7 @@ class NewsController extends Controller
             ->with("errors", $errors)
             ->with("params", $params)
             ->with("listNewsCate", $listNewsCate);
-}
+    }
 
     public function editNewsCate(Request $request){
         $title  = "Sửa thể loại tin";

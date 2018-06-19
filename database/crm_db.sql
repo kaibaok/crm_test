@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2018 at 12:47 PM
+-- Generation Time: Jun 19, 2018 at 12:53 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -21,6 +21,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `crm_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brand`
+--
+
+CREATE TABLE `brand` (
+  `id` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bimg_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -98,6 +114,66 @@ INSERT INTO `colors` (`id`, `name`, `code`, `updated_at`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `title` text COLLATE utf8_unicode_ci NOT NULL,
+  `eimg_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `time_open` datetime NOT NULL,
+  `time_close` datetime NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `home_page`
+--
+
+CREATE TABLE `home_page` (
+  `id` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL,
+  `title1` text COLLATE utf8_unicode_ci,
+  `title2` text COLLATE utf8_unicode_ci,
+  `title3` text COLLATE utf8_unicode_ci,
+  `title4` text COLLATE utf8_unicode_ci,
+  `title5` text COLLATE utf8_unicode_ci,
+  `title6` text COLLATE utf8_unicode_ci,
+  `title7` text COLLATE utf8_unicode_ci,
+  `title8` text COLLATE utf8_unicode_ci,
+  `title9` text COLLATE utf8_unicode_ci,
+  `title10` text COLLATE utf8_unicode_ci,
+  `title11` text COLLATE utf8_unicode_ci,
+  `title12` text COLLATE utf8_unicode_ci,
+  `title13` text COLLATE utf8_unicode_ci,
+  `title14` text COLLATE utf8_unicode_ci,
+  `title15` text COLLATE utf8_unicode_ci,
+  `himg1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg5` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg6` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg7` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg8` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg9` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg10` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg11` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg12` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg13` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg14` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `himg15` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
@@ -112,8 +188,8 @@ CREATE TABLE `news` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `ord` int(11) NOT NULL,
-  `img_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nimg_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nimg_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_hot` tinyint(2) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -121,7 +197,7 @@ CREATE TABLE `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `id_cate`, `title`, `seo_link`, `short_desc`, `desc`, `created_at`, `updated_at`, `status`, `ord`, `img_list`, `img_detail`, `is_hot`) VALUES
+INSERT INTO `news` (`id`, `id_cate`, `title`, `seo_link`, `short_desc`, `desc`, `created_at`, `updated_at`, `status`, `ord`, `nimg_list`, `nimg_detail`, `is_hot`) VALUES
 (83, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-06-14 03:35:21', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
 (84, 0, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-06-14 03:37:39', 1, 0, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1);
 
@@ -191,24 +267,25 @@ CREATE TABLE `product` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `ord` int(11) NOT NULL,
-  `img_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `img5` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pimg5` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_new` tinyint(2) NOT NULL DEFAULT '0',
   `is_best_sell` tinyint(2) NOT NULL DEFAULT '0',
-  `seo_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `seo_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `brand` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `img_list`, `img_detail`, `img1`, `img2`, `img3`, `img4`, `img5`, `is_new`, `is_best_sell`, `seo_link`) VALUES
-(80, 0, '1528944889', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-13 20:24:02', 0, 5, '5b21dfd189018_b4c2f263c742d7ce4565211b60e21568.jpg', '', '', '', '', '', '', 0, 0, '');
+INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`) VALUES
+(80, 0, '1529395811', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-19 01:10:21', 0, 5, '5b21dfd189018_b4c2f263c742d7ce4565211b60e21568.jpg', '', '', '', '', '', '', 0, 0, 'test', 3);
 
 -- --------------------------------------------------------
 
@@ -289,8 +366,15 @@ CREATE TABLE `slider` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  `img_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `simg_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`) VALUES
+(85, 'tét', '', '2018-06-18 03:18:06', '2018-06-18 03:18:06', 1, '5b2785d278150_a5c6f3813d0d23b4042dd130542753cc.jpg');
 
 -- --------------------------------------------------------
 
@@ -338,6 +422,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `created_at`, 
 --
 
 --
+-- Indexes for table `brand`
+--
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -354,6 +445,18 @@ ALTER TABLE `cart_detail`
 -- Indexes for table `colors`
 --
 ALTER TABLE `colors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `home_page`
+--
+ALTER TABLE `home_page`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -430,6 +533,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
@@ -446,6 +555,18 @@ ALTER TABLE `cart_detail`
 --
 ALTER TABLE `colors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `home_page`
+--
+ALTER TABLE `home_page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -493,7 +614,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `tag`

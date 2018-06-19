@@ -146,26 +146,70 @@ class Img
     function folderImage($file_name){
       $arr_info = array();
       switch ($file_name) {
-        case 'img_list':
-            $arr_info['width']  =  250;
-            $arr_info['height'] =  250;
-          break;
-        case 'img_detail':
-            $arr_info['width']  =  400;
-            $arr_info['height'] =  400;
-          break;
-        case 'img_1':
-        case 'img_2':
-        case 'img_3':
-        case 'img_4':
-        case 'img_5':
-          $arr_info['width']  =  300;
-          $arr_info['height'] =  300;
-          break;
+        //home page
+        case 'himg1':
+        case 'himg2':
+        case 'himg3':
+        case 'himg4':
+          $arr_info['width']  =  472;
+          $arr_info['height'] =  269;
+        break;
+        case 'himg5':
+        case 'himg6':
+          $arr_info['width']  =  530;
+          $arr_info['height'] =  507;
+        case 'himg7':
+          $arr_info['width']  =  470;
+          $arr_info['height'] =  557;
+        break;
+        case 'himg8':
+          $arr_info['width']  =  476;
+          $arr_info['height'] =  290;
+        break;
+        case 'himg9':
+          $arr_info['width']  =  306;
+          $arr_info['height'] =  290;
+        break;
+        case 'himg10':
+          $arr_info['width']  =  353;
+          $arr_info['height'] =  596;
+        break;
+        case 'himg11':
+          $arr_info['width']  =  306;
+          $arr_info['height'] =  290;
+        break;
+        case 'himg12':
+          $arr_info['width']  =  476;
+          $arr_info['height'] =  290;
+        break;
+        case 'himg13':
+        case 'himg14':
+        case 'himg15':
+          $arr_info['width']  =  470;
+          $arr_info['height'] =  557;
+        break;
+        // slider
+        case 'simg_detail':
+          $arr_info['width']  =  1920;
+          $arr_info['height'] =  629;
+        break;
+        // product
+        case 'pimg_list':
+          $arr_info['width']  =  227;
+          $arr_info['height'] =  274;
+        break;
+        case 'pimg_detail':
+          $arr_info['width']  =  600;
+          $arr_info['height'] =  624;
+        break;
+        case 'bimg_detail':
+          $arr_info['width']  =  "auto";
+          $arr_info['height'] =  65;
+        break;
         default:
           $arr_info['width']  =  'auto';
           $arr_info['height'] =  'auto';
-          break;
+        break;
       }
       return $arr_info;
     }
@@ -194,7 +238,5 @@ class Img
     public function removeImages($folder = "",$file_name){
       $url = BASE_IMG.$folder.$file_name;
       if(!empty($file_name) && file_exists($url))  unlink($url);
-
-
     }
 }

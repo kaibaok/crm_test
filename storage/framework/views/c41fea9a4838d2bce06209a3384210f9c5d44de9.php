@@ -2,7 +2,7 @@
  <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="/admin" class="site_title"><i class="fa fa-paw"></i> <span>Shop QA !!!</span></a>
+              <a href="/admin" class="site_title"><i class="fa fa-paw"></i> <span>New Crm</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -13,7 +13,7 @@
                 <img src="/public/admin/images/img.jpg" class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Xin chào,</span>
+                <span>Hi,</span>
                 <h2><?php echo e($user->name); ?></h2>
               </div>
             </div>
@@ -30,6 +30,7 @@
                     <ul class="nav child_menu">
                       <li><a href="/admin/product">Sản phẩm</a></li>
                       <li><a href="/admin/item-product">Danh mục</a></li>
+                      <li><a href="/admin/brand">Thương hiệu</a></li>
                       <li><a href="/admin/cate-product">Loại sản phẩm</a></li>
                       <li><a href="/admin/type-product">Thể loại</a></li>
                       <li><a href="/admin/colors">Màu sắc</a></li>
@@ -47,6 +48,7 @@
                     <ul class="nav child_menu">
                       <li><a href="/admin/news">Tin tức</a></li>
                       <li><a href="/admin/news-cate">Loại tin</a></li>
+                      <li><a href="/admin/event">Sự kiện</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-archive"></i> Top page <span class="fa fa-chevron-down"></span></a>

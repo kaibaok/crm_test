@@ -85,3 +85,17 @@ Route::get('slider/status/{id?}', 'Admin\IndexController@statusSlider');
 
 // home page
 Route::any('home-page', 'Admin\IndexController@homePage');
+
+// brand
+Route::any('brand', 'Admin\ProductController@listBrand');
+Route::any('brand/add', 'Admin\ProductController@addBrand');
+Route::any('brand/edit/{id?}', 'Admin\ProductController@editBrand');
+Route::get('brand/del/{id?}', 'Admin\ProductController@delBrand');
+Route::get('brand/status/{id?}', 'Admin\ProductController@statusBrand');
+
+// event
+Route::any('event', 'Admin\IndexController@listEvent');
+Route::any('event/add', 'Admin\IndexController@addEvent');
+Route::any('event/edit/{id?}', 'Admin\IndexController@editEvent');
+Route::get('event/del/{id?}', 'Admin\IndexController@delEvent');
+Route::get('event/status/{id?}', 'Admin\IndexController@statusEvent');

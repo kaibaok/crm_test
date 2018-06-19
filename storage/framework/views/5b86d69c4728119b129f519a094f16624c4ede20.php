@@ -1,7 +1,6 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
-<?php /* set default url link */ ?>
-<?php  $url = "/public/upload/images/"   ?>
+<?php  $url = URL_IMG."/product/"   ?>
 
 <div class="">
     <div class="page-title">
@@ -28,16 +27,16 @@
                 <?php echo e(csrf_field()); ?>
 
                     <input type="hidden" name="id" value="<?php echo e(isset($product['id']) ?  $product['id'] : ''); ?>"/>
-                    <input type="hidden" id="img_list_url" name="img_list_url" value="<?php echo e(isset($product['img_list']) ?  $product['img_list'] : ''); ?>"/>
-                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="<?php echo e(isset($product['img_detail']) ?  $product['img_detail'] : ''); ?>"/>
-                    <input type="hidden" id="img1_url" name="img1_url" value="<?php echo e(isset($product['img1']) ?  $product['img1'] : ''); ?>"/>
-                    <input type="hidden" id="img2_url" name="img2_url" value="<?php echo e(isset($product['img2']) ?  $product['img2'] : ''); ?>"/>
-                    <input type="hidden" id="img3_url" name="img3_url" value="<?php echo e(isset($product['img3']) ?  $product['img3'] : ''); ?>"/>
-                    <input type="hidden" id="img4_url" name="img4_url" value="<?php echo e(isset($product['img4']) ?  $product['img4'] : ''); ?>"/>
-                    <input type="hidden" id="img5_url" name="img5_url" value="<?php echo e(isset($product['img5']) ?  $product['img5'] : ''); ?>"/>
+                    <input type="hidden" id="pimg_list_url" name="pimg_list_url" value="<?php echo e(isset($product['pimg_list']) ?  $product['pimg_list'] : ''); ?>"/>
+                    <input type="hidden" id="pimg_detail_url" name="pimg_detail_url" value="<?php echo e(isset($product['pimg_detail']) ?  $product['pimg_detail'] : ''); ?>"/>
+                    <input type="hidden" id="pimg1_url" name="pimg1_url" value="<?php echo e(isset($product['pimg1']) ?  $product['pimg1'] : ''); ?>"/>
+                    <input type="hidden" id="pimg2_url" name="pimg2_url" value="<?php echo e(isset($product['pimg2']) ?  $product['pimg2'] : ''); ?>"/>
+                    <input type="hidden" id="pimg3_url" name="pimg3_url" value="<?php echo e(isset($product['pimg3']) ?  $product['pimg3'] : ''); ?>"/>
+                    <input type="hidden" id="pimg4_url" name="pimg4_url" value="<?php echo e(isset($product['pimg4']) ?  $product['pimg4'] : ''); ?>"/>
+                    <input type="hidden" id="pimg5_url" name="pimg5_url" value="<?php echo e(isset($product['pimg5']) ?  $product['pimg5'] : ''); ?>"/>
 
                     <div class="item form-group">
-                        <label class="control-label col-md-2 col-sm-2b col-xs-12">Hiển thị</label>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                             <div id="status" class="btn-group" data-toggle="buttons">
                               <label><input type="radio" class="flat" name="status" value="0" <?php if(isset($product['status']) && $product['status'] == 0): ?> checked <?php endif; ?> /> Ẩn </label>&nbsp;
@@ -75,6 +74,15 @@
                         <?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
                     </div>
 
+                    <div class="item form-group <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Seo Link <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($product['seo_link']) ?  $product['seo_link'] : ''); ?>" >
+                        </div>
+                        <?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
+                    </div>
+
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phẩm <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -82,6 +90,20 @@
                                 <?php if(isset($listCategory)): ?>
                                     <?php foreach($listCategory as $key => $value): ?>
                                         <?php $selected = ""; if(isset($product['id_cate']) && $key ==  $product['id_cate']) $selected = "selected"; ?>
+                                            <option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Thương hiệu <span class="required">*</span></label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <select class="form-control" name="brand">
+                                <?php if(isset($listBrand)): ?>
+                                    <?php foreach($listBrand as $key => $value): ?>
+                                        <?php $selected = ""; if(isset($product['brand']) && $key ==  $product['brand']) $selected = "selected"; ?>
                                             <option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
@@ -180,17 +202,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img_list']) && !empty($product['img_list'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img_list']); ?>" />
+                                    <?php if(isset($product['pimg_list']) && !empty($product['pimg_list'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg_list']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_list">
+                                        <input type="file" name="pimg_list">
                                     </label>
-                                    <?php if(isset($product['img_list']) && !empty($product['img_list'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_list_url">Remove</button>
+                                    <?php if(isset($product['pimg_list']) && !empty($product['pimg_list'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg_list_url">Remove</button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img_list_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg_list_url">Remove</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -202,17 +224,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img_detail']) && !empty($product['img_detail'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img_detail']); ?>" />
+                                    <?php if(isset($product['pimg_detail']) && !empty($product['pimg_detail'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg_detail']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="pimg_detail">
                                     </label>
-                                     <?php if(isset($product['img_detail']) && !empty($product['img_detail'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     <?php if(isset($product['pimg_detail']) && !empty($product['pimg_detail'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg_detail_url">Remove</button>
                                      <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg_detail_url" >Remove</button>
                                      <?php endif; ?>
                                 </div>
                             </div>
@@ -224,17 +246,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img1']) && !empty($product['img1'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img1']); ?>" />
+                                    <?php if(isset($product['pimg1']) && !empty($product['pimg1'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg1']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img1">
+                                        <input type="file" name="pimg1">
                                     </label>
-                                    <?php if(isset($product['img1']) && !empty($product['img1'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img1_url">Remove</button>
+                                    <?php if(isset($product['pimg1']) && !empty($product['pimg1'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg1_url">Remove</button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img1_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg1_url">Remove</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -246,17 +268,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img2']) && !empty($product['img2'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img2']); ?>" />
+                                    <?php if(isset($product['pimg2']) && !empty($product['pimg2'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg2']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img2">
+                                        <input type="file" name="pimg2">
                                     </label>
-                                    <?php if(isset($product['img2']) && !empty($product['img2'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img2_url">Remove</button>
+                                    <?php if(isset($product['pimg2']) && !empty($product['pimg2'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg2_url">Remove</button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img2_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg2_url">Remove</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -268,17 +290,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img3']) && !empty($product['img3'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img3']); ?>" />
+                                    <?php if(isset($product['pimg3']) && !empty($product['pimg3'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg3']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img3">
+                                        <input type="file" name="pimg3">
                                     </label>
-                                    <?php if(isset($product['img3']) && !empty($product['img3'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img3_url">Remove</button>
+                                    <?php if(isset($product['pimg3']) && !empty($product['pimg3'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg3_url">Remove</button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img3_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg3_url">Remove</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -290,17 +312,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img4']) && !empty($product['img4'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img4']); ?>" />
+                                    <?php if(isset($product['pimg4']) && !empty($product['pimg4'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg4']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img4">
+                                        <input type="file" name="pimg4">
                                     </label>
-                                    <?php if(isset($product['img4']) && !empty($product['img4'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img4_url">Remove</button>
+                                    <?php if(isset($product['pimg4']) && !empty($product['pimg4'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg4_url">Remove</button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img4_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg4_url">Remove</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -312,17 +334,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($product['img5']) && !empty($product['img5'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['img5']); ?>" />
+                                    <?php if(isset($product['pimg5']) && !empty($product['pimg5'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$product['pimg5']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img5">
+                                        <input type="file" name="pimg5">
                                     </label>
-                                    <?php if(isset($product['img5']) && !empty($product['img5'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img5_url">Remove</button>
+                                    <?php if(isset($product['pimg5']) && !empty($product['pimg5'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="pimg5_url">Remove</button>
                                     <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img5_url">Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="pimg5_url">Remove</button>
                                     <?php endif; ?>
                                 </div>
                             </div>

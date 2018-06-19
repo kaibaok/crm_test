@@ -21,54 +21,47 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
+				<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
 				<?php echo e(csrf_field()); ?>
 
-					<input type="hidden" name="id" value="<?php echo e($item->id); ?>"/>
-					<div class="form-group">
+					<input type="hidden" name="id" value="<?php echo e($item['id']); ?>"/>
+					<div class="item form-group">
 						<label class="control-label col-md-4 col-sm-4 col-xs-12">Hiển thị</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
-		                      <label><input type="radio" class="flat" name="status" value="0" <?php if(isset($item->status) && $item->status == 0): ?> checked <?php endif; ?> /> Ẩn </label>&nbsp;
-		                      <label><input type="radio" class="flat" name="status"  value="1" <?php if(isset($item->status) && $item->status == 1): ?> checked <?php endif; ?> /> Hiện</label>
+		                      <label><input type="radio" class="flat" name="status" value="0" <?php if(isset($item['status']) && $item['status'] == 0): ?> checked <?php endif; ?> /> Ẩn </label>&nbsp;
+		                      <label><input type="radio" class="flat" name="status"  value="1" <?php if(isset($item['status']) && $item['status'] == 1): ?> checked <?php endif; ?> /> Hiện</label>
 							</div>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại <span class="required">*</span>
+					<div class="item form-group <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên danh mục <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" required="required" value="<?php echo e(isset($item->title) ? $item->title : ''); ?>">
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($item['title']) ? $item['title'] : ''); ?>">
 						</div>
+						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
 
-					<div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Thể loại <span class="required">*</span></label>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <select class="form-control" name="item_id">
-                                <?php if(isset($listItem)): ?>
-                                    <?php foreach($listItem as $key => $value): ?>
-                                        <?php $selected = ""; if(isset($item->item_id) && $key ==  $item->item_id) $selected = "selected"; ?>
-                                            <option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </select>
-                        </div>
-                    </div>
+					<div class="item form-group <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Seo Link<span class="required">*</span>
+						</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($item['seo_link']) ? $item['seo_link'] : ''); ?>">
+						</div>
+						<?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
+					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
 						<span class="help-block">
-							<strong>
-								<?php echo e($errors); ?>
-
-							</strong>
+							<strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
 						</span>
 						</div>
 					</div>
 					<div class="ln_solid"></div>
-					<div class="form-group">
+					<div class="item form-group">
 						<div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
 						<button type="reset" class="btn btn-primary">Reset</button>
 						<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>

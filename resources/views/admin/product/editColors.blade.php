@@ -57,7 +57,6 @@
 					<div class="ln_solid"></div>
 					<div class="item form-group">
 						<div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
-						<button type="reset" class="btn btn-primary">Reset</button>
 						<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 						</div>
 					</div>

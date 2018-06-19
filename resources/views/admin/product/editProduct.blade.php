@@ -98,6 +98,20 @@
                     </div>
 
                     <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Thương hiệu <span class="required">*</span></label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <select class="form-control" name="brand">
+                                @if (isset($listBrand))
+                                    @foreach ($listBrand as $key => $value)
+                                        <?php $selected = ""; if(isset($product['brand']) && $key ==  $product['brand']) $selected = "selected"; ?>
+                                            <option value="{{$key}}" {{$selected}}>{{$value}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Thể loại <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select class="form-control" name="type">
@@ -338,18 +352,13 @@
                     <div class="item form-group">
                         <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
                         <span class="help-block">
-                            <strong>
-                                @if(isset($errors['finish']))
-                                    {{$errors['finish']}}
-                                @endif
-                            </strong>
+                            <strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
                         </span>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                        <button type ="reset" class="btn btn-primary">Reset</button>
                         <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                         <input  type ="hidden" value="{{time()}}" name="code_id">
                         </div>

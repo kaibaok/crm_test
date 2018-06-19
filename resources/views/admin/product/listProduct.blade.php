@@ -42,6 +42,7 @@
                     <th class="column-title">Hiển thị</th>
                     <th class="column-title">Mã Barcode</th>
                     <th class="column-title">Tên sản phẩm</th>
+                    <th class="column-title">Thương hiệu</th>
                     <th class="column-title">Loại sản phẩm</th>
                     <th class="column-title">Giá</th>
                     <th class="column-title">Thể loại</th>
@@ -57,9 +58,6 @@
                 <tbody id="tbl_alproduct">
                   @php
                     $no       = 1;
-                    $category = $listCategory;
-                    $type     = $listType;
-                    $colors   = $listColors;
                   @endphp
 
                   @foreach ($listProduct as $value)
@@ -78,11 +76,12 @@
                     </td>
                     <td>{{$value->code_id}}</td>
                     <td>{{$value->title}}</td>
-                    <td>{{$category[$value->id_cate]}}</td>
+                    <td>{{$listBrand[$value->brand]}}</td>
+                    <td>{{$listCategory[$value->id_cate]}}</td>
                     <td>{{$value->price}}</td>
-                    <td>{{$type[$value->type]}}</td>
+                    <td>{{$listType[$value->type]}}</td>
                     <td> @foreach ($colorChoose as $item)
-                        <span style="background: {{$colors[$item]['code']}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
+                        <span style="background: {{$listColors[$item]['code']}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         @endforeach
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value->limit_at}}</td>

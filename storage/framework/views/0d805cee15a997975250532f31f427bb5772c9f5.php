@@ -20,7 +20,7 @@
         </div>
         <div class="form-group pull-right">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/cate-product/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/brand/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -38,8 +38,8 @@
                   <tr class="headings">
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
-                    <th class="column-title">Tên loại sản phẩm</th>
-                    <th class="column-title">Tên mục sản phẩm</th>
+                    <th class="column-title">Tên danh mục</th>
+                    <th class="column-title">Hình ảnh</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
@@ -49,25 +49,29 @@
                   <?php 
                     $no = 1;
                    ?>
-                  <?php foreach($listCategory as $value): ?>
+                  <?php foreach($listBrand as $value): ?>
                   <tr class="even pointer">
                     <td><?php echo e($no++); ?></td>
                     <td>
                       <?php if($value->status == 1): ?>
-                        <a href="/admin/cate-product/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                        <a href="/admin/brand/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       <?php else: ?>
-                        <a href="/admin/cate-product/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a href="/admin/brand/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                      <?php endif; ?>
+                    </td>
+                    <td>
+                      <?php if(!empty($value->bimg_detail) && file_exists(BASE_IMG."brand/{$value->bimg_detail}")): ?>
+                        <img width="50px" src="<?php echo e(URL_IMG."brand/".$value->bimg_detail); ?>" alt="<?php echo e($value->title); ?>">
                       <?php endif; ?>
                     </td>
                     <td><?php echo e($value->title); ?></td>
-                    <td><?php echo e($listItem[$value->item_id]); ?></td>
-                    <td class="last"> <a href="/admin/cate-product/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cate-product/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td class="last"> <a href="/admin/brand/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/brand/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                <?php echo e($listCategory->appends($conditionPage)->links()); ?>
+                <?php echo e($listBrand->appends($conditionPage)->links()); ?>
 
               </div>
             </div>

@@ -24,7 +24,7 @@
 				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
 				<?php echo e(csrf_field()); ?>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="status" class="btn-group" data-toggle="buttons">
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_new" class="btn-group" data-toggle="buttons">
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm bán chạy</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="editProduct" class="btn-group" data-toggle="buttons">
@@ -53,7 +53,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="item form-group  <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
+					<div class="item form-group <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
@@ -61,8 +61,15 @@
 						</div>
 						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
-
-					<div class="form-group">
+					<div class="item form-group <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Seo Link <span class="required">*</span>
+						</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($params['seo_link']) ? $params['seo_link'] : ''); ?>" >
+						</div>
+						<?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
+					</div>
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phẩm <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="id_cate">
@@ -76,7 +83,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Thể loại <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="type">
@@ -90,7 +97,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="short_desc" id="short_desc" class="ckedit">
@@ -102,7 +109,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
                   			<textarea  name="desc" id="desc" class="ckedit">
@@ -149,7 +156,7 @@
                       	<?php if(isset($errors['colors'])): ?> <div class="alert"><?php echo e($errors['colors']); ?></div> <?php endif; ?>
 					</div>
 
-					<div class="form-group ">
+					<div class="item form-group ">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
@@ -159,7 +166,7 @@
                       	</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -167,7 +174,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img_list">
+				                        <input type="file" name="pimg_list">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -175,7 +182,7 @@
 						</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -183,7 +190,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img_detail">
+				                        <input type="file" name="pimg_detail">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -191,7 +198,7 @@
 						</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 1 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -199,7 +206,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img1">
+				                        <input type="file" name="pimg1">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -207,7 +214,7 @@
 						</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 2</label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -215,7 +222,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img2">
+				                        <input type="file" name="pimg2">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -223,7 +230,7 @@
 						</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 3 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -231,7 +238,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img3">
+				                        <input type="file" name="pimg3">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -239,7 +246,7 @@
 						</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 4 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -247,7 +254,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img4">
+				                        <input type="file" name="pimg4">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -255,7 +262,7 @@
 						</div>
 					</div>
 
-					<div class="form-group image_upload">
+					<div class="item form-group image_upload">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh item 5 </label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
@@ -263,7 +270,7 @@
 				                    <label class="btn btn-dark btn-file">
 				                        <span>Browse</span>
 				                        <!-- The file is stored here. -->
-				                        <input type="file" name="img5">
+				                        <input type="file" name="pimg5">
 				                    </label>
 				                    <button type="button" class="btn btn-danger">Remove</button>
 					            </div>
@@ -271,7 +278,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="item form-group">
 						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
 						<span class="help-block">
 							<strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
@@ -280,7 +287,7 @@
 					</div>
 
 					<div class="ln_solid"></div>
-					<div class="form-group">
+					<div class="item form-group">
 						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
 							<button type ="reset" class="btn btn-primary">Reset</button>
 							<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>

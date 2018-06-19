@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Colors;
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
+use App\Models\Admin\Brand;
 use App\Models\Admin\ProductType;
 use App\Models\Admin\ProductItem;
 use App\Events\Img;
@@ -18,12 +19,25 @@ use App\Models\Admin\Cart;
 class ProductController extends Controller
 {
     //  crod Colors
-    public function listColors(){
+    public function listColors(Request $request){
         $title      = "Danh Sách Màu";
-        $listColors = Colors::paginate(LIMIT_PAGE);
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = Colors::select();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) {
+            $builder->where('name','like',"%{$txtSearch}%");
+        }
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listColors = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array('txtSearch' => $txtSearch);
+
         return view("admin.product.listColors")
             ->with("title", $title)
-            ->with("listColors", $listColors);
+            ->with("listColors", $listColors)
+            ->with("conditionPage", $conditionPage);
     }
 
     public function addColors(Request $request){
@@ -86,6 +100,7 @@ class ProductController extends Controller
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
+        $listBrand    = Brand::getList();
 
         if(!empty($txtSearch)) {
             $builder->where('title','like',"%{$txtSearch}%")
@@ -106,6 +121,7 @@ class ProductController extends Controller
             ->with("listCategory", $listCategory)
             ->with("listType", $listType)
             ->with("listProduct", $listProduct)
+            ->with("listBrand", $listBrand)
             ->with("conditionPage", $conditionPage);
 	}
 
@@ -115,6 +131,7 @@ class ProductController extends Controller
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
+        $listBrand    = Brand::getList();
         $params       = $request->all();
         if ($request->isMethod('post')) {
             if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tiêu đề";
@@ -141,6 +158,7 @@ class ProductController extends Controller
             ->with("listColors", $listColors)
             ->with("listCategory", $listCategory)
             ->with("listType", $listType)
+            ->with("listBrand", $listBrand)
             ->with("errors", $errors)
             ->with("params", $params);
     }
@@ -153,6 +171,7 @@ class ProductController extends Controller
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
+        $listBrand    = Brand::getList();
         $getProduct   = Product::findOrFail((int)$id)->toArray();
         $params       = $request->all();
         if ($request->isMethod('post')) {
@@ -174,14 +193,15 @@ class ProductController extends Controller
                     }
                 }
                 $statusUpdate = Product::editProduct($params);
-                if($statusUpdate) $errors['finish'] = "Thêm thành công";
-                else $errors['finish'] = "Thêm thất bại";
+                if($statusUpdate) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
             }
             $getProduct = $params;
         }
         return view("admin.product.editProduct")
             ->with("title" , $title )
             ->with("product", $getProduct)
+            ->with("listBrand", $listBrand)
             ->with("listColors", $listColors)
             ->with("listCategory", $listCategory)
             ->with("listType", $listType)
@@ -212,15 +232,27 @@ class ProductController extends Controller
     }
 
     //  crod CateProduct
-    public function listCateProduct(){
-        $title        = "Danh Sách Loại Sản Phẩm";
-        $listItem     = ProductItem::getList();
-        $listCategory = ProductCategory::orderBy('id','DESC')
-            ->paginate(LIMIT_PAGE);
-		return view("admin.product.listCateProduct")
-			->with("title", $title)
+    public function listCateProduct(Request $request){
+        $title     = "Danh Sách Loại Sản Phẩm";
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = ProductCategory::select();
+        $listItem  = ProductItem::getList();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) {
+            $builder->where('title','like',"%{$txtSearch}%");
+        }
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listCategory = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array('txtSearch' => $txtSearch);
+
+        return view("admin.product.listCateProduct")
+            ->with("title", $title)
             ->with("listItem", $listItem)
-			->with("listCategory", $listCategory);
+            ->with("listCategory", $listCategory)
+            ->with("conditionPage", $conditionPage);
 	}
 
     public function addCateProduct(Request $request){
@@ -281,12 +313,26 @@ class ProductController extends Controller
     }
 
     //  crod TypeProduct
-    public function listTypeProduct(){
-        $title    = "Danh sách thể loại sản phẩm";
-        $listType = ProductType::orderBy('id','DESC')->paginate(LIMIT_PAGE);
+    public function listTypeProduct(Request $request){
+        $title     = "Danh sách thể loại sản phẩm";
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = ProductType::select();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) {
+            $builder->where('title','like',"%{$txtSearch}%");
+        }
+
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listType = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array('txtSearch' => $txtSearch);
+
         return view("admin.product.listTypeProduct")
             ->with("title", $title)
-            ->with("listType", $listType);
+            ->with("listType", $listType)
+            ->with("conditionPage", $conditionPage);
     }
 
     public function addTypeProduct(Request $request){
@@ -381,7 +427,7 @@ class ProductController extends Controller
 
     //  crod Cart Product
     public function listCart (){
-        $title     = "Danh Sách Đặt Hàng";
+        $title  = "Danh Sách Đặt Hàng";
         $m_cart = new Cart();
         if(!empty($_GET)){
             if(!empty($_GET['userid'])) $m_cart  = $m_cart->where('userid','like',"%{$_GET['userid']}%");
@@ -426,17 +472,29 @@ class ProductController extends Controller
         }
         return view("admin.product.addCart")->with("view",array(
             "title" => $title,
-            "errors"        => $errors));
+            "errors" => $errors));
     }
 
 
     //  crod ProductItem
-    public function listItemProduct(){
+    public function listItemProduct(Request $request){
         $title    = "Danh sách mục sản phẩm";
-        $listItem = ProductItem::orderBy('id','DESC')->paginate(LIMIT_PAGE);
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = ProductItem::select();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) {$builder->where('title','like',"%{$txtSearch}%"); }
+
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listItem = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array('txtSearch' => $txtSearch);
+
         return view("admin.product.listItemProduct")
             ->with("title", $title)
-            ->with("listItem", $listItem);
+            ->with("listItem", $listItem)
+            ->with("conditionPage", $conditionPage);
     }
 
     public function addItemProduct(Request $request){
@@ -484,7 +542,7 @@ class ProductController extends Controller
         return view("admin.product.editItemProduct")
             ->with("title", $title)
             ->with("item", $getItem)
-            ->with("errors"  , $errors);
+            ->with("errors", $errors);
     }
 
     public function delItemProduct($id){
@@ -537,5 +595,105 @@ class ProductController extends Controller
         }
 
         return response()->json(array("status" => true));
+    }
+
+    // brand
+    public function statusBrand($id){
+        $brand = Brand::findOrFail((int)$id);
+        if(!empty($brand)){
+            if($brand->status)
+                $brand->status = 0;
+            else
+                $brand->status = 1;
+        }
+        echo $brand->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
+    public function listBrand(Request $request){
+        $title     = "Danh sách thương hiệu";
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = Brand::select();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) { $builder->where('title','like',"%{$txtSearch}%"); }
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listBrand   = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array('txtSearch' => $txtSearch);
+
+        return view("admin.product.listBrand")
+            ->with("title", $title)
+            ->with("listBrand", $listBrand)
+            ->with("conditionPage", $conditionPage);
+    }
+
+    public function addBrand(Request $request){
+        $title      = "Thêm mới thương hiệu";
+        $errors     = NULL;
+        $listStatus = $this->getOption('listStatus');
+        $params     = $request->all();
+        if ($request->isMethod('post')) {
+            if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tên loại tin";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $clsImg = new Img();
+                $result = $clsImg->uploadImages("brand/");
+                foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
+                $addBrand = Brand::addBrand($params);
+                if($addBrand) {
+                    $params = array();
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
+            }
+        }
+        return view("admin.product.addBrand")
+            ->with("title", $title)
+            ->with("errors", $errors)
+            ->with("params", $params);
+    }
+
+    public function editBrand(Request $request){
+        $title  = "Sửa thương hiệu";
+        $id     = (int) $request->route('id');
+        $errors = NULL;
+        $brand  = Brand::findOrFail((int)$id)->toArray();
+        $params = $request->all();
+        if ($request->isMethod('post')) {
+            if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tên loại tin";
+            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($errors)) {
+                $result = $cls_img->uploadImages("brand/");
+                foreach ($_FILES as $key => $value) {
+                    if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
+                        $params[$key] = $result[$key];
+                        $cls_img->removeImages("brand/",$getNews[$key]);
+                    }
+                    else {
+                        if(empty($params[$key."_url"])) $cls_img->removeImages($getNews[$key]);
+                        $params[$key] = $params[$key."_url"];
+                    }
+                }
+                $editBrand = Brand::editBrand($params);
+                if($editBrand) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
+            $brand = $params;
+        }
+        return view("admin.product.editBrand")
+            ->with("title", $title)
+            ->with("brand", $brand)
+            ->with("errors", $errors);
+    }
+
+    public function delBrand($id){
+        $existProduct = Product::where("brand","=" , $id)->count();
+        if(!$existProduct) Brand::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
 }

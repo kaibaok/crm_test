@@ -21,7 +21,7 @@
         </div>
         <div class="form-group pull-right">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/cate-product/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/brand/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -39,8 +39,8 @@
                   <tr class="headings">
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
-                    <th class="column-title">Tên loại sản phẩm</th>
-                    <th class="column-title">Tên mục sản phẩm</th>
+                    <th class="column-title">Tên danh mục</th>
+                    <th class="column-title">Hình ảnh</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
@@ -50,25 +50,29 @@
                   @php
                     $no = 1;
                   @endphp
-                  @foreach ($listCategory as $value)
+                  @foreach ($listBrand as $value)
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>
                       @if ($value->status == 1)
-                        <a href="/admin/cate-product/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                        <a href="/admin/brand/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <a href="/admin/cate-product/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a href="/admin/brand/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                      @endif
+                    </td>
+                    <td>
+                      @if (!empty($value->bimg_detail) && file_exists(BASE_IMG."brand/{$value->bimg_detail}"))
+                        <img width="50px" src="{{URL_IMG."brand/".$value->bimg_detail}}" alt="{{$value->title}}">
                       @endif
                     </td>
                     <td>{{$value->title}}</td>
-                    <td>{{$listItem[$value->item_id]}}</td>
-                    <td class="last"> <a href="/admin/cate-product/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cate-product/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td class="last"> <a href="/admin/brand/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/brand/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$listCategory->appends($conditionPage)->links()}}
+                {{$listBrand->appends($conditionPage)->links()}}
               </div>
             </div>
           </div>

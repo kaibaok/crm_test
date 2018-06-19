@@ -1,7 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
-<div class="">
+<div>
     <div class="page-title">
       <div class="title_left">
         <h3>{{$title}}</h3>
@@ -21,7 +21,7 @@
         </div>
         <div class="form-group pull-right">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/news-cate/add">Thêm mới</a>
+            <a class="btn btn-primary" href="/admin/event/add">Thêm mới</a>
           </div>
         </div>
       </div>
@@ -40,6 +40,9 @@
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
                     <th class="column-title">Tên danh mục</th>
+                    <th class="column-title">Hình ảnh</th>
+                    <th class="column-title">Time Open</th>
+                    <th class="column-title">Time Close</th>
                     <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
@@ -49,24 +52,31 @@
                   @php
                     $no = 1;
                   @endphp
-                  @foreach ($listNewsCate as $value)
+                  @foreach ($listEvent as $value)
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>
                       @if ($value->status == 1)
-                        <a href="/admin/news-cate/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
+                        <a href="/admin/event/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye" title="Hiển thị"></i></a>
                       @else
-                        <a href="/admin/news-cate/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
+                        <a href="/admin/event/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
-                    <td>{{$value->title}}</td>
-                    <td class="last"> <a href="/admin/news-cate/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/news-cate/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td>
+                      @if (!empty($value->eimg_detail) && file_exists(BASE_IMG."event/{$value->eimg_detail}"))
+                        <img width="50px" src="{{URL_IMG."event/".$value->eimg_detail}}" alt="{{$value->title}}">
+                      @endif
+                    </td>
+                    <td>{{strip_tags($value->title)}}</td>
+                    <td>{{$value->time_open}}</td>
+                    <td>{{$value->time_close}}</td>
+                    <td class="last"> <a href="/admin/event/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/event/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$listNewsCate->appends($conditionPage)->links()}}
+                {{$listEvent->appends($conditionPage)->links()}}
               </div>
             </div>
           </div>

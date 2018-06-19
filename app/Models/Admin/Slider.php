@@ -18,7 +18,7 @@ class Slider extends Model
     protected $fillable = [
         "id","title","link",
         "created_at","updated_at","status",
-        "img_detail",
+        "simg_detail",
     ];
 
     public static function addSlider($data){

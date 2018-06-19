@@ -27,7 +27,7 @@
                 <form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{isset($slider['id']) ?  $slider['id'] : '' }}"/>
-                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="{{isset($slider['img_detail']) ?  $slider['img_detail'] : '' }}"/>
+                    <input type="hidden" id="simg_detail_url" name="simg_detail_url" value="{{isset($slider['simg_detail']) ?  $slider['simg_detail'] : '' }}"/>
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
@@ -59,17 +59,17 @@
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    @if(isset($slider['img_detail']) && !empty($slider['img_detail']))
-                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$slider['img_detail'] }}" />
+                                    @if(isset($slider['simg_detail']) && !empty($slider['simg_detail']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$slider['simg_detail'] }}" />
                                     @endif
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="simg_detail">
                                     </label>
-                                     @if(isset($slider['img_detail']) && !empty($slider['img_detail']))
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     @if(isset($slider['simg_detail']) && !empty($slider['simg_detail']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="simg_detail_url">Remove</button>
                                      @else
-                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="simg_detail_url" >Remove</button>
                                      @endif
                                 </div>
                             </div>
@@ -87,7 +87,6 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                            <button type ="reset" class="btn btn-primary">Reset</button>
                             <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                         </div>
                     </div>

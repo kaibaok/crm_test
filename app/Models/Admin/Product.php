@@ -20,7 +20,8 @@ class Product extends Model
         "price","type","numbers","limit_at",
         "created_at","updated_at","status","ord",
         "pimg_list","pimg_detail","pimg1","pimg2","pimg3",
-        "pimg4","pimg5","colors","is_new","is_best_sell","attribute","seo_link"
+        "pimg4","pimg5","colors","is_new","is_best_sell","attribute","seo_link",
+        "brand"
     ];
 
     public static function addProduct($data){
@@ -38,17 +39,18 @@ class Product extends Model
                     "numbers"      => (int)$data['numbers'],
                     "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
                     "status"       => (int)$data["status"],
-                    "pimg_list"     => $data['pimg_list'],
-                    "pimg_detail"   => $data['pimg_detail'],
-                    "pimg1"         => $data['pimg1'],
-                    "pimg2"         => $data['pimg2'],
-                    "pimg3"         => $data['pimg3'],
-                    "pimg4"         => $data['pimg4'],
-                    "pimg5"         => $data['pimg5'],
+                    "pimg_list"    => $data['pimg_list'],
+                    "pimg_detail"  => $data['pimg_detail'],
+                    "pimg1"        => $data['pimg1'],
+                    "pimg2"        => $data['pimg2'],
+                    "pimg3"        => $data['pimg3'],
+                    "pimg4"        => $data['pimg4'],
+                    "pimg5"        => $data['pimg5'],
                     "is_new"       => isset($data["is_new"]) ? (int) $data["is_new"] : 0,
                     "is_best_sell" => isset($data["is_best_sell"]) ? (int) $data["is_best_sell"] : 0,
                     "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
                     "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
+                    "brand"        => (int)$data["brand"],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -71,17 +73,18 @@ class Product extends Model
                 "numbers"      => (int)$data['numbers'],
                 "limit_at"     => htmlspecialchars(trim($data["limit_at"])),
                 "status"       => (int)$data["status"],
-                "pimg_list"     => $data['pimg_list'],
-                "pimg_detail"   => $data['pimg_detail'],
-                "pimg1"         => $data['pimg1'],
-                "pimg2"         => $data['pimg2'],
-                "pimg3"         => $data['pimg3'],
-                "pimg4"         => $data['pimg4'],
-                "pimg5"         => $data['pimg5'],
+                "pimg_list"    => $data['pimg_list'],
+                "pimg_detail"  => $data['pimg_detail'],
+                "pimg1"        => $data['pimg1'],
+                "pimg2"        => $data['pimg2'],
+                "pimg3"        => $data['pimg3'],
+                "pimg4"        => $data['pimg4'],
+                "pimg5"        => $data['pimg5'],
                 "is_new"       => isset($data["is_new"]) ? (int) $data["is_new"] : 0,
                 "is_best_sell" => isset($data["is_best_sell"]) ? (int) $data["is_best_sell"] : 0,
                 "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
                 "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
+                "brand"        => (int)$data["brand"],
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }

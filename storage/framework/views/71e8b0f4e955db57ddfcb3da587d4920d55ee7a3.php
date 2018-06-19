@@ -6,6 +6,18 @@
         <h3><?php echo e($title); ?></h3>
       </div>
       <div class="title_right">
+        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+          <form method="get">
+          <div class="input-group">
+                <input type="hidden" name="_token" id="token_alproduct" value="<?php echo e(csrf_token()); ?>">
+                <input type="hidden" name="page" value="1">
+                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit" >Tìm</button>
+                </span>
+          </div>
+          </form>
+        </div>
         <div class="form-group pull-right">
           <div class="input-group">
             <a class="btn btn-primary" href="/admin/news-cate/add">Thêm mới</a>
@@ -53,7 +65,7 @@
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                <?php echo e($listNewsCate->links()); ?>
+                <?php echo e($listNewsCate->appends($conditionPage)->links()); ?>
 
               </div>
             </div>

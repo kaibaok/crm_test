@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="item form-group  <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
-						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên loại <span class="required">*</span>
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Tên danh mục <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>">
@@ -44,18 +44,13 @@
 						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Thể loại <span class="required">*</span></label>
+					<div class="item form-group  <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
+						<label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Seo Link <span class="required">*</span>
+						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-							<select class="form-control" name="item_id">
-								<?php if(isset($listItem)): ?>
-									<?php foreach($listItem as $key => $value): ?>
-										<?php $selected = ""; if(isset($params['item_id']) && $key == $params['item_id']) $selected = "selected"; ?>
-											<option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
-									<?php endforeach; ?>
-								<?php endif; ?>
-							</select>
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($params['seo_link']) ? $params['seo_link'] : ''); ?>">
 						</div>
+						<?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
 					</div>
 
 					<div class="item form-group">

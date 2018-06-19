@@ -7,6 +7,18 @@
         <h3>{{$title}}</h3>
       </div>
       <div class="title_right">
+        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+          <form method="get">
+            <div class="input-group">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <input type="hidden" name="page" value="1">
+                  <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" >Tìm</button>
+                  </span>
+            </div>
+          </form>
+        </div>
         <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
           <div class="input-group">
             <a class="btn btn-primary" href="/admin/colors/add">Thêm mới</a>
@@ -49,7 +61,7 @@
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$listColors->links() }}
+                {{$listColors->appends($conditionPage)->links()}}
               </div>
             </div>
           </div>

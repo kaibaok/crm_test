@@ -1,7 +1,4 @@
-@extends("admin.layout")
-@section('title') {{$title}} @endsection
-
-@section('rightcontent')
+@extends("admin.layout") @section('title') {{$title}} @endsection @section('rightcontent')
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -9,275 +6,473 @@
         </div>
         <div class="title_right">
             <div class=" pull-right">
-              <div class="input-group">
-                <a class="btn btn-primary" href="/admin/slider">Trở về</a>
-              </div>
+                <div class="input-group">
+                    <a class="btn btn-primary" href="/admin/slider">Trở về</a>
+                </div>
             </div>
-          </div>
         </div>
     </div>
-
-    <div class="clearfix"></div>
-    <form action="">
-    <input type="hidden" id="himg1_url" name="himg1_url" value="{{isset($product['himg1']) ?  $product['himg1'] : '' }}"/>
+</div>
+<div class="clearfix"></div>
+<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
+    <input type="hidden" id="himg1_url" name="himg1_url" value="{{isset($home['himg1']) ? $home['himg1'] : '' }}" />
+    <input type="hidden" id="himg2_url" name="himg2_url" value="{{isset($home['himg2']) ? $home['himg2'] : '' }}" />
+    <input type="hidden" id="himg3_url" name="himg3_url" value="{{isset($home['himg3']) ? $home['himg3'] : '' }}" />
+    <input type="hidden" id="himg4_url" name="himg4_url" value="{{isset($home['himg4']) ? $home['himg4'] : '' }}" />
+    <input type="hidden" id="himg5_url" name="himg5_url" value="{{isset($home['himg5']) ? $home['himg5'] : '' }}" />
+    <input type="hidden" id="himg6_url" name="himg6_url" value="{{isset($home['himg6']) ? $home['himg6'] : '' }}" />
+    <input type="hidden" id="himg7_url" name="himg7_url" value="{{isset($home['himg7']) ? $home['himg7'] : '' }}" />
+    <input type="hidden" id="himg8_url" name="himg8_url" value="{{isset($home['himg8']) ? $home['himg8'] : '' }}" />
+    <input type="hidden" id="himg9_url" name="himg9_url" value="{{isset($home['himg9']) ? $home['himg9'] : '' }}" />
+    <input type="hidden" id="himg10_url" name="himg10_url" value="{{isset($home['himg10']) ? $home['himg10'] : '' }}" />
+    <input type="hidden" id="himg11_url" name="himg11_url" value="{{isset($home['himg11']) ? $home['himg11'] : '' }}" />
+    <input type="hidden" id="himg12_url" name="himg12_url" value="{{isset($home['himg12']) ? $home['himg12'] : '' }}" />
+    <input type="hidden" id="himg13_url" name="himg13_url" value="{{isset($home['himg13']) ? $home['himg13'] : '' }}" />
+    <input type="hidden" id="himg14_url" name="himg14_url" value="{{isset($home['himg14']) ? $home['himg14'] : '' }}" />
+    <input type="hidden" id="himg15_url" name="himg15_url" value="{{isset($home['himg15']) ? $home['himg15'] : '' }}" />
     <div class="row">
-      <div class="col-md-6 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>4 Banner <small>phía dưới slide show</small></h2>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-            <br />
-            <div class="form-horizontal form-label-left input_mask">
-
-                <div class="item form-group image_upload">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh banner 1 </label>
-                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="imageupload">
-                            <div class="file-tab">
-                                @if(isset($product['himg1']) && !empty($product['himg1']))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $url.$product['himg1'] }}" />
-                                @endif
-                                <label class="btn btn-dark btn-file">
-                                    <span>Browse</span>
-                                    <input type="file" name="himg1">
-                                </label>
-                                @if(isset($product['himg1']) && !empty($product['himg1']))
-                                    <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg1_url">Remove</button>
-                                @else
-                                    <button type="button" class="btn btn-danger" rel="himg1_url">Remove</button>
-                                @endif
+        <div class="col-md-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>4 Banner <small>phía dưới slide show</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 1</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title1" id="title1" class="ckedit" tool='basic'> @if(isset($home['title1'])) {{ $home['title1'] }} @endif </textarea>
                             </div>
                         </div>
-                    </div>
-                </div>
-                 <div class="item form-group image_upload">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh banner 2</label>
-                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="imageupload">
-                            <div class="file-tab">
-                                @if(isset($product['img2']) && !empty($product['img2']))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img2'] }}" />
-                                @endif
-                                <label class="btn btn-dark btn-file">
-                                    <span>Browse</span>
-                                    <input type="file" name="img2">
-                                </label>
-                                @if(isset($product['img2']) && !empty($product['img2']))
-                                    <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img2_url">Remove</button>
-                                @else
-                                    <button type="button" class="btn btn-danger" rel="img2_url">Remove</button>
-                                @endif
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 1 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg1']) && !empty($home['himg1']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg1'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg1">
+                                        </label>
+                                        @if(isset($home['himg1']) && !empty($home['himg1']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg1_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg1_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                 <div class="item form-group image_upload">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh banner 3 </label>
-                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="imageupload">
-                            <div class="file-tab">
-                                @if(isset($product['img3']) && !empty($product['img3']))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img3'] }}" />
-                                @endif
-                                <label class="btn btn-dark btn-file">
-                                    <span>Browse</span>
-                                    <input type="file" name="img3">
-                                </label>
-                                @if(isset($product['img3']) && !empty($product['img3']))
-                                    <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img3_url">Remove</button>
-                                @else
-                                    <button type="button" class="btn btn-danger" rel="img3_url">Remove</button>
-                                @endif
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title2" id="title2" class="ckedit" tool='basic'> @if(isset($home['title2'])) {{ $home['title2'] }} @endif </textarea>
                             </div>
                         </div>
-                    </div>
-                </div>
-                 <div class="item form-group image_upload">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Hình ảnh banner 4 </label>
-                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="imageupload">
-                            <div class="file-tab">
-                                @if(isset($product['img4']) && !empty($product['img4']))
-                                    <img style="width: 250px" class="thumbnail" src="{{ $url.$product['img4'] }}" />
-                                @endif
-                                <label class="btn btn-dark btn-file">
-                                    <span>Browse</span>
-                                    <input type="file" name="img4">
-                                </label>
-                                @if(isset($product['img4']) && !empty($product['img4']))
-                                    <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img4_url">Remove</button>
-                                @else
-                                    <button type="button" class="btn btn-danger" rel="img4_url">Remove</button>
-                                @endif
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg2']) && !empty($home['himg2']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg2'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg2">
+                                        </label>
+                                        @if(isset($home['himg2']) && !empty($home['himg2']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg2_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg2_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 3</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title3" id="title3" class="ckedit" tool='basic'> @if(isset($home['title3'])) {{ $home['title3'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 3 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg3']) && !empty($home['himg3']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg3'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg3">
+                                        </label>
+                                        @if(isset($home['himg3']) && !empty($home['himg3']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg3_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg3_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 4</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title4" id="title4" class="ckedit" tool='basic'> @if(isset($home['title4'])) {{ $home['title4'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 4 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg4']) && !empty($home['himg4']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg4'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg4">
+                                        </label>
+                                        @if(isset($home['himg4']) && !empty($home['himg4']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg4_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg4_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
                     </div>
                 </div>
-              <div class="ln_solid"></div>
             </div>
-          </div>
-        </div>
-
-
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>Registration Form <small>Click to validate</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings 1</a>
-                  </li>
-                  <li><a href="#">Settings 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-
-            <!-- start form for validation -->
-            <form id="demo-form" data-parsley-validate>
-              <label for="fullname">Full Name * :</label>
-              <input type="text" id="fullname" class="form-control" name="fullname" required />
-
-              <label for="email">Email * :</label>
-              <input type="email" id="email" class="form-control" name="email" data-parsley-trigger="change" required />
-
-              <label>Gender *:</label>
-              <p>
-                M:
-                <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required /> F:
-                <input type="radio" class="flat" name="gender" id="genderF" value="F" />
-              </p>
-
-              <label>Hobbies (2 minimum):</label>
-              <p style="padding: 5px;">
-                <input type="checkbox" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2" required class="flat" /> Skiing
-                <br />
-
-                <input type="checkbox" name="hobbies[]" id="hobby2" value="run" class="flat" /> Running
-                <br />
-
-                <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat" /> Eating
-                <br />
-
-                <input type="checkbox" name="hobbies[]" id="hobby4" value="sleep" class="flat" /> Sleeping
-                <br />
-                <p>
-
-                  <label for="heard">Heard us by *:</label>
-                  <select id="heard" class="form-control" required>
-                    <option value="">Choose..</option>
-                    <option value="press">Press</option>
-                    <option value="net">Internet</option>
-                    <option value="mouth">Word of mouth</option>
-                  </select>
-
-                  <label for="message">Message (20 chars min, 100 max) :</label>
-                  <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-                    data-parsley-validation-threshold="10"></textarea>
-
-                  <br/>
-                  <span class="btn btn-primary">Validate form</span>
-
-            </form>
-            <!-- end form for validations -->
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>Form Buttons <small>Sessions</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings 1</a>
-                  </li>
-                  <li><a href="#">Settings 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_content">
-
-            <form class="form-horizontal form-label-left">
-
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Button addons</label>
-
-                <div class="col-sm-9">
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                                      <button type="button" class="btn btn-primary">Go!</button>
-                                  </span>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                                      <button type="button" class="btn btn-primary">Go!</button>
-                                  </span>
-                  </div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>5 Banner <small> nằm giữa (từ trái qua phải)</small></h2>
+                    <div class="clearfix"></div>
                 </div>
-              </div>
-              <div class="divider-dashed"></div>
-
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Button addons</label>
-
-                <div class="col-sm-9">
-                  <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                        <li><a href="#">Action</a>
-                        </li>
-                        <li><a href="#">Another action</a>
-                        </li>
-                        <li><a href="#">Something else here</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a>
-                        </li>
-                      </ul>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 1</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title8" id="title8" class="ckedit" tool='basic'> @if(isset($home['title8'])) {{ $home['title8'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 1 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg8']) && !empty($home['himg8']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg8'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg8">
+                                        </label>
+                                        @if(isset($home['himg8']) && !empty($home['himg8']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg8_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg8_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title9" id="title9" class="ckedit" tool='basic'> @if(isset($home['title9'])) {{ $home['title9'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg9']) && !empty($home['himg9']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg9'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg9">
+                                        </label>
+                                        @if(isset($home['himg9']) && !empty($home['himg9']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg9_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg9_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 3</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title10" id="title10" class="ckedit" tool='basic'> @if(isset($home['title10'])) {{ $home['title10'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 3 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg10']) && !empty($home['himg10']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg10'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg10">
+                                        </label>
+                                        @if(isset($home['himg10']) && !empty($home['himg10']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg10_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg10_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 3</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title11" id="title11" class="ckedit" tool='basic'> @if(isset($home['title11'])) {{ $home['title11'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 4 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg11']) && !empty($home['himg11']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg11'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg11">
+                                        </label>
+                                        @if(isset($home['himg11']) && !empty($home['himg11']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg11_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg11_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 5</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title12" id="title12" class="ckedit" tool='basic'> @if(isset($home['title12'])) {{ $home['title12'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 5 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg12']) && !empty($home['himg12']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg12'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg12">
+                                        </label>
+                                        @if(isset($home['himg12']) && !empty($home['himg12']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg12_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg12_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
                     </div>
-                    <!-- /btn-group -->
-                  </div>
-                  <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-primary">Go!</button>
-                    </span>
-                  </div>
                 </div>
-              </div>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>3 Banner <small> góc bìa</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 1</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title5" id="title5" class="ckedit" tool='basic'> @if(isset($home['title5'])) {{ $home['title5'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 1 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg5']) && !empty($home['himg5']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg5'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg5">
+                                        </label>
+                                        @if(isset($home['himg5']) && !empty($home['himg5']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg5_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg5_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title6" id="title6" class="ckedit" tool='basic'> @if(isset($home['title6'])) {{ $home['title6'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg6']) && !empty($home['himg6']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg6'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg6">
+                                        </label>
+                                        @if(isset($home['himg6']) && !empty($home['himg6']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg6_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg6_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 3</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title7" id="title7" class="ckedit" tool='basic'> @if(isset($home['title7'])) {{ $home['title7'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 3 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg7']) && !empty($home['himg7']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg7'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg7">
+                                        </label>
+                                        @if(isset($home['himg7']) && !empty($home['himg7']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg7_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg7_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>3 Banner <small> góc dưới</small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 1</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title13" id="title13" class="ckedit" tool='basic'> @if(isset($home['title13'])) {{ $home['title13'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 1 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg13']) && !empty($home['himg13']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg13'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg13">
+                                        </label>
+                                        @if(isset($home['himg13']) && !empty($home['himg13']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg13_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg13_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title14" id="title14" class="ckedit" tool='basic'> @if(isset($home['title14'])) {{ $home['title14'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 2</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg14']) && !empty($home['himg14']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg14'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg14">
+                                        </label>
+                                        @if(isset($home['himg14']) && !empty($home['himg14']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg14_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg14_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiêu đề 3</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <textarea name="title15" id="title15" class="ckedit" tool='basic'> @if(isset($home['title15'])) {{ $home['title15'] }} @endif </textarea>
+                            </div>
+                        </div>
+                        <div class="item form-group image_upload">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Banner 3 </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="imageupload">
+                                    <div class="file-tab">
+                                        @if(isset($home['himg15']) && !empty($home['himg15']))
+                                        <img style="width: 250px" class="thumbnail" src="{{ $url.$home['himg15'] }}" /> @endif
+                                        <label class="btn btn-dark btn-file">
+                                            <span>Browse</span>
+                                            <input type="file" name="himg15">
+                                        </label>
+                                        @if(isset($home['himg15']) && !empty($home['himg15']))
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="himg15_url">Remove</button>
+                                        @else
+                                        <button type="button" class="btn btn-danger" rel="himg15_url">Remove</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    </form>
+</form>
 </div>
 @endsection
-

@@ -22,7 +22,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
+                <form id="demo-form" class="form-horizontal form-label-left" enctype="multipart/form-data" autocomplete="on" method="post" action="">
                 {{ csrf_field() }}
                     <div class="item form-group">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12">Hiển thị</label>
@@ -50,6 +50,22 @@
                         <input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($params['seo_link']) ? $params['seo_link'] : ''}}">
                         </div>
                         @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+                    </div>
+
+                    <div class="item form-group image_upload">
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Hình ảnh <span class="required">*</span></label>
+                         <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="imageupload">
+                                <div class="file-tab">
+                                    <label class="btn btn-dark btn-file">
+                                        <span>Browse</span>
+                                        <!-- The file is stored here. -->
+                                        <input type="file" name="bimg_detail">
+                                    </label>
+                                    <button type="button" class="btn btn-danger">Remove</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="item form-group">

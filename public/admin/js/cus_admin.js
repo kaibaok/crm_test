@@ -105,11 +105,11 @@ $(document).ready(function() {
                     singleClasses: "picker_1",
                     timePicker: true,
                     timePickerSeconds: true,
-                    timePicker24Hour:  true,
-                    startDate: moment().startOf('hour'),
-                    endDate: moment().startOf('hour').add(32, 'hour'),
+                    timePicker24Hour: true,
+                    startDate: time_open,
+                    endDate: time_close,
                     locale: {
-                      format: 'YYYY-MM-DD HH:mm:ss'
+                      format: 'YYYY/MM/DD HH:mm:ss'
                     }
                 });
             }

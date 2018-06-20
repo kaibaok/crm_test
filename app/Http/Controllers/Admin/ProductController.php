@@ -65,7 +65,6 @@ class ProductController extends Controller
     public function editColors(Request $request){
         $title     = "Sửa sản phẩm";
         $id        = (int) $request->route('id');
-        $cls_img   = new Img();
         $errors    = NULL;
         $params    = $request->all();
         $getColors = Colors::findOrFail((int)$id)->toArray();
@@ -101,7 +100,6 @@ class ProductController extends Controller
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
         $listBrand    = Brand::getList();
-
         if(!empty($txtSearch)) {
             $builder->where('title','like',"%{$txtSearch}%")
                 ->orWhere('code_id','like',"%{$txtSearch}%");
@@ -166,7 +164,7 @@ class ProductController extends Controller
     public function editProduct(Request $request){
         $title        = "Sửa sản phẩm";
         $id           = (int) $request->route('id');
-        $cls_img      = new Img();
+        $clsImg      = new Img();
         $errors       = NULL;
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
@@ -181,14 +179,14 @@ class ProductController extends Controller
             if(empty($params['numbers'])) $errors['numbers']   = "Vui lòng nhập số lượng";
             if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages("product/");
+                $result = $clsImg->uploadImages("product/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages("product/",$getProduct[$key]);
+                        $clsImg->removeImages("product/",$getProduct[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $cls_img->removeImages("product/",$getProduct[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages("product/",$getProduct[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }
@@ -639,7 +637,7 @@ class ProductController extends Controller
             if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tên loại tin";
             if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
             if(empty($errors)) {
-                $clsImg = new Img();
+                $clsImg    = new Img();
                 $result = $clsImg->uploadImages("brand/");
                 foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
                 $addBrand = Brand::addBrand($params);
@@ -658,23 +656,24 @@ class ProductController extends Controller
     }
 
     public function editBrand(Request $request){
-        $title  = "Sửa thương hiệu";
-        $id     = (int) $request->route('id');
-        $errors = NULL;
-        $brand  = Brand::findOrFail((int)$id)->toArray();
-        $params = $request->all();
+        $title   = "Sửa thương hiệu";
+        $id      = (int) $request->route('id');
+        $errors  = NULL;
+        $getBrand = Brand::findOrFail((int)$id)->toArray();
+        $params  = $request->all();
         if ($request->isMethod('post')) {
             if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tên loại tin";
             if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages("brand/");
+                $clsImg = new Img();
+                $result = $clsImg->uploadImages("brand/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages("brand/",$getNews[$key]);
+                        $clsImg->removeImages("brand/",$getBrand[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $cls_img->removeImages($getNews[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages($getBrand[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }
@@ -682,11 +681,11 @@ class ProductController extends Controller
                 if($editBrand) $errors['finish'] = "Sửa thành công";
                 else $errors['finish'] = "Sửa thất bại";
             }
-            $brand = $params;
+            $getBrand = $params;
         }
         return view("admin.product.editBrand")
             ->with("title", $title)
-            ->with("brand", $brand)
+            ->with("brand", $getBrand)
             ->with("errors", $errors);
     }
 

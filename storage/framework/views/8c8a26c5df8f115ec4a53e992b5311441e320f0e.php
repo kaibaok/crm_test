@@ -45,8 +45,7 @@
                     </div>
 
                      <div class="item form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="link">Link <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="link">Link </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="<?php echo e(isset($params['link']) ? $params['link'] : ''); ?>" required>
                         </div>
@@ -61,7 +60,7 @@
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
                                         <!-- The file is stored here. -->
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="simg_detail">
                                     </label>
                                     <button type="button" class="btn btn-danger">Remove</button>
                                 </div>

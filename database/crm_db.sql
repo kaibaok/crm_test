@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2018 at 12:53 PM
+-- Generation Time: Jun 20, 2018 at 12:53 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -37,6 +37,14 @@ CREATE TABLE `brand` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `brand`
+--
+
+INSERT INTO `brand` (`id`, `status`, `title`, `seo_link`, `bimg_detail`, `updated_at`, `created_at`) VALUES
+(4, 0, 'asda', 'sd', '5b2a28492eef1_b4c2f263c742d7ce4565211b60e21568.jpg', '2018-06-20 03:11:21', '2018-06-20 02:56:06'),
+(5, 0, 'asd', 'asd', '5b2a2870f36e6_b4c2f263c742d7ce4565211b60e21568.jpg', '2018-06-20 03:12:01', '2018-06-20 03:12:01');
 
 -- --------------------------------------------------------
 
@@ -121,13 +129,22 @@ CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `title` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `eimg_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `time_open` datetime NOT NULL,
   `time_close` datetime NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `desc` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `created_at`, `updated_at`, `title`, `eimg_detail`, `seo_link`, `time_open`, `time_close`, `status`, `desc`) VALUES
+(1, '2018-06-20 09:17:08', '2018-06-20 03:30:06', 'asdasdsad', '5b2a2caeed28a_b4c2f263c742d7ce4565211b60e21568.jpg', 'test', '2018-06-05 16:00:00', '2018-06-23 16:00:00', 0, '<p>dasd</p>\r\n'),
+(2, '2018-06-20 10:30:46', '2018-06-20 03:30:46', 'tesa', '5b2a2cd6ba749_b4c2f263c742d7ce4565211b60e21568.jpg', 'asd', '2018-06-20 17:00:00', '2018-06-20 17:00:00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -374,7 +391,8 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`) VALUES
-(85, 'tét', '', '2018-06-18 03:18:06', '2018-06-18 03:18:06', 1, '5b2785d278150_a5c6f3813d0d23b4042dd130542753cc.jpg');
+(85, 'tét', '', '2018-06-20 02:58:22', '2018-06-20 02:58:22', 1, '5b2a253e5cea6_b4c2f263c742d7ce4565211b60e21568.jpg'),
+(86, 'aa', 'áda', '2018-06-20 03:00:05', '2018-06-20 03:00:05', 0, '5b2a25a53900d_b4c2f263c742d7ce4565211b60e21568.jpg');
 
 -- --------------------------------------------------------
 
@@ -536,7 +554,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -560,7 +578,7 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `home_page`
@@ -614,7 +632,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `tag`

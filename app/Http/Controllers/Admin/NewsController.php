@@ -176,7 +176,7 @@ class NewsController extends Controller
     public function edit(Request $request){
         $title        = "Sửa tin tức";
         $id           = (int) $request->route('id');
-        $cls_img      = new Img();
+        $clsImg       = new Img();
         $errors       = NULL;
         $listNewsCate = NewsCategory::getList();
         $getNews      = News::findOrFail((int)$id)->toArray();
@@ -185,14 +185,14 @@ class NewsController extends Controller
             if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên loại tin";
             if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages("news/");
+                $result = $clsImg->uploadImages("news/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages("news/",$getNews[$key]);
+                        $clsImg->removeImages("news/",$getNews[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $cls_img->removeImages($getNews[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages($getNews[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }

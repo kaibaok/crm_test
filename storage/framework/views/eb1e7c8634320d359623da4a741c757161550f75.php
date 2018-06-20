@@ -1,5 +1,6 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
+<?php  $url = URL_IMG."/brand/"   ?>
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -21,10 +22,11 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
+                <form id="demo-form" class="form-horizontal form-label-left" enctype="multipart/form-data" autocomplete="on" method="post" action="">
                 <?php echo e(csrf_field()); ?>
 
                     <input type="hidden" name="id" value="<?php echo e($brand['id']); ?>"/>
+                    <input type="hidden" id="bimg_detail_url" name="bimg_detail_url" value="<?php echo e(isset($brand['bimg_detail']) ?  $brand['bimg_detail'] : ''); ?>"/>
                     <div class="item form-group">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12">Hiển thị</label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -53,6 +55,28 @@
                         <?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
                     </div>
 
+                     <div class="item form-group image_upload">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh <span class="required">*</span></label>
+                         <div class="col-md-4 col-sm-4 col-xs-12 ">
+                            <div class="imageupload">
+                                <div class="file-tab">
+                                    <?php if(isset($brand['bimg_detail']) && !empty($brand['bimg_detail'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$brand['bimg_detail']); ?>" />
+                                    <?php endif; ?>
+                                    <label class="btn btn-dark btn-file">
+                                        <span>Browse</span>
+                                        <input type="file" name="bimg_detail">
+                                    </label>
+                                     <?php if(isset($brand['bimg_detail']) && !empty($brand['bimg_detail'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="bimg_detail_url">Remove</button>
+                                     <?php else: ?>
+                                        <button type="button" class="btn btn-danger" rel="bimg_detail_url" >Remove</button>
+                                     <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="item form-group">
                         <div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
                         <span class="help-block">
@@ -63,7 +87,6 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
-                        <button type="reset" class="btn btn-primary">Reset</button>
                         <button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                         </div>
                     </div>

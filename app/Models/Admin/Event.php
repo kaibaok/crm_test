@@ -13,7 +13,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'id','status','title', 'seo_link','eimg_detail','time_open','time_close', 'created_at','updated_at'
+        'id','status','title', 'seo_link','eimg_detail','time_open','time_close','desc', 'created_at','updated_at'
     ];
 
     /**
@@ -45,6 +45,7 @@ class Event extends Model
                     "eimg_detail" => $data['eimg_detail'],
                     "time_open"   => $data['time_open'],
                     "time_close"  => $data['time_close'],
+                    "desc"        => $data['desc'],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -63,6 +64,7 @@ class Event extends Model
                 "eimg_detail" => $data['eimg_detail'],
                 "time_open"   => $data['time_open'],
                 "time_close"  => $data['time_close'],
+                "desc"        => $data['desc'],
             );
             return Event::where('id',(int)$data['id'])->update($arr_update);
         }

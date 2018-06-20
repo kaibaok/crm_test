@@ -27,7 +27,7 @@
                 <?php echo e(csrf_field()); ?>
 
                     <input type="hidden" name="id" value="<?php echo e(isset($slider['id']) ?  $slider['id'] : ''); ?>"/>
-                    <input type="hidden" id="img_detail_url" name="img_detail_url" value="<?php echo e(isset($slider['img_detail']) ?  $slider['img_detail'] : ''); ?>"/>
+                    <input type="hidden" id="simg_detail_url" name="simg_detail_url" value="<?php echo e(isset($slider['simg_detail']) ?  $slider['simg_detail'] : ''); ?>"/>
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
@@ -48,29 +48,28 @@
                     </div>
 
                     <div class="item form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">Link <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">Link </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="<?php echo e(isset($slider['link']) ?  $slider['link'] : ''); ?>" >
                         </div>
                     </div>
 
                     <div class="item form-group image_upload">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh <span class="required">*</span></label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">
-                                    <?php if(isset($slider['img_detail']) && !empty($slider['img_detail'])): ?>
-                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$slider['img_detail']); ?>" />
+                                    <?php if(isset($slider['simg_detail']) && !empty($slider['simg_detail'])): ?>
+                                        <img style="width: 250px" class="thumbnail" src="<?php echo e($url.$slider['simg_detail']); ?>" />
                                     <?php endif; ?>
                                     <label class="btn btn-dark btn-file">
                                         <span>Browse</span>
-                                        <input type="file" name="img_detail">
+                                        <input type="file" name="simg_detail">
                                     </label>
-                                     <?php if(isset($slider['img_detail']) && !empty($slider['img_detail'])): ?>
-                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="img_detail_url">Remove</button>
+                                     <?php if(isset($slider['simg_detail']) && !empty($slider['simg_detail'])): ?>
+                                        <button type="button" class="btn btn-danger" style="display: inline-block;" rel="simg_detail_url">Remove</button>
                                      <?php else: ?>
-                                        <button type="button" class="btn btn-danger" rel="img_detail_url" >Remove</button>
+                                        <button type="button" class="btn btn-danger" rel="simg_detail_url" >Remove</button>
                                      <?php endif; ?>
                                 </div>
                             </div>
@@ -88,7 +87,6 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                            <button type ="reset" class="btn btn-primary">Reset</button>
                             <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                         </div>
                     </div>

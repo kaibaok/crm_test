@@ -39,7 +39,7 @@
                   <tr class="headings">
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
-                    <th class="column-title">Tên danh mục</th>
+                    <th class="column-title">Tên Event</th>
                     <th class="column-title">Hình ảnh</th>
                     <th class="column-title">Time Open</th>
                     <th class="column-title">Time Close</th>
@@ -62,12 +62,12 @@
                         <a href="/admin/event/status/{{$value->id}}" class="btn_status_cproduct" rel="{{$value->id}}"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       @endif
                     </td>
-                    <td>
+                    <td>{{$value->title}}</td>
+                     <td>
                       @if (!empty($value->eimg_detail) && file_exists(BASE_IMG."event/{$value->eimg_detail}"))
                         <img width="50px" src="{{URL_IMG."event/".$value->eimg_detail}}" alt="{{$value->title}}">
                       @endif
                     </td>
-                    <td>{{strip_tags($value->title)}}</td>
                     <td>{{$value->time_open}}</td>
                     <td>{{$value->time_close}}</td>
                     <td class="last"> <a href="/admin/event/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/event/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>

@@ -22,7 +22,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
+                <form id="demo-form" class="form-horizontal form-label-left" method="post" action="" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
@@ -35,32 +35,57 @@
                         </div>
                     </div>
 
+                     <div class="item form-group @if(isset($errors['title'])) bad @endif">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sự kiện<span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : ''}}">
+                        </div>
+                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+                    </div>
+
                     <div class="item form-group @if(isset($errors['seo_link'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Seo Link <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($params['seo_link']) ? $params['seo_link'] : ''}}">
                         </div>
-                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+                        @if(isset($errors['seo_link'])) <div class="alert">{{$errors['seo_link']}}</div> @endif
                     </div>
 
                     <div class="item form-group @if(isset($errors['time_event'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Thời gian cho sự kiện <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
-                            <input type="text" class="form-control has-feedback-left date_picker" id="time_event" name="time_event" value="{{isset( $params['time_event']) ?  $params['time_event'] : '' }}">
+                            <input type="text" class="form-control has-feedback-left date_picker" id="time_event" name="time_event" value="{{isset( $event['time_event']) ?  $event['time_event'] : '' }}">
                             <span class="fa fa-calendar-o form-control-feedback left"></span>
                         </div>
                         @if(isset($errors['time_event'])) <div class="alert">{{$errors['time_event']}}</div> @endif
                     </div>
 
-                    <div class="item form-group @if(isset($errors['title'])) bad @endif">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sự kiện <span class="required">*</span>
+                    <div class="item form-group @if(isset($errors['desc'])) bad @endif">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="desc">Mô tả <span class="required">*</span>
                         </label>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <textarea  name="title" id="title" class="ckedit">@if(isset($params['title'])) {{ $params['title'] }} @endif</textarea>
+                            <textarea  name="desc" id="desc" class="ckedit">@if(isset($params['desc'])) {{ $params['desc'] }} @endif</textarea>
                         </div>
-                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+                        @if(isset($errors['desc'])) <div class="alert">{{$errors['desc']}}</div> @endif
+                    </div>
+
+                    <div class="item form-group image_upload">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh <span class="required">*</span></label>
+                         <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="imageupload">
+                                <div class="file-tab">
+                                    <label class="btn btn-dark btn-file">
+                                        <span>Browse</span>
+                                        <!-- The file is stored here. -->
+                                        <input type="file" name="eimg_detail">
+                                    </label>
+                                    <button type="button" class="btn btn-danger">Remove</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="item form-group">
@@ -85,4 +110,6 @@
 </div>
 @endsection
 
-
+@section("js")
+<script> time_open = time_close = moment().startOf('hour'); </script>
+@endsection

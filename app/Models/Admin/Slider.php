@@ -30,7 +30,7 @@ class Slider extends Model
                     "link"       => trim($data["link"]),
                     "status"     => isset($data['status']) ? $data['status'] : 0,
                     "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
-                    "img_detail" => $data['img_detail'],
+                    "simg_detail" => $data['simg_detail'],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -47,7 +47,7 @@ class Slider extends Model
                 "link"       => trim($data["link"]),
                 "status"     => isset($data['status']) ? $data['status'] : 0,
                 "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
-                "img_detail" => $data['img_detail'],
+                "simg_detail" => $data['simg_detail'],
             );
             return Slider::where('id',(int)$data['id'])->update($arr_update);
         }

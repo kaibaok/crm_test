@@ -86,23 +86,23 @@ class IndexController extends Controller
 
     public function editSlider(Request $request)
     {
-        $title        = "Sửa Slider";
-        $id           = (int) $request->route('id');
-        $cls_img      = new Img();
-        $errors       = NULL;
-        $getSlider      = Slider::findOrFail((int)$id)->toArray();
-        $params       = $request->all();
+        $title     = "Sửa Slider";
+        $id        = (int) $request->route('id');
+        $errors    = NULL;
+        $getSlider = Slider::findOrFail((int)$id)->toArray();
+        $params    = $request->all();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên loại tin";
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên slider";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages("slider/");
+                $clsImg = new Img();
+                $result = $clsImg->uploadImages("slider/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages("slider/",$getSlider[$key]);
+                        $clsImg->removeImages("slider/",$getSlider[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $cls_img->removeImages($getSlider[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages($getSlider[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }
@@ -133,17 +133,17 @@ class IndexController extends Controller
     public function homePage(Request $request)
     {
         $title   = "Trang HomePage";
-        $cls_img = new Img();
         $params  = $request->all();
         if ($request->isMethod('post')) {
-            $result = $cls_img->uploadImages("home/");
+            $clsImg = new Img();
+            $result = $clsImg->uploadImages("home/");
             foreach ($_FILES as $key => $value) {
                 if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                     $params[$key] = $result[$key];
-                    $cls_img->removeImages("home/",$getSlider[$key]);
+                    $clsImg->removeImages("home/",$getSlider[$key]);
                 }
                 else {
-                    if(empty($params[$key."_url"])) $cls_img->removeImages($getSlider[$key]);
+                    if(empty($params[$key."_url"])) $clsImg->removeImages($getSlider[$key]);
                     $params[$key] = $params[$key."_url"];
                 }
             }
@@ -187,12 +187,17 @@ class IndexController extends Controller
         $listStatus = $this->getOption('listStatus');
         $params     = $request->all();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tên loại tin";
-            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($params['title'])) $errors['title']           = "Vui lòng nhập tên sự kiện";
+            if(empty($params['seo_link'])) $errors['seo_link']     = "Vui lòng nhập seo link";
+            if(empty($params['time_event'])) $errors['time_event'] = "Vui lòng nhập thời gian sự kiện";
+            // if(empty($params['desc'])) $errors['desc']          = "Vui lòng nhập nội dung";
             if(empty($errors)) {
                 $clsImg = new Img();
                 $result = $clsImg->uploadImages("event/");
                 foreach ($_FILES as $key => $value) $params[$key] = $result[$key];
+                $time_event = !empty($params['time_event']) ? explode("-", $params['time_event'])  : null;
+                $params['time_open'] = isset($time_event[0]) ? str_replace("/", "-", $time_event[0]) : date();
+                $params['time_close'] = isset($time_event[1]) ? str_replace("/", "-", $time_event[1]) : date();
                 $addEvent = Event::addEvent($params);
                 if($addEvent) {
                     $params = array();
@@ -212,32 +217,40 @@ class IndexController extends Controller
         $title  = "Sửa sự kiện";
         $id     = (int) $request->route('id');
         $errors = NULL;
-        $event  = Event::findOrFail((int)$id)->toArray();
+        $getEvent  = Event::findOrFail((int)$id)->toArray();
         $params = $request->all();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tên loại tin";
-            if(empty($params['seo_link'])) $errors['seo_link'] = "Vui lòng nhập seo link";
+            if(empty($params['title'])) $errors['title']           = "Vui lòng nhập tên sự kiện";
+            if(empty($params['seo_link'])) $errors['seo_link']     = "Vui lòng nhập seo link";
+            if(empty($params['time_event'])) $errors['time_event'] = "Vui lòng nhập thời gian sự kiện";
+            // if(empty($params['desc'])) $errors['desc']          = "Vui lòng nhập nội dung";
             if(empty($errors)) {
-                $result = $cls_img->uploadImages("event/");
+                $clsImg = new Img();
+                $result = $clsImg->uploadImages("event/");
                 foreach ($_FILES as $key => $value) {
                     if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                         $params[$key] = $result[$key];
-                        $cls_img->removeImages("event/",$getNews[$key]);
+                        $clsImg->removeImages("event/",$getEvent[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $cls_img->removeImages($getNews[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages($getEvent[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }
+
+                $time_event = !empty($params['time_event']) ? explode("-", $params['time_event'])  : null;
+                $params['time_open'] = isset($time_event[0]) ? str_replace("/", "-", $time_event[0]) : date();
+                $params['time_close'] = isset($time_event[1]) ? str_replace("/", "-", $time_event[1]) : date();
+
                 $editEvent = Event::editEvent($params);
                 if($editEvent) $errors['finish'] = "Sửa thành công";
                 else $errors['finish'] = "Sửa thất bại";
             }
-            $event = $params;
+            $getEvent = $params;
         }
         return view("admin.index.editEvent")
             ->with("title", $title)
-            ->with("event", $event)
+            ->with("event", $getEvent)
             ->with("errors", $errors);
     }
 

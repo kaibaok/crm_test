@@ -38,7 +38,7 @@
                   <tr class="headings">
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
-                    <th class="column-title">Tên danh mục</th>
+                    <th class="column-title">Tên Event</th>
                     <th class="column-title">Hình ảnh</th>
                     <th class="column-title">Time Open</th>
                     <th class="column-title">Time Close</th>
@@ -61,12 +61,12 @@
                         <a href="/admin/event/status/<?php echo e($value->id); ?>" class="btn_status_cproduct" rel="<?php echo e($value->id); ?>"><i class="success fa fa-eye-slash" title="Ẩn"></i></a>
                       <?php endif; ?>
                     </td>
-                    <td>
+                    <td><?php echo e($value->title); ?></td>
+                     <td>
                       <?php if(!empty($value->eimg_detail) && file_exists(BASE_IMG."event/{$value->eimg_detail}")): ?>
                         <img width="50px" src="<?php echo e(URL_IMG."event/".$value->eimg_detail); ?>" alt="<?php echo e($value->title); ?>">
                       <?php endif; ?>
                     </td>
-                    <td><?php echo e($value->title); ?></td>
                     <td><?php echo e($value->time_open); ?></td>
                     <td><?php echo e($value->time_close); ?></td>
                     <td class="last"> <a href="/admin/event/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/event/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>

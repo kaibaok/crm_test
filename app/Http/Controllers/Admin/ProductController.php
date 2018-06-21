@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Colors;
-use App\Models\Admin\Product;
-use App\Models\Admin\ProductCategory;
-use App\Models\Admin\Brand;
-use App\Models\Admin\ProductType;
-use App\Models\Admin\ProductItem;
+use App\Models\Colors;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\Brand;
+use App\Models\ProductType;
+use App\Models\ProductItem;
 use App\Events\Img;
 use DateTime,Session;
 use App\User;
@@ -91,6 +91,19 @@ class ProductController extends Controller
     }
 
     //  crod Product
+    public function statusProduct($id){
+        $get_product = Product::findOrFail((int)$id);
+        if(!empty($get_product)){
+            if($get_product->status)
+                $get_product->status = 0;
+            else
+                $get_product->status = 1;
+        }
+        echo $get_product->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
 	public function listProduct(Request $request){
         $title        = "Danh Sách Sản Phẩm";
         $page         = isset($request->page) ? $request->page : 1;
@@ -229,7 +242,65 @@ class ProductController extends Controller
         return redirect()->guest($back_url);
     }
 
+    public function sortProduct(Request $request){
+        $title        = "Sắp Xếp Sản Phẩm";
+        $page         = isset($request->page) ? $request->page : 1;
+        $builder      = Product::select();
+        $listColors   = Colors::getList();
+        $listCategory = ProductCategory::getList();
+        $listType     = ProductType::getList();
+        $builder->orderByRaw("ord ASC, id DESC");
+        $totalResult  = $builder->count();
+        $listProduct  = $builder->paginate(LIMIT_PAGE);
+
+        return view("admin.product.sortProduct")
+            ->with("title", $title)
+            ->with("page", $page)
+            ->with("listColors", $listColors)
+            ->with("listCategory", $listCategory)
+            ->with("listType", $listType)
+            ->with("listProduct", $listProduct);
+    }
+
+    public function ajaxSortProduct(Request $request){
+        $params = $request->all();
+        if(!empty($params)) {
+            parse_str($params['data'],$data);
+            $page      = (int) $params['page'];
+            $limitPage = LIMIT_PAGE;
+            $offset    = $limitPage * ($page - 1);
+            $listProduct = Product::orderByRaw("ord ASC, id DESC")->get();
+            foreach ($listProduct as $key => $value) {
+                $product = Product::find($value->id);
+                $product->ord = $key+1;
+                $product->save();
+            }
+
+            foreach ($data['item'] as $key => $value) {
+                $key += $offset;
+                $product = Product::find($value);
+                $product->ord = $key;
+                $product->save();
+            }
+        }
+
+        return response()->json(array("status" => true));
+    }
+
     //  crod CateProduct
+    public function statusCateProduct($id){
+        $get_cproduct = ProductCategory::findOrFail((int)$id);
+        if(!empty($get_cproduct)){
+            if($get_cproduct->status)
+                $get_cproduct->status = 0;
+            else
+                $get_cproduct->status = 1;
+        }
+        echo $get_cproduct->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
     public function listCateProduct(Request $request){
         $title     = "Danh Sách Loại Sản Phẩm";
         $page      = isset($request->page) ? $request->page : 1;
@@ -384,45 +455,6 @@ class ProductController extends Controller
         return redirect()->guest($back_url);
     }
 
-    public function statusProduct($id){
-        $get_product = Product::findOrFail((int)$id);
-        if(!empty($get_product)){
-            if($get_product->status)
-                $get_product->status = 0;
-            else
-                $get_product->status = 1;
-        }
-        echo $get_product->save();
-        $back_url = redirect()->getUrlGenerator()->previous();
-        return redirect()->guest($back_url);
-    }
-
-    public function statusItemProduct($id){
-        $getItemProduct = ProductItem::findOrFail((int)$id);
-        if(!empty($getItemProduct)){
-            if($getItemProduct->status)
-                $getItemProduct->status = 0;
-            else
-                $getItemProduct->status = 1;
-        }
-        echo $getItemProduct->save();
-        $back_url = redirect()->getUrlGenerator()->previous();
-        return redirect()->guest($back_url);
-    }
-
-    public function statusCateProduct($id){
-        $get_cproduct = ProductCategory::findOrFail((int)$id);
-        if(!empty($get_cproduct)){
-            if($get_cproduct->status)
-                $get_cproduct->status = 0;
-            else
-                $get_cproduct->status = 1;
-        }
-        echo $get_cproduct->save();
-        $back_url = redirect()->getUrlGenerator()->previous();
-        return redirect()->guest($back_url);
-    }
-
     //  crod Cart Product
     public function listCart (){
         $title  = "Danh Sách Đặt Hàng";
@@ -473,8 +505,20 @@ class ProductController extends Controller
             "errors" => $errors));
     }
 
-
     //  crod ProductItem
+    public function statusItemProduct($id){
+        $getItemProduct = ProductItem::findOrFail((int)$id);
+        if(!empty($getItemProduct)){
+            if($getItemProduct->status)
+                $getItemProduct->status = 0;
+            else
+                $getItemProduct->status = 1;
+        }
+        echo $getItemProduct->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
     public function listItemProduct(Request $request){
         $title    = "Danh sách mục sản phẩm";
         $page      = isset($request->page) ? $request->page : 1;
@@ -548,51 +592,6 @@ class ProductController extends Controller
         if(!$existProductCate) ProductItem::find((int)$id)->delete();
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
-    }
-
-    public function sortProduct(Request $request){
-        $title        = "Sắp Xếp Sản Phẩm";
-        $page         = isset($request->page) ? $request->page : 1;
-        $builder      = Product::select();
-        $listColors   = Colors::getList();
-        $listCategory = ProductCategory::getList();
-        $listType     = ProductType::getList();
-        $builder->orderByRaw("ord ASC, id DESC");
-        $totalResult  = $builder->count();
-        $listProduct  = $builder->paginate(LIMIT_PAGE);
-
-        return view("admin.product.sortProduct")
-            ->with("title", $title)
-            ->with("page", $page)
-            ->with("listColors", $listColors)
-            ->with("listCategory", $listCategory)
-            ->with("listType", $listType)
-            ->with("listProduct", $listProduct);
-    }
-
-    public function ajaxSortProduct(Request $request){
-        $params = $request->all();
-        if(!empty($params)) {
-            parse_str($params['data'],$data);
-            $page      = (int) $params['page'];
-            $limitPage = LIMIT_PAGE;
-            $offset    = $limitPage * ($page - 1);
-            $listProduct = Product::orderByRaw("ord ASC, id DESC")->get();
-            foreach ($listProduct as $key => $value) {
-                $product = Product::find($value->id);
-                $product->ord = $key+1;
-                $product->save();
-            }
-
-            foreach ($data['item'] as $key => $value) {
-                $key += $offset;
-                $product = Product::find($value);
-                $product->ord = $key;
-                $product->save();
-            }
-        }
-
-        return response()->json(array("status" => true));
     }
 
     // brand

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Models\Admin\Permission;
+use App\Models\Permission;
 
 class UserController extends Controller
 {

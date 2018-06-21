@@ -204,7 +204,11 @@ class Img
         break;
         case 'bimg_detail':
           $arr_info['width']  =  "auto";
-          $arr_info['height'] =  "auto";
+          $arr_info['height'] =  80;
+        break;
+         case 'eimg_detail':
+          $arr_info['width']  =  599;
+          $arr_info['height'] =  338;
         break;
         default:
           $arr_info['width']  =  'auto';

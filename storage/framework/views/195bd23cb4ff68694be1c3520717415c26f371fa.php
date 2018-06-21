@@ -1,5 +1,6 @@
  <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?> <?php $__env->startSection('rightcontent'); ?>
-<div class="">
+<?php  $url = URL_IMG."/home/"   ?>
+<div>
     <div class="page-title">
         <div class="title_left">
             <h3><?php echo e($title); ?></h3>

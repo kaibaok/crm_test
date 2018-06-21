@@ -9,7 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
+use App\Models\Slider;
 
 class Controller extends BaseController
 {
@@ -37,17 +39,25 @@ class Controller extends BaseController
 
     public function __construct(Route $route)
     {
-        $user = Auth::user();
-        if($user){
-            if( $user->permission < 1) {
-                Auth::logout();
-                Redirect::to('/admin/login')->send();
+        $prefix = $this->getRouter()->getCurrentRoute()->getPrefix();
+
+        if($prefix == "/admin") {
+            $user = Auth::user();
+            if($user){
+                if( $user->permission < 1) {
+                    Auth::logout();
+                    Redirect::to('/admin/login')->send();
+                }
+                // Redirect::to('403')->send();
+            } else {
+                $uri = \Request::path();
+                if($uri != "admin/login")
+                    Redirect::to('/admin/login')->send();
             }
-            // Redirect::to('403')->send();
         } else {
-            $uri = \Request::path();
-            if($uri != "admin/login")
-                Redirect::to('/admin/login')->send();
+            $listSlider = Slider::select()->where(array("status" => 1))
+                ->orderByRaw("id DESC")->get();
+            View::share('listSlider', $listSlider);
         }
     }
 }

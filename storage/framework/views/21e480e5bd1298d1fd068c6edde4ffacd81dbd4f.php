@@ -65,8 +65,8 @@
                     <td><?php echo e($value->title); ?></td>
                     <td><input type="text" value="<?php echo e($value->link); ?>"></td>
                     <td>
-                      <?php if(!empty($value->img_detail) && file_exists(BASE_IMG."slider/{$value->img_detail}")): ?>
-                        <img width="50px" src="<?php echo e(URL_IMG."slider/".$value->img_detail); ?>" alt="<?php echo e($value->title); ?>">
+                      <?php if(!empty($value->simg_detail) && file_exists(BASE_IMG."slider/{$value->simg_detail}")): ?>
+                        <img width="50px" src="<?php echo e(URL_IMG."slider/".$value->simg_detail); ?>" alt="<?php echo e($value->title); ?>">
                       <?php endif; ?>
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> <?php echo e($value->updated_at); ?></td>

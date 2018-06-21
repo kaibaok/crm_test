@@ -1,5 +1,6 @@
 @extends("admin.layout") @section('title') {{$title}} @endsection @section('rightcontent')
-<div class="">
+@php $url = URL_IMG."/home/"  @endphp
+<div>
     <div class="page-title">
         <div class="title_left">
             <h3>{{$title}}</h3>

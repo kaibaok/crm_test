@@ -66,8 +66,8 @@
                     <td>{{$value->title}}</td>
                     <td><input type="text" value="{{$value->link}}"></td>
                     <td>
-                      @if (!empty($value->img_detail) && file_exists(BASE_IMG."slider/{$value->img_detail}"))
-                        <img width="50px" src="{{URL_IMG."slider/".$value->img_detail}}" alt="{{$value->title}}">
+                      @if (!empty($value->simg_detail) && file_exists(BASE_IMG."slider/{$value->simg_detail}"))
+                        <img width="50px" src="{{URL_IMG."slider/".$value->simg_detail}}" alt="{{$value->title}}">
                       @endif
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value->updated_at}}</td>

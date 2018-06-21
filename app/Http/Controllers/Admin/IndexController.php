@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin\Slider;
-use App\Models\Admin\Event;
-use App\Models\Admin\HomePage;
+use App\Models\Slider;
+use App\Models\Event;
+use App\Models\HomePage;
 use App\Events\Img;
 
 class IndexController extends Controller
@@ -132,7 +132,7 @@ class IndexController extends Controller
 
     public function homePage(Request $request)
     {
-        $title   = "Trang HomePage";
+        $title   = "Trang Home Page";
         $params  = $request->all();
         if ($request->isMethod('post')) {
             $clsImg = new Img();
@@ -156,9 +156,9 @@ class IndexController extends Controller
             ->with("title" , $title );
     }
 
-
     // event
-    public function listEvent(Request $request){
+    public function listEvent(Request $request)
+    {
         $title     = "Danh sách sự kiện";
         $page      = isset($request->page) ? $request->page : 1;
         $builder   = Event::select();
@@ -181,7 +181,8 @@ class IndexController extends Controller
             ->with("conditionPage", $conditionPage);
     }
 
-    public function addEvent(Request $request){
+    public function addEvent(Request $request)
+    {
         $title      = "Thêm mới sự kiện";
         $errors     = NULL;
         $listStatus = $this->getOption('listStatus');
@@ -213,7 +214,8 @@ class IndexController extends Controller
             ->with("params", $params);
     }
 
-    public function editEvent(Request $request){
+    public function editEvent(Request $request)
+    {
         $title  = "Sửa sự kiện";
         $id     = (int) $request->route('id');
         $errors = NULL;
@@ -254,7 +256,8 @@ class IndexController extends Controller
             ->with("errors", $errors);
     }
 
-    public function delEvent($id){
+    public function delEvent($id)
+    {
         Event::find((int)$id)->delete();
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);

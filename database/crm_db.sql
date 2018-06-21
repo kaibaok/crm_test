@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2018 at 12:53 PM
+-- Generation Time: Jun 21, 2018 at 12:58 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -392,7 +392,7 @@ CREATE TABLE `slider` (
 
 INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`) VALUES
 (85, 'tét', '', '2018-06-20 02:58:22', '2018-06-20 02:58:22', 1, '5b2a253e5cea6_b4c2f263c742d7ce4565211b60e21568.jpg'),
-(86, 'aa', 'áda', '2018-06-20 03:00:05', '2018-06-20 03:00:05', 0, '5b2a25a53900d_b4c2f263c742d7ce4565211b60e21568.jpg');
+(86, 'aa', 'áda', '2018-06-20 03:00:05', '2018-06-21 03:35:16', 1, '5b2a25a53900d_b4c2f263c742d7ce4565211b60e21568.jpg');
 
 -- --------------------------------------------------------
 

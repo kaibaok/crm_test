@@ -185,8 +185,8 @@ class Img
         case 'himg13':
         case 'himg14':
         case 'himg15':
-          $arr_info['width']  =  470;
-          $arr_info['height'] =  557;
+          $arr_info['width']  =  640;
+          $arr_info['height'] =  517;
         break;
         // slider
         case 'simg_detail':

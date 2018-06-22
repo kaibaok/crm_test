@@ -3,6 +3,7 @@
 @php $url = URL_IMG."/slider/"  @endphp
 
 @section('rightcontent')
+<form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -11,6 +12,7 @@
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
+                <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                 <a class="btn btn-primary" href="/admin/slider">Trở về</a>
               </div>
             </div>
@@ -24,7 +26,6 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{isset($slider['id']) ?  $slider['id'] : '' }}"/>
                     <input type="hidden" id="simg_detail_url" name="simg_detail_url" value="{{isset($slider['simg_detail']) ?  $slider['simg_detail'] : '' }}"/>
@@ -51,6 +52,17 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">Link </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="{{isset($slider['link']) ?  $slider['link'] : '' }}" >
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <textarea  name="desc" id="desc" class="ckedit">
+                                @if(isset($slider['desc']))
+                                    {{ $slider['desc'] }}
+                                @endif
+                            </textarea>
                         </div>
                     </div>
 
@@ -83,19 +95,12 @@
                         </span>
                         </div>
                     </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="item form-group">
-                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                            <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                        </div>
-                    </div>
-                </form>
-              </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 
 

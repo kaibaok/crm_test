@@ -18,7 +18,7 @@ class Slider extends Model
     protected $fillable = [
         "id","title","link",
         "created_at","updated_at","status",
-        "simg_detail"
+        "simg_detail","desc"
     ];
 
     public static function addSlider($data){
@@ -26,11 +26,12 @@ class Slider extends Model
         if(isset($data)){
             try{
                 $status = Slider::create(array(
-                    "title"      => htmlspecialchars(trim($data["title"])),
-                    "link"       => trim($data["link"]),
-                    "status"     => isset($data['status']) ? $data['status'] : 0,
-                    "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
+                    "title"       => htmlspecialchars(trim($data["title"])),
+                    "link"        => trim($data["link"]),
+                    "status"      => isset($data['status']) ? $data['status'] : 0,
+                    "created_at"  => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
                     "simg_detail" => $data['simg_detail'],
+                    "desc"        => $data['desc'],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -43,11 +44,12 @@ class Slider extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                "title"      => htmlspecialchars(trim($data["title"])),
-                "link"       => trim($data["link"]),
-                "status"     => isset($data['status']) ? $data['status'] : 0,
-                "created_at" => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
+                "title"       => htmlspecialchars(trim($data["title"])),
+                "link"        => trim($data["link"]),
+                "status"      => isset($data['status']) ? $data['status'] : 0,
+                "created_at"  => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
                 "simg_detail" => $data['simg_detail'],
+                "desc"        => $data['desc'],
             );
             return Slider::where('id',(int)$data['id'])->update($arr_update);
         }

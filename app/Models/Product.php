@@ -21,7 +21,7 @@ class Product extends Model
         "created_at","updated_at","status","ord",
         "pimg_list","pimg_detail","pimg1","pimg2","pimg3",
         "pimg4","pimg5","colors","is_new","is_best_sell","attribute","seo_link",
-        "brand"
+        "brand","type_price"
     ];
 
     public static function addProduct($data){
@@ -51,6 +51,7 @@ class Product extends Model
                     "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
                     "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
                     "brand"        => (int)$data["brand"],
+                    "type_price"   => (int)$data["type_price"],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -85,6 +86,7 @@ class Product extends Model
                 "colors"       => isset($data['colors']) ? implode("|", $data['colors']): "",
                 "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
                 "brand"        => (int)$data["brand"],
+                "type_price"   => (int)$data["type_price"],
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }

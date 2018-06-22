@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2018 at 12:58 PM
+-- Generation Time: Jun 22, 2018 at 12:39 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -143,8 +143,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `created_at`, `updated_at`, `title`, `eimg_detail`, `seo_link`, `time_open`, `time_close`, `status`, `desc`) VALUES
-(1, '2018-06-20 09:17:08', '2018-06-20 03:30:06', 'asdasdsad', '5b2a2caeed28a_b4c2f263c742d7ce4565211b60e21568.jpg', 'test', '2018-06-05 16:00:00', '2018-06-23 16:00:00', 0, '<p>dasd</p>\r\n'),
-(2, '2018-06-20 10:30:46', '2018-06-20 03:30:46', 'tesa', '5b2a2cd6ba749_b4c2f263c742d7ce4565211b60e21568.jpg', 'asd', '2018-06-20 17:00:00', '2018-06-20 17:00:00', 0, '');
+(1, '2018-06-20 09:17:08', '2018-06-22 02:38:17', 'asdasdsad', '5b2a2caeed28a_b4c2f263c742d7ce4565211b60e21568.jpg', 'test', '2018-06-05 16:00:00', '2018-06-23 16:00:00', 1, '<p>dasd</p>\r\n'),
+(2, '2018-06-20 10:30:46', '2018-06-22 03:27:14', 'tesa', '5b2a2cd6ba749_b4c2f263c742d7ce4565211b60e21568.jpg', 'asd', '2018-06-09 17:00:00', '2018-07-27 17:00:00', 1, '<h3>GET IT NOW</h3>\r\n\r\n<h1>LIMITED OFFER</h1>\r\n\r\n<h5 class=\"hidden-xs\">HANDBAGS COLLECTION FOR WOMEN</h5>\r\n');
 
 -- --------------------------------------------------------
 
@@ -185,8 +185,30 @@ CREATE TABLE `home_page` (
   `himg12` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `himg13` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `himg14` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `himg15` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `himg15` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link3` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link4` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link5` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link6` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link7` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link8` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link9` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link10` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link11` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link12` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link13` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link14` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link15` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `home_page`
+--
+
+INSERT INTO `home_page` (`id`, `updated_at`, `created_at`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `title11`, `title12`, `title13`, `title14`, `title15`, `himg1`, `himg2`, `himg3`, `himg4`, `himg5`, `himg6`, `himg7`, `himg8`, `himg9`, `himg10`, `himg11`, `himg12`, `himg13`, `himg14`, `himg15`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `link9`, `link10`, `link11`, `link12`, `link13`, `link14`, `link15`) VALUES
+(1, '2018-06-22 02:29:37', '0000-00-00 00:00:00', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h2 class=\"text-uppercase\">men&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '<h2 class=\"text-uppercase\">women&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '', '<h5 class=\"text-uppercase\">all new</h5>\r\n\r\n<h3 class=\"text-uppercase\">SUMMER</h3>\r\n\r\n<h5 class=\"text-uppercase\">COLLECTION FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">GET UP TO</h5>\r\n\r\n<h3>35%</h3>\r\n\r\n<h5 class=\"text-uppercase\">discount</h5>\r\n', '<h5 class=\"text-uppercase\">HOT OFFER <span> 25% </span> get it now</h5>\r\n', '<h5 class=\"text-uppercase\">trendy</h5>\r\n\r\n<h3 class=\"text-uppercase\">coat&#39;s</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">brand new</h5>\r\n\r\n<h3 class=\"text-uppercase\">sunglass</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR WOMEN</h5>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h3 class=\"text-uppercase\">EXCLUSIVE</h3>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S &amp; WOMEN&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">COLLECTION</h3>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">WOMEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '5b2ca839e46ce_b4c2f263c742d7ce4565211b60e21568.jpg', '5b2cb43792b9a_5ff54aaa8b9a79bacc436e01e0b0a656.jpg', '5b2cb437a508d_42ebc83d85d73788aab8313aa990060c.jpg', '5b2cb437b1f92_e004ff560352c208eb3879eb5298286b.jpg', '5b2cb7d86e1bf_e004ff560352c208eb3879eb5298286b.jpg', '5b2cb881f199a_44677673e45458a25ff9080da4d3e047.jpg', '5b2cba34e390b_104c87c133f36b2592329a926380bb89.jpg', '5b2cbd0e0587b_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b2cbde9c97bd_c81e728d9d4c2f636f067f89cc14862c.jpg', '5b2cbe7d21df4_c4ca4238a0b923820dcc509a6f75849b.jpg', '5b2cbeb866102_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b2cbf71e61ff_e4da3b7fbbce2345d7772b0674a318d5.jpg', '5b2cc181485a6_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814966b_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814a222_6d283a0eb007683e94c72317741975ae.jpg', 'http://link.com', 'link2', 'link 3', 'link 4', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -294,15 +316,16 @@ CREATE TABLE `product` (
   `is_new` tinyint(2) NOT NULL DEFAULT '0',
   `is_best_sell` tinyint(2) NOT NULL DEFAULT '0',
   `seo_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `brand` int(11) NOT NULL
+  `brand` int(11) NOT NULL,
+  `type_price` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`) VALUES
-(80, 0, '1529395811', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-19 01:10:21', 0, 5, '5b21dfd189018_b4c2f263c742d7ce4565211b60e21568.jpg', '', '', '', '', '', '', 0, 0, 'test', 3);
+INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`) VALUES
+(80, 0, '1529653221', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-22 00:40:36', 0, 5, '', '', '', '', '', '', '', 0, 0, 'test', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -383,16 +406,17 @@ CREATE TABLE `slider` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  `simg_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `simg_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `desc` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `slider`
 --
 
-INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`) VALUES
-(85, 'tét', '', '2018-06-20 02:58:22', '2018-06-20 02:58:22', 1, '5b2a253e5cea6_b4c2f263c742d7ce4565211b60e21568.jpg'),
-(86, 'aa', 'áda', '2018-06-20 03:00:05', '2018-06-21 03:35:16', 1, '5b2a25a53900d_b4c2f263c742d7ce4565211b60e21568.jpg');
+INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`, `desc`) VALUES
+(85, 'tét', 'aaaa', '2018-06-21 21:30:34', '2018-06-21 21:30:34', 1, '5b2a253e5cea6_b4c2f263c742d7ce4565211b60e21568.jpg', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2>teeeeee</h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1>abc</h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie<br />\r\nconsequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n'),
+(86, 'aa', 'áda', '2018-06-21 21:34:32', '2018-06-21 21:34:32', 1, '5b2c760522068_8facee53a2b969d8106632a29e71dfc1.png', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2><span style=\"background-color:#ffffff\">EXCLUSIVE COLLECTION {{$no}}</span></h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1><span style=\"background-color:#8b4513\">SHIRT&rsquo;S FOR MEN</span></h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p><span style=\"background-color:#ffffff\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</span><br />\r\n<span style=\"background-color:#ffffff\">consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</span></p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n');
 
 -- --------------------------------------------------------
 
@@ -584,7 +608,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `home_page`
 --
 ALTER TABLE `home_page`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `news`

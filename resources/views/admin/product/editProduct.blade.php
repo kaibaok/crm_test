@@ -2,7 +2,7 @@
 @section('title') {{$title}} @endsection
 @section('rightcontent')
 @php $url = URL_IMG."/product/"  @endphp
-
+<form id="demo-form" class="form-horizontal" method="post" action="" enctype="multipart/form-data">
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -11,6 +11,7 @@
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
+                <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                 <a class="btn btn-primary" href="/admin/product">Trở về</a>
               </div>
             </div>
@@ -24,7 +25,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
+                <input  type ="hidden" value="{{time()}}" name="code_id">
                 {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{isset($product['id']) ?  $product['id'] : '' }}"/>
                     <input type="hidden" id="pimg_list_url" name="pimg_list_url" value="{{isset($product['pimg_list']) ?  $product['pimg_list'] : '' }}"/>
@@ -147,13 +148,24 @@
                         </div>
                     </div>
 
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Loại giá</label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div id="type_price" class="btn-group" data-toggle="buttons">
+                              <label><input type="radio" class="flat" name="type_price" value="1" @if(isset($product['type_price']) && $product['type_price'] == 1) checked @endif /> Giá bình thường </label>&nbsp;
+                              <label><input type="radio" class="flat" name="type_price"  value="2" @if(isset($product['type_price']) && $product['type_price'] == 2) checked @endif /> Giá liên hệ </label>
+                              <label><input type="radio" class="flat" name="type_price"  value="3" @if(isset($product['type_price']) && $product['type_price'] == 3) checked @endif /> Hết hàng</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="item form-group @if(isset($errors['price'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($product['price']) ?  $product['price'] : '' }}" >
                         </div>
-                        @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+                        @if(isset($errors['price'])) <div class="alert">{{$errors['price']}}</div> @endif
                     </div>
 
                     <div class="item form-group @if(isset($errors['numbers'])) bad @endif">
@@ -356,17 +368,10 @@
                         </span>
                         </div>
                     </div>
-                    <div class="ln_solid"></div>
-                    <div class="item form-group">
-                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                        <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                        <input  type ="hidden" value="{{time()}}" name="code_id">
-                        </div>
-                    </div>
-                    </form>
-              </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 @endsection

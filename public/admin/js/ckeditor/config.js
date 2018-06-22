@@ -15,4 +15,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.filebrowserUploadUrl = link_url+'core/connector/php/connector.php?command=QuickUpload&type=Files';
 	config.filebrowserImageUploadUrl = link_url+'core/connector/php/connector.php?command=QuickUpload&type=Images';
 	config.filebrowserFlashUploadUrl = link_url+'core/connector/php/connector.php?command=QuickUpload&type=Flash';
+	config.allowedContent = true;
 };

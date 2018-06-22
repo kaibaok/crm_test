@@ -1,6 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
+<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
@@ -9,6 +10,7 @@
 		<div class="title_right">
 	        <div class=" pull-right">
 	          <div class="input-group">
+	          	<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 	            <a class="btn btn-primary" href="/admin/type-product/">Trở về</a>
 	          </div>
 	        </div>
@@ -22,7 +24,6 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
 				{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{$type['id']}}"/>
 					<div class="item form-group  @if(isset($errors['title'])) bad @endif">
@@ -50,18 +51,12 @@
 						</span>
 						</div>
 					</div>
-					<div class="ln_solid"></div>
-					<div class="form-group">
-						<div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
-						<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-						</div>
-					</div>
-					</form>
-			  </div>
+				</div>
 		    </div>
 		</div>
 	</div>
 </div>
+</form>
 @endsection
 
 

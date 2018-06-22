@@ -31,6 +31,8 @@ class Controller extends BaseController
     		case 'typePaid':
     			return array( 'all' => "Tất cả" , 1 => "Member đặt" , 2 => 'Admin đặt' );
     		break;
+            case 'typePrice':
+                return array( 1 => "Giá bình thường", 2 => "Giá Liên hệ", 3 => "Hết hàng");
     		default:
     			return NULL;
     		break;
@@ -58,6 +60,7 @@ class Controller extends BaseController
             $listSlider = Slider::select()->where(array("status" => 1))
                 ->orderByRaw("id DESC")->get();
             View::share('listSlider', $listSlider);
+
         }
     }
 }

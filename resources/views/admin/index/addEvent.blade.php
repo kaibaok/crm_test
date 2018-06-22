@@ -1,6 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
+<form id="demo-form" class="form-horizontal form-label-left" method="post" action="" enctype="multipart/form-data">
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -9,6 +10,7 @@
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
+                <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                 <a class="btn btn-primary" href="/admin/event/">Trở về</a>
               </div>
             </div>
@@ -22,7 +24,6 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" class="form-horizontal form-label-left" method="post" action="" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
@@ -95,19 +96,12 @@
                         </span>
                         </div>
                     </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="item form-group">
-                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                            <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                        </div>
-                    </div>
-                </form>
               </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 @endsection
 
 @section("js")

@@ -54,6 +54,18 @@
                         </div>
                     </div>
 
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <textarea  name="desc" id="desc" class="ckedit">
+                                <?php if(isset($slider['desc'])): ?>
+                                    <?php echo e($slider['desc']); ?>
+
+                                <?php endif; ?>
+                            </textarea>
+                        </div>
+                    </div>
+
                     <div class="item form-group image_upload">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh <span class="required">*</span></label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">

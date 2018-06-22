@@ -192,7 +192,7 @@ class NewsController extends Controller
                         $clsImg->removeImages("news/",$getNews[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $clsImg->removeImages($getNews[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages("news/",$getNews[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }

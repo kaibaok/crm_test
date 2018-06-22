@@ -1,6 +1,8 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
+<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
+
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
@@ -9,6 +11,7 @@
 		<div class="title_right">
 	        <div class=" pull-right">
 	          <div class="input-group">
+	          	<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 	            <a class="btn btn-primary" href="/admin/product">Trở về</a>
 	          </div>
 	        </div>
@@ -22,8 +25,8 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-				<form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
 					{{ csrf_field() }}
+					<input  type ="hidden" value="{{time()}}" name="code_id">
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
@@ -134,13 +137,24 @@
 						</div>
 					</div>
 
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại giá</label>
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div id="type_price" class="btn-group" data-toggle="buttons">
+		                        <label><input type="radio" class="flat" name="type_price" value="1" checked="" /> Giá bình thường </label>
+								<label><input type="radio" class="flat" name="type_price"  value="2" /> Giá liên hệ </label>
+								<label><input type="radio" class="flat" name="type_price"  value="3" /> Hết hàng </label>
+							</div>
+						</div>
+					</div>
+
 					<div class="item form-group @if(isset($errors['price'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($params['price']) ? $params['price'] : '' }}" >
 						</div>
-						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+						@if(isset($errors['price'])) <div class="alert">{{$errors['price']}}</div> @endif
 					</div>
 
 					<div class="item form-group @if(isset($errors['numbers'])) bad @endif">
@@ -298,19 +312,11 @@
 						</span>
 						</div>
 					</div>
-
-					<div class="ln_solid"></div>
-					<div class="item form-group">
-						<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-							<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-							<input  type ="hidden" value="{{time()}}" name="code_id">
-						</div>
-					</div>
-				</form>
-			  </div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+</form>
 @endsection
 

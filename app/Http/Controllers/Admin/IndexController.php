@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use App\Models\Event;
 use App\Models\HomePage;
 use App\Events\Img;
+use DateTime,Session;
 
 class IndexController extends Controller
 {
@@ -102,7 +102,7 @@ class IndexController extends Controller
                         $clsImg->removeImages("slider/",$getSlider[$key]);
                     }
                     else {
-                        if(empty($params[$key."_url"])) $clsImg->removeImages($getSlider[$key]);
+                        if(empty($params[$key."_url"])) $clsImg->removeImages("slider/",$getSlider[$key]);
                         $params[$key] = $params[$key."_url"];
                     }
                 }
@@ -134,29 +134,44 @@ class IndexController extends Controller
     {
         $title   = "Trang Home Page";
         $params  = $request->all();
+        $getHome = HomePage::findOrFail(1)->toArray();
         if ($request->isMethod('post')) {
             $clsImg = new Img();
             $result = $clsImg->uploadImages("home/");
             foreach ($_FILES as $key => $value) {
                 if($params[$key."_url"] != $result[$key] && !empty($result[$key])){
                     $params[$key] = $result[$key];
-                    $clsImg->removeImages("home/",$getSlider[$key]);
+                    $clsImg->removeImages("home/",$getHome[$key]);
                 }
                 else {
-                    if(empty($params[$key."_url"])) $clsImg->removeImages($getSlider[$key]);
+                    if(empty($params[$key."_url"])) $clsImg->removeImages("home/", $getHome[$key]);
                     $params[$key] = $params[$key."_url"];
                 }
             }
             $editHomePage = HomePage::editHomePage($params);
             if($editHomePage) $errors['finish'] = "Sửa thành công";
             else $errors['finish'] = "Sửa thất bại";
-            $getSlider = $params;
+            $getHome = $params;
         }
         return view("admin.index.homePage")
+            ->with("home", $getHome)
             ->with("title" , $title );
     }
 
     // event
+    public function statusEvent($id)
+    {
+        $event = Event::findOrFail((int)$id);
+        if(!empty($event)){
+            if($event->status)
+                $event->status = 0;
+            else
+                $event->status = 1;
+        }
+        echo $event->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
     public function listEvent(Request $request)
     {
         $title     = "Danh sách sự kiện";

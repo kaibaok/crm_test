@@ -78,10 +78,15 @@ $(document).ready(function() {
                     {"name":"document","groups":["mode"]},
                     {"name":"insert","groups":["insert"]},
                     {"name":"styles","groups":["styles"]},
-                    {"name":"about","groups":["about"]}
+                    {"name":"about","groups":["about"]},
+                    {"name":"colors"}
                 ];
-            if(tool == 'basic')
-                toolbarGroups = [{"name":"document","groups":["mode"]}];
+            if(tool == 'basic') {
+                toolbarGroups = [
+                    {"name":"document","groups":["mode"]},
+                    {"name":"colors"}
+                ];
+            }
             var editor = CKEDITOR.replace( id, {
                 language: 'vi',
                 toolbarGroups: toolbarGroups,
@@ -119,6 +124,10 @@ $(document).ready(function() {
     if($("div").hasClass('image_upload')) {
         var $imageupload = $('.imageupload');
         $imageupload.imageupload();
+        $(".btn-danger").bind('click', function(event) {
+            id = $(this).attr('rel');
+            $("#"+id).val('');
+        });
     }
 });
 

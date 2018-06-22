@@ -43,6 +43,7 @@
                     <th class="column-title">Tên sản phẩm</th>
                     <th class="column-title">Thương hiệu</th>
                     <th class="column-title">Loại sản phẩm</th>
+                    <th class="column-title">Loại Giá</th>
                     <th class="column-title">Giá</th>
                     <th class="column-title">Thể loại</th>
                     <th class="column-title">Màu sắc</th>
@@ -78,6 +79,7 @@
                     <td> <?php if(isset($listBrand[$value->brand])): ?> <?php echo e($listBrand[$value->brand]); ?> <?php endif; ?> </td>
                     <td><?php if(isset($listCategory[$value->id_cate])): ?> <?php echo e($listCategory[$value->id_cate]); ?> <?php endif; ?></td>
                     <td><?php echo e($value->price); ?></td>
+                    <td><?php echo e($typePrice[$value->type_price]); ?></td>
                     <td><?php if(isset($listType[$value->type])): ?> <?php echo e($listType[$value->type]); ?> <?php endif; ?></td>
                     <td> <?php foreach($colorChoose as $item): ?>
                         <span style="background: <?php if(isset($listColors[$item]['code'])): ?> <?php echo e($listColors[$item]['code']); ?> <?php endif; ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>

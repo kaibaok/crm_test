@@ -149,13 +149,24 @@
                         </div>
                     </div>
 
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Loại giá</label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div id="type_price" class="btn-group" data-toggle="buttons">
+                              <label><input type="radio" class="flat" name="type_price" value="1" <?php if(isset($product['type_price']) && $product['type_price'] == 1): ?> checked <?php endif; ?> /> Giá bình thường </label>&nbsp;
+                              <label><input type="radio" class="flat" name="type_price"  value="2" <?php if(isset($product['type_price']) && $product['type_price'] == 2): ?> checked <?php endif; ?> /> Giá liên hệ </label>
+                              <label><input type="radio" class="flat" name="type_price"  value="3" <?php if(isset($product['type_price']) && $product['type_price'] == 3): ?> checked <?php endif; ?> /> Hết hàng</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="item form-group <?php if(isset($errors['price'])): ?> bad <?php endif; ?>">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="<?php echo e(isset($product['price']) ?  $product['price'] : ''); ?>" >
                         </div>
-                        <?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
+                        <?php if(isset($errors['price'])): ?> <div class="alert"><?php echo e($errors['price']); ?></div> <?php endif; ?>
                     </div>
 
                     <div class="item form-group <?php if(isset($errors['numbers'])): ?> bad <?php endif; ?>">
@@ -354,19 +365,13 @@
                     <div class="item form-group">
                         <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
                         <span class="help-block">
-                            <strong>
-                                <?php if(isset($errors['finish'])): ?>
-                                    <?php echo e($errors['finish']); ?>
-
-                                <?php endif; ?>
-                            </strong>
+                            <strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
                         </span>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                        <button type ="reset" class="btn btn-primary">Reset</button>
                         <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                         <input  type ="hidden" value="<?php echo e(time()); ?>" name="code_id">
                         </div>

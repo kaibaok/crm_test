@@ -113,6 +113,7 @@ class ProductController extends Controller
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
         $listBrand    = Brand::getList();
+        $typePrice    = $this->getOption('typePrice');
         if(!empty($txtSearch)) {
             $builder->where('title','like',"%{$txtSearch}%")
                 ->orWhere('code_id','like',"%{$txtSearch}%");
@@ -133,7 +134,8 @@ class ProductController extends Controller
             ->with("listType", $listType)
             ->with("listProduct", $listProduct)
             ->with("listBrand", $listBrand)
-            ->with("conditionPage", $conditionPage);
+            ->with("conditionPage", $conditionPage)
+            ->with("typePrice", $typePrice);
 	}
 
     public function addProduct(Request $request){
@@ -143,6 +145,7 @@ class ProductController extends Controller
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
         $listBrand    = Brand::getList();
+        $typePrice    = $this->getOption('typePrice');
         $params       = $request->all();
         if ($request->isMethod('post')) {
             if(empty($params['title'])) $errors['title']       = "Vui lòng nhập tiêu đề";
@@ -171,7 +174,8 @@ class ProductController extends Controller
             ->with("listType", $listType)
             ->with("listBrand", $listBrand)
             ->with("errors", $errors)
-            ->with("params", $params);
+            ->with("params", $params)
+            ->with("typePrice", $typePrice);
     }
 
     public function editProduct(Request $request){
@@ -183,6 +187,7 @@ class ProductController extends Controller
         $listCategory = ProductCategory::getList();
         $listType     = ProductType::getList();
         $listBrand    = Brand::getList();
+        $typePrice    = $this->getOption('typePrice');
         $getProduct   = Product::findOrFail((int)$id)->toArray();
         $params       = $request->all();
         if ($request->isMethod('post')) {
@@ -203,6 +208,7 @@ class ProductController extends Controller
                         $params[$key] = $params[$key."_url"];
                     }
                 }
+
                 $statusUpdate = Product::editProduct($params);
                 if($statusUpdate) $errors['finish'] = "Sửa thành công";
                 else $errors['finish'] = "Sửa thất bại";
@@ -216,7 +222,8 @@ class ProductController extends Controller
             ->with("listColors", $listColors)
             ->with("listCategory", $listCategory)
             ->with("listType", $listType)
-            ->with("errors", $errors);
+            ->with("errors", $errors)
+            ->with("typePrice", $typePrice);
     }
 
     public function delProduct($id){

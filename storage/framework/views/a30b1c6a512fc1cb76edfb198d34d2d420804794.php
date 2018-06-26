@@ -476,12 +476,6 @@
                 <!-- Mobile Menu Area end -->
             </header>
             <!-- header end -->
-            <!-- slider start -->
-            <div class="slider-wrap">
-                <?php echo $__env->make("user.slidertop", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-            </div>
-            <!-- slider end -->
-
             <?php echo $__env->yieldContent("middlecontent"); ?>
 
             <!-- footer start -->

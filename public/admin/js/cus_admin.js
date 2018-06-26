@@ -129,6 +129,13 @@ $(document).ready(function() {
             $("#"+id).val('');
         });
     }
+
+    if($("div").hasClass('multiselect')) {
+        $(".multiple_select").each(function(index, el) {
+            var id =   $(this).attr('id');
+            $("#"+ id).multiSelect();
+        });
+    }
 });
 
 

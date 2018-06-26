@@ -1,7 +1,7 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
 <?php  $url = URL_IMG."/product/"   ?>
-
+<form id="demo-form" class="form-horizontal" method="post" action="" enctype="multipart/form-data">
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -10,6 +10,7 @@
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
+                <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                 <a class="btn btn-primary" href="/admin/product">Trở về</a>
               </div>
             </div>
@@ -23,7 +24,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" data-parsley-validate class="form-horizontal" method="post" action="" enctype="multipart/form-data" autocomplete="on">
+                <input  type ="hidden" value="<?php echo e(time()); ?>" name="code_id">
                 <?php echo e(csrf_field()); ?>
 
                     <input type="hidden" name="id" value="<?php echo e(isset($product['id']) ?  $product['id'] : ''); ?>"/>
@@ -56,7 +57,7 @@
                     </div>
 
                     <div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm bán chạy</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_best_sell" class="btn-group" data-toggle="buttons">
                                 <input type="checkbox" name="is_best_sell" value="1" class="flat"
@@ -369,19 +370,12 @@
                         </span>
                         </div>
                     </div>
-                    <div class="ln_solid"></div>
-                    <div class="item form-group">
-                        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-2">
-                        <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                        <input  type ="hidden" value="<?php echo e(time()); ?>" name="code_id">
-                        </div>
-                    </div>
-                    </form>
-              </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

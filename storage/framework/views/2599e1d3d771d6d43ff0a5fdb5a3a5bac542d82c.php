@@ -1,6 +1,10 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('middlecontent'); ?>
 
+<div class="slider-wrap">
+    <?php echo $__env->make("user.slidertop", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+
 <!-- slider bottom start -->
 <div class="slider-bottom-area mt-10 text-left">
     <div class="container-fluid">
@@ -794,43 +798,8 @@
     </div>
 </div>
 <!-- collection area end -->
-<!-- newsletter area start -->
-<div class="newsletter-area ptb-110">
-    <div class="container">
-        <div class="row">
-            <div class="newsletter-info">
-                <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-                    <div class="news-left text-right">
-                        <a href="/public/user/#" class="section-button">sign up for free</a>
-                        <h3 class="text-uppercase">subscribe newsletter</h3>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-                    <div class="news-right text-center">
-                        <form action="#" id="mc-form" class="mc-form">
-                            <input id="mc-email" type="text" name="email" placeholder="Type Your Email Address...">
-                            <button id="mc-submit" type="submit" class="text-uppercase">send</button>
-                            <span class="hidden-xs"><input type="checkbox" name="agree">By Subscribing to our newsletter you are agree to receive emails from us !</span>
-                        </form>
-                        <!-- mailchimp-alerts Start -->
-                        <div class="mailchimp-alerts text-centre fix">
-                            <div class="mailchimp-submitting"></div>
-                            <!-- mailchimp-submitting end -->
-                            <div class="mailchimp-success"></div>
-                            <!-- mailchimp-success end -->
-                            <div class="mailchimp-error"></div>
-                            <!-- mailchimp-error end -->
-                        </div>
-                        <!-- mailchimp-alerts end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- newsletter area end -->
 <!-- women area start -->
-<div class="women-area ptb-90">
+<div class="women-area mb-90">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -3070,91 +3039,36 @@
 </div>
 <!-- testimonial area end -->
 <!-- client area start -->
-<div class="client-area ptb-90">
-    <div class="container">
-        <div class="row">
-            <div class="client-owl">
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/1.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/2.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/3.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/4.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/5.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/1.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/2.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/3.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/4.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/5.png" alt=""></a>
-                        </div>
-                    </div>
+<?php if(!empty($listBrand)): ?>
+    <div class="client-area ptb-90">
+        <div class="container">
+            <div class="row">
+                <div class="client-owl">
+                    <?php foreach($listBrand as $key => $value): ?>
+                        <?php if(!empty($value->bimg_detail) && file_exists(BASE_IMG."brand/".$value->bimg_detail)): ?>
+                            <div class="col-xs-12">
+                                <div class="single-client">
+                                    <div class="single-client-img plr-40">
+                                        <a href="/bd/<?php echo e($value->id); ?>/<?php echo e($value->seo_link); ?>">
+                                            <img src="<?php echo e(URL_IMG."brand/".$value->bimg_detail); ?>" alt="<?php echo e($value->title); ?>">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="client-button text-center pt-35">
-                    <a href='#' class='section-button'>View More</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="client-button text-center pt-35">
+                        <a href='/b/' class='section-button'>Thương hiệu</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 <!-- client area end -->
 <!-- service area end -->
 <div class="service-area mb-10">

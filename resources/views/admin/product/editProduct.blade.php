@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="item form-group">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm mới</label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Sản phẩm bán chạy</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_best_sell" class="btn-group" data-toggle="buttons">
                                 <input type="checkbox" name="is_best_sell" value="1" class="flat"

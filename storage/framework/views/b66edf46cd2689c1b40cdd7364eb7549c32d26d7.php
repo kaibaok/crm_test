@@ -1,4 +1,3 @@
-
 <?php if(!empty($listSlider)): ?>
 <div class="preview-2">
     <div id="nivoslider" class="slides">

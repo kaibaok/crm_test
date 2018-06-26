@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2018 at 01:00 PM
+-- Generation Time: Jun 26, 2018 at 12:33 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -43,8 +43,11 @@ CREATE TABLE `brand` (
 --
 
 INSERT INTO `brand` (`id`, `status`, `title`, `seo_link`, `bimg_detail`, `updated_at`, `created_at`) VALUES
-(4, 0, 'asda', 'sd', '5b2a28492eef1_b4c2f263c742d7ce4565211b60e21568.jpg', '2018-06-20 03:11:21', '2018-06-20 02:56:06'),
-(5, 0, 'asd', 'asd', '5b2a2870f36e6_b4c2f263c742d7ce4565211b60e21568.jpg', '2018-06-20 03:12:01', '2018-06-20 03:12:01');
+(4, 1, 'asda', 'sd', '5b31b23218133_c81e728d9d4c2f636f067f89cc14862c.png', '2018-06-25 20:25:38', '2018-06-20 02:56:06'),
+(5, 1, 'asd', 'asd', '5b31b229bf106_c4ca4238a0b923820dcc509a6f75849b.png', '2018-06-25 20:26:08', '2018-06-20 03:12:01'),
+(6, 1, 'c', 'c', '5b31b23d5383a_eccbc87e4b5ce2fe28308fd9f2a7baf3.png', '2018-06-25 20:26:06', '2018-06-25 20:25:49'),
+(7, 1, 'd', 'd', '5b31b2436268a_a87ff679a2f3e71d9181a67b7542122c.png', '2018-06-25 20:26:04', '2018-06-25 20:25:55'),
+(8, 1, 'e', 'e', '5b31b248717db_e4da3b7fbbce2345d7772b0674a318d5.png', '2018-06-25 20:26:03', '2018-06-25 20:26:00');
 
 -- --------------------------------------------------------
 
@@ -200,15 +203,18 @@ CREATE TABLE `home_page` (
   `link12` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `link13` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `link14` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `link15` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `link15` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `list_top` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `list_middle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `list_footer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `home_page`
 --
 
-INSERT INTO `home_page` (`id`, `updated_at`, `created_at`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `title11`, `title12`, `title13`, `title14`, `title15`, `himg1`, `himg2`, `himg3`, `himg4`, `himg5`, `himg6`, `himg7`, `himg8`, `himg9`, `himg10`, `himg11`, `himg12`, `himg13`, `himg14`, `himg15`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `link9`, `link10`, `link11`, `link12`, `link13`, `link14`, `link15`) VALUES
-(1, '2018-06-25 02:39:47', '0000-00-00 00:00:00', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h2 class=\"text-uppercase\">men&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '<h2 class=\"text-uppercase\">women&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '', '<h5 class=\"text-uppercase\">all new</h5>\r\n\r\n<h3 class=\"text-uppercase\">SUMMER</h3>\r\n\r\n<h5 class=\"text-uppercase\">COLLECTION FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">GET UP TO</h5>\r\n\r\n<h3>35%</h3>\r\n\r\n<h5 class=\"text-uppercase\">discount</h5>\r\n', '<h5 class=\"text-uppercase\">HOT OFFER <span> 25% </span> get it now</h5>\r\n', '<h5 class=\"text-uppercase\">trendy</h5>\r\n\r\n<h3 class=\"text-uppercase\">coat&#39;s</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">brand new</h5>\r\n\r\n<h3 class=\"text-uppercase\">sunglass</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR WOMEN</h5>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h3 class=\"text-uppercase\">EXCLUSIVE</h3>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S &amp; WOMEN&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">COLLECTION</h3>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">WOMEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '5b30b6ec4f8d8_6d283a0eb007683e94c72317741975ae.jpg', '5b30b6ec50879_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b6ec51816_daa8f13c9d65da091604a1c944e47f3b.jpg', '5b30b6ec52ba1_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b7a2ec390_7a6f150b83091ce20c89368641f9a137.jpg', '5b30b722cb757_fbfba2e45c2045dc5cab22a5afe83d9d.jpg', '5b30b7a311790_edbab45572c72a5d9440b40bcc0500c0.jpg', '5b30b82d5de69_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b82d5f1f0_c81e728d9d4c2f636f067f89cc14862c.jpg', '5b30b82d5fd9f_c4ca4238a0b923820dcc509a6f75849b.jpg', '5b30b82d6056d_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b82d61127_e4da3b7fbbce2345d7772b0674a318d5.jpg', '5b2cc181485a6_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814966b_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814a222_6d283a0eb007683e94c72317741975ae.jpg', 'http://link.com', 'link2', 'link 3', 'link 4', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `home_page` (`id`, `updated_at`, `created_at`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `title11`, `title12`, `title13`, `title14`, `title15`, `himg1`, `himg2`, `himg3`, `himg4`, `himg5`, `himg6`, `himg7`, `himg8`, `himg9`, `himg10`, `himg11`, `himg12`, `himg13`, `himg14`, `himg15`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `link9`, `link10`, `link11`, `link12`, `link13`, `link14`, `link15`, `list_top`, `list_middle`, `list_footer`) VALUES
+(1, '2018-06-26 03:09:16', '0000-00-00 00:00:00', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h2 class=\"text-uppercase\">men&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '<h2 class=\"text-uppercase\">women&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '', '<h5 class=\"text-uppercase\">all new</h5>\r\n\r\n<h3 class=\"text-uppercase\">SUMMER</h3>\r\n\r\n<h5 class=\"text-uppercase\">COLLECTION FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">GET UP TO</h5>\r\n\r\n<h3>35%</h3>\r\n\r\n<h5 class=\"text-uppercase\">discount</h5>\r\n', '<h5 class=\"text-uppercase\">HOT OFFER <span> 25% </span> get it now</h5>\r\n', '<h5 class=\"text-uppercase\">trendy</h5>\r\n\r\n<h3 class=\"text-uppercase\">coat&#39;s</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">brand new</h5>\r\n\r\n<h3 class=\"text-uppercase\">sunglass</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR WOMEN</h5>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h3 class=\"text-uppercase\">EXCLUSIVE</h3>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S &amp; WOMEN&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">COLLECTION</h3>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">WOMEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '5b30b6ec4f8d8_6d283a0eb007683e94c72317741975ae.jpg', '5b30b6ec50879_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b6ec51816_daa8f13c9d65da091604a1c944e47f3b.jpg', '5b30b6ec52ba1_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b7a2ec390_7a6f150b83091ce20c89368641f9a137.jpg', '5b30b722cb757_fbfba2e45c2045dc5cab22a5afe83d9d.jpg', '5b30b7a311790_edbab45572c72a5d9440b40bcc0500c0.jpg', '5b30b82d5de69_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b82d5f1f0_c81e728d9d4c2f636f067f89cc14862c.jpg', '5b30b82d5fd9f_c4ca4238a0b923820dcc509a6f75849b.jpg', '5b30b82d6056d_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b82d61127_e4da3b7fbbce2345d7772b0674a318d5.jpg', '5b2cc181485a6_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814966b_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814a222_6d283a0eb007683e94c72317741975ae.jpg', 'http://link.com', 'link2', 'link 3', 'link 4', '', '', '', '', '', '', '', '', '', '', '', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -325,7 +331,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`) VALUES
-(80, 0, '1529653221', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-22 00:40:36', 0, 5, '', '', '', '', '', '', '', 0, 0, 'test', 4, 2);
+(80, 1, '1529653221', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-22 00:40:36', 0, 5, '', '', '', '', '', '', '', 0, 0, 'test', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -348,7 +354,7 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id`, `status`, `title`, `seo_link`, `item_id`, `updated_at`, `created_at`) VALUES
-(0, 1, 'Thức ăn thường', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22');
+(1, 1, 'Áo Len', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22');
 
 -- --------------------------------------------------------
 
@@ -578,7 +584,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cart`

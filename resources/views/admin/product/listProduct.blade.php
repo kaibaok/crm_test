@@ -77,10 +77,10 @@
                     </td>
                     <td>{{$value->code_id}}</td>
                     <td>{{$value->title}}</td>
-                    <td> @if (isset($listBrand[$value->brand])) {{$listBrand[$value->brand]}} @endif </td>
+                    <td>@if(isset($listBrand[$value->brand])) {{$listBrand[$value->brand]}} @endif </td>
                     <td>@if(isset($listCategory[$value->id_cate])) {{$listCategory[$value->id_cate]}} @endif</td>
-                    <td>{{$value->price}}</td>
                     <td>{{$typePrice[$value->type_price]}}</td>
+                    <td>{{$value->price}}</td>
                     <td>@if(isset($listType[$value->type])) {{$listType[$value->type]}} @endif</td>
                     <td> @foreach ($colorChoose as $item)
                         <span style="background: @if(isset($listColors[$item]['code'])) {{$listColors[$item]['code']}} @endif; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>

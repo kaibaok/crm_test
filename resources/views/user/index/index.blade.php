@@ -2,6 +2,10 @@
 @section('title') {{$title}} @endsection
 @section('middlecontent')
 
+<div class="slider-wrap">
+    @include("user.slidertop")
+</div>
+
 <!-- slider bottom start -->
 <div class="slider-bottom-area mt-10 text-left">
     <div class="container-fluid">
@@ -789,43 +793,8 @@
     </div>
 </div>
 <!-- collection area end -->
-<!-- newsletter area start -->
-<div class="newsletter-area ptb-110">
-    <div class="container">
-        <div class="row">
-            <div class="newsletter-info">
-                <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-                    <div class="news-left text-right">
-                        <a href="/public/user/#" class="section-button">sign up for free</a>
-                        <h3 class="text-uppercase">subscribe newsletter</h3>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-                    <div class="news-right text-center">
-                        <form action="#" id="mc-form" class="mc-form">
-                            <input id="mc-email" type="text" name="email" placeholder="Type Your Email Address...">
-                            <button id="mc-submit" type="submit" class="text-uppercase">send</button>
-                            <span class="hidden-xs"><input type="checkbox" name="agree">By Subscribing to our newsletter you are agree to receive emails from us !</span>
-                        </form>
-                        <!-- mailchimp-alerts Start -->
-                        <div class="mailchimp-alerts text-centre fix">
-                            <div class="mailchimp-submitting"></div>
-                            <!-- mailchimp-submitting end -->
-                            <div class="mailchimp-success"></div>
-                            <!-- mailchimp-success end -->
-                            <div class="mailchimp-error"></div>
-                            <!-- mailchimp-error end -->
-                        </div>
-                        <!-- mailchimp-alerts end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- newsletter area end -->
 <!-- women area start -->
-<div class="women-area ptb-90">
+<div class="women-area mb-90">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -3059,91 +3028,36 @@
 </div>
 <!-- testimonial area end -->
 <!-- client area start -->
-<div class="client-area ptb-90">
-    <div class="container">
-        <div class="row">
-            <div class="client-owl">
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/1.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/2.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/3.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/4.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/5.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/1.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/2.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/3.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/4.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="single-client">
-                        <div class="single-client-img plr-40">
-                            <a href="/public/user/#"><img src="/public/user/img/client/5.png" alt=""></a>
-                        </div>
-                    </div>
+@if (!empty($listBrand))
+    <div class="client-area ptb-90">
+        <div class="container">
+            <div class="row">
+                <div class="client-owl">
+                    @foreach ($listBrand as $key => $value)
+                        @if (!empty($value->bimg_detail) && file_exists(BASE_IMG."brand/".$value->bimg_detail))
+                            <div class="col-xs-12">
+                                <div class="single-client">
+                                    <div class="single-client-img plr-40">
+                                        <a href="/bd/{{$value->id}}/{{$value->seo_link}}">
+                                            <img src="{{URL_IMG."brand/".$value->bimg_detail}}" alt="{{$value->title}}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="client-button text-center pt-35">
-                    <a href='#' class='section-button'>View More</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="client-button text-center pt-35">
+                        <a href='/b/' class='section-button'>Thương hiệu</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endif
 <!-- client area end -->
 <!-- service area end -->
 <div class="service-area mb-10">

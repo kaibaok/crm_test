@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductItem extends Model
@@ -64,6 +65,34 @@ class ProductItem extends Model
             return ProductItem::where('id',(int)$data['id'])->update($arr_update);
         }
         return $status;
+    }
+
+    public static function getListTabHome()
+    {
+        $data = DB::table('product_item')
+            ->selectRaw("product_item.id as id_item,
+                product_item.title as title_item,
+                product_item.seo_link as item_seo_link,
+                product_category.title as title_category,
+                product_category.id as id_category,
+                product_category.seo_link as category_seo_link")
+            ->join("product_category", "product_category.item_id", "=", "product_item.id")
+            ->orderBy("product_item.id", "DESC")
+            ->get();
+        $listItem = null;
+        if($data) {
+            foreach ($data as $key => $value) {
+                $listItem['item'][$value->id_item] = $value->title_item;
+                $listItem['category'][$value->id_item][$value->id_category] = array(
+                    "title_item"        => $value->title_item,
+                    "item_seo_link"     => $value->item_seo_link,
+                    "title_category"    => $value->title_category,
+                    "id_category"       => $value->id_category,
+                    "category_seo_link" => $value->category_seo_link,
+                );
+            }
+        }
+        return $listItem;
     }
 
 }

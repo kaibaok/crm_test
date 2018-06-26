@@ -1,5 +1,8 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
+@section('css')
+    <link rel="stylesheet" href="/public/admin/js/multiselect/css/multi-select.css">
+@endsection
 @section('rightcontent')
 @php $url = URL_IMG."home/" @endphp
 <form id="demo-form" class="form-horizontal" enctype="multipart/form-data" method="post" action="">
@@ -566,8 +569,102 @@
                     </div>
                 </div>
             </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>List Tab Top</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group multiselect">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                @php
+                                    $list_top =  !empty($home['list_top']) ? (is_array($home['list_top']) ? $home['list_top'] : explode("|", $home['list_top'])) : null;
+                                @endphp
+
+                                @if (!empty($listItemTree))
+                                    <select multiple="multiple" class="multiple_select" id="list_top" name="list_top[]">
+                                    @foreach ($listItemTree['item'] as $key => $value)
+                                        <option disabled>{{$value}}</option>
+                                        @foreach ($listItemTree['category'][$key] as $key2 => $value2)
+                                        <option value='{{$key2}}' @if (!empty($list_top) && in_array($key2,$list_top)) selected @endif>{{$value2['title_category']}}</option>
+                                        @endforeach
+                                    @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>List Tab Middle</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group multiselect">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                @php
+                                    $list_middle =  !empty($home['list_middle']) ? (is_array($home['list_middle']) ? $home['list_middle'] : explode("|", $home['list_middle'])) : null;
+                                @endphp
+                                @if (!empty($listItemTree))
+                                    <select multiple="multiple" class="multiple_select" id="list_middle" name="list_middle[]">
+                                    @foreach ($listItemTree['item'] as $key => $value)
+                                        <option disabled>{{$value}}</option>
+                                        @foreach ($listItemTree['category'][$key] as $key2 => $value2)
+                                        <option value='{{$key2}}' @if (!empty($list_middle) && in_array($key2,$list_middle)) selected @endif>{{$value2['title_category']}}</option>
+                                        @endforeach
+                                    @endforeach
+                                    </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>List Tab Footer</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group multiselect">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                @php
+                                    $list_footer =  !empty($home['list_footer']) ? (is_array($home['list_footer']) ? $home['list_footer'] : explode("|", $home['list_footer'])) : null;
+                                @endphp
+                                @if (!empty($listType))
+                               <select multiple="multiple" class="multiple_select" id="list_footer" name="list_footer[]">
+                                    @foreach ($listType as $key => $value)
+                                      <option value="{{$key}}" @if (!empty($list_footer) && in_array($key,$list_footer)) selected @endif>{{$value}}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
 </form>
+@endsection
+
+@section('js')
+    <script src="/public/admin/js/multiselect/js/jquery.multi-select.js"></script>
 @endsection

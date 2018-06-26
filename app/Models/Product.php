@@ -115,5 +115,11 @@ class Product extends Model
         return $arr_data;
     }
 
+    public static function getListByArrCate($arr)
+    {
+        if(empty($arr)) return null;
+
+    }
+
 
 }

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
-use App\Models\Slider;
 
 class Controller extends BaseController
 {
@@ -57,9 +56,7 @@ class Controller extends BaseController
                     Redirect::to('/admin/login')->send();
             }
         } else {
-            $listSlider = Slider::select()->where(array("status" => 1))
-                ->orderByRaw("id DESC")->get();
-            View::share('listSlider', $listSlider);
+
 
         }
     }

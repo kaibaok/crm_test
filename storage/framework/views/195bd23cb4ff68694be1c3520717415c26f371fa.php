@@ -1,4 +1,7 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" href="/public/admin/js/multiselect/css/multi-select.css">
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
 <?php  $url = URL_IMG."home/"  ?>
 <form id="demo-form" class="form-horizontal" enctype="multipart/form-data" method="post" action="">
@@ -566,9 +569,103 @@
                     </div>
                 </div>
             </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>List Tab Top</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group multiselect">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <?php 
+                                    $list_top =  !empty($home['list_top']) ? (is_array($home['list_top']) ? $home['list_top'] : explode("|", $home['list_top'])) : null;
+                                 ?>
+
+                                <?php if(!empty($listItemTree)): ?>
+                                    <select multiple="multiple" class="multiple_select" id="list_top" name="list_top[]">
+                                    <?php foreach($listItemTree['item'] as $key => $value): ?>
+                                        <option disabled><?php echo e($value); ?></option>
+                                        <?php foreach($listItemTree['category'][$key] as $key2 => $value2): ?>
+                                        <option value='<?php echo e($key2); ?>' <?php if(!empty($list_top) && in_array($key2,$list_top)): ?> selected <?php endif; ?>><?php echo e($value2['title_category']); ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                    </select>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>List Tab Middle</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group multiselect">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <?php 
+                                    $list_middle =  !empty($home['list_middle']) ? (is_array($home['list_middle']) ? $home['list_middle'] : explode("|", $home['list_middle'])) : null;
+                                 ?>
+                                <?php if(!empty($listItemTree)): ?>
+                                    <select multiple="multiple" class="multiple_select" id="list_middle" name="list_middle[]">
+                                    <?php foreach($listItemTree['item'] as $key => $value): ?>
+                                        <option disabled><?php echo e($value); ?></option>
+                                        <?php foreach($listItemTree['category'][$key] as $key2 => $value2): ?>
+                                        <option value='<?php echo e($key2); ?>' <?php if(!empty($list_middle) && in_array($key2,$list_middle)): ?> selected <?php endif; ?>><?php echo e($value2['title_category']); ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                    </select>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>List Tab Footer</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="item form-group multiselect">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <?php 
+                                    $list_footer =  !empty($home['list_footer']) ? (is_array($home['list_footer']) ? $home['list_footer'] : explode("|", $home['list_footer'])) : null;
+                                 ?>
+                                <?php if(!empty($listType)): ?>
+                               <select multiple="multiple" class="multiple_select" id="list_footer" name="list_footer[]">
+                                    <?php foreach($listType as $key => $value): ?>
+                                      <option value="<?php echo e($key); ?>" <?php if(!empty($list_footer) && in_array($key,$list_footer)): ?> selected <?php endif; ?>><?php echo e($value); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
 </form>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+    <script src="/public/admin/js/multiselect/js/jquery.multi-select.js"></script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

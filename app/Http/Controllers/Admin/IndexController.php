@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use App\Models\Event;
 use App\Models\HomePage;
+use App\Models\ProductItem;
+use App\Models\ProductType;
 use App\Events\Img;
 use DateTime,Session;
 
@@ -132,9 +134,11 @@ class IndexController extends Controller
 
     public function homePage(Request $request)
     {
-        $title   = "Trang Home Page";
-        $params  = $request->all();
-        $getHome = HomePage::findOrFail(1)->toArray();
+        $title        = "Trang Home Page";
+        $params       = $request->all();
+        $getHome      = HomePage::findOrFail(1)->toArray();
+        $listItemTree = ProductItem::getListTabHome();
+        $listType     = ProductType::getList();
         if ($request->isMethod('post')) {
             $clsImg = new Img();
             $result = $clsImg->uploadImages("home/");
@@ -153,8 +157,11 @@ class IndexController extends Controller
             else $errors['finish'] = "Sửa thất bại";
             $getHome = $params;
         }
+
         return view("admin.index.homePage")
             ->with("home", $getHome)
+            ->with("listItemTree", $listItemTree)
+            ->with("listType", $listType)
             ->with("title" , $title );
     }
 

@@ -39,9 +39,9 @@ class Brand extends Model
         if(isset($data)){
             try{
                 $status = Brand::create(array(
-                    'status'   => (int) $data['status'],
-                    'title'    => htmlspecialchars(trim($data['title'])),
-                    'seo_link' => trim($data['seo_link']),
+                    'status'      => (int) $data['status'],
+                    'title'       => htmlspecialchars(trim($data['title'])),
+                    'seo_link'    => trim($data['seo_link']),
                     "bimg_detail" => $data['bimg_detail'],
                 ));
             } catch (QueryException $ex){
@@ -55,9 +55,9 @@ class Brand extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                'status'   => (int) $data['status'],
-                'title'    => htmlspecialchars(trim($data['title'])),
-                'seo_link' => trim($data['seo_link']),
+                'status'      => (int) $data['status'],
+                'title'       => htmlspecialchars(trim($data['title'])),
+                'seo_link'    => trim($data['seo_link']),
                 "bimg_detail" => $data['bimg_detail'],
             );
             return Brand::where('id',(int)$data['id'])->update($arr_update);

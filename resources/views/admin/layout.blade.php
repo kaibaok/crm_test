@@ -27,7 +27,7 @@
    <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
    <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
    <link href="/public/admin/js/pnotify/dist/pnotify.css" rel="stylesheet">
-    @yield("css")
+   @yield("css")
 
   </head>
 
@@ -74,8 +74,6 @@
     <script src="/public/admin/js/fastclick/lib/fastclick.js"></script>
     {{-- Chart.js --}}
     {{-- <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script> --}}
-    {{-- gauge.js --}}
-    <script src="/public/admin/js/gauge.js/dist/gauge.min.js"></script>
     {{-- iCheck --}}
     <script src="/public/admin/js/iCheck/icheck.min.js"></script>
     {{-- DateJS --}}
@@ -91,6 +89,5 @@
     <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
     @yield("js")
     <script src="/public/admin/js/cus_admin.js"></script>
-
   </body>
 </html>

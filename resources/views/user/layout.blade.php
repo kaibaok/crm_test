@@ -476,12 +476,6 @@
                 <!-- Mobile Menu Area end -->
             </header>
             <!-- header end -->
-            <!-- slider start -->
-            <div class="slider-wrap">
-                @include("user.slidertop")
-            </div>
-            <!-- slider end -->
-
             @yield("middlecontent")
 
             <!-- footer start -->

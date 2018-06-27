@@ -31,7 +31,7 @@ class IndexController extends Controller
         $listTop = $listMiddle = $listFooter = null;
         if(!empty($homePage)) {
             if(!empty($homePage['list_top'])) {
-                $list_top = Product::getByArrCateUP($homePage['list_top']);
+                $listTop = Product::getByArrCateUP($homePage['list_top']);
             }
 
             if(!empty($homePage['list_middle'])) {
@@ -52,7 +52,8 @@ class IndexController extends Controller
             ->with('listSlider', $listSlider)
             ->with('listBrand', $listBrand)
             ->with('listCategory', $listCategory)
-            ->with('list_top', $list_top)
+            ->with('listTop', $listTop)
+            ->with('listMiddle', $listMiddle)
             ->with("title", $title);
     }
 }

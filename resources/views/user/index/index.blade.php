@@ -44,7 +44,7 @@
                         <ul role="tablist">
                             @foreach ($arrListTop as $key => $value)
                                 @php $active = ($key < 1) ? "active" : ""; @endphp
-                                <li role="presentation" class="{{$active}} text-uppercase"><a href="#{{"tab_".$value}}" aria-controls="{{"tab_".$value}}" role="tab" data-toggle="tab">{{$listCategory[$value]['title']}}</a></li>
+                                <li role="presentation" class="{{$active}} text-uppercase"><a href="#{{"tab_top_".$value}}" aria-controls="{{"tab_top_".$value}}" role="tab" data-toggle="tab">{{$listCategory[$value]['title']}}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -69,10 +69,10 @@
                 <div class="tab-content row">
                     @foreach ($arrListTop as $key => $value)
                         @php $active = ($key < 1) ? "active" : ""; @endphp
-                        <div id="{{"tab_".$value}}" role="tabpanel" class="{{$active}} section-tab-item">
+                        <div id="{{"tab_top_".$value}}" role="tabpanel" class="{{$active}} section-tab-item">
                             <div class="feature-slider">
-                                @if (!empty($list_top[$value]))
-                                    @foreach ($list_top[$value] as $key2 => $item)
+                                @if (!empty($listTop[$value]))
+                                    @foreach ($listTop[$value] as $key2 => $item)
                                         @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
                                             <div class="col-xs-12 col-width">
                                                 <div class="single-product">
@@ -184,6 +184,10 @@
 </div>
 <!-- collection area end -->
 <!-- women area start -->
+@if (!empty($homePage['list_middle']) && !empty($listCategory))
+@php
+    $arrListMiddle = explode("|", $homePage['list_middle']);
+@endphp
 <div class="women-area mb-90">
     <div class="container">
         <div class="row">
@@ -191,9 +195,10 @@
                 <div class="section-tab">
                     <div class="section-tab-menu mb-45 text-center">
                         <ul role="tablist">
-                            <li role="presentation" class="active text-uppercase"><a href="/public/user/#dress" aria-controls="dress" role="tab" data-toggle="tab">dress</a></li>
-                            <li role="presentation" class="text-uppercase"><a href="/public/user/#tops" aria-controls="tops" role="tab" data-toggle="tab">tops</a></li>
-                            <li role="presentation" class="text-uppercase"><a href="/public/user/#handbags" aria-controls="handbags" role="tab" data-toggle="tab">handbags</a></li>
+                            @foreach ($arrListMiddle as $key => $value)
+                                @php $active = ($key < 1) ? "active" : ""; @endphp
+                                <li role="presentation" class="{{$active}} text-uppercase"><a href="#{{"tab_middle_".$value}}" aria-controls="{{"tab_middle_".$value}}" role="tab" data-toggle="tab">{{$listCategory[$value]['title']}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -203,669 +208,53 @@
             <div class="col-md-7">
                 <div class="clearfix"></div>
                 <div class="tab-content row">
-                    <div id="dress" role="tabpanel" class="active section-tab-item">
-                        <div class="feature-slider">
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item clearfix">
-                                        <div class="single-product-img clearfix">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/12.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
+                    @foreach ($arrListMiddle as $key => $value)
+                    @php $active = ($key < 1) ? "active" : ""; @endphp
+                        <div id="{{"tab_middle_".$value}}" role="tabpanel" class="{{$active}} section-tab-item">
+                            <div class="feature-slider">
+                                @if (!empty($listMiddle[$value]))
+                                    @foreach ($listMiddle[$value] as $key2 => $item)
+                                        @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
+                                            <div class="col-xs-12 col-width">
+                                                <div class="single-product">
+                                                    <div class="single-product-item clearfix">
+                                                        <div class="single-product-img clearfix">
+                                                            <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
+                                                            <div class="wish-icon-hover text-center clearfix">
+                                                                <div class="hover-text">
+                                                                    <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                    <ul>
+                                                                        <li><a href="#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="single-product-info clearfix">
+                                                            <div class="pro-price">
+                                                                @if ($item['type_price'] == 1)
+                                                                    <span class="new-price">{{$item['discount']}}</span>
+                                                                    <span class="old-price">{{$item['price']}}</span>
+                                                                @elseif ($item['type_price'] == 2)
+                                                                    <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                @else
+                                                                    <span class="new-price">Hết hàng</span>
+                                                                @endif
+                                                            </div>
+                                                            <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$150</span>
-                                                <span class="old-price">$180</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Electria Ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$130</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Tletria postma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/14.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$120</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Celletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/12.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$150</span>
-                                                <span class="old-price">$180</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Eletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$100</span>
-                                                <span class="old-price">$130</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Mortria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/14.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$120</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Celletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div id="tops" role="tabpanel" class="section-tab-item">
-                        <div class="feature-slider">
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item clearfix">
-                                        <div class="single-product-img clearfix">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$150</span>
-                                                <span class="old-price">$180</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Electria Ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/12.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$130</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Tletria postma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/14.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$120</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Celletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$150</span>
-                                                <span class="old-price">$180</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Eletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/12.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$100</span>
-                                                <span class="old-price">$130</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Mortria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$120</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Celletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="handbags" role="tabpanel" class="section-tab-item">
-                        <div class="feature-slider">
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item clearfix">
-                                        <div class="single-product-img clearfix">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/14.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$150</span>
-                                                <span class="old-price">$180</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Electria Ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/12.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$130</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Tletria postma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$120</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Celletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/14.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$150</span>
-                                                <span class="old-price">$180</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Eletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/13.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$100</span>
-                                                <span class="old-price">$130</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Mortria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-width">
-                                <div class="single-product">
-                                    <div class="single-product-item">
-                                        <div class="single-product-img clearfix hover-effect">
-                                            <a href="/public/user/#">
-                                                        <img class="primary-image" src="/public/user/img/product/14.jpg" alt="">
-                                                    </a>
-                                            <div class="wish-icon-hover text-center clearfix">
-                                                <div class="hover-text">
-                                                    <p class="hidden-md">Duis autem vel eum iriure dolor in hendrerit in tate velit esse lestiesequat </p>
-                                                    <ul>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
-                                                        <li class="hidden-md"><a href="/public/user/#" data-toggle="tooltip" title="Compage"><i class="fa fa-refresh"></i></a></li>
-                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-product-info clearfix">
-                                            <div class="pro-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <div class="pro-price">
-                                                <span class="new-price">$120</span>
-                                                <span class="old-price">$150</span>
-                                            </div>
-                                            <h3><a href="/public/user/#">Celletria ostma</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="arrival-button text-center mt-30">
-                    <a href='#' class='section-button'>View More</a>
+                    <a href='/p' class='section-button'>Chi tiết</a>
                 </div>
             </div>
             <div class="col-md-5 hidden-sm hidden-xs">
@@ -883,6 +272,7 @@
         </div>
     </div>
 </div>
+@endif
 <!-- women area end -->
 <!-- offer area start -->
 @if (!empty($event) && $isOpenEvent)

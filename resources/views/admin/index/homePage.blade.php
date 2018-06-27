@@ -664,7 +664,7 @@
 </div>
 </form>
 @endsection
-
 @section('js')
     <script src="/public/admin/js/multiselect/js/jquery.multi-select.js"></script>
+    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif  </script>
 @endsection

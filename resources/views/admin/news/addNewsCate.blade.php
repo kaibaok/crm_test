@@ -52,14 +52,6 @@
 						</div>
 						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
 					</div>
-
-					<div class="item form-group">
-						<div><label class="control-label col-md-4 col-sm-4 col-xs-12"></label>
-						<span class="help-block">
-							<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
-						</span>
-						</div>
-					</div>
 			  	</div>
 		    </div>
 		</div>
@@ -67,5 +59,6 @@
 </div>
 </form>
 @endsection
-
-
+@section('js')
+    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif  </script>
+@endsection

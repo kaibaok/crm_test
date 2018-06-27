@@ -26,7 +26,7 @@
 
    <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
    <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
-   <link href="/public/admin/js/pnotify/dist/pnotify.css" rel="stylesheet">
+   <link href="/public/admin/js/pnotify/pnotify.custom.min.css" rel="stylesheet">
    @yield("css")
 
   </head>
@@ -84,9 +84,29 @@
     <script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
     <script src="/public/admin/js/moment/min/moment.min.js"></script>
     <script src="/public/admin/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="/public/admin/js/pnotify/dist/pnotify.js"></script>
+    <script src="/public/admin/js/pnotify/pnotify.custom.min.js"></script>
     <script src="/public/admin/js/imageupload/dist/js/bootstrap-imageupload.js"></script>
     <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
+    <script>
+        function popupNotice(type) {
+            var opts = {
+                title: "Thông báo",
+                text: "",
+                addclass: "stack-bottomright",
+            };
+            switch (type) {
+                case 'error':
+                    opts.text = "Lưu thất bại";
+                    opts.type = "error";
+                    break;
+                case 'success':
+                    opts.text = "Lưu thành công";
+                    opts.type = "success";
+                    break;
+            }
+            new PNotify(opts);
+        }
+    </script>
     @yield("js")
     <script src="/public/admin/js/cus_admin.js"></script>
   </body>

@@ -103,7 +103,9 @@
 </div>
 </form>
 @endsection
-
 @section("js")
-<script> time_open = time_close = moment().startOf('hour'); </script>
+<script>
+    time_open = time_close = moment().startOf('hour');
+    @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif
+</script>
 @endsection

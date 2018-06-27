@@ -9,6 +9,7 @@ use App\Models\Event;
 use App\Models\Slider;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\ProductCategory;
 
 class IndexController extends Controller
 {
@@ -25,24 +26,22 @@ class IndexController extends Controller
             $isOpenEvent = ($now >= strtotime($event->time_open) && $now <= strtotime($event->time_close));
         }
 
+        // list tab 3 part
+        $listCategory = ProductCategory::getListHomePage();
         $listTop = $listMiddle = $listFooter = null;
         if(!empty($homePage)) {
             if(!empty($homePage['list_top'])) {
-                $homePage['list_top'] = explode("|", $homePage['list_top']);
-                $list_top = Product::getListByArrCate($homePage['list_top']);
+                $list_top = Product::getByArrCateUP($homePage['list_top']);
             }
 
             if(!empty($homePage['list_middle'])) {
-                $homePage['list_middle'] = explode("|", $homePage['list_middle']);
-                $listMiddle = Product::getListByArrCate($homePage['list_middle']);
+                $listMiddle = Product::getByArrCateUP($homePage['list_middle']);
             }
 
             if(!empty($homePage['list_footer'])) {
-                $homePage['list_footer'] = explode("|", $homePage['list_footer']);
-                $listFooter = Product::getListByArrCate($homePage['list_footer']);
+                $listFooter = Product::getByArrCateUP($homePage['list_footer']);
             }
         }
-
 
         $listSlider = Slider::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
         $listBrand  = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
@@ -52,6 +51,8 @@ class IndexController extends Controller
             ->with('isOpenEvent', $isOpenEvent)
             ->with('listSlider', $listSlider)
             ->with('listBrand', $listBrand)
+            ->with('listCategory', $listCategory)
+            ->with('list_top', $list_top)
             ->with("title", $title);
     }
 }

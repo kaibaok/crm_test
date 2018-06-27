@@ -40,22 +40,22 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tiêu đề <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}" required>
+                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}">
                         </div>
                         @if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
                     </div>
 
-                     <div class="item form-group">
+                     <div class="item form-group  @if(isset($errors['link'])) bad @endif">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">Link </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="{{isset($params['link']) ? $params['link'] : '' }}" required>
+                        <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="{{isset($params['link']) ? $params['link'] : '' }}">
                         </div>
                         @if(isset($errors['link'])) <div class="alert">{{$errors['link']}}</div> @endif
                     </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
+                        <div class="col-md-10 col-sm-10 col-xs-12">
                             <textarea  name="desc" id="desc" class="ckedit">
                                 @if(isset($params['desc']))
                                     {{$params['desc']}}
@@ -101,19 +101,13 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="item form-group">
-                        <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
-                        <span class="help-block">
-                            <strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
-                        </span>
-                        </div>
-                    </div>
-              </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </form>
 @endsection
-
+@section('js')
+    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}")  @endif  </script>
+@endsection

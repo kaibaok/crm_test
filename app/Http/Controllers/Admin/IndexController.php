@@ -74,9 +74,9 @@ class IndexController extends Controller
                 $slider = Slider::addSlider($params);
                 if($slider) {
                     $params = array();
-                    $errors['finish'] = "Thêm thành công";
+                    $errors['finish'] = "success";
                 }else{
-                    $errors['finish'] = "Thêm thất bại";
+                    $errors['finish'] = "error";
                 }
             }
         }
@@ -109,8 +109,8 @@ class IndexController extends Controller
                     }
                 }
                 $editSlider = Slider::editSlider($params);
-                if($editSlider) $errors['finish'] = "Sửa thành công";
-                else $errors['finish'] = "Sửa thất bại";
+                if($editSlider) $errors['finish'] = "success";
+                else $errors['finish'] = "error";
             }
             $getSlider = $params;
          }
@@ -153,8 +153,8 @@ class IndexController extends Controller
                 }
             }
             $editHomePage = HomePage::editHomePage($params);
-            if($editHomePage) $errors['finish'] = "Sửa thành công";
-            else $errors['finish'] = "Sửa thất bại";
+            if($editHomePage) $errors['finish'] = "success";
+            else $errors['finish'] = "error";
             $getHome = $params;
         }
 
@@ -224,9 +224,9 @@ class IndexController extends Controller
                 $addEvent = Event::addEvent($params);
                 if($addEvent) {
                     $params = array();
-                    $errors['finish'] = "Thêm thành công";
+                    $errors['finish'] = "success";
                 }else{
-                    $errors['finish'] = "Thêm thất bại";
+                    $errors['finish'] = "error";
                 }
             }
         }
@@ -267,8 +267,8 @@ class IndexController extends Controller
                 $params['time_close'] = isset($time_event[1]) ? str_replace("/", "-", $time_event[1]) : date();
 
                 $editEvent = Event::editEvent($params);
-                if($editEvent) $errors['finish'] = "Sửa thành công";
-                else $errors['finish'] = "Sửa thất bại";
+                if($editEvent) $errors['finish'] = "success";
+                else $errors['finish'] = "error";
             }
             $getEvent = $params;
         }

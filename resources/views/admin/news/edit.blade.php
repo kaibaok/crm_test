@@ -148,21 +148,14 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="item form-group">
-                        <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
-                        <span class="help-block">
-                            <strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
-                        </span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </form>
-
-
+@endsection
+@section('js')
+    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif  </script>
 @endsection
 

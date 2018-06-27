@@ -25,11 +25,10 @@ class ProductCategory extends Model
     //     'password', 'remember_token',
     // ];
 
-    public static function getList(){
+    public static function getList($isAll = false, $isShow = false){
         $get_all  = self::all();
         $arr_data = NULL;
         if($get_all){
-            $list_data = $get_all->toArray();
             foreach ($get_all as $key => $value) {
                 $arr_data[$value['id']] = $value['title'];
             }
@@ -66,5 +65,21 @@ class ProductCategory extends Model
             return ProductCategory::where('id',(int)$data['id'])->update($arr_update);
         }
         return $status;
+    }
+
+    public static function getListHomePage(){
+        $get_all  = self::all();
+        $arr_data = NULL;
+        if($get_all){
+            foreach ($get_all as $key => $value) {
+                $arr_data[$value['id']] = array(
+                    "title"    => $value['title'],
+                    "seo_link" => $value['seo_link'],
+                    "item_id"  => $value['item_id'],
+                    "status"   => $value['status'],
+                );
+            }
+        }
+        return $arr_data;
     }
 }

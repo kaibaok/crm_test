@@ -31,6 +31,7 @@
                     <th class="column-title">Tên sản phẩm</th>
                     <th class="column-title">Loại sản phẩm</th>
                     <th class="column-title">Giá</th>
+                    <th class="column-title">Giá giảm</th>
                     <th class="column-title">Thể loại</th>
                     <th class="column-title">Màu sắc</th>
                     <th class="column-title">Ngày hết hạn</th>
@@ -67,6 +68,7 @@
                     <td>{{$value->title}}</td>
                     <td>{{$category[$value->id_cate]}}</td>
                     <td>{{$value->price}}</td>
+                    <td>{{$value->discount}}</td>
                     <td>{{$type[$value->type]}}</td>
                     <td> @foreach ($colorChoose as $item)
                         <span style="background: {{$colors[$item]['code']}}; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>

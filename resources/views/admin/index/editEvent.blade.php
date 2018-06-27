@@ -118,5 +118,6 @@
         var time_open = "{{$event['time_open']}}";
         var time_close = "{{$event['time_close']}}";
         // if(time_open || time_close) time_open = time_close =  moment().startOf('hour');
+        @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}")  @endif
     </script>
 @endsection

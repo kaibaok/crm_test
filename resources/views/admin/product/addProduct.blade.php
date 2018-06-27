@@ -157,6 +157,21 @@
 						@if(isset($errors['price'])) <div class="alert">{{$errors['price']}}</div> @endif
 					</div>
 
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá giảm</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="number" id="discount" class="form-control col-md-7 col-xs-12" name="discount" value="{{isset($params['discount']) ? $params['discount'] : '' }}" >
+						</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Phần trăm giảm <span class="required">*</span>
+						</label>
+						<div class="col-md-4 col-sm-4 col-xs-12">
+						<input type="number" id="percent" class="form-control col-md-7 col-xs-12" name="percent" value="{{isset($params['percent']) ? $params['percent'] : '' }}" >
+						</div>
+					</div>
+
 					<div class="item form-group @if(isset($errors['numbers'])) bad @endif">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
@@ -304,19 +319,14 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="item form-group">
-						<div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
-						<span class="help-block">
-							<strong> @if(isset($errors['finish'])) {{$errors['finish']}} @endif </strong>
-						</span>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 </form>
+@endsection
+@section('js')
+    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif  </script>
 @endsection
 

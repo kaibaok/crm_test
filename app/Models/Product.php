@@ -21,7 +21,7 @@ class Product extends Model
         "created_at","updated_at","status","ord",
         "pimg_list","pimg_detail","pimg1","pimg2","pimg3",
         "pimg4","pimg5","colors","is_new","is_best_sell","attribute","seo_link",
-        "brand","type_price"
+        "brand","type_price","discount","percent",
     ];
 
     public static function addProduct($data){
@@ -52,6 +52,8 @@ class Product extends Model
                     "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
                     "brand"        => (int)$data["brand"],
                     "type_price"   => (int)$data["type_price"],
+                    "discount"     => (int)$data["discount"],
+                    "percent"      => (int)$data["percent"],
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -87,6 +89,8 @@ class Product extends Model
                 "seo_link"     => isset($data["seo_link"]) ? $data["seo_link"] : "",
                 "brand"        => (int)$data["brand"],
                 "type_price"   => (int)$data["type_price"],
+                "discount"     => (int)$data["discount"],
+                "percent"      => (int)$data["percent"],
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }
@@ -115,11 +119,19 @@ class Product extends Model
         return $arr_data;
     }
 
-    public static function getListByArrCate($arr)
+
+    public static function getByArrCateUP($list)
     {
-        if(empty($arr)) return null;
-
+        if(empty($list)) return null;
+        $list    = explode("|", $list);
+        $arrProduct = null;
+        foreach ($list as $key => $value) {
+           $arrProduct[$value] = Product::where("id_cate",$value)
+            ->where("status", 1)
+            ->orderByRaw("ord ASC, id DESC")
+            ->get()
+            ->toArray();
+        }
+        return $arrProduct;
     }
-
-
 }

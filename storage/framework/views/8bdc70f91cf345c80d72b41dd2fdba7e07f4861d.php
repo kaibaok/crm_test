@@ -88,23 +88,15 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="item form-group">
-                        <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
-                        <span class="help-block">
-                            <strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
-                        </span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </form>
-
-
-
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+    <script>  <?php if(isset($errors['finish'])): ?> popupNotice("<?php echo e($errors['finish']); ?>");  <?php endif; ?>  </script>
 <?php $__env->stopSection(); ?>
 
 

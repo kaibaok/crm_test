@@ -170,6 +170,20 @@
                         <?php if(isset($errors['price'])): ?> <div class="alert"><?php echo e($errors['price']); ?></div> <?php endif; ?>
                     </div>
 
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá giảm </label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="number" id="discount" class="form-control col-md-7 col-xs-12" name="discount" value="<?php echo e(isset($product['discount']) ?  $product['discount'] : ''); ?>" >
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Phần trăm giảm</label>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="number" id="percent" class="form-control col-md-7 col-xs-12" name="percent" value="<?php echo e(isset($product['percent']) ?  $product['percent'] : ''); ?>" >
+                        </div>
+                    </div>
+
                     <div class="item form-group <?php if(isset($errors['numbers'])): ?> bad <?php endif; ?>">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
                         </label>

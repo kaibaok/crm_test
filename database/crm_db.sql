@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2018 at 12:33 PM
+-- Generation Time: Jun 27, 2018 at 12:15 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -214,7 +214,7 @@ CREATE TABLE `home_page` (
 --
 
 INSERT INTO `home_page` (`id`, `updated_at`, `created_at`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `title11`, `title12`, `title13`, `title14`, `title15`, `himg1`, `himg2`, `himg3`, `himg4`, `himg5`, `himg6`, `himg7`, `himg8`, `himg9`, `himg10`, `himg11`, `himg12`, `himg13`, `himg14`, `himg15`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `link9`, `link10`, `link11`, `link12`, `link13`, `link14`, `link15`, `list_top`, `list_middle`, `list_footer`) VALUES
-(1, '2018-06-26 03:09:16', '0000-00-00 00:00:00', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h2 class=\"text-uppercase\">men&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '<h2 class=\"text-uppercase\">women&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '', '<h5 class=\"text-uppercase\">all new</h5>\r\n\r\n<h3 class=\"text-uppercase\">SUMMER</h3>\r\n\r\n<h5 class=\"text-uppercase\">COLLECTION FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">GET UP TO</h5>\r\n\r\n<h3>35%</h3>\r\n\r\n<h5 class=\"text-uppercase\">discount</h5>\r\n', '<h5 class=\"text-uppercase\">HOT OFFER <span> 25% </span> get it now</h5>\r\n', '<h5 class=\"text-uppercase\">trendy</h5>\r\n\r\n<h3 class=\"text-uppercase\">coat&#39;s</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">brand new</h5>\r\n\r\n<h3 class=\"text-uppercase\">sunglass</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR WOMEN</h5>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h3 class=\"text-uppercase\">EXCLUSIVE</h3>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S &amp; WOMEN&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">COLLECTION</h3>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">WOMEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '5b30b6ec4f8d8_6d283a0eb007683e94c72317741975ae.jpg', '5b30b6ec50879_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b6ec51816_daa8f13c9d65da091604a1c944e47f3b.jpg', '5b30b6ec52ba1_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b7a2ec390_7a6f150b83091ce20c89368641f9a137.jpg', '5b30b722cb757_fbfba2e45c2045dc5cab22a5afe83d9d.jpg', '5b30b7a311790_edbab45572c72a5d9440b40bcc0500c0.jpg', '5b30b82d5de69_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b82d5f1f0_c81e728d9d4c2f636f067f89cc14862c.jpg', '5b30b82d5fd9f_c4ca4238a0b923820dcc509a6f75849b.jpg', '5b30b82d6056d_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b82d61127_e4da3b7fbbce2345d7772b0674a318d5.jpg', '5b2cc181485a6_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814966b_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814a222_6d283a0eb007683e94c72317741975ae.jpg', 'http://link.com', 'link2', 'link 3', 'link 4', '', '', '', '', '', '', '', '', '', '', '', '1', '1', '1');
+(1, '2018-06-27 04:14:23', '0000-00-00 00:00:00', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">exclusive</span></h4>\r\n\r\n<h2 class=\"text-uppercase\">bag&rsquo;s</h2>\r\n\r\n<h4 class=\"text-uppercase\"><span style=\"color:#ffffff;\">COLLECTION</span></h4>\r\n', '<h2 class=\"text-uppercase\">men&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '<h2 class=\"text-uppercase\">women&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">collection</h3>\r\n', '', '<h5 class=\"text-uppercase\">all new</h5>\r\n\r\n<h3 class=\"text-uppercase\">SUMMER</h3>\r\n\r\n<h5 class=\"text-uppercase\">COLLECTION FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">GET UP TO</h5>\r\n\r\n<h3>35%</h3>\r\n\r\n<h5 class=\"text-uppercase\">discount</h5>\r\n', '<h5 class=\"text-uppercase\">HOT OFFER <span> 25% </span> get it now</h5>\r\n', '<h5 class=\"text-uppercase\">trendy</h5>\r\n\r\n<h3 class=\"text-uppercase\">coat&#39;s</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR MEN</h5>\r\n', '<h5 class=\"text-uppercase\">brand new</h5>\r\n\r\n<h3 class=\"text-uppercase\">sunglass</h3>\r\n\r\n<h5 class=\"text-uppercase\">FOR WOMEN</h5>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h3 class=\"text-uppercase\">EXCLUSIVE</h3>\r\n\r\n<h2 class=\"text-uppercase\">MEN&rsquo;S &amp; WOMEN&#39;s</h2>\r\n\r\n<h3 class=\"text-uppercase\">COLLECTION</h3>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '<h4 class=\"text-uppercase\">GET 25% OFF</h4>\r\n\r\n<h2 class=\"text-uppercase\">WOMEN&rsquo;S</h2>\r\n\r\n<h4 class=\"text-uppercase\">COLLECTION</h4>\r\n\r\n<p><a class=\"section-button\" href=\"/public/user/#\">shop now</a></p>\r\n', '5b30b6ec4f8d8_6d283a0eb007683e94c72317741975ae.jpg', '5b30b6ec50879_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b6ec51816_daa8f13c9d65da091604a1c944e47f3b.jpg', '5b30b6ec52ba1_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b7a2ec390_7a6f150b83091ce20c89368641f9a137.jpg', '5b30b722cb757_fbfba2e45c2045dc5cab22a5afe83d9d.jpg', '5b30b7a311790_edbab45572c72a5d9440b40bcc0500c0.jpg', '5b30b82d5de69_eccbc87e4b5ce2fe28308fd9f2a7baf3.jpg', '5b30b82d5f1f0_c81e728d9d4c2f636f067f89cc14862c.jpg', '5b30b82d5fd9f_c4ca4238a0b923820dcc509a6f75849b.jpg', '5b30b82d6056d_a87ff679a2f3e71d9181a67b7542122c.jpg', '5b30b82d61127_e4da3b7fbbce2345d7772b0674a318d5.jpg', '5b2cc181485a6_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814966b_6d283a0eb007683e94c72317741975ae.jpg', '5b2cc1814a222_6d283a0eb007683e94c72317741975ae.jpg', 'http://link.com', 'link2', 'link 3', 'link 4', '', '', '', '', '', '', '', '', '', '', '', '1|2', '1|2', '1');
 
 -- --------------------------------------------------------
 
@@ -323,15 +323,18 @@ CREATE TABLE `product` (
   `is_best_sell` tinyint(2) NOT NULL DEFAULT '0',
   `seo_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `brand` int(11) NOT NULL,
-  `type_price` tinyint(4) NOT NULL DEFAULT '1'
+  `type_price` tinyint(4) NOT NULL DEFAULT '1',
+  `discount` int(11) NOT NULL,
+  `percent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`) VALUES
-(80, 1, '1529653221', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-22 00:40:36', 0, 5, '', '', '', '', '', '', '', 0, 0, 'test', 4, 2);
+INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`) VALUES
+(80, 1, '1530088642', 'san pham b', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-27 01:37:39', 1, 5, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 0, 0, 'test', 4, 2, 0, 0),
+(81, 2, '1530088620', 'san pham a', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-27 01:38:03', 1, 5, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 0, 'test', 4, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -354,7 +357,8 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id`, `status`, `title`, `seo_link`, `item_id`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Áo Len', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22');
+(1, 1, 'Áo Len', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22'),
+(2, 1, 'Áo Thun', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22');
 
 -- --------------------------------------------------------
 
@@ -422,7 +426,7 @@ CREATE TABLE `slider` (
 
 INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`, `desc`) VALUES
 (85, 'tét', 'aaaa', '2018-06-25 02:31:36', '2018-06-25 02:31:36', 1, '5b30b678a8ee2_c81e728d9d4c2f636f067f89cc14862c.jpg', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2>teeeeee</h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1>abc</h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie<br />\r\nconsequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n'),
-(86, 'aa', 'áda', '2018-06-25 02:31:23', '2018-06-25 02:31:23', 1, '5b30b66b52f59_c4ca4238a0b923820dcc509a6f75849b.jpg', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2><span style=\"background-color:#ffffff\">EXCLUSIVE COLLECTION {{$no}}</span></h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1><span style=\"background-color:#8b4513\">SHIRT&rsquo;S FOR MEN</span></h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p><span style=\"background-color:#ffffff\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</span><br />\r\n<span style=\"background-color:#ffffff\">consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</span></p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n');
+(86, 'asd', '', '2018-06-27 03:14:59', '2018-06-27 03:14:59', 1, '', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2><span style=\"background-color:#ffffff\">EXCLUSIVE COLLECTION {{$no}}</span></h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1><span style=\"background-color:#8b4513\">SHIRT&rsquo;S FOR MEN</span></h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p><span style=\"background-color:#ffffff\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</span><br />\r\n<span style=\"background-color:#ffffff\">consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</span></p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n');
 
 -- --------------------------------------------------------
 
@@ -638,13 +642,13 @@ ALTER TABLE `permission`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `product_item`
@@ -662,7 +666,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `tag`

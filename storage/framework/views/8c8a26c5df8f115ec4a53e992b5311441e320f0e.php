@@ -1,6 +1,7 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('rightcontent'); ?>
+<form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -9,6 +10,7 @@
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
+                <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
                 <a class="btn btn-primary" href="/admin/slider">Trở về</a>
               </div>
             </div>
@@ -22,7 +24,6 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
                 <?php echo e(csrf_field()); ?>
 
                     <div class="item form-group">
@@ -39,7 +40,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tiêu đề <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>" required>
+                        <input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>">
                         </div>
                         <?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
                     </div>
@@ -47,14 +48,14 @@
                      <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="link">Link </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="<?php echo e(isset($params['link']) ? $params['link'] : ''); ?>" required>
+                        <input type="text" id="link" class="form-control col-md-7 col-xs-12" name="link" value="<?php echo e(isset($params['link']) ? $params['link'] : ''); ?>">
                         </div>
                         <?php if(isset($errors['link'])): ?> <div class="alert"><?php echo e($errors['link']); ?></div> <?php endif; ?>
                     </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
+                        <div class="col-md-10 col-sm-10 col-xs-12">
                             <textarea  name="desc" id="desc" class="ckedit">
                                 <?php if(isset($params['desc'])): ?>
                                     <?php echo e($params['desc']); ?>
@@ -101,28 +102,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="item form-group">
-                        <div><label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
-                        <span class="help-block">
-                            <strong> <?php if(isset($errors['finish'])): ?> <?php echo e($errors['finish']); ?> <?php endif; ?> </strong>
-                        </span>
-                        </div>
-                    </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="item form-group">
-                        <div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4">
-                            <button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                        </div>
-                    </div>
-                </form>
               </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 <?php $__env->stopSection(); ?>
-
+<?php $__env->startSection('js'); ?>
+<script>
+     popupNotice("error")
+</script>
+<?php $__env->stopSection(); ?>
 
 <?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

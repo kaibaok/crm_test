@@ -134,4 +134,19 @@ class Product extends Model
         }
         return $arrProduct;
     }
+
+    public static function getListByTypeUP($list)
+    {
+        if(empty($list)) return null;
+        $list    = explode("|", $list);
+        $arrProduct = null;
+        foreach ($list as $key => $value) {
+           $arrProduct[$value] = Product::where("type",$value)
+            ->where("status", 1)
+            ->orderByRaw("ord ASC, id DESC")
+            ->get()
+            ->toArray();
+        }
+        return $arrProduct;
+    }
 }

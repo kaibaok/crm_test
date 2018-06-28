@@ -9,6 +9,7 @@ use App\Models\Event;
 use App\Models\Slider;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\ProductType;
 use App\Models\ProductCategory;
 
 class IndexController extends Controller
@@ -25,9 +26,9 @@ class IndexController extends Controller
             $now = time();
             $isOpenEvent = ($now >= strtotime($event->time_open) && $now <= strtotime($event->time_close));
         }
-
         // list tab 3 part
         $listCategory = ProductCategory::getListHomePage();
+        $listProductType = ProductType::getList();
         $listTop = $listMiddle = $listFooter = null;
         if(!empty($homePage)) {
             if(!empty($homePage['list_top'])) {
@@ -39,7 +40,7 @@ class IndexController extends Controller
             }
 
             if(!empty($homePage['list_footer'])) {
-                $listFooter = Product::getByArrCateUP($homePage['list_footer']);
+                $listFooter = Product::getListByTypeUP($homePage['list_footer']);
             }
         }
 
@@ -51,9 +52,11 @@ class IndexController extends Controller
             ->with('isOpenEvent', $isOpenEvent)
             ->with('listSlider', $listSlider)
             ->with('listBrand', $listBrand)
-            ->with('listCategory', $listCategory)
             ->with('listTop', $listTop)
             ->with('listMiddle', $listMiddle)
+            ->with('listFooter', $listFooter)
+            ->with('listCategory', $listCategory)
+            ->with('listProductType', $listProductType)
             ->with("title", $title);
     }
 }

@@ -136,6 +136,7 @@ class IndexController extends Controller
     {
         $title        = "Trang Home Page";
         $params       = $request->all();
+        $errors       = null;
         $getHome      = HomePage::findOrFail(1)->toArray();
         $listItemTree = ProductItem::getListTabHome();
         $listType     = ProductType::getList();
@@ -157,11 +158,11 @@ class IndexController extends Controller
             else $errors['finish'] = "error";
             $getHome = $params;
         }
-
         return view("admin.index.homePage")
             ->with("home", $getHome)
             ->with("listItemTree", $listItemTree)
             ->with("listType", $listType)
+            ->with("errors", $errors)
             ->with("title" , $title );
     }
 

@@ -72,7 +72,9 @@
                         <div id="{{"tab_top_".$value}}" role="tabpanel" class="{{$active}} section-tab-item">
                             <div class="feature-slider">
                                 @if (!empty($listTop[$value]))
-                                    @foreach ($listTop[$value] as $key2 => $item)
+                                    @php $list = $listTop[$value]; $nums = sizeof($list); @endphp
+                                    @for ($key2 = 0; $key2 < $nums ; $key2++)
+                                        @php $item = $list[$key2]; @endphp
                                         @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
                                             <div class="col-xs-12 col-width">
                                                 <div class="single-product">
@@ -103,17 +105,55 @@
                                                             <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
                                                         </div>
                                                     </div>
+                                                    @if ($item['is_new']) <span class="black hidden-sm">new</span> @endif
+                                                    @if ($item['is_best_sell']) <span class="red hidden-sm" @if($item['is_new']) style="margin-left: 70px" @endif>hot</span> @endif
                                                 </div>
+                                                @if ($key2+1 < $nums)
+                                                    @php $item = $list[++$key2]; @endphp
+                                                    @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
+                                                        <div class="single-product">
+                                                            <div class="single-product-item clearfix">
+                                                                <div class="single-product-img clearfix">
+                                                                    <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
+                                                                    <div class="wish-icon-hover text-center clearfix">
+                                                                        <div class="hover-text">
+                                                                            <p class="hidden-md">{{$item['short_desc']}}</p>
+                                                                            <ul>
+                                                                                <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                                <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="single-product-info clearfix">
+                                                                    <div class="pro-price">
+                                                                        @if ($item['type_price'] == 1)
+                                                                            <span class="new-price">{{$item['discount']}}</span>
+                                                                            <span class="old-price">{{$item['price']}}</span>
+                                                                        @elseif ($item['type_price'] == 2)
+                                                                            <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                        @else
+                                                                            <span class="new-price">Hết hàng</span>
+                                                                        @endif
+                                                                    </div>
+                                                                    <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
+                                                                </div>
+                                                            </div>
+                                                            @if ($item['is_new']) <span class="black hidden-sm">new</span> @endif
+                                                            @if ($item['is_best_sell']) <span class="red hidden-sm" @if($item['is_new']) style="margin-left: 70px" @endif>hot</span> @endif
+                                                        </div>
+                                                    @endif
+                                                @endif
                                             </div>
                                         @endif
-                                    @endforeach
+                                    @endfor
                                 @endif
                             </div>
                         </div>
                     @endforeach
                 </div>
                 <div class="arrival-button text-center mt-30">
-                    <a href='/product' class='section-button'>Chi tiết</a>
+                    <a href='/p' class='section-button'>Chi tiết</a>
                 </div>
             </div>
         </div>
@@ -213,7 +253,9 @@
                         <div id="{{"tab_middle_".$value}}" role="tabpanel" class="{{$active}} section-tab-item">
                             <div class="feature-slider">
                                 @if (!empty($listMiddle[$value]))
-                                    @foreach ($listMiddle[$value] as $key2 => $item)
+                                    @php $list = $listMiddle[$value]; $nums = sizeof($list); @endphp
+                                    @for ($key2 = 0; $key2 < $nums ; $key2++)
+                                        @php $item = $list[$key2]; @endphp
                                         @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
                                             <div class="col-xs-12 col-width">
                                                 <div class="single-product">
@@ -244,10 +286,48 @@
                                                             <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
                                                         </div>
                                                     </div>
+                                                    @if ($item['is_new']) <span class="black hidden-sm">new</span> @endif
+                                                    @if ($item['is_best_sell']) <span class="red hidden-sm" @if($item['is_new']) style="margin-left: 70px" @endif>hot</span> @endif
                                                 </div>
+                                                @if ($key2+1 < $nums)
+                                                    @php $item = $list[++$key2]; @endphp
+                                                    @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
+                                                    <div class="single-product">
+                                                        <div class="single-product-item clearfix">
+                                                            <div class="single-product-img clearfix">
+                                                                <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
+                                                                <div class="wish-icon-hover text-center clearfix">
+                                                                    <div class="hover-text">
+                                                                        <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                        <ul>
+                                                                            <li><a href="#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                            <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="single-product-info clearfix">
+                                                                <div class="pro-price">
+                                                                    @if ($item['type_price'] == 1)
+                                                                        <span class="new-price">{{$item['discount']}}</span>
+                                                                        <span class="old-price">{{$item['price']}}</span>
+                                                                    @elseif ($item['type_price'] == 2)
+                                                                        <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                    @else
+                                                                        <span class="new-price">Hết hàng</span>
+                                                                    @endif
+                                                                </div>
+                                                                <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
+                                                            </div>
+                                                        </div>
+                                                        @if ($item['is_new']) <span class="black hidden-sm">new</span> @endif
+                                                        @if ($item['is_best_sell']) <span class="red hidden-sm" @if($item['is_new']) style="margin-left: 70px" @endif>hot</span> @endif
+                                                    </div>
+                                                    @endif
+                                                @endif
                                             </div>
                                         @endif
-                                    @endforeach
+                                    @endfor
                                 @endif
                             </div>
                         </div>
@@ -384,11 +464,13 @@
                 <div class="clearfix"></div>
                 <div class="tab-content row">
                     @foreach ($arrListFooter as $key => $value)
-                    @php $active = ($key < 1) ? "active" : ""; @endphp
+                        @php $active = ($key < 1) ? "active" : ""; @endphp
                         <div id="{{"tab_footer_".$value}}" role="tabpanel" class="{{$active}} section-tab-item">
                             <div class="feature-slider">
                                 @if (!empty($listFooter[$value]))
-                                    @foreach ($listFooter[$value] as $key2 => $item)
+                                    @php $list = $listFooter[$value]; $nums = sizeof($list); @endphp
+                                    @for ($key2 = 0; $key2 < $nums ; $key2++)
+                                        @php $item = $list[$key2]; @endphp
                                         @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
                                             <div class="col-xs-12 col-width">
                                                 <div class="single-product">
@@ -419,18 +501,55 @@
                                                             <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
                                                         </div>
                                                     </div>
-                                                    <span class="black hidden-sm">new</span>
+                                                    @if ($item['is_new']) <span class="black hidden-sm">new</span> @endif
+                                                    @if ($item['is_best_sell']) <span class="red hidden-sm" @if($item['is_new']) style="margin-left: 70px" @endif>hot</span> @endif
                                                 </div>
+                                                @if ($key2+1 < $nums)
+                                                    @php $item = $list[++$key2]; @endphp
+                                                    @if (!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list']))
+                                                        <div class="single-product">
+                                                            <div class="single-product-item clearfix">
+                                                                <div class="single-product-img clearfix">
+                                                                    <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
+                                                                    <div class="wish-icon-hover text-center clearfix">
+                                                                        <div class="hover-text">
+                                                                            <p class="hidden-md">{{$item['short_desc']}}</p>
+                                                                            <ul>
+                                                                                <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                                <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="single-product-info clearfix">
+                                                                    <div class="pro-price">
+                                                                        @if ($item['type_price'] == 1)
+                                                                            <span class="new-price">{{$item['discount']}}</span>
+                                                                            <span class="old-price">{{$item['price']}}</span>
+                                                                        @elseif ($item['type_price'] == 2)
+                                                                            <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                        @else
+                                                                            <span class="new-price">Hết hàng</span>
+                                                                        @endif
+                                                                    </div>
+                                                                    <h3><a href="/pd/{{$item['id']}}/{{$item['seo_link']}}">{{$item['title']}}</a></h3>
+                                                                </div>
+                                                            </div>
+                                                            @if ($item['is_new']) <span class="black hidden-sm">new</span> @endif
+                                                            @if ($item['is_best_sell']) <span class="red hidden-sm" @if($item['is_new']) style="margin-left: 70px" @endif>hot</span> @endif
+                                                        </div>
+                                                    @endif
+                                                @endif
                                             </div>
                                         @endif
-                                    @endforeach     
-                                @endif                          
+                                    @endfor
+                                @endif
                             </div>
-                        </div>         
-                    @endforeach         
+                        </div>
+                    @endforeach
                 </div>
                 <div class="arrival-button text-left">
-                    <a href='#' class='section-button mt-30'>View More</a>
+                    <a href='/p' class='section-button mt-30'>Chi tiết</a>
                 </div>
             </div>
         </div>
@@ -446,8 +565,6 @@
                 <div class="section-tab">
                     <div class="section-tab-menu mb-45 text-center">
                         <ul role="tablist">
-
-
                             <li role="presentation" class="active text-uppercase"><a href="/public/user/#blog" aria-controls="blog" role="tab" data-toggle="tab">from blog</a></li>
                             <li role="presentation" class="text-uppercase"><a href="/public/user/#tweet" aria-controls="tweet" role="tab" data-toggle="tab">latest tweet</a></li>
                             <li role="presentation" class="text-uppercase"><a href="/public/user/#instagram" aria-controls="instagram" role="tab" data-toggle="tab">instagram</a></li>

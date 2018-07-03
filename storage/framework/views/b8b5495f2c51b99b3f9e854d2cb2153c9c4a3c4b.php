@@ -11,8 +11,8 @@
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <div class="footer-contact-info">
-                            <p>8901 Marmora Raod,
-                                <br>Glasgow, D04 89GR</p>
+                            <p>34/1 KP4 Thị Trấn Nhà Bè,
+                                <br>Đường Huỳnh Tấn Phát</p>
                         </div>
                     </div>
                     <div class="single-footer-contact">

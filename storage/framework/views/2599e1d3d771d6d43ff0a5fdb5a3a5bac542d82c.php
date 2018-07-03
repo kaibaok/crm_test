@@ -72,7 +72,9 @@
                         <div id="<?php echo e("tab_top_".$value); ?>" role="tabpanel" class="<?php echo e($active); ?> section-tab-item">
                             <div class="feature-slider">
                                 <?php if(!empty($listTop[$value])): ?>
-                                    <?php foreach($listTop[$value] as $key2 => $item): ?>
+                                    <?php  $list = $listTop[$value]; $nums = sizeof($list);  ?>
+                                    <?php for($key2 = 0; $key2 < $nums ; $key2++): ?>
+                                        <?php  $item = $list[$key2];  ?>
                                         <?php if(!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list'])): ?>
                                             <div class="col-xs-12 col-width">
                                                 <div class="single-product">
@@ -106,9 +108,45 @@
                                                     <?php if($item['is_new']): ?> <span class="black hidden-sm">new</span> <?php endif; ?>
                                                     <?php if($item['is_best_sell']): ?> <span class="red hidden-sm" <?php if($item['is_new']): ?> style="margin-left: 70px" <?php endif; ?>>hot</span> <?php endif; ?>
                                                 </div>
+                                                <?php if($key2+1 < $nums): ?>
+                                                    <?php  $item = $list[++$key2];  ?>
+                                                    <?php if(!empty($item['pimg_list']) && file_exists(BASE_IMG."product/".$item['pimg_list'])): ?>
+                                                        <div class="single-product">
+                                                            <div class="single-product-item clearfix">
+                                                                <div class="single-product-img clearfix">
+                                                                    <a href="#"><img class="primary-image" src="<?php echo e(URL_IMG."product/".$item['pimg_list']); ?>" alt=""></a>
+                                                                    <div class="wish-icon-hover text-center clearfix">
+                                                                        <div class="hover-text">
+                                                                            <p class="hidden-md"><?php echo e($item['short_desc']); ?></p>
+                                                                            <ul>
+                                                                                <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                                <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="single-product-info clearfix">
+                                                                    <div class="pro-price">
+                                                                        <?php if($item['type_price'] == 1): ?>
+                                                                            <span class="new-price"><?php echo e($item['discount']); ?></span>
+                                                                            <span class="old-price"><?php echo e($item['price']); ?></span>
+                                                                        <?php elseif($item['type_price'] == 2): ?>
+                                                                            <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                        <?php else: ?>
+                                                                            <span class="new-price">Hết hàng</span>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                    <h3><a href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>"><?php echo e($item['title']); ?></a></h3>
+                                                                </div>
+                                                            </div>
+                                                            <?php if($item['is_new']): ?> <span class="black hidden-sm">new</span> <?php endif; ?>
+                                                            <?php if($item['is_best_sell']): ?> <span class="red hidden-sm" <?php if($item['is_new']): ?> style="margin-left: 70px" <?php endif; ?>>hot</span> <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
                                             </div>
                                         <?php endif; ?>
-                                    <?php endforeach; ?>
+                                    <?php endfor; ?>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -538,9 +576,12 @@
                 <div class="section-tab">
                     <div class="section-tab-menu mb-45 text-center">
                         <ul role="tablist">
-                            <li role="presentation" class="active text-uppercase"><a href="/public/user/#blog" aria-controls="blog" role="tab" data-toggle="tab">from blog</a></li>
-                            <li role="presentation" class="text-uppercase"><a href="/public/user/#tweet" aria-controls="tweet" role="tab" data-toggle="tab">latest tweet</a></li>
-                            <li role="presentation" class="text-uppercase"><a href="/public/user/#instagram" aria-controls="instagram" role="tab" data-toggle="tab">instagram</a></li>
+                            <?php if(!empty($listCategoryNews['listCateNews'])): ?>
+                                <?php foreach($listCategoryNews['listCateNews'] as $key => $value): ?>
+                                    <?php  $active = ($key < 1) ? "active" : "";  ?>
+                                    <li role="presentation" class="<?php echo e($active); ?> text-uppercase"><a href="#<?php echo e('blog_'.$value->id); ?>" aria-controls="<?php echo e('blog_'.$value->id); ?>" role="tab" data-toggle="tab"><?php echo e($value->title); ?></a></li>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -549,228 +590,105 @@
         <div class="row">
             <div class="clearfix"></div>
             <div class="tab-content row">
-                <div id="blog" role="tabpanel" class="active section-tab-item">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-blog">
-                            <div class="single-blog-img">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/1.jpg" alt="blog">
-                                    </a>
-                                <div class="blog-date text-center">
-                                    <h2>05 <span>Feb</span></h2>
-                                </div>
-                            </div>
-                            <div class="single-blog-info mt-25">
-                                <h4><a href="/public/user/blog.html">Beautiful Collection For Beauty</a></h4>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
-                                <div class="button-comments">
-                                    <div class="read-button text-center">
-                                        <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
+                <?php if(!empty($listCategoryNews['listCateNews'])): ?>
+                    <?php foreach($listCategoryNews['listCateNews'] as $key => $value): ?>
+                        <?php  $active = ($key < 1) ? "active" : "";  ?>
+                        <div id="<?php echo e('blog_'.$value->id); ?>" role="tabpanel" class="active section-tab-item">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="single-blog">
+                                    <div class="single-blog-img">
+                                        <a href="/public/user/#">
+                                                <img src="/public/user/img/blog/1.jpg" alt="blog">
+                                            </a>
+                                        <div class="blog-date text-center">
+                                            <h2>05 <span>Feb</span></h2>
+                                        </div>
                                     </div>
-                                    <div class="comment-like">
-                                        <ul>
-                                            <li><i class="fa fa-comments"></i>06 comments</li>
-                                            <li><i class="fa fa-heart"></i>25 likes</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="single-blog">
-                            <div class="single-blog-img">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/2.jpg" alt="blog">
-                                    </a>
-                                <div class="blog-date text-center">
-                                    <h2>09 <span>Feb</span></h2>
-                                </div>
-                            </div>
-                            <div class="single-blog-info mt-25">
-                                <h4><a href="/public/user/blog.html">Fashion Show With New Trend</a></h4>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
-                                <div class="button-comments">
-                                    <div class="read-button text-center">
-                                        <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
-                                    </div>
-                                    <div class="comment-like">
-                                        <ul>
-                                            <li><i class="fa fa-comments"></i>10 comments</li>
-                                            <li><i class="fa fa-heart"></i>20 likes</li>
-                                        </ul>
+                                    <div class="single-blog-info mt-25">
+                                        <h4><a href="/public/user/blog.html">Beautiful Collection For Beauty <?php echo e('blog_'.$value->id); ?></a></h4>
+                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
+                                        <div class="button-comments">
+                                            <div class="read-button text-center">
+                                                <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
+                                            </div>
+                                            <div class="comment-like">
+                                                <ul>
+                                                    <li><i class="fa fa-comments"></i>06 comments</li>
+                                                    <li><i class="fa fa-heart"></i>25 likes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 hidden-sm col-xs-12">
-                        <div class="single-blog-list">
-                            <div class="blog-date mr-25 text-center">
-                                <h2>12 <span>Feb</span></h2>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="single-blog">
+                                    <div class="single-blog-img">
+                                        <a href="/public/user/#">
+                                                <img src="/public/user/img/blog/2.jpg" alt="blog">
+                                            </a>
+                                        <div class="blog-date text-center">
+                                            <h2>09 <span>Feb</span></h2>
+                                        </div>
+                                    </div>
+                                    <div class="single-blog-info mt-25">
+                                        <h4><a href="/public/user/blog.html">Fashion Show With New Trend</a></h4>
+                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
+                                        <div class="button-comments">
+                                            <div class="read-button text-center">
+                                                <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
+                                            </div>
+                                            <div class="comment-like">
+                                                <ul>
+                                                    <li><i class="fa fa-comments"></i>10 comments</li>
+                                                    <li><i class="fa fa-heart"></i>20 likes</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="blog-list-info single-blog-info mb-25">
-                                <h4><a href="/public/user/blog.html">Men’s New Trend</a></h4>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                            </div>
-                        </div>
-                        <div class="single-blog-list">
-                            <div class="blog-date mr-25 text-center">
-                                <h2>15 <span>Feb</span></h2>
-                            </div>
-                            <div class="blog-list-info single-blog-info mb-25">
-                                <h4><a href="/public/user/blog.html">Fashion Show</a></h4>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                            </div>
-                        </div>
-                        <div class="single-blog-list">
-                            <div class="blog-date mr-25 text-center">
-                                <h2>20 <span>Feb</span></h2>
-                            </div>
-                            <div class="blog-list-info single-blog-info mb-25">
-                                <h4><a href="/public/user/blog.html">Dress for Curte Gril</a></h4>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                            </div>
-                        </div>
-                        <div class="single-blog-list hidden-md">
-                            <div class="blog-date mr-25 text-center">
-                                <h2>09 <span>Feb</span></h2>
-                            </div>
-                            <div class="blog-list-info single-blog-info mb-25">
-                                <h4><a href="/public/user/blog.html">Latest Handbag Collection</a></h4>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tweet" role="tabpanel" class="section-tab-item">
-                    <div class="col-md-4">
-                        <div class="single-twitter mb-10">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                        <div class="single-twitter mb-10">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                        <div class="single-twitter">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single-twitter mb-10">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
+                            <div class="col-md-4 hidden-sm col-xs-12">
+                                <div class="single-blog-list">
+                                    <div class="blog-date mr-25 text-center">
+                                        <h2>12 <span>Feb</span></h2>
+                                    </div>
+                                    <div class="blog-list-info single-blog-info mb-25">
+                                        <h4><a href="/public/user/blog.html">Men’s New Trend</a></h4>
+                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
+                                    </div>
+                                </div>
+                                <div class="single-blog-list">
+                                    <div class="blog-date mr-25 text-center">
+                                        <h2>15 <span>Feb</span></h2>
+                                    </div>
+                                    <div class="blog-list-info single-blog-info mb-25">
+                                        <h4><a href="/public/user/blog.html">Fashion Show</a></h4>
+                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
+                                    </div>
+                                </div>
+                                <div class="single-blog-list">
+                                    <div class="blog-date mr-25 text-center">
+                                        <h2>20 <span>Feb</span></h2>
+                                    </div>
+                                    <div class="blog-list-info single-blog-info mb-25">
+                                        <h4><a href="/public/user/blog.html">Dress for Curte Gril</a></h4>
+                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
+                                    </div>
+                                </div>
+                                <div class="single-blog-list hidden-md">
+                                    <div class="blog-date mr-25 text-center">
+                                        <h2>09 <span>Feb</span></h2>
+                                    </div>
+                                    <div class="blog-list-info single-blog-info mb-25">
+                                        <h4><a href="/public/user/blog.html">Latest Handbag Collection</a></h4>
+                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="single-twitter mb-10">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                        <div class="single-twitter">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single-twitter mb-10">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                        <div class="single-twitter mb-10">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                        <div class="single-twitter">
-                            <div class="twitter-icon">
-                                <img src="/public/user/img/icon/twitter.png" alt="">
-                            </div>
-                            <div class="twitter-feed">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur maiores rem dolores. <a>-jan 18, 2016</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="instagram" role="tabpanel" class="section-tab-item">
-                    <div class="row mb-25">
-                        <div class="col-md-4">
-                            <div class="single-instagram">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/1.jpg" alt="blog">
-                                    </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-instagram">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/2.jpg" alt="blog">
-                                    </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-instagram">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/1.jpg" alt="blog">
-                                    </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="single-instagram">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/2.jpg" alt="blog">
-                                    </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-instagram">
-                                <a href="/public/user/#">
-                                        <img src="/public/user/img/blog/1.jpg" alt="blog">
-                                    </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-instagram">
-                                <a href="/public/user/#">
-                                    <img src="/public/user/img/blog/2.jpg" alt="blog">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

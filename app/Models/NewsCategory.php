@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\News;
 
 class NewsCategory extends Model
 {
@@ -58,9 +59,23 @@ class NewsCategory extends Model
                 'title'  => htmlspecialchars(trim($data['title'])),
                 'seo_link'  => trim($data['seo_link']),
             );
-            return NewsCategory::where('id',(int)$data['id'])->update($arr_update);
+            $status = NewsCategory::where('id',(int)$data['id'])->update($arr_update);
         }
         return $status;
     }
 
+    public static function getNewsUP($limitCateNews = 0, $limitNews = 0) {
+        $listCateNews = self::where(array("status" => 1))->orderByRaw("id Desc");
+        if($limitCateNews > 0) $listCateNews->limit($limitCateNews);
+        $listCateNews = $listCateNews->get();
+        if(empty($listCateNews)) return null;
+        $arrNews = null;
+        foreach ($listCateNews as $key => $value) {
+            $temp = News::where(array("status" => 1, "id_cate" => $value->id))
+                ->orderByRaw("ord ASC, id DESC");
+            if($limitNews > 0) $temp->limit($limitNews);
+            $arrNews[$value->id] = $temp->get()->toArray();
+        }
+        return array("listCateNews" => $listCateNews, "listNews" => $arrNews);
+    }
 }

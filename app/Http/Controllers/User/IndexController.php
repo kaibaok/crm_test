@@ -11,6 +11,8 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\ProductCategory;
+use App\Models\News;
+use App\Models\NewsCategory;
 
 class IndexController extends Controller
 {
@@ -27,9 +29,9 @@ class IndexController extends Controller
             $isOpenEvent = ($now >= strtotime($event->time_open) && $now <= strtotime($event->time_close));
         }
         // list tab 3 part
-        $listCategory = ProductCategory::getListHomePage();
+        $listCategory    = ProductCategory::getListHomePage();
         $listProductType = ProductType::getList();
-        $listTop = $listMiddle = $listFooter = null;
+        $listTop         = $listMiddle = $listFooter = null;
         if(!empty($homePage)) {
             if(!empty($homePage['list_top'])) {
                 $listTop = Product::getByArrCateUP($homePage['list_top']);
@@ -46,6 +48,8 @@ class IndexController extends Controller
 
         $listSlider = Slider::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
         $listBrand  = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
+        $listCategoryNews = NewsCategory::getNewsUP(3,6);
+
         return view("user.index.index")
             ->with('homePage', $homePage)
             ->with('event', $event)
@@ -57,6 +61,7 @@ class IndexController extends Controller
             ->with('listFooter', $listFooter)
             ->with('listCategory', $listCategory)
             ->with('listProductType', $listProductType)
+            ->with('listCategoryNews', $listCategoryNews)
             ->with("title", $title);
     }
 }

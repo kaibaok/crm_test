@@ -22,6 +22,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
           <div class="input-group">
             <a class="btn btn-primary" href="/admin/news/add">Thêm mới</a>
+            <a class="btn btn-success" href="/admin/news/sort-news">Sắp xếp</a>
           </div>
         </div>
       </div>

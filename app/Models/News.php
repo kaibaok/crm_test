@@ -31,7 +31,7 @@ class News extends Model
                     "short_desc"  => $data["short_desc"],
                     "desc"        => $data["desc"],
                     "status"      => isset($data['status']) ? $data['status'] : 0,
-                    "created_at"  => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
+                    "created_at"  => date("Y-m-d H:i:s"),
                     "nimg_list"   => $data['nimg_list'],
                     "nimg_detail" => $data['nimg_detail'],
                     "is_hot"      => isset($data["is_hot"]) ? (int) $data["is_hot"] : 0,

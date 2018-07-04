@@ -47,6 +47,7 @@ class HomePage extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
+                "created_at"  => date("Y-m-d H:i:s"),
                 'title1'      => $data['title1'],
                 'title2'      => $data['title2'],
                 'title3'      => $data['title3'],

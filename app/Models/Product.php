@@ -54,6 +54,7 @@ class Product extends Model
                     "type_price"   => (int)$data["type_price"],
                     "discount"     => (int)$data["discount"],
                     "percent"      => (int)$data["percent"],
+                    "created_at"   => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;

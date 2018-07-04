@@ -13,7 +13,7 @@
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
-                <a class="btn btn-primary" href="/admin/product/cart">Trở về</a>
+                <a class="btn btn-info" href="/admin/product/cart">Trở về</a>
               </div>
             </div>
           </div>

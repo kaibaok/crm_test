@@ -29,7 +29,7 @@ class Slider extends Model
                     "title"       => htmlspecialchars(trim($data["title"])),
                     "link"        => trim($data["link"]),
                     "status"      => isset($data['status']) ? $data['status'] : 0,
-                    "created_at"  => isset($data['created_at']) ? $data['created_at'] : date("Y-m-d H:i:s"),
+                    "created_at"  => date("Y-m-d H:i:s"),
                     "simg_detail" => $data['simg_detail'],
                     "desc"        => $data['desc'],
                 ));

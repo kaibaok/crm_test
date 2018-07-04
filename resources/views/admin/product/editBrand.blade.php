@@ -12,7 +12,7 @@
             <div class=" pull-right">
               <div class="input-group">
                 <button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                <a class="btn btn-primary" href="/admin/brand/">Trở về</a>
+                <a class="btn btn-info" href="/admin/brand/">Trở về</a>
               </div>
             </div>
           </div>

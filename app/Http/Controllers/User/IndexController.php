@@ -46,8 +46,8 @@ class IndexController extends Controller
             }
         }
 
-        $listSlider = Slider::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
-        $listBrand  = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
+        $listSlider       = Slider::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
+        $listBrand        = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
         $listCategoryNews = NewsCategory::getNewsUP(3,6);
 
         return view("user.index.index")

@@ -48,7 +48,7 @@ $(document).ready(function() {
                 $("#btn_save").bind('click', function(event) {
                     event.preventDefault();
                     $.ajax({
-                        url: '/admin/news/ajax-sort-news',
+                    url: '/admin/news/ajax-sort-news',
                         type: 'POST',
                         dataType: 'json',
                         data: {
@@ -135,5 +135,36 @@ $(document).ready(function() {
             var id =   $(this).attr('id');
             $("#"+ id).multiSelect();
         });
+    }
+
+    if($("div").hasClass('treemenu')) {
+        var sortableListOptions = { placeholderCss: {'background-color': 'cyan'} };
+        var editor = new MenuEditor('myEditor', {listOptions: sortableListOptions,  labelEdit: 'Edit'});
+        editor.setForm($('#frmEdit'));
+        editor.setUpdateButton($('#btnUpdate'));
+        editor.setData(strjson);
+        $('#btnReload').on('click', function () {
+            editor.setData(strjson);
+        });
+
+        $("#btnUpdate").click(function(){
+            editor.update();
+            var str = editor.getString();
+            $("#out").val(str);
+        });
+
+        $('#btnAdd').click(function(){
+            editor.add();
+            var str = editor.getString();
+            $("#out").val(str);
+        });
+
+        $('#btnSave').click(function(event){
+            event.preventDefault();
+            var str = editor.getString();
+            $("#out").val(str);
+            $("#demo-form").submit();
+        });
+
     }
 });

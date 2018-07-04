@@ -43,6 +43,7 @@ class Brand extends Model
                     'title'       => htmlspecialchars(trim($data['title'])),
                     'seo_link'    => trim($data['seo_link']),
                     "bimg_detail" => $data['bimg_detail'],
+                    "created_at"  => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;

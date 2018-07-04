@@ -40,9 +40,11 @@ class NewsCategory extends Model
         if(isset($data)){
             try{
                 $status = NewsCategory::create(array(
-                    'status' => (int) $data['status'],
-                    'title'  => htmlspecialchars(trim($data['title'])),
-                    'seo_link'  => trim($data['seo_link']),
+                    'status'     => (int) $data['status'],
+                    'title'      => htmlspecialchars(trim($data['title'])),
+                    'seo_link'   => trim($data['seo_link']),
+                    "created_at" => date("Y-m-d H:i:s"),
+
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -72,7 +74,7 @@ class NewsCategory extends Model
         $arrNews = null;
         foreach ($listCateNews as $key => $value) {
             $temp = News::where(array("status" => 1, "id_cate" => $value->id))
-                ->orderByRaw("ord ASC, id DESC");
+                ->orderByRaw("ord ASC, id DESC, is_hot DESC");
             if($limitNews > 0) $temp->limit($limitNews);
             $arrNews[$value->id] = $temp->get()->toArray();
         }

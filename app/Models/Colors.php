@@ -13,7 +13,7 @@ class Colors extends Model
      * @var array
      */
     protected $fillable = [
-        "id", "name", "code"
+        "id", "name", "code", "created_at", "updated_at"
     ];
 
     public static function getList(){
@@ -35,6 +35,7 @@ class Colors extends Model
                 $status = Colors::create(array(
                     "name"    => htmlspecialchars(trim($data["name"])),
                     "code"    => $data['code'],
+                    "created_at"  => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;

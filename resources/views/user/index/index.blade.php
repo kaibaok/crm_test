@@ -83,7 +83,7 @@
                                                             <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
                                                             <div class="wish-icon-hover text-center clearfix">
                                                                 <div class="hover-text">
-                                                                    <p class="hidden-md">{{$item['short_desc']}}</p>
+                                                                    <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                     <ul>
                                                                         <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -117,7 +117,7 @@
                                                                     <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
                                                                     <div class="wish-icon-hover text-center clearfix">
                                                                         <div class="hover-text">
-                                                                            <p class="hidden-md">{{$item['short_desc']}}</p>
+                                                                            <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                             <ul>
                                                                                 <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                                 <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -479,7 +479,7 @@
                                                             <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
                                                             <div class="wish-icon-hover text-center clearfix">
                                                                 <div class="hover-text">
-                                                                    <p class="hidden-md">{{$item['short_desc']}}</p>
+                                                                    <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                     <ul>
                                                                         <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -513,7 +513,7 @@
                                                                     <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
                                                                     <div class="wish-icon-hover text-center clearfix">
                                                                         <div class="hover-text">
-                                                                            <p class="hidden-md">{{$item['short_desc']}}</p>
+                                                                            <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                             <ul>
                                                                                 <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
                                                                                 <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -565,10 +565,13 @@
                 <div class="section-tab">
                     <div class="section-tab-menu mb-45 text-center">
                         <ul role="tablist">
+                            @php $count = 0; @endphp
                             @if (!empty($listCategoryNews['listCateNews']))
                                 @foreach ($listCategoryNews['listCateNews'] as $key => $value)
-                                    @php $active = ($key < 1) ? "active" : ""; @endphp
-                                    <li role="presentation" class="{{$active}} text-uppercase"><a href="#{{'blog_'.$value->id}}" aria-controls="{{ 'blog_'.$value->id}}" role="tab" data-toggle="tab">{{$value->title}}</a></li>
+                                    @if (!empty($listCategoryNews['listNews'][$value->id]))
+                                    @php ++$count; $active = ($count == 1) ? "active" : ""; @endphp
+                                        <li role="presentation" class="{{$active}} text-uppercase"><a href="#{{'blog_'.$value->id}}" aria-controls="{{ 'blog_'.$value->id}}" role="tab" data-toggle="tab">{{$value->title}}</a></li>
+                                    @endif
                                 @endforeach
                             @endif
                         </ul>
@@ -580,102 +583,63 @@
             <div class="clearfix"></div>
             <div class="tab-content row">
                 @if (!empty($listCategoryNews['listCateNews']))
+                    @php $count = 0; @endphp
                     @foreach ($listCategoryNews['listCateNews'] as $key => $value)
-                        @php $active = ($key < 1) ? "active" : ""; @endphp
-                        <div id="{{'blog_'.$value->id}}" role="tabpanel" class="active section-tab-item">
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="single-blog">
-                                    <div class="single-blog-img">
-                                        <a href="/public/user/#">
-                                                <img src="/public/user/img/blog/1.jpg" alt="blog">
-                                            </a>
-                                        <div class="blog-date text-center">
-                                            <h2>05 <span>Feb</span></h2>
+                        @php
+                            $arrNews = $listCategoryNews['listNews'];
+                            $idCate  = $value->id;
+                        @endphp
+                        @if (!empty($arrNews[$idCate]))
+                            @php ++$count; $active = ($count == 1) ? "active" : ""; @endphp
+                            <div id="{{'blog_'.$value->id}}" role="tabpanel" class="{{$active}} section-tab-item">
+                                @foreach ($arrNews[$idCate] as $kNews => $vnews)
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="single-blog">
+                                            <div class="single-blog-img">
+                                                <a href="/nd/{{$vnews['id']}}/{{$vnews['seo_link']}}">
+                                                    @if (!empty($item['nimg_list']) && file_exists(BASE_IMG."news/".$vnews['nimg_list']))
+                                                        <img src="{{URL_IMG."news/".$vnews['nimg_list']}}" alt="{{$vnews['title']}}">
+                                                    @else
+                                                        <img src="/public/user/img/blog/1.jpg" alt="{{$vnews['title']}}">
+                                                    @endif
+                                                </a>
+                                                <div class="blog-date text-center">
+                                                    @php $createdAt = strtotime($vnews['created_at']); @endphp
+                                                    <h2>{{date("d", $createdAt)}} <span>{{date("M", $createdAt)}}</span></h2>
+                                                </div>
+                                            </div>
+                                            <div class="single-blog-info mt-25">
+                                                <h4><a href="/nd/{{$vnews['id']}}/{{$vnews['seo_link']}}">{{$vnews['title']}}</a></h4>
+                                                <div>{!!$vnews['short_desc']!!}</div>
+                                                <div class="button-comments">
+                                                    <div class="read-button text-center">
+                                                        <a class="read-more text-uppercase" href="/nd/{{$vnews['id']}}/{{$vnews['seo_link']}}">Chi tiết <i class="fa fa-angle-double-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="single-blog-info mt-25">
-                                        <h4><a href="/public/user/blog.html">Beautiful Collection For Beauty {{'blog_'.$value->id}}</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
-                                        <div class="button-comments">
-                                            <div class="read-button text-center">
-                                                <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
+                                    @php
+                                        unset($arrNews[$idCate][$kNews]);
+                                        if($kNews == 1) break;
+                                    @endphp
+                                @endforeach
+                                <div class="col-md-4 hidden-sm col-xs-12">
+                                    @foreach ($arrNews[$idCate] as $kNews => $vnews)
+                                        <div class="single-blog-list">
+                                            <div class="blog-date mr-25 text-center">
+                                                @php $createdAt = strtotime($vnews['created_at']); @endphp
+                                                <h2>{{date("d", $createdAt)}} <span>{{date("M", $createdAt)}}</span></h2>
                                             </div>
-                                            <div class="comment-like">
-                                                <ul>
-                                                    <li><i class="fa fa-comments"></i>06 comments</li>
-                                                    <li><i class="fa fa-heart"></i>25 likes</li>
-                                                </ul>
+                                            <div class="blog-list-info single-blog-info mb-25">
+                                                <h4><a href="/nd/{{$vnews['id']}}/{{$vnews['seo_link']}}">{{$vnews['title']}}</a></h4>
+                                                <div>{!!$vnews['short_desc']!!}</div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="single-blog">
-                                    <div class="single-blog-img">
-                                        <a href="/public/user/#">
-                                                <img src="/public/user/img/blog/2.jpg" alt="blog">
-                                            </a>
-                                        <div class="blog-date text-center">
-                                            <h2>09 <span>Feb</span></h2>
-                                        </div>
-                                    </div>
-                                    <div class="single-blog-info mt-25">
-                                        <h4><a href="/public/user/blog.html">Fashion Show With New Trend</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
-                                        <div class="button-comments">
-                                            <div class="read-button text-center">
-                                                <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
-                                            </div>
-                                            <div class="comment-like">
-                                                <ul>
-                                                    <li><i class="fa fa-comments"></i>10 comments</li>
-                                                    <li><i class="fa fa-heart"></i>20 likes</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 hidden-sm col-xs-12">
-                                <div class="single-blog-list">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>12 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Men’s New Trend</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                                <div class="single-blog-list">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>15 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Fashion Show</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                                <div class="single-blog-list">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>20 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Dress for Curte Gril</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                                <div class="single-blog-list hidden-md">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>09 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Latest Handbag Collection</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
                 @endif
             </div>

@@ -41,10 +41,11 @@ class ProductCategory extends Model
         if(isset($data)){
             try{
                 $status = ProductCategory::create(array(
-                    'status'   => (int) $data['status'],
-                    'title'    => htmlspecialchars(trim($data['title'])),
-                    'seo_link' => trim($data['seo_link']),
-                    'item_id'  => (int) $data['item_id'],
+                    'status'     => (int) $data['status'],
+                    'title'      => htmlspecialchars(trim($data['title'])),
+                    'seo_link'   => trim($data['seo_link']),
+                    'item_id'    => (int) $data['item_id'],
+                    "created_at" => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;

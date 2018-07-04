@@ -83,7 +83,7 @@
                                                             <a href="#"><img class="primary-image" src="<?php echo e(URL_IMG."product/".$item['pimg_list']); ?>" alt=""></a>
                                                             <div class="wish-icon-hover text-center clearfix">
                                                                 <div class="hover-text">
-                                                                    <p class="hidden-md"><?php echo e($item['short_desc']); ?></p>
+                                                                    <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
                                                                         <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -117,7 +117,7 @@
                                                                     <a href="#"><img class="primary-image" src="<?php echo e(URL_IMG."product/".$item['pimg_list']); ?>" alt=""></a>
                                                                     <div class="wish-icon-hover text-center clearfix">
                                                                         <div class="hover-text">
-                                                                            <p class="hidden-md"><?php echo e($item['short_desc']); ?></p>
+                                                                            <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                             <ul>
                                                                                 <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                                 <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -490,7 +490,7 @@
                                                             <a href="#"><img class="primary-image" src="<?php echo e(URL_IMG."product/".$item['pimg_list']); ?>" alt=""></a>
                                                             <div class="wish-icon-hover text-center clearfix">
                                                                 <div class="hover-text">
-                                                                    <p class="hidden-md"><?php echo e($item['short_desc']); ?></p>
+                                                                    <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
                                                                         <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -524,7 +524,7 @@
                                                                     <a href="#"><img class="primary-image" src="<?php echo e(URL_IMG."product/".$item['pimg_list']); ?>" alt=""></a>
                                                                     <div class="wish-icon-hover text-center clearfix">
                                                                         <div class="hover-text">
-                                                                            <p class="hidden-md"><?php echo e($item['short_desc']); ?></p>
+                                                                            <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                             <ul>
                                                                                 <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
                                                                                 <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
@@ -576,10 +576,13 @@
                 <div class="section-tab">
                     <div class="section-tab-menu mb-45 text-center">
                         <ul role="tablist">
+                            <?php  $count = 0;  ?>
                             <?php if(!empty($listCategoryNews['listCateNews'])): ?>
                                 <?php foreach($listCategoryNews['listCateNews'] as $key => $value): ?>
-                                    <?php  $active = ($key < 1) ? "active" : "";  ?>
-                                    <li role="presentation" class="<?php echo e($active); ?> text-uppercase"><a href="#<?php echo e('blog_'.$value->id); ?>" aria-controls="<?php echo e('blog_'.$value->id); ?>" role="tab" data-toggle="tab"><?php echo e($value->title); ?></a></li>
+                                    <?php if(!empty($listCategoryNews['listNews'][$value->id])): ?>
+                                    <?php  ++$count; $active = ($count == 1) ? "active" : "";  ?>
+                                        <li role="presentation" class="<?php echo e($active); ?> text-uppercase"><a href="#<?php echo e('blog_'.$value->id); ?>" aria-controls="<?php echo e('blog_'.$value->id); ?>" role="tab" data-toggle="tab"><?php echo e($value->title); ?></a></li>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </ul>
@@ -591,102 +594,63 @@
             <div class="clearfix"></div>
             <div class="tab-content row">
                 <?php if(!empty($listCategoryNews['listCateNews'])): ?>
+                    <?php  $count = 0;  ?>
                     <?php foreach($listCategoryNews['listCateNews'] as $key => $value): ?>
-                        <?php  $active = ($key < 1) ? "active" : "";  ?>
-                        <div id="<?php echo e('blog_'.$value->id); ?>" role="tabpanel" class="active section-tab-item">
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="single-blog">
-                                    <div class="single-blog-img">
-                                        <a href="/public/user/#">
-                                                <img src="/public/user/img/blog/1.jpg" alt="blog">
-                                            </a>
-                                        <div class="blog-date text-center">
-                                            <h2>05 <span>Feb</span></h2>
+                        <?php 
+                            $arrNews = $listCategoryNews['listNews'];
+                            $idCate  = $value->id;
+                         ?>
+                        <?php if(!empty($arrNews[$idCate])): ?>
+                            <?php  ++$count; $active = ($count == 1) ? "active" : "";  ?>
+                            <div id="<?php echo e('blog_'.$value->id); ?>" role="tabpanel" class="<?php echo e($active); ?> section-tab-item">
+                                <?php foreach($arrNews[$idCate] as $kNews => $vnews): ?>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="single-blog">
+                                            <div class="single-blog-img">
+                                                <a href="/nd/<?php echo e($vnews['id']); ?>/<?php echo e($vnews['seo_link']); ?>">
+                                                    <?php if(!empty($item['nimg_list']) && file_exists(BASE_IMG."news/".$vnews['nimg_list'])): ?>
+                                                        <img src="<?php echo e(URL_IMG."news/".$vnews['nimg_list']); ?>" alt="<?php echo e($vnews['title']); ?>">
+                                                    <?php else: ?>
+                                                        <img src="/public/user/img/blog/1.jpg" alt="<?php echo e($vnews['title']); ?>">
+                                                    <?php endif; ?>
+                                                </a>
+                                                <div class="blog-date text-center">
+                                                    <?php  $createdAt = strtotime($vnews['created_at']);  ?>
+                                                    <h2><?php echo e(date("d", $createdAt)); ?> <span><?php echo e(date("M", $createdAt)); ?></span></h2>
+                                                </div>
+                                            </div>
+                                            <div class="single-blog-info mt-25">
+                                                <h4><a href="/nd/<?php echo e($vnews['id']); ?>/<?php echo e($vnews['seo_link']); ?>"><?php echo e($vnews['title']); ?></a></h4>
+                                                <div><?php echo $vnews['short_desc']; ?></div>
+                                                <div class="button-comments">
+                                                    <div class="read-button text-center">
+                                                        <a class="read-more text-uppercase" href="/nd/<?php echo e($vnews['id']); ?>/<?php echo e($vnews['seo_link']); ?>">Chi tiết <i class="fa fa-angle-double-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="single-blog-info mt-25">
-                                        <h4><a href="/public/user/blog.html">Beautiful Collection For Beauty <?php echo e('blog_'.$value->id); ?></a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
-                                        <div class="button-comments">
-                                            <div class="read-button text-center">
-                                                <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
+                                    <?php 
+                                        unset($arrNews[$idCate][$kNews]);
+                                        if($kNews == 1) break;
+                                     ?>
+                                <?php endforeach; ?>
+                                <div class="col-md-4 hidden-sm col-xs-12">
+                                    <?php foreach($arrNews[$idCate] as $kNews => $vnews): ?>
+                                        <div class="single-blog-list">
+                                            <div class="blog-date mr-25 text-center">
+                                                <?php  $createdAt = strtotime($vnews['created_at']);  ?>
+                                                <h2><?php echo e(date("d", $createdAt)); ?> <span><?php echo e(date("M", $createdAt)); ?></span></h2>
                                             </div>
-                                            <div class="comment-like">
-                                                <ul>
-                                                    <li><i class="fa fa-comments"></i>06 comments</li>
-                                                    <li><i class="fa fa-heart"></i>25 likes</li>
-                                                </ul>
+                                            <div class="blog-list-info single-blog-info mb-25">
+                                                <h4><a href="/nd/<?php echo e($vnews['id']); ?>/<?php echo e($vnews['seo_link']); ?>"><?php echo e($vnews['title']); ?></a></h4>
+                                                <div><?php echo $vnews['short_desc']; ?></div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="single-blog">
-                                    <div class="single-blog-img">
-                                        <a href="/public/user/#">
-                                                <img src="/public/user/img/blog/2.jpg" alt="blog">
-                                            </a>
-                                        <div class="blog-date text-center">
-                                            <h2>09 <span>Feb</span></h2>
-                                        </div>
-                                    </div>
-                                    <div class="single-blog-info mt-25">
-                                        <h4><a href="/public/user/blog.html">Fashion Show With New Trend</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was bornad will give you a complete pain was praising</p>
-                                        <div class="button-comments">
-                                            <div class="read-button text-center">
-                                                <a class="read-more text-uppercase" href="/public/user/blog.html">read More <i class="fa fa-angle-double-right"></i></a>
-                                            </div>
-                                            <div class="comment-like">
-                                                <ul>
-                                                    <li><i class="fa fa-comments"></i>10 comments</li>
-                                                    <li><i class="fa fa-heart"></i>20 likes</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 hidden-sm col-xs-12">
-                                <div class="single-blog-list">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>12 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Men’s New Trend</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                                <div class="single-blog-list">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>15 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Fashion Show</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                                <div class="single-blog-list">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>20 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Dress for Curte Gril</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                                <div class="single-blog-list hidden-md">
-                                    <div class="blog-date mr-25 text-center">
-                                        <h2>09 <span>Feb</span></h2>
-                                    </div>
-                                    <div class="blog-list-info single-blog-info mb-25">
-                                        <h4><a href="/public/user/blog.html">Latest Handbag Collection</a></h4>
-                                        <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>

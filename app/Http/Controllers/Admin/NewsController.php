@@ -235,7 +235,7 @@ class NewsController extends Controller
         return view("admin.news.sort")
             ->with("title", $title)
             ->with("page", $page)
-            ->with("listNewsCate", $listCategory)
+            ->with("listNewsCate", $listNewsCate)
             ->with("listNews", $listNews);
     }
 
@@ -262,6 +262,4 @@ class NewsController extends Controller
         }
         return response()->json(array("status" => true));
     }
-
-
 }

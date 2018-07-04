@@ -10,6 +10,7 @@
         <div class="form-group pull-right top_search">
           <div class="input-group">
             <button class="btn btn-primary" id="btn_save">Lưu</button>
+            <a class="btn btn-info" href="/admin/product/">Trở về</a>
           </div>
         </div>
       </div>
@@ -37,7 +38,6 @@
                     <th class="column-title">Ngày hết hạn</th>
                     <th class="column-title">Ngày nhập hàng</th>
                     <th class="column-title">Ngày cập nhật</th>
-                    <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
                 </thead>
@@ -77,7 +77,6 @@
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value->limit_at}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value->created_at}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value->updated_at}}</td>
-                    <td class="last"> <a href="/admin/product/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>

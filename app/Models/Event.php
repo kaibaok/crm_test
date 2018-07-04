@@ -46,6 +46,7 @@ class Event extends Model
                     "time_open"   => $data['time_open'],
                     "time_close"  => $data['time_close'],
                     "desc"        => $data['desc'],
+                    "created_at"  => date("Y-m-d h:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;

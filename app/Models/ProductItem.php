@@ -43,9 +43,10 @@ class ProductItem extends Model
         if(isset($data)){
             try{
                 $status = ProductItem::create(array(
-                    'status'   => (int) $data['status'],
-                    'title'    => htmlspecialchars(trim($data['title'])),
-                    'seo_link' => trim($data['seo_link']),
+                    'status'     => (int) $data['status'],
+                    'title'      => htmlspecialchars(trim($data['title'])),
+                    'seo_link'   => trim($data['seo_link']),
+                    "created_at" => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;

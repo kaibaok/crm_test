@@ -10,6 +10,7 @@
         <div class="form-group pull-right top_search">
           <div class="input-group">
             <button class="btn btn-primary" id="btn_save">Lưu</button>
+            <a class="btn btn-info" href="/admin/news/">Trở về</a>
           </div>
         </div>
       </div>
@@ -28,10 +29,8 @@
                     <th class="column-title">No</th>
                     <th class="column-title">Hiển thị</th>
                     <th class="column-title">Tin tức</th>
-                    <th class="column-title">Mô tả ngắn</th>
                     <th class="column-title">Loại tin</th>
                     <th class="column-title">Ngày cập nhật</th>
-                    <th class="column-title no-link last"><span class="nobr">Xử lý</span> </th>
                   </tr>
                 </thead>
 
@@ -51,10 +50,8 @@
                       @endif
                     </td>
                     <td>{{$value->title}}</td>
-                    <td>{{$value->short_desc}}</td>
                     <td>{{$listNewsCate[$value->id_cate]}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value->updated_at}}</td>
-                    <td class="last"> <a href="/admin/news/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/news/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -72,7 +69,7 @@
 
 @section('js')
 <script>
-  var idSortable = "product";
+  var idSortable = "news";
   var curentPage = "{{$page}}";
 
 </script>

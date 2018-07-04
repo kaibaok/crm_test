@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2018 at 12:15 PM
+-- Generation Time: Jul 04, 2018 at 12:50 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -35,7 +35,7 @@ CREATE TABLE `brand` (
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `bimg_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -43,11 +43,11 @@ CREATE TABLE `brand` (
 --
 
 INSERT INTO `brand` (`id`, `status`, `title`, `seo_link`, `bimg_detail`, `updated_at`, `created_at`) VALUES
-(4, 1, 'asda', 'sd', '5b31b23218133_c81e728d9d4c2f636f067f89cc14862c.png', '2018-06-25 20:25:38', '2018-06-20 02:56:06'),
-(5, 1, 'asd', 'asd', '5b31b229bf106_c4ca4238a0b923820dcc509a6f75849b.png', '2018-06-25 20:26:08', '2018-06-20 03:12:01'),
-(6, 1, 'c', 'c', '5b31b23d5383a_eccbc87e4b5ce2fe28308fd9f2a7baf3.png', '2018-06-25 20:26:06', '2018-06-25 20:25:49'),
-(7, 1, 'd', 'd', '5b31b2436268a_a87ff679a2f3e71d9181a67b7542122c.png', '2018-06-25 20:26:04', '2018-06-25 20:25:55'),
-(8, 1, 'e', 'e', '5b31b248717db_e4da3b7fbbce2345d7772b0674a318d5.png', '2018-06-25 20:26:03', '2018-06-25 20:26:00');
+(4, 1, 'asda', 'sd', '5b31b23218133_c81e728d9d4c2f636f067f89cc14862c.png', '2018-06-25 20:25:38', '2018-06-20 09:56:06'),
+(5, 1, 'asd', 'asd', '5b31b229bf106_c4ca4238a0b923820dcc509a6f75849b.png', '2018-06-25 20:26:08', '2018-06-20 10:12:01'),
+(6, 1, 'c', 'c', '5b31b23d5383a_eccbc87e4b5ce2fe28308fd9f2a7baf3.png', '2018-06-25 20:26:06', '2018-06-26 03:25:49'),
+(7, 1, 'd', 'd', '5b31b2436268a_a87ff679a2f3e71d9181a67b7542122c.png', '2018-06-25 20:26:04', '2018-06-26 03:25:55'),
+(8, 1, 'e', 'e', '5b31b248717db_e4da3b7fbbce2345d7772b0674a318d5.png', '2018-06-25 20:26:03', '2018-06-26 03:26:00');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE `colors` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -119,8 +119,8 @@ CREATE TABLE `colors` (
 --
 
 INSERT INTO `colors` (`id`, `name`, `code`, `updated_at`, `created_at`) VALUES
-(1, 'hồng', '#d11aaa', '2018-06-14 03:41:27', '2017-08-14 20:47:39'),
-(2, 'xanh duong', 'rgba(0,194,255,0.58)', '2017-08-15 06:58:51', '2017-08-14 23:58:15');
+(1, 'hồng', '#d11aaa', '2018-06-14 03:41:27', '2017-08-15 03:47:39'),
+(2, 'xanh duong', 'rgba(0,194,255,0.58)', '2017-08-15 06:58:51', '2017-08-15 06:58:15');
 
 -- --------------------------------------------------------
 
@@ -219,6 +219,26 @@ INSERT INTO `home_page` (`id`, `updated_at`, `created_at`, `title1`, `title2`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `list` text COLLATE utf8_unicode_ci,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`id`, `list`, `created_at`, `updated_at`) VALUES
+(1, '[{\"text\":\"5675\",\"href\":\"7567\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"56757\",\"href\":\"\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"5675\",\"href\":\"7567\",\"icon\":\"empty\",\"target\":\"_blank\",\"title\":\"\"}]}]},{\"text\":\"5675\",\"href\":\"222\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"}]', '2018-06-25 00:00:00', '2018-07-04 03:38:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
@@ -230,7 +250,7 @@ CREATE TABLE `news` (
   `short_desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `desc` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `ord` int(11) NOT NULL,
   `nimg_list` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -243,8 +263,22 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `id_cate`, `title`, `seo_link`, `short_desc`, `desc`, `created_at`, `updated_at`, `status`, `ord`, `nimg_list`, `nimg_detail`, `is_hot`) VALUES
-(83, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-06-14 03:35:21', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
-(84, 0, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-06-14 03:37:39', 1, 0, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1);
+(83, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(84, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(85, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(86, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(87, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(88, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(89, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(90, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(91, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(92, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(93, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(94, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(95, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(96, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1),
+(97, 1, '2313213', 'aabbas', '<p>asd</p>\r\n', '<p>asda</p>\r\n', '2018-06-14 03:35:21', '2018-07-04 04:06:31', 1, 0, '5b2244df63f75_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b2244e82670f_104c87c133f36b2592329a926380bb89.jpg', 1),
+(98, 2, 'a', 'a', '<p>a</p>\r\n', '<p>a</p>\r\n', '2018-06-14 03:37:32', '2018-07-04 04:06:30', 1, 1, '5b22455cad845_104c87c133f36b2592329a926380bb89.jpg', '5b22455ddb2d1_c0e9d6ae30b739bf3fa54a71317779ae.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -258,7 +292,7 @@ CREATE TABLE `news_category` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -266,9 +300,9 @@ CREATE TABLE `news_category` (
 --
 
 INSERT INTO `news_category` (`id`, `status`, `title`, `seo_link`, `updated_at`, `created_at`) VALUES
-(0, 1, 'Tin thời trang', '', '2018-05-23 21:20:18', '2017-01-02 20:29:22'),
-(1, 1, 'Tin khuyến mãi', '', '2018-05-23 02:31:35', '2017-01-02 20:29:20'),
-(2, 1, 'Tin thông báo', 'a', '2018-06-14 03:37:47', '2017-01-02 20:29:26');
+(1, 1, 'Tin khuyến mãi', '', '2018-05-23 02:31:35', '2017-01-03 03:29:20'),
+(2, 1, 'Tin thông báo', 'a', '2018-06-14 03:37:47', '2017-01-03 03:29:26'),
+(3, 1, 'Tin thời trang', '', '2018-05-23 21:20:18', '2017-01-03 03:29:22');
 
 -- --------------------------------------------------------
 
@@ -308,7 +342,7 @@ CREATE TABLE `product` (
   `numbers` int(11) NOT NULL DEFAULT '0',
   `colors` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `limit_at` date DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `ord` int(11) NOT NULL,
@@ -333,8 +367,18 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`) VALUES
-(80, 1, '1530088642', 'san pham b', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-27 01:37:39', 1, 5, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 0, 0, 'test', 4, 2, 0, 0),
-(81, 2, '1530088620', 'san pham a', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 02:13:26', '2018-06-27 01:38:03', 1, 5, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 0, 'test', 4, 2, 0, 0);
+(80, 1, '1530088642', '1', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
+(81, 2, '1530088620', '2', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
+(82, 1, '1530088642', '3', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 10, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
+(83, 2, '1530088620', '4', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:46', 1, 0, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
+(84, 1, '1530088642', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:46', 1, 1, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
+(85, 2, '1530088620', '6', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 9, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
+(86, 1, '1530088642', '7', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 8, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
+(87, 2, '1530088620', '8', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 7, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
+(88, 1, '1530088642', '9', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 6, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
+(89, 2, '1530088620', '10', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 5, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
+(90, 1, '1530088642', '11', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 4, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
+(91, 2, '1530088620', '12', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:46', 1, 3, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -349,7 +393,7 @@ CREATE TABLE `product_category` (
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `item_id` int(11) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -357,8 +401,8 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id`, `status`, `title`, `seo_link`, `item_id`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Áo Len', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22'),
-(2, 1, 'Áo Thun', '', 1, '2018-05-23 21:20:18', '2017-01-02 20:29:22');
+(1, 1, 'Áo Len', '', 1, '2018-05-23 21:20:18', '2017-01-03 03:29:22'),
+(2, 1, 'Áo Thun', '', 1, '2018-05-23 21:20:18', '2017-01-03 03:29:22');
 
 -- --------------------------------------------------------
 
@@ -372,7 +416,7 @@ CREATE TABLE `product_item` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -380,7 +424,7 @@ CREATE TABLE `product_item` (
 --
 
 INSERT INTO `product_item` (`id`, `status`, `title`, `seo_link`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Áo Khoác', '', '2018-05-23 02:31:35', '2017-01-02 20:29:20');
+(1, 1, 'Áo Khoác', '', '2018-05-23 02:31:35', '2017-01-03 03:29:20');
 
 -- --------------------------------------------------------
 
@@ -392,7 +436,7 @@ CREATE TABLE `product_type` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `seo_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -413,7 +457,7 @@ CREATE TABLE `slider` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `simg_detail` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -425,8 +469,8 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status`, `simg_detail`, `desc`) VALUES
-(85, 'tét', 'aaaa', '2018-06-25 02:31:36', '2018-06-25 02:31:36', 1, '5b30b678a8ee2_c81e728d9d4c2f636f067f89cc14862c.jpg', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2>teeeeee</h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1>abc</h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie<br />\r\nconsequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n'),
-(86, 'asd', '', '2018-06-27 03:14:59', '2018-06-27 03:14:59', 1, '', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2><span style=\"background-color:#ffffff\">EXCLUSIVE COLLECTION {{$no}}</span></h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1><span style=\"background-color:#8b4513\">SHIRT&rsquo;S FOR MEN</span></h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p><span style=\"background-color:#ffffff\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</span><br />\r\n<span style=\"background-color:#ffffff\">consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</span></p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n');
+(85, 'tét', 'aaaa', '2018-06-25 09:31:36', '2018-06-25 02:31:36', 1, '5b30b678a8ee2_c81e728d9d4c2f636f067f89cc14862c.jpg', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2>teeeeee</h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1>abc</h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie<br />\r\nconsequat vel illum dolore eu feugiat nulla facilisis at vero eros.</p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n'),
+(86, 'asd', '', '2018-06-27 10:14:59', '2018-06-27 03:14:59', 1, '', '<div class=\"slider-content slider-text-1 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h2><span style=\"background-color:#ffffff\">EXCLUSIVE COLLECTION {{$no}}</span></h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-2 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<h1><span style=\"background-color:#8b4513\">SHIRT&rsquo;S FOR MEN</span></h1>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-xs slider-content slider-text-3 text-left\">\r\n<div class=\"bounceInDown wow\">\r\n<p><span style=\"background-color:#ffffff\">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</span><br />\r\n<span style=\"background-color:#ffffff\">consequat vel illum dolore eu feugiat nulla facilisis at vero eros.</span></p>\r\n</div>\r\n</div>\r\n\r\n<div class=\"hidden-sm hidden-xs slider-content slider-text-4 text-left\">\r\n<div class=\"bounceInUp wow\"><a class=\"slider-button\" href=\"#\">shop now</a></div>\r\n</div>\r\n');
 
 -- --------------------------------------------------------
 
@@ -510,6 +554,13 @@ ALTER TABLE `event`
 --
 ALTER TABLE `home_page`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `news`
@@ -618,19 +669,25 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `home_page`
 --
 ALTER TABLE `home_page`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `news_category`
 --
 ALTER TABLE `news_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `permission`
@@ -642,7 +699,7 @@ ALTER TABLE `permission`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `product_category`
@@ -666,7 +723,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `tag`

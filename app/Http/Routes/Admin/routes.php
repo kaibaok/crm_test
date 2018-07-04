@@ -99,3 +99,6 @@ Route::any('event/add', 'Admin\IndexController@addEvent');
 Route::any('event/edit/{id?}', 'Admin\IndexController@editEvent');
 Route::get('event/del/{id?}', 'Admin\IndexController@delEvent');
 Route::get('event/status/{id?}', 'Admin\IndexController@statusEvent');
+
+//menu top
+Route::any('menu-top', 'Admin\MenuController@index');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2018 at 12:50 PM
+-- Generation Time: Jul 06, 2018 at 12:41 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -225,6 +225,7 @@ INSERT INTO `home_page` (`id`, `updated_at`, `created_at`, `title1`, `title2`, `
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL,
   `list` text COLLATE utf8_unicode_ci,
+  `list_sp` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -233,8 +234,8 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`id`, `list`, `created_at`, `updated_at`) VALUES
-(1, '[{\"text\":\"5675\",\"href\":\"7567\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"56757\",\"href\":\"\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"5675\",\"href\":\"7567\",\"icon\":\"empty\",\"target\":\"_blank\",\"title\":\"\"}]}]},{\"text\":\"5675\",\"href\":\"222\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"}]', '2018-06-25 00:00:00', '2018-07-04 03:38:31');
+INSERT INTO `menu` (`id`, `list`, `list_sp`, `created_at`, `updated_at`) VALUES
+(1, '[{\"text\":\"5675\",\"href\":\"7567\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"5675\",\"href\":\"222\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"56757\",\"href\":\"\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\"}]}]},{\"text\":\"aaa\",\"href\":\"\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"5675\",\"href\":\"7567\",\"icon\":\"empty\",\"target\":\"_blank\",\"title\":\"\"}]}]', '[{\"text\":\"asd\",\"href\":\"asd\",\"icon\":\"empty\",\"target\":\"_self\",\"title\":\"\",\"children\":[{\"text\":\"aaa\",\"href\":\"\",\"target\":\"_self\"}]}]', '2018-06-25 00:00:00', '2018-07-04 20:07:48');
 
 -- --------------------------------------------------------
 
@@ -675,7 +676,7 @@ ALTER TABLE `home_page`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `news`

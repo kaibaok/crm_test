@@ -139,32 +139,36 @@ $(document).ready(function() {
 
     if($("div").hasClass('treemenu')) {
         var sortableListOptions = { placeholderCss: {'background-color': 'cyan'} };
-        var editor = new MenuEditor('myEditor', {listOptions: sortableListOptions,  labelEdit: 'Edit'});
+        var editor   = new MenuEditor('myEditor', {listOptions: sortableListOptions,  labelEdit: 'Edit'});
+        var editorSP = new MenuEditor('myEditorSP', {listOptions: sortableListOptions,  labelEdit: 'Edit'});
+
         editor.setForm($('#frmEdit'));
+        editorSP.setForm($('#frmEditSP'));
+
         editor.setUpdateButton($('#btnUpdate'));
+        editorSP.setUpdateButton($('#btnUpdateSP'));
+
         editor.setData(strjson);
-        $('#btnReload').on('click', function () {
-            editor.setData(strjson);
-        });
+        editorSP.setData(strjsonSP);
 
-        $("#btnUpdate").click(function(){
-            editor.update();
-            var str = editor.getString();
-            $("#out").val(str);
-        });
 
-        $('#btnAdd').click(function(){
-            editor.add();
-            var str = editor.getString();
-            $("#out").val(str);
-        });
+        $('#btnReload').on('click', function () {editor.setData(strjson); });
+        $('#btnReloadSP').on('click', function () {editorSP.setData(strjsonSP); });
+
+        $("#btnUpdate").click(function(){editor.update(); $("#out").val(editor.getString()); });
+        $("#btnUpdateSP").click(function(){editorSP.update(); $("#outSP").val(editorSP.getString()); });
+
+
+        $('#btnAdd').click(function(){editor.add(); $("#out").val(editor.getString()); });
+        $('#btnAddSP').click(function(){
+            console.log("asd");
+            editorSP.add(); $("#outSP").val(editorSP.getString()); });
 
         $('#btnSave').click(function(event){
             event.preventDefault();
-            var str = editor.getString();
-            $("#out").val(str);
+            $("#out").val(editor.getString());
+            $("#outSP").val(editorSP.getString());
             $("#demo-form").submit();
         });
-
     }
 });

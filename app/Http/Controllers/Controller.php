@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
+use App\Models\Menu;
 
 class Controller extends BaseController
 {
@@ -41,9 +42,8 @@ class Controller extends BaseController
     public function __construct(Route $route)
     {
         $prefix = $this->getRouter()->getCurrentRoute()->getPrefix();
-
+        $user = Auth::user();
         if($prefix == "/admin") {
-            $user = Auth::user();
             if($user){
                 if( $user->permission < 1) {
                     Auth::logout();
@@ -56,8 +56,11 @@ class Controller extends BaseController
                     Redirect::to('/admin/login')->send();
             }
         } else {
-
-
+            $listMenu = Menu::findOrFail(1);
+            $arr = json_decode($listMenu->list,true);
+            $arrSP = json_decode($listMenu->list_sp,true);
+            View::share('listMenu', $arr);
+            View::share('listMenuSP', $arrSP);
         }
     }
 }

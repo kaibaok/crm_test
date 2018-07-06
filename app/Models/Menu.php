@@ -16,14 +16,15 @@ class Menu extends Model
     //attribute dac sac, xu huong, tre trung, thanh lich
 
     protected $fillable = [
-        "id","list","created_at","updated_at"
+        "id","list", "list_sp","created_at","updated_at"
     ];
 
     public static function editMenu($data){
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                "list"       => $data["list"],
+                "list"    => $data["list"],
+                "list_sp" => $data["list_sp"],
             );
             return Menu::where('id',1)->update($arr_update);
         }

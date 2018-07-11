@@ -88,20 +88,6 @@
                                                 <li><a href="/public/user/checkout.html"><i class="fa fa-circle"></i>Checkout</a></li>
                                             </ul>
                                         </li>
-                                        <li class="currency"><a href="/public/user/#">USD <i class="fa fa-angle-down"></i></a>
-                                            <ul class="submenu-mainmenu">
-                                                <li><a href="/public/user/#"><i class="fa fa-dollar"></i>USD</a></li>
-                                                <li><a href="/public/user/#"><i class="fa fa-euro"></i>EURO</a></li>
-                                                <li><a href="/public/user/#"><i class="fa fa-gbp"></i>GBP</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="language"><a href="/public/user/#"><img src="/public/user/img/icon/eng.png" alt="">English <i class="fa fa-angle-down"></i></a>
-                                            <ul class="submenu-mainmenu">
-                                                <li><a href="/public/user/#"><img src="/public/user/img/icon/eng.jpg" alt="">English</a></li>
-                                                <li><a href="/public/user/#"><img src="/public/user/img/icon/ger.jpg" alt="">German</a></li>
-                                                <li><a href="/public/user/#"><img src="/public/user/img/icon/fren.jpg" alt="">French</a></li>
-                                            </ul>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>

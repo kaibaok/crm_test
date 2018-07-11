@@ -41,8 +41,7 @@
                                     <?php if(!empty($vlv1['children'])): ?>
                                         <ul>
                                             <?php foreach($vlv1['children'] as $klv2 => $vlv2): ?>
-                                                <li><a href="<?php echo e($vlv2['href']); ?>"></i><?php echo e($vlv2['text']); ?> <?php if(!empty($vlv2['children'])): ?><?php endif; ?></a>
-                                                </li>
+                                                <li><a href="<?php echo e($vlv2['href']); ?>"></i><?php echo e($vlv2['text']); ?> <?php if(!empty($vlv2['children'])): ?><?php endif; ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                     <?php endif; ?>

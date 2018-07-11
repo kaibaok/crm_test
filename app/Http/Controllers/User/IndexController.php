@@ -45,7 +45,6 @@ class IndexController extends Controller
                 $listFooter = Product::getListByTypeUP($homePage['list_footer']);
             }
         }
-
         $listSlider       = Slider::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
         $listBrand        = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
         $listCategoryNews = NewsCategory::getNewsUP(3,6);

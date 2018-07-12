@@ -55,6 +55,7 @@
                     <ul class="nav child_menu">
                       <li><a href="/admin/slider">Slider</a></li>
                       <li><a href="/admin/home-page">Home Page</a></li>
+                      <li><a href="/admin/tag">Tag</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2018 at 01:01 PM
+-- Generation Time: Jul 12, 2018 at 01:26 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -360,26 +360,21 @@ CREATE TABLE `product` (
   `brand` int(11) NOT NULL,
   `type_price` tinyint(4) NOT NULL DEFAULT '1',
   `discount` int(11) NOT NULL,
-  `percent` int(11) NOT NULL
+  `percent` int(11) NOT NULL,
+  `size_xs` tinyint(4) NOT NULL DEFAULT '0',
+  `size_s` tinyint(4) NOT NULL DEFAULT '0',
+  `size_m` tinyint(4) NOT NULL DEFAULT '0',
+  `size_l` tinyint(4) NOT NULL DEFAULT '0',
+  `size_xl` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`) VALUES
-(80, 1, '1530088642', '1', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
-(81, 2, '1530088620', '2', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
-(82, 1, '1530088642', '3', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 10, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
-(83, 2, '1530088620', '4', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:46', 1, 0, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
-(84, 1, '1530088642', '5', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:46', 1, 1, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
-(85, 2, '1530088620', '6', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 9, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
-(86, 1, '1530088642', '7', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 8, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
-(87, 2, '1530088620', '8', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 7, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
-(88, 1, '1530088642', '9', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 6, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
-(89, 2, '1530088620', '10', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 5, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0),
-(90, 1, '1530088642', '11', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:41', 1, 4, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0),
-(91, 2, '1530088620', '12', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:46', 1, 3, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0);
+INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`) VALUES
+(80, 1, '1530088642', '1', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0, 0, 0, 0, 0, 0),
+(81, 2, '1531394650', '2', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-12 04:24:17', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -481,11 +476,19 @@ INSERT INTO `slider` (`id`, `title`, `link`, `created_at`, `updated_at`, `status
 
 CREATE TABLE `tag` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tag`
+--
+
+INSERT INTO `tag` (`id`, `status`, `title`, `link`, `created_at`, `updated_at`) VALUES
+(1, 1, 'aa', 'asdas', '2018-07-12 10:13:54', '2018-07-12 03:35:39');
 
 -- --------------------------------------------------------
 
@@ -730,7 +733,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

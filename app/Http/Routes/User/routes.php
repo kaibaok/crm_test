@@ -2,7 +2,7 @@
 
 Route::get('/', 'User\IndexController@index');
 // product
-Route::any('/p/', 'User\ProductController@listProduct');
+Route::any('/p/', 'User\ProductController@index');
 Route::get('/pd/{id}/{seo_link}', 'User\ProductController@detailProduct')->where(["id" => "[0-9]+","seo_link" => "[a-zA-Z]+"]);
 
 // brand

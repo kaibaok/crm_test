@@ -10,6 +10,7 @@ use App\Models\Event;
 use App\Models\HomePage;
 use App\Models\ProductItem;
 use App\Models\ProductType;
+use App\Models\Tag;
 use App\Events\Img;
 use DateTime,Session;
 
@@ -286,4 +287,97 @@ class IndexController extends Controller
         return redirect()->guest($back_url);
     }
 
+    // tag
+    public function statusTag($id)
+    {
+        $tag = Tag::findOrFail((int)$id);
+        if(!empty($tag)){
+            if($tag->status)
+                $tag->status = 0;
+            else
+                $tag->status = 1;
+        }
+        $tag->save();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
+    public function tag(Request $request)
+    {
+        $title        = "Danh Sách Tag";
+        $page         = isset($request->page) ? $request->page : 1;
+        $builder      = Tag::select();
+        $txtSearch    = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) {
+            $builder->where('title','like',"%{$txtSearch}%");
+        }
+
+        $builder->orderByRaw("id DESC");
+        $totalResult = $builder->count();
+        $listTag  = $builder->paginate(LIMIT_PAGE);
+
+        $conditionPage = array(
+            'txtSearch' => $txtSearch
+        );
+
+        return view("admin.index.tag")
+            ->with("title", $title)
+            ->with("listTag", $listTag)
+            ->with("conditionPage", $conditionPage);
+    }
+
+    public function addTag(Request $request)
+    {
+        $title  = "Thêm Mới Tag";
+        $errors = NULL;
+        $params = $request->all();
+        if ($request->isMethod('post')) {
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên tag";
+            if(empty($errors)) {
+                $tag = Tag::addTag($params);
+                if($tag) {
+                    $params = array();
+                    $errors['finish'] = "success";
+                }else{
+                    $errors['finish'] = "error";
+                }
+            }
+        }
+        return view("admin.index.addTag")
+            ->with("title", $title)
+            ->with("errors", $errors)
+            ->with("params", $params);
+    }
+
+     public function editTag(Request $request)
+    {
+        $title  = "Sửa Tag";
+        $id     = (int) $request->route('id');
+        $errors = NULL;
+        $getTag = Tag::findOrFail((int)$id)->toArray();
+        $params = $request->all();
+        if ($request->isMethod('post')) {
+            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tên tag";
+            if(empty($errors)) {
+                $editTag = Tag::editTag($params);
+                if($editTag) $errors['finish'] = "success";
+                else $errors['finish'] = "error";
+            }
+            $getTag = $params;
+        }
+        return view("admin.index.editTag")
+            ->with("title" , $title )
+            ->with("tag", $getTag)
+            ->with("errors", $errors);
+    }
+
+
+    public function delTag($id)
+    {
+        $tag = Tag::find((int)$id);
+        if($tag) $tag->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
 }

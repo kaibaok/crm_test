@@ -100,5 +100,12 @@ Route::any('event/edit/{id?}', 'Admin\IndexController@editEvent');
 Route::get('event/del/{id?}', 'Admin\IndexController@delEvent');
 Route::get('event/status/{id?}', 'Admin\IndexController@statusEvent');
 
+// tag
+Route::get('/tag', 'Admin\IndexController@tag');
+Route::any('tag/add', 'Admin\IndexController@addTag');
+Route::any('tag/edit/{id?}', 'Admin\IndexController@editTag');
+Route::get('tag/del/{id?}', 'Admin\IndexController@delTag');
+Route::get('tag/status/{id?}', 'Admin\IndexController@statusTag');
+
 //menu top
 Route::any('menu-top', 'Admin\MenuController@index');

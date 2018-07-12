@@ -22,6 +22,7 @@ class Product extends Model
         "pimg_list","pimg_detail","pimg1","pimg2","pimg3",
         "pimg4","pimg5","colors","is_new","is_best_sell","attribute","seo_link",
         "brand","type_price","discount","percent",
+        "size_xs","size_s","size_m","size_l","size_xl"
     ];
 
     public static function addProduct($data){
@@ -55,6 +56,11 @@ class Product extends Model
                     "discount"     => (int)$data["discount"],
                     "percent"      => (int)$data["percent"],
                     "created_at"   => date("Y-m-d H:i:s"),
+                    "size_xs"      => isset($data["size_xs"]) ? (int) $data["size_xs"] : 0,
+                    "size_s"       => isset($data["size_s"]) ? (int) $data["size_s"] : 0,
+                    "size_m"       => isset($data["size_m"]) ? (int) $data["size_m"] : 0,
+                    "size_l"       => isset($data["size_l"]) ? (int) $data["size_l"] : 0,
+                    "size_xl"      => isset($data["size_xl"]) ? (int) $data["size_xl"] : 0,
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -92,6 +98,11 @@ class Product extends Model
                 "type_price"   => (int)$data["type_price"],
                 "discount"     => (int)$data["discount"],
                 "percent"      => (int)$data["percent"],
+                "size_xs"      => isset($data["size_xs"]) ? (int) $data["size_xs"] : 0,
+                "size_s"       => isset($data["size_s"]) ? (int) $data["size_s"] : 0,
+                "size_m"       => isset($data["size_m"]) ? (int) $data["size_m"] : 0,
+                "size_l"       => isset($data["size_l"]) ? (int) $data["size_l"] : 0,
+                "size_xl"      => isset($data["size_xl"]) ? (int) $data["size_xl"] : 0,
             );
             return Product::where('id',(int)$data['id'])->update($arr_update);
         }

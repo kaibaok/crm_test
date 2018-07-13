@@ -49,6 +49,7 @@
                     <th class="column-title">Giá giảm</th>
                     <th class="column-title">Thể loại</th>
                     <th class="column-title">Màu sắc</th>
+                    <th class="column-title">Size</th>
                     <th class="column-title">Ngày hết hạn</th>
                     <th class="column-title">Ngày nhập hàng</th>
                     <th class="column-title">Ngày cập nhật</th>
@@ -87,6 +88,13 @@
                     <td> @foreach ($colorChoose as $item)
                         <span style="background: @if(isset($listColors[$item]['code'])) {{$listColors[$item]['code']}} @endif; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         @endforeach
+                    </td>
+                    <td>
+                    @if (!empty($value->size_xs)) XS - @endif
+                    @if (!empty($value->size_s)) S - @endif
+                    @if (!empty($value->size_m)) M - @endif
+                    @if (!empty($value->size_l)) L - @endif
+                    @if (!empty($value->size_xl)) XL @endif
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value->limit_at}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value->created_at}}</td>

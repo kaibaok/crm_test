@@ -79,14 +79,7 @@
                             <div class="col-md-6">
                                 <div class="account-usd text-left">
                                     <ul>
-                                        <li><a href="/public/user/account.html">My Account <i class="fa fa-angle-down"></i></a>
-                                            <ul class="submenu-mainmenu">
-                                                <li><a href="/public/user/#"><i class="fa fa-circle"></i>Login</a></li>
-                                                <li><a href="/public/user/account.html"><i class="fa fa-circle"></i>My Account</a></li>
-                                                <li><a href="/public/user/wishlist.html"><i class="fa fa-circle"></i>My Wishlist</a></li>
-                                                <li><a href="/public/user/cart.html"><i class="fa fa-circle"></i>My Cart</a></li>
-                                                <li><a href="/public/user/checkout.html"><i class="fa fa-circle"></i>Checkout</a></li>
-                                            </ul>
+                                        <li><a href="/">Dot89 hân hạnh kính chào quý khách </a>
                                         </li>
                                     </ul>
                                 </div>

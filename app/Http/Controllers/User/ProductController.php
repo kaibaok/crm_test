@@ -9,13 +9,20 @@ use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\ProductCategory;
 use App\Models\Tag;
+use App\Models\Brand;
 
 
 class ProductController extends Controller {
 
     function leftMenu(){
-        $listTag = Tag::where(array("status" => 1))->orderByRaw("id DESC")->get();
-        View::share('listTag', $listTag);
+        $mTag         = Tag::where(array("status" => 1))->orderByRaw("id DESC")->get();
+        $mBrand       = Brand::where(array("status" => 1))->orderByRaw("id DESC")->get();
+        $mProductType = ProductType::orderByRaw("id DESC")->get();
+        $mProductCate = ProductCategory::where(array("status" => 1))->orderByRaw("id DESC")->get();
+        View::share('mTag', $mTag);
+        View::share('mBrand', $mBrand);
+        View::share('mProductType', $mProductType);
+        View::share('mProductCate', $mProductCate);
     }
     public function index()
     {

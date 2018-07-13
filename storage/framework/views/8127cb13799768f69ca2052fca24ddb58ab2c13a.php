@@ -6,22 +6,10 @@
         <h3><?php echo e($title); ?></h3>
       </div>
       <div class="title_right">
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
-          <form method="get">
+        <div class="form-group pull-right top_search">
           <div class="input-group">
-                <input type="hidden" name="_token" id="token_alproduct" value="<?php echo e(csrf_token()); ?>">
-                <input type="hidden" name="page" value="1">
-                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit" >Tìm</button>
-                </span>
-          </div>
-          </form>
-        </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <a class="btn btn-primary" href="/admin/product/add">Thêm mới</a> &nbsp;
-            <a class="btn btn-success" href="/admin/product/sort-product">Sắp xếp</a>
+            <button class="btn btn-primary" id="btn_save">Lưu</button>
+            <a class="btn btn-info" href="/admin/product/">Trở về</a>
           </div>
         </div>
       </div>
@@ -41,25 +29,24 @@
                     <th class="column-title">Hiển thị</th>
                     <th class="column-title">Mã Barcode</th>
                     <th class="column-title">Tên sản phẩm</th>
-                    <th class="column-title">Thương hiệu</th>
                     <th class="column-title">Loại sản phẩm</th>
-                    <th class="column-title">Loại Giá</th>
                     <th class="column-title">Giá</th>
                     <th class="column-title">Giá giảm</th>
                     <th class="column-title">Thể loại</th>
                     <th class="column-title">Màu sắc</th>
-                    <th class="column-title">Size</th>
                     <th class="column-title">Ngày hết hạn</th>
                     <th class="column-title">Ngày nhập hàng</th>
                     <th class="column-title">Ngày cập nhật</th>
-                    <th class="column-title no-link last"><span class="nobr">Xử lý</span>
                     </th>
                     </tr>
                 </thead>
 
-                <tbody id="tbl_alproduct">
+                <tbody id="sortable" class="sortable">
                   <?php 
                     $no       = 1;
+                    $category = $listCategory;
+                    $type     = $listType;
+                    $colors   = $listColors;
                    ?>
 
                   <?php foreach($listProduct as $value): ?>
@@ -67,7 +54,7 @@
                         $colorChoose = explode("|", $value->colors);
                        ?>
 
-                  <tr class="even pointer">
+                  <tr class="even pointer" id="item-<?php echo e($value->id); ?>">
                     <td><?php echo e($no++); ?></td>
                     <td>
                       <?php if($value->status == 1): ?>
@@ -78,33 +65,23 @@
                     </td>
                     <td><?php echo e($value->code_id); ?></td>
                     <td><?php echo e($value->title); ?></td>
-                    <td><?php if(isset($listBrand[$value->brand])): ?> <?php echo e($listBrand[$value->brand]); ?> <?php endif; ?> </td>
-                    <td><?php if(isset($listCategory[$value->id_cate])): ?> <?php echo e($listCategory[$value->id_cate]); ?> <?php endif; ?></td>
-                    <td><?php echo e($typePrice[$value->type_price]); ?></td>
+                    <td><?php echo e($category[$value->id_cate]); ?></td>
                     <td><?php echo e($value->price); ?></td>
                     <td><?php echo e($value->discount); ?></td>
-                    <td><?php if(isset($listType[$value->type])): ?> <?php echo e($listType[$value->type]); ?> <?php endif; ?></td>
+                    <td><?php echo e($type[$value->type]); ?></td>
                     <td> <?php foreach($colorChoose as $item): ?>
-                        <span style="background: <?php if(isset($listColors[$item]['code'])): ?> <?php echo e($listColors[$item]['code']); ?> <?php endif; ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
+                        <span style="background: <?php echo e($colors[$item]['code']); ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         <?php endforeach; ?>
-                    </td>
-                    <td>
-                    <?php if(!empty($value->size_xs)): ?> XS - <?php endif; ?>
-                    <?php if(!empty($value->size_s)): ?> S - <?php endif; ?>
-                    <?php if(!empty($value->size_m)): ?> M - <?php endif; ?>
-                    <?php if(!empty($value->size_l)): ?> L - <?php endif; ?>
-                    <?php if(!empty($value->size_xl)): ?> XL <?php endif; ?>
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> <?php echo e($value->limit_at); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> <?php echo e($value->created_at); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> <?php echo e($value->updated_at); ?></td>
-                    <td class="last"> <a href="/admin/product/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/product/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                  <?php echo e($listProduct->appends($conditionPage)->links()); ?>
+                  <?php echo e($listProduct); ?>
 
               </div>
             </div>
@@ -113,6 +90,14 @@
       </div>
     </div>
   </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+<script>
+  var idSortable = "product";
+  var curentPage = "<?php echo e($page); ?>";
+
+</script>
 <?php $__env->stopSection(); ?>
 
 

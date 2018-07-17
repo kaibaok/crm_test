@@ -170,6 +170,146 @@
             <!-- header end -->
             @yield("middlecontent")
 
+            <!-- client area start -->
+            @if (!empty($listBrandLayout))
+                <div class="client-area ptb-90">
+                    <div class="container">
+                        <div class="row">
+                            <div class="client-owl">
+                                @foreach ($listBrandLayout as $key => $value)
+                                    @if (!empty($value->bimg_detail) && file_exists(BASE_IMG."brand/".$value->bimg_detail))
+                                        <div class="col-xs-12">
+                                            <div class="single-client">
+                                                <div class="single-client-img plr-40">
+                                                    <a href="/bd/{{$value->id}}/{{$value->seo_link}}">
+                                                        <img src="{{URL_IMG."brand/".$value->bimg_detail}}" alt="{{$value->title}}">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="client-button text-center pt-35">
+                                    <a href='/b/' class='section-button'>Thương hiệu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <!-- client area end -->
+
+            <!-- service area end -->
+            <div class="service-area mb-10">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="single-service text-center">
+                                <div class="single-service-content ptb-40">
+                                    <div class="single-service-icon-wrapper">
+                                        <div class="single-service-icon">
+                                            <img src="/public/user/img/icon/5.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="single-service-info">
+                                        <h4 class="text-uppercase">free shipping</h4>
+                                        <p>Free for all product</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="single-service text-center">
+                                <div class="single-service-content ptb-40">
+                                    <div class="single-service-icon-wrapper">
+                                        <div class="single-service-icon">
+                                            <img src="/public/user/img/icon/7.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="single-service-info">
+                                        <h4 class="text-uppercase">order online</h4>
+                                        <p>www.shofixe.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="single-service text-center">
+                                <div class="single-service-content ptb-40">
+                                    <div class="single-service-icon-wrapper">
+                                        <div class="single-service-icon">
+                                            <img src="/public/user/img/icon/9.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="single-service-info">
+                                        <h4 class="text-uppercase">money back</h4>
+                                        <p>money back guarantee</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 hidden-sm col-xs-12">
+                            <div class="single-service text-center">
+                                <div class="single-service-content ptb-40">
+                                    <div class="single-service-icon-wrapper">
+                                        <div class="single-service-icon">
+                                            <img src="/public/user/img/icon/10.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="single-service-info">
+                                        <h4 class="text-uppercase">gift coupon</h4>
+                                        <p>surprise gift coupon</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- service area end -->
+            <!-- touch area end -->
+            <div class="touch-area ptb-90">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="touch-left">
+                                <div class="touch-logo mb-35">
+                                    <img src="/public/user/img/logo/2.png" alt="">
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adi elit, sed do eiusmod tempor incididunt ut ore dolore magna aliqua. Ut enim ad minim eniam</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adi elit, sed do eiusmod tempor incididunt ut</p>
+                                <div class="social-icon">
+                                    <ul>
+                                        <li><a href="/public/user/#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="/public/user/#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="/public/user/#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="/public/user/#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="/public/user/#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="touch-right">
+                                <h2 class="text-uppercase">get in touch</h2>
+                                <form id="contact-form" action="mail.php" method="post">
+                                    <input type="text" placeholder="Your name here..." name="name">
+                                    <input type="text" placeholder="Your email here..." name="email">
+                                    <textarea class="mtb-25" cols="30" rows="10" placeholder="Write message here..." name="message"></textarea>
+                                    <button class="section-button" type="submit">send</button>
+                                </form>
+                                <p class="form-message"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- touch area end -->
+
             <!-- footer start -->
             <footer class="footer-area two">
                 @include("user.footer")

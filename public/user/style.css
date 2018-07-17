@@ -8,10 +8,10 @@
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+
     1.  Theme default CSS
     2.  Webfont CSS
     3.  Home One CSS
@@ -798,7 +798,7 @@ li.single-cart-item > span.trash-cart > a i{
 .single-slider-bottom{position: relative;}
 .single-slider-info{
     position: absolute;
-    top: 33%; 
+    top: 33%;
     left: 62%;
     font-family: 'Poppins', sans-serif;
     color: #282828;
@@ -987,7 +987,7 @@ span.old-price {
 .wish-icon-hover.text-center > p {
     color: #282828;
     font-size: 14px;
-    font-family: 'montserratlight';   
+    font-family: 'montserratlight';
 }
 .wish-icon-hover ul, .wish-icon-hover-list ul{
     margin: 0;
@@ -1012,7 +1012,7 @@ span.old-price {
     width: 2px;
 }
 .wish-icon-hover ul li:last-child:after, .wish-icon-hover-list ul li:last-child:after{
-    background: none; 
+    background: none;
 }
 .wish-icon-hover ul li:last-child, .wish-icon-hover-list ul li:last-child{
     padding-right: 0;
@@ -1485,12 +1485,12 @@ a.read-more.text-uppercase {
 }
 .single-service-icon {
     border: 2px solid #ea6e4c;
-    border-radius: 50%;   
+    border-radius: 50%;
     height: 50px;
     text-align: center;
     width: 50px;
     display: table-cell;
-    vertical-align: middle; 
+    vertical-align: middle;
 }
 .single-service-info h4{
     margin-bottom: 0;
@@ -1617,8 +1617,8 @@ a.read-more.text-uppercase {
     content: "";
 }
 .testimonial-left, .testimonial-right{
-    z-index: 99; 
-    position: relative; 
+    z-index: 99;
+    position: relative;
     color: #c2c1c1;
 }
 .testimonial-left h2{
@@ -1649,7 +1649,7 @@ a.read-more.text-uppercase {
     height: 1px;
     background: #ec552c;
     bottom: 0;
-    left:0;  
+    left:0;
 }
 .two .footer-menu.text-right{
     float: right;
@@ -1782,7 +1782,7 @@ a.read-more.text-uppercase {
 .col-left-top-left-text, .col-left-top-right-text, .col-left-bottom-left-text, .col-left-bottom-right-text, .col-right-text{
     position: absolute;
     left: 46%;
-    top: 28%; 
+    top: 28%;
     color: #282828;
 }
 .col-left-top-right-text{
@@ -1837,7 +1837,7 @@ a.read-more.text-uppercase {
     display: inline-block;
     color: #ed552c;
     font-size: 16px;
-    font-family: 'montserratlight'; 
+    font-family: 'montserratlight';
 }
 .shop-item-filter {
     display: block;
@@ -1912,7 +1912,7 @@ p.form-message{
     padding: 0 9px 0 0;
 }
 .page-menu ul {
-    margin: 0;    
+    margin: 0;
     padding: 0;
     list-style: none;
     float: right;
@@ -2065,7 +2065,7 @@ ul.size-widget li:last-child{
     border: 1px solid #444;
     height: 20px;
     width: 20px;
-    line-height: 19px; 
+    line-height: 19px;
     border-radius: 50%;
 }
 .single-left-widget .section-title ul.size-widget li:hover a, .single-left-widget .section-title ul.size-widget li.active a{
@@ -2119,7 +2119,7 @@ ul.color-widget li:last-child{
     border: 1px solid #ddd;
     height: 20px;
     width: 20px;
-    line-height: 19px; 
+    line-height: 19px;
     border-radius: 50%;
 }
 .single-left-widget .section-title ul.size-widget li:hover a, .single-left-widget .section-title ul.size-widget li.active a{
@@ -2176,7 +2176,7 @@ ul.widget-tag li:hover a, ul.widget-tag li.active a{
 }
 .pro-rating > span{
     margin: 0 0 0 25px;
-    
+
 }
 .single-product:hover .wish-icon-hover.list {
   opacity: 0;
@@ -2537,7 +2537,7 @@ ul.widget-tag li:hover a, ul.widget-tag li.active a{
     margin-bottom: 8px;
 }
 .shop-review ul.client_review li h3 span{
-    font-weight: 400; 
+    font-weight: 400;
 }
 .shop-review ul.client_review li p{
     font-size: 15px;
@@ -3652,14 +3652,14 @@ textarea {
     margin-top: 65px;
     border-radius: 50% 50% 50% 50%;
 }
-.object_one {	
+.object_one {
     -webkit-animation: object_one 1.5s infinite;
     animation: object_one 1.5s infinite;
 }
 .object_two {
     -webkit-animation: object_two 1.5s infinite;
     animation: object_two 1.5s infinite;
-    -webkit-animation-delay: 0.25s; 
+    -webkit-animation-delay: 0.25s;
     animation-delay: 0.25s;
 }
 .object_three {
@@ -3676,3 +3676,14 @@ textarea {
     margin-top: 20px;
     font-size: 12px;
 }
+
+
+/*pagination user*/
+.page-menu2 ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: right;
+}
+.banner-area.shop-left.product{background: #000}
+

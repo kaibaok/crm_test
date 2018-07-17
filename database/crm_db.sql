@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 12:49 PM
+-- Generation Time: Jul 17, 2018 at 12:52 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -373,8 +373,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`) VALUES
-(80, 1, '1530088642', '1', '', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0, 0, 0, 0, 0, 0),
-(81, 2, '1531473697', '2', '', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-13 02:21:41', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 2, 0, 0, 1, 0, 1, 1, 0);
+(80, 1, '1530088642', 'san pham a', 'aa', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0, 0, 0, 0, 0, 0),
+(81, 2, '1531473697', 'san pham b', 'bbb', '', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-13 02:21:41', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '', '', '', '', '', '', 0, 1, 'test', 4, 3, 0, 0, 1, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -703,7 +703,7 @@ ALTER TABLE `permission`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `product_category`

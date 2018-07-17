@@ -161,4 +161,61 @@ class Product extends Model
         }
         return $arrProduct;
     }
+
+
+    public static function getProductByConditions($params)
+    {
+        $builder = self::select(
+            'product.*',
+            'product_category.title as title_category',
+            'product_category.seo_link as seo_link_category',
+            'product_item.title as title_item',
+            'product_item.seo_link as seo_link_item',
+            'product_type.title as title_type',
+            'product_type.seo_link as seo_link_type',
+            'brand.title as title_brand',
+            'brand.seo_link as seo_link_brand')
+            ->join('product_category', 'product.id_cate', '=', 'product_category.id')
+            ->join('product_item', 'product_category.item_id', '=', 'product_item.id')
+            ->join('product_type', 'product.type', '=', 'product_type.id')
+            ->join('brand', 'product.brand', '=', 'brand.id')
+            ->where('product.status', 1)
+            ->where('product_category.status', 1)
+            ->where('product_item.status', 1)
+            ->where('brand.status', 1);
+
+        if(!empty($params['product'])) $builder->where('product.id', (int) $params['product']);
+        if(!empty($params['category'])) $builder->where('product.id_cate', (int) $params['category']);
+        if(!empty($params['brand'])) $builder->where('product.brand', (int) $params['brand']);
+        if(!empty($params['type'])) $builder->where('product.type', (int) $params['type']);
+        if(!empty($params['item'])) $builder->where('product_category.item_id', (int) $params['item']);
+
+        if(!empty($params['size'])) {
+            switch ($params['size']) {
+                case 'xs':
+                    $builder->where('product.size_xs', 1);
+                    break;
+                case 's':
+                    $builder->where('product.size_s', 1);
+                    break;
+                case 'm':
+                    $builder->where('product.size_m', 1);
+                    break;
+                case 'l':
+                    $builder->where('product.size_l', 1);
+                    break;
+                case 'xl':
+                    $builder->where('product.size_xl', 1);
+                    break;
+            }
+        }
+
+        if(!empty($params['minimum_price']) && !empty($params['maximum_price']))
+            $builder->whereBetween('product.price', [(int) $params['minimum_price'], (int) $params['maximum_price']]);
+
+        $builder->orderByRaw("product.ord ASC, product.id DESC");
+        return $builder;
+    }
 }
+
+

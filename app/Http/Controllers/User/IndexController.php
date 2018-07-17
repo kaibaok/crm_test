@@ -46,7 +46,6 @@ class IndexController extends Controller
             }
         }
         $listSlider       = Slider::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
-        $listBrand        = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
         $listCategoryNews = NewsCategory::getNewsUP(3,6);
 
         return view("user.index.index")
@@ -54,7 +53,6 @@ class IndexController extends Controller
             ->with('event', $event)
             ->with('isOpenEvent', $isOpenEvent)
             ->with('listSlider', $listSlider)
-            ->with('listBrand', $listBrand)
             ->with('listTop', $listTop)
             ->with('listMiddle', $listMiddle)
             ->with('listFooter', $listFooter)

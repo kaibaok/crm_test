@@ -1,6 +1,5 @@
-@extends("user.layout")
-@section('title') {{$title}} @endsection
-@section('middlecontent')
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('middlecontent'); ?>
 <!-- banner start -->
 <div class="banner-area details ptb-110">
     <div class="container">
@@ -52,21 +51,23 @@
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                 <div class="product-detail">
                     <div class="product-title">
-                        <h2>{{$product->title}}</h2><br>
-                        <h4> @if($product->type_price == CONTACT_PHONE)
-                                {{CONTACT_PHONE}}
-                            @else
-                                @if ($product->discount >0)
-                                    {{$product->discount}} <del>{{$product->price}}</del>
-                                @else
-                                    {{$product->price}}
-                                @endif
-                            @endif
+                        <h2><?php echo e($product->title); ?></h2><br>
+                        <h4> <?php if($product->type_price == CONTACT_PHONE): ?>
+                                <?php echo e(CONTACT_PHONE); ?>
+
+                            <?php else: ?>
+                                <?php if($product->discount >0): ?>
+                                    <?php echo e($product->discount); ?> <del><?php echo e($product->price); ?></del>
+                                <?php else: ?>
+                                    <?php echo e($product->price); ?>
+
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </h4>
                     </div>
-                    <h5>Trạng thái: <span>  @if ($product->type_price == EMPTY_PRODUCT) Hết hàng @else Còn hàng @endif</span> </h5>
+                    <h5>Trạng thái: <span>  <?php if($product->type_price == EMPTY_PRODUCT): ?> Hết hàng <?php else: ?> Còn hàng <?php endif; ?></span> </h5>
 
-                    <p class="detail">{{$product->short_desc}}</p>
+                    <p class="detail"><?php echo e($product->short_desc); ?></p>
                     <div class="size-quantity clearfix">
                         <div class="single-size-quantity">
                             <h4>Size:</h4>
@@ -461,4 +462,5 @@
     </div>
 </div>
 <!-- arrival end -->
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("user.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

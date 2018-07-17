@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
 use App\Models\Menu;
+use App\Models\Brand;
 
 class Controller extends BaseController
 {
@@ -33,6 +34,8 @@ class Controller extends BaseController
     		break;
             case 'typePrice':
                 return array( 1 => "Giá bình thường", 2 => "Giá Liên hệ", 3 => "Hết hàng");
+            case 'listSize':
+                return array("xs","s","m","l","xl");
     		default:
     			return NULL;
     		break;
@@ -56,11 +59,13 @@ class Controller extends BaseController
                     Redirect::to('/admin/login')->send();
             }
         } else {
-            $listMenu = Menu::findOrFail(1);
-            $arr = json_decode($listMenu->list,true);
-            $arrSP = json_decode($listMenu->list_sp,true);
+            $listMenu  = Menu::findOrFail(1);
+            $arr       = json_decode($listMenu->list,true);
+            $arrSP     = json_decode($listMenu->list_sp,true);
+            $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
             View::share('listMenu', $arr);
             View::share('listMenuSP', $arrSP);
+            View::share('listBrandLayout', $listBrandLayout);
         }
     }
 }

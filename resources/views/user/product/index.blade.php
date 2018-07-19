@@ -1,5 +1,4 @@
 @extends("user.layout")
-@section('title') {{$title}} @endsection
 @section('middlecontent')
 <div class="banner-area product ptb-110 shop-left">
     <div class="container">

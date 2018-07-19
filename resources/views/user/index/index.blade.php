@@ -1,5 +1,4 @@
 @extends("user.layout")
-@section('title') {{$title}} @endsection
 @section('middlecontent')
 
 <div class="slider-wrap">
@@ -610,7 +609,7 @@
                                             </div>
                                             <div class="single-blog-info mt-25">
                                                 <h4><a href="/nd/{{$vnews['id']}}/{{$vnews['seo_link']}}">{{$vnews['title']}}</a></h4>
-                                                <div>{!!$vnews['short_desc']!!}</div>
+                                                {!!$vnews['short_desc']!!}
                                                 <div class="button-comments">
                                                     <div class="read-button text-center">
                                                         <a class="read-more text-uppercase" href="/nd/{{$vnews['id']}}/{{$vnews['seo_link']}}">Chi tiết <i class="fa fa-angle-double-right"></i></a>

@@ -81,7 +81,7 @@
                      <div class="item form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <textarea  name="short_desc" id="short_desc" class="ckedit">
+                            <textarea  name="short_desc" id="short_desc" class="ckeditl">
                                 @if(isset($params['short_desc']))
                                     {{$params['short_desc']}}
                                 @endif

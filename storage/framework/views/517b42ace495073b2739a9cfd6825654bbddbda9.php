@@ -60,7 +60,7 @@
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Size</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
-							<div id="editProduct" class="btn-group" data-toggle="buttons">
+							<div class="btn-group" data-toggle="buttons">
 								<label><input type="checkbox" name="size_xs" value="1" class="flat"
 								<?php if(isset($params['size_xs']) && $params['size_xs'] == 1): ?> checked <?php endif; ?> /> XS
 								</label> <br>
@@ -143,7 +143,7 @@
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
-                  			<textarea  name="short_desc" id="short_desc" class="ckedit">
+                  			<textarea  name="short_desc" id="short_desc" class="form-control" rows="5">
                   				<?php if(isset($params['short_desc'])): ?>
                   					<?php echo e($params['short_desc']); ?>
 
@@ -236,7 +236,8 @@
 					</div>
 
 					<div class="item form-group image_upload">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">* 227x274</span>
+						</label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
 				                <div class="file-tab">
@@ -252,7 +253,8 @@
 					</div>
 
 					<div class="item form-group image_upload">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">*</span></label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang detail <span class="required">* 1920x320</span>
+						</label>
 						 <div class="col-md-4 col-sm-4 col-xs-12 ">
 							<div class="imageupload">
 				                <div class="file-tab">

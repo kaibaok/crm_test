@@ -57,7 +57,7 @@
                     </div>
 
                      <div class="item form-group image_upload">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Hình ảnh <span class="required">*</span></label>
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Hình ảnh <span class="required">* 130x80</span></label>
                          <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="imageupload">
                                 <div class="file-tab">

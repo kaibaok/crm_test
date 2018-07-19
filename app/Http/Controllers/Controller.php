@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
 use App\Models\Menu;
 use App\Models\Brand;
+use MetaTag;
 
 class Controller extends BaseController
 {
@@ -63,6 +64,13 @@ class Controller extends BaseController
             $arr       = json_decode($listMenu->list,true);
             $arrSP     = json_decode($listMenu->list_sp,true);
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
+
+            MetaTag::set('title', 'This is a detail page');
+            MetaTag::set('description', 'All about this detail page');
+            MetaTag::set('keywords', 'All about this detail page,c,asd,as,da,d,s');
+            MetaTag::set('image', asset('/public/images/detail-logo.png'));
+            MetaTag::set('author','Dot 89 Shop');
+
             View::share('listMenu', $arr);
             View::share('listMenuSP', $arrSP);
             View::share('listBrandLayout', $listBrandLayout);

@@ -199,13 +199,14 @@ class Img
           $arr_info['height'] =  274;
         break;
         case 'pimg_detail':
-          $arr_info['width']  =  600;
-          $arr_info['height'] =  624;
+          $arr_info['width']  =  1920;
+          $arr_info['height'] =  320;
         break;
         case 'bimg_detail':
           $arr_info['width']  =  130;
           $arr_info['height'] =  80;
         break;
+        //event
          case 'eimg_detail':
           $arr_info['width']  =  599;
           $arr_info['height'] =  338;

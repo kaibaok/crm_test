@@ -31,6 +31,10 @@ class ComposerStaticInit61056d78709c2757d8287e62dd7469fb
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Torann\\LaravelMetaTags\\' => 23,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -103,6 +107,10 @@ class ComposerStaticInit61056d78709c2757d8287e62dd7469fb
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Torann\\LaravelMetaTags\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/torann/laravel-meta-tags/src/Torann/LaravelMetaTags',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -274,11 +282,15 @@ class ComposerStaticInit61056d78709c2757d8287e62dd7469fb
         'App\\Helpers\\Utils' => __DIR__ . '/../..' . '/app/Helpers/Utils.php',
         'App\\Http\\Controllers\\Admin\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/IndexController.php',
         'App\\Http\\Controllers\\Admin\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LoginController.php',
+        'App\\Http\\Controllers\\Admin\\MenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MenuController.php',
+        'App\\Http\\Controllers\\Admin\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewsController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'App\\Http\\Controllers\\Auth\\PasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\User\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/IndexController.php',
+        'App\\Http\\Controllers\\User\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/ProductController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -286,12 +298,21 @@ class ComposerStaticInit61056d78709c2757d8287e62dd7469fb
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'App\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
-        'App\\Models\\Admin\\Cart' => __DIR__ . '/../..' . '/app/Models/Admin/Cart.php',
-        'App\\Models\\Admin\\Colors' => __DIR__ . '/../..' . '/app/Models/Admin/Colors.php',
-        'App\\Models\\Admin\\Permission' => __DIR__ . '/../..' . '/app/Models/Admin/Permission.php',
-        'App\\Models\\Admin\\Product' => __DIR__ . '/../..' . '/app/Models/Admin/Product.php',
-        'App\\Models\\Admin\\ProductCategory' => __DIR__ . '/../..' . '/app/Models/Admin/ProductCategory.php',
-        'App\\Models\\Admin\\ProductType' => __DIR__ . '/../..' . '/app/Models/Admin/ProductType.php',
+        'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
+        'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
+        'App\\Models\\Colors' => __DIR__ . '/../..' . '/app/Models/Colors.php',
+        'App\\Models\\Event' => __DIR__ . '/../..' . '/app/Models/Event.php',
+        'App\\Models\\HomePage' => __DIR__ . '/../..' . '/app/Models/HomePage.php',
+        'App\\Models\\Menu' => __DIR__ . '/../..' . '/app/Models/Menu.php',
+        'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
+        'App\\Models\\NewsCategory' => __DIR__ . '/../..' . '/app/Models/NewsCategory.php',
+        'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
+        'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
+        'App\\Models\\ProductCategory' => __DIR__ . '/../..' . '/app/Models/ProductCategory.php',
+        'App\\Models\\ProductItem' => __DIR__ . '/../..' . '/app/Models/ProductItem.php',
+        'App\\Models\\ProductType' => __DIR__ . '/../..' . '/app/Models/ProductType.php',
+        'App\\Models\\Slider' => __DIR__ . '/../..' . '/app/Models/Slider.php',
+        'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
@@ -2979,6 +3000,9 @@ class ComposerStaticInit61056d78709c2757d8287e62dd7469fb
         'Symfony\\Polyfill\\Util\\TestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListener.php',
         'Symfony\\Polyfill\\Util\\TestListenerTrait' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerTrait.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'Torann\\LaravelMetaTags\\Facades\\MetaTag' => __DIR__ . '/..' . '/torann/laravel-meta-tags/src/Torann/LaravelMetaTags/Facades/MetaTag.php',
+        'Torann\\LaravelMetaTags\\MetaTag' => __DIR__ . '/..' . '/torann/laravel-meta-tags/src/Torann/LaravelMetaTags/MetaTag.php',
+        'Torann\\LaravelMetaTags\\MetaTagsServiceProvider' => __DIR__ . '/..' . '/torann/laravel-meta-tags/src/Torann/LaravelMetaTags/MetaTagsServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',

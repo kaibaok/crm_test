@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 <br>472x269</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2</label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2 <br>472x269</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 <br>472x269</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -158,7 +158,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 4 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 4 <br>472x269</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -202,7 +202,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 <br>476x290</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -234,7 +234,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2</label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2 <br>306x290</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -266,7 +266,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 <br>353x596</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -298,7 +298,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 4 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 4 <br>306x290</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -330,7 +330,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 5 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 5 <br>476x290</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -376,7 +376,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 <br>530x507</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -408,7 +408,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2</label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2 <br>530x507</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -440,7 +440,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 <br>470x557</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -483,7 +483,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 1 <br>640x517</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -515,7 +515,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2</label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 2 <br>640x517</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">
@@ -547,7 +547,7 @@
                             </div>
                         </div>
                         <div class="item form-group image_upload">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 </label>
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Banner 3 <br>640x517</label>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="imageupload">
                                     <div class="file-tab">

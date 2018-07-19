@@ -147,6 +147,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
+        Torann\LaravelMetaTags\MetaTagsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -202,6 +203,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'DNS1D'     => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,
+        'MetaTag'   => Torann\LaravelMetaTags\Facades\MetaTag::class,
     ],
 
 ];

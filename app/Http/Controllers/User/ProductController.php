@@ -10,6 +10,7 @@ use App\Models\ProductType;
 use App\Models\ProductCategory;
 use App\Models\Tag;
 use App\Models\Brand;
+use MetaTag;
 
 class ProductController extends Controller {
 
@@ -35,6 +36,12 @@ class ProductController extends Controller {
     }
     public function index(Request $request)
     {
+        MetaTag::set('title', 'Danh sách sản phẩm');
+        MetaTag::set('description', 'danh sách sản phẩm');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+
         $title = "Danh sách sản phẩm";
         self::leftMenu($request);
 
@@ -45,18 +52,34 @@ class ProductController extends Controller {
         $paginator = $listProduct->appends($params);
         return view("user.product.index")
             ->with("listProduct", $listProduct)
-            ->with("title", $title)
             ->with("paginator", $paginator);
     }
 
     public function detail($id, $seo_link)
     {
-        $title = "Chi tiết sản phẩm";
+        MetaTag::set('title', 'chi tiết  sản phẩm');
+        MetaTag::set('description', 'danh sách sản phẩm');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+
         $product = Product::getProductByConditions(array("product" => $id))->first();
         if(empty($product)) return redirect()->guest("/p");
         return view("user.product.detail")
             ->with("product", $product)
-            ->with("listSize", $this->getOption("listSize"))
-            ->with("title", $title);
+            ->with("listSize", $this->getOption("listSize"));
+    }
+
+    public function brand(Request $request)
+    {
+        MetaTag::set('title', 'Danh sách thương hiệu');
+        MetaTag::set('description', 'danh sách thương hiệu');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+        self::leftMenu($request);
+        $listBrand = Brand::where("status", 1)->get();
+        return view("user.product.brand")
+            ->with("listBrand", $listBrand);
     }
 }

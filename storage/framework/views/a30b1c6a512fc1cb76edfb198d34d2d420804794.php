@@ -4,13 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><?php echo $__env->yieldContent("title"); ?></title>
-    <meta name="description" content="<?php echo $__env->yieldContent("description"); ?>">
-    <meta name="keywords" content="<?php echo $__env->yieldContent("keywords"); ?>">
-    <meta name="author" content="Dot 89 Shop">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-        ============================================ -->
+    <title><?php echo e(MetaTag::get('title')); ?></title>
+    <?php echo MetaTag::tag('description'); ?>
+
+    <?php echo MetaTag::tag('image'); ?>
+
+    <?php echo MetaTag::tag('keywords'); ?>
+
+    <?php echo MetaTag::tag('author'); ?>
+
+    <?php echo MetaTag::openGraph(); ?>
+
+    <?php echo MetaTag::twitterCard(); ?>
+
     <link rel="shortcut icon" type="image/x-icon" href="/public/user/img/favicon.ico">
     <!-- Bootstrap CSS
         ============================================ -->

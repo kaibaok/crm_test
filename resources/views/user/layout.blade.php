@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield("title")</title>
-    <meta name="description" content="@yield("description")">
-    <meta name="keywords" content="@yield("keywords")">
-    <meta name="author" content="Dot 89 Shop">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-        ============================================ -->
+    <title>{{ MetaTag::get('title') }}</title>
+    {!! MetaTag::tag('description') !!}
+    {!! MetaTag::tag('image') !!}
+    {!! MetaTag::tag('keywords') !!}
+    {!! MetaTag::tag('author') !!}
+    {!! MetaTag::openGraph() !!}
+    {!! MetaTag::twitterCard() !!}
     <link rel="shortcut icon" type="image/x-icon" href="/public/user/img/favicon.ico">
     <!-- Bootstrap CSS
         ============================================ -->

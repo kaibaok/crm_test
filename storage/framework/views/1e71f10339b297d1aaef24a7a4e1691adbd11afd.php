@@ -1,4 +1,3 @@
-<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('middlecontent'); ?>
 <div class="banner-area product ptb-110 shop-left">
     <div class="container">

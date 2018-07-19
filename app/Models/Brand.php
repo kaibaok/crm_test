@@ -65,5 +65,4 @@ class Brand extends Model
         }
         return $status;
     }
-
 }

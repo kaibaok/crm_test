@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="new-sale">
                                             <?php if($value->is_new): ?> <span class="black">new</span> <?php endif; ?>
-                                            <?php if($value->is_hot): ?> <span class="red ">hot</span> <?php endif; ?>
+                                            <?php if($value->is_best_sell): ?> <span class="red ">hot</span> <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

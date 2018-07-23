@@ -5,7 +5,7 @@
         <ul>
             <?php foreach($mProductCate as $value): ?>
                 <?php  $active = ($cateID == $value->id) ? "active" : "";  ?>
-                <li class="<?php echo e($active); ?>"><a href="/p/?category=<?php echo e($value->id); ?>&c=<?php echo e($value->seo_link); ?>"><i class="fa fa-angle-right"></i><?php echo e($value->title); ?></a> </li>
+                <li class="<?php echo e($active); ?>"><a href="/p/?category=<?php echo e($value->id); ?>&t=<?php echo e($value->seo_link); ?>"><i class="fa fa-angle-right"></i><?php echo e($value->title); ?></a> </li>
             <?php endforeach; ?>
         </ul>
     </div>

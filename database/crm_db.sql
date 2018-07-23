@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2018 at 01:08 PM
+-- Generation Time: Jul 23, 2018 at 12:47 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -374,7 +374,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`) VALUES
 (80, 1, '1530088642', 'san pham a', 'aa', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0, 0, 0, 0, 0, 0),
-(81, 2, '1531988001', 'san pham b', '                                                                    mo ta ngan                                    \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-19 01:13:22', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 0, 1, 'test', 4, 3, 0, 0, 1, 0, 1, 1, 0);
+(81, 2, '1532311699', 'san pham b', '                                                                    mo ta ngan gon xuc tich\r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-22 19:08:37', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 3, 0, 0, 1, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -397,8 +397,8 @@ CREATE TABLE `product_category` (
 --
 
 INSERT INTO `product_category` (`id`, `status`, `title`, `seo_link`, `item_id`, `updated_at`, `created_at`) VALUES
-(1, 1, 'Áo Len', '', 1, '2018-05-23 21:20:18', '2017-01-03 03:29:22'),
-(2, 1, 'Áo Thun', '', 1, '2018-05-23 21:20:18', '2017-01-03 03:29:22');
+(1, 1, 'Áo Len', 'ao-len', 1, '2018-07-22 19:04:04', '2017-01-03 03:29:22'),
+(2, 1, 'Áo Thun', 'ao-thun', 1, '2018-07-22 19:03:57', '2017-01-03 03:29:22');
 
 -- --------------------------------------------------------
 
@@ -505,17 +505,17 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `permission` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0'
+  `permission` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `created_at`, `updated_at`, `remember_token`, `permission`) VALUES
-(7, 'tam', 'kyra0590@gmail.com', '$2y$10$jLvBQdYmkVgz0aXAe0rxE.kqmy9nv.GgXBc3YlqO8FAlrlaxpjDRq', 0, '2016-12-14 01:26:26', '2018-06-07 19:46:07', 'gNqv2EpG81kFIvrGIuI6Iqn6V0bzEGqGSryekvbQT3ETw9GucjTiW5In6wxp', '2'),
-(64, 'qa', 'qa@gmail.com', '$2y$10$w09IzlCtcOSD5eSij0SrXeheYNwTULJGGXb3WOFRtTcWbXEtnnRG.', 0, '2016-12-19 02:56:33', '2016-12-21 22:53:33', NULL, '1'),
-(84, 'ádá', 'kyra05920@gmail.com', '$2y$10$0VuyiL9RVb3udTR2h3TiTudIXT8eGXkSUvYPID.90hKhQFDSIfmXC', 1, '2016-12-21 22:51:55', '2017-01-26 00:41:26', NULL, '0');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `created_at`, `updated_at`, `remember_token`, `permission`, `phone`, `address`) VALUES
+(7, 'tam', 'kyra0590@gmail.com', '$2y$10$jLvBQdYmkVgz0aXAe0rxE.kqmy9nv.GgXBc3YlqO8FAlrlaxpjDRq', 0, '2016-12-14 01:26:26', '2018-07-23 03:05:53', 'fPYe7p7hYDDTPlz5MJWBOvWgFJieRDWHI8rTHx8R7SiiXjowvvaqKDOGjqnH', '2', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -739,7 +739,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -38,7 +38,9 @@ class User extends  Authenticatable
                     'password'   => bcrypt(htmlspecialchars(trim($data['password']))),
                     'email'      => htmlspecialchars(trim($data['email'])),
                     'gender'     => (isset($data['gender'])) ? htmlspecialchars(trim($data['gender'])) : 0,
-                    'permission' => (int)$data['permission']
+                    'permission' => (int)$data['permission'],
+                    'phone'      => strip_tags(trim($data['phone'])),
+                    'address'    => strip_tags(trim($data['address'])),
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -55,6 +57,8 @@ class User extends  Authenticatable
                 "email"      => htmlspecialchars(trim($data['email'])),
                 "gender"     => htmlspecialchars(trim($data['gender'])),
                 "permission" => (int)$data['permission'],
+                'phone'      => strip_tags(trim($data['phone'])),
+                'address'    => strip_tags(trim($data['address'])),
             );
 
             if(!empty($data['password'])) $arr_update["password"]   = bcrypt(htmlspecialchars(trim($data['password'])));
@@ -66,7 +70,10 @@ class User extends  Authenticatable
     }
 
     public static function searchOption($txt_search){
-        $m_user = User::select()->where('name','like',"%{$txt_search}%")->orWhere('email','like',"%{$txt_search}%");
+        $m_user = User::select()->where('name','like',"%{$txt_search}%")
+            ->orWhere('email','like',"%{$txt_search}%")
+            ->orWhere('phone','like',"%{$txt_search}%")
+            ->orWhere('address','like',"%{$txt_search}%");
         return $m_user;
     }
 

@@ -97,7 +97,7 @@
                                         </div>
                                         <div class="new-sale">
                                             @if ($value->is_new) <span class="black">new</span> @endif
-                                            @if ($value->is_hot) <span class="red ">hot</span> @endif
+                                            @if ($value->is_best_sell) <span class="red ">hot</span> @endif
                                         </div>
                                     </div>
                                 </div>

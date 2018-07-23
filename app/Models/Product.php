@@ -189,6 +189,7 @@ class Product extends Model
         if(!empty($params['brand'])) $builder->where('product.brand', (int) $params['brand']);
         if(!empty($params['type'])) $builder->where('product.type', (int) $params['type']);
         if(!empty($params['item'])) $builder->where('product_category.item_id', (int) $params['item']);
+        if(!empty($params['keywords'])) $builder->where("product.title","like", "%".htmlspecialchars(strip_tags($params['keywords']))."%");
 
         if(!empty($params['size'])) {
             switch ($params['size']) {

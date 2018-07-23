@@ -2,7 +2,7 @@
 @section('middlecontent')
 <!-- banner start -->
 <div class="banner-area details ptb-110" @if (!empty($product->pimg_detail) && file_exists(BASE_IMG."product/".$product->pimg_detail))
-                    style="background-image: url('{{URL_IMG."product/".$product->pimg_detail}}')"@endif>
+    style="background-image: url('{{URL_IMG."product/".$product->pimg_detail}}')"@endif>
     <div class="container">
         <div class="row">
             <div class="col-xs-12">

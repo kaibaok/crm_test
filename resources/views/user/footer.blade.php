@@ -21,7 +21,7 @@
                         </div>
                         <div class="footer-contact-info">
                             <p>Telephone : (801) 2223 3337
-                                <br>Telephone : (801) 4256 9658</p>
+                            <br>Telephone : (801) 4256 9658</p>
                         </div>
                     </div>
                     <div class="single-footer-contact">

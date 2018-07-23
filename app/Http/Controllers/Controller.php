@@ -65,12 +65,15 @@ class Controller extends BaseController
             $arrSP     = json_decode($listMenu->list_sp,true);
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
 
+            $userInfo = Auth::user();
+
             MetaTag::set('title', 'This is a detail page');
             MetaTag::set('description', 'All about this detail page');
             MetaTag::set('keywords', 'All about this detail page,c,asd,as,da,d,s');
             MetaTag::set('image', asset('/public/images/detail-logo.png'));
             MetaTag::set('author','Dot 89 Shop');
 
+            View::share('userInfo', $userInfo);
             View::share('listMenu', $arr);
             View::share('listMenuSP', $arrSP);
             View::share('listBrandLayout', $listBrandLayout);

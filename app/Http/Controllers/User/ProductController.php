@@ -82,4 +82,43 @@ class ProductController extends Controller {
         return view("user.product.brand")
             ->with("listBrand", $listBrand);
     }
+
+    public function cart()
+    {
+        MetaTag::set('title', 'Đơn hàng');
+        MetaTag::set('description', 'Đơn hàng');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+
+        return view("user.product.cart");
+    }
+
+    public function checkout()
+    {
+        MetaTag::set('title', 'Giỏ hàng');
+        MetaTag::set('description', 'Giỏ hàng');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+
+        return view("user.product.checkout");
+    }
+
+    public function orderCart()
+    {
+        MetaTag::set('title', 'Hoàn tất đơn hàng');
+        MetaTag::set('description', 'Hoàn tất đơn hàng');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+
+        return view("user.product.orderCart");
+    }
+
+    public function addCart()
+    {
+        dd("asda");
+        die;
+    }
 }

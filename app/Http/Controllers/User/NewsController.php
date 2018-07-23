@@ -43,6 +43,7 @@ class NewsController extends Controller {
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
+
         self::leftMenu($request);
         $params      = $request->all();
         $builder     = News::select()->where("status", 1)->orderByRaw("ord ASC, id DESC");
@@ -62,7 +63,6 @@ class NewsController extends Controller {
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
         self::leftMenu($request);
-
         $news = News::select()->where(array("id" => $id, "status" => 1))->first();
         if(empty($news)) return redirect()->guest("/n");
         return view("user.news.detail")

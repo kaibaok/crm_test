@@ -13,12 +13,18 @@ use App\Models\ProductType;
 use App\Models\ProductCategory;
 use App\Models\News;
 use App\Models\NewsCategory;
+use MetaTag;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $title    = "Trang chủ";
+        MetaTag::set('title', 'Trang chủ');
+        MetaTag::set('description', 'Trang chủ');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+
         $homePage = HomePage::findOrFail(1)->toArray();
         $event    = Event::where(array("status" => 1))
             ->orderByRaw("id DESC")
@@ -58,7 +64,6 @@ class IndexController extends Controller
             ->with('listFooter', $listFooter)
             ->with('listCategory', $listCategory)
             ->with('listProductType', $listProductType)
-            ->with('listCategoryNews', $listCategoryNews)
-            ->with("title", $title);
+            ->with('listCategoryNews', $listCategoryNews);
     }
 }

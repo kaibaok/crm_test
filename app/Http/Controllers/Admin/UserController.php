@@ -23,44 +23,67 @@ class UserController extends Controller
     }
 
     //  crod User
-    public function addUser(){
+    public function addUser(Request $request){
         $title  = "Thêm mới User";
         $errors = NULL;
+        $params = $request->all();
         $list_permission = Permission::getList();
         $list_gender     = $this->getOption('listGender');
-        if(!empty($_POST)){
-            $s_new_user = User::addUser($_POST);
-            if($s_new_user) {
-                $_POST  = empty($_POST);
-                $errors = "Thêm thành công";
-            }else{
-                $errors = "Thêm thất bại";
+        if ($request->isMethod('post')) {
+            if(empty($params['name'])) $errors['name'] = "Vui lòng nhập tiêu đề";
+            if(empty($params['password'])) $errors['password'] = "Vui lòng nhập mật khẩu";
+            if(empty($params['phone'])) $errors['phone'] = "Vui lòng nhập số điện thoại";
+            if(empty($params['address'])) $errors['address'] = "Vui lòng nhập địa chỉ";
+            if(empty($params['email'])) $errors['email'] = "Vui lòng nhập địa chỉ";
+            else if(!filter_var($params['email'], FILTER_VALIDATE_EMAIL))  $errors['email'] = "Vui lòng kiểm tra lại email";
+
+            if(empty($errors)) {
+                $s_new_user =  User::addUser($params);
+                if($s_new_user) {
+                    $params = null;
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
             }
         }
         return view("admin.user.addUser")
             ->with("title", $title)
             ->with("list_permission", $list_permission)
             ->with("list_gender", $list_gender)
-            ->with("errors", $errors);
+            ->with("errors", $errors)
+            ->with("params", $params);
     }
 
-    public function editUser($id){
-        $title  = "Sửa User";
-        $errors = NULL;
-        if(!empty($_POST)){
-            $errors = User::editUser($_POST);
-            if($errors) $errors = "Sửa thành công";
-            else $errors = "Sửa thất bại";
-        }
-        $get_user = User::findOrFail((int)$id);
+    public function editUser(Request $request){
+        $title           = "Sửa User";
+        $id              = (int) $request->route('id');
+        $errors          = NULL;
+        $params          = $request->all();
         $list_permission = Permission::getList();
         $list_gender     = $this->getOption('listGender');
+        $get_user        = User::findOrFail((int)$id)->toArray();
+
+        if ($request->isMethod('post')) {
+            if(empty($params['name'])) $errors['name']         = "Vui lòng nhập tiêu đề";
+            if(empty($params['password'])) $errors['password'] = "Vui lòng nhập mật khẩu";
+            if(empty($params['phone'])) $errors['phone']       = "Vui lòng nhập số điện thoại";
+            if(empty($params['address'])) $errors['address']   = "Vui lòng nhập địa chỉ";
+            if(empty($params['email'])) $errors['email']       = "Vui lòng nhập địa chỉ";
+            else if(!filter_var($params['email'], FILTER_VALIDATE_EMAIL))  $errors['email'] = "Vui lòng kiểm tra lại email";
+            if(empty($errors)) {
+                $editUser = User::editUser($params);
+                if($editUser) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
+            $get_user = $params;
+        }
+
         return view("admin.user.editUser")
             ->with("title", $title)
             ->with("list_permission", $list_permission)
             ->with("list_gender", $list_gender)
             ->with("detail_user", $get_user)
-            ->with("id", (int)$id)
             ->with("errors", $errors);
     }
 

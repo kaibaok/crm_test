@@ -25,63 +25,78 @@
 			<div class="x_panel">
 	          <div class="x_content">
 				{{ csrf_field() }}
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['name'])) bad @endif">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Họ Tên <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" required="required" value="{{isset($_POST['name']) ? $_POST['name'] : '' }}">
+						<input type="text" id="name" class="form-control col-md-7 col-xs-12" name="name" required="required" value="{{isset($params['name']) ? $params['name'] : '' }}">
 						</div>
+						@if(isset($errors['name'])) <div class="alert">{{$errors['name']}}</div> @endif
 					</div>
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['email'])) bad @endif">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="email" id="email" class="form-control col-md-7 col-xs-12" name="email" data-parsley-trigger="change" value="{{ isset($_POST['email']) ? $_POST['email'] : '' }}" required />
+						<input type="email" id="email" class="form-control col-md-7 col-xs-12" name="email" value="{{ isset($params['email']) ? $params['email'] : '' }}" required />
 						</div>
+						@if(isset($errors['email'])) <div class="alert">{{$errors['email']}}</div> @endif
 					</div>
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['password'])) bad @endif">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Mật khẩu <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="password" id="password" required="required" class="form-control col-md-7 col-xs-12" name="password" value="{{ isset($_POST['password']) ? $_POST['password'] : '' }}">
+						<input type="password" id="password" required="required" class="form-control col-md-7 col-xs-12" name="password" value="{{ isset($params['password']) ? $params['password'] : '' }}">
 						</div>
+						@if(isset($errors['password'])) <div class="alert">{{$errors['password']}}</div> @endif
 					</div>
-					<div class="form-group">
+					<div class="item form-group @if(isset($errors['gender'])) bad @endif">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 						<div id="gender" class="btn-group" data-toggle="buttons">
 							@if (isset($list_gender))
 
-							<label class="btn btn-default {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" name="gender" value="0" {{ (isset($_POST['gender']) && $_POST['gender'] == 0) ? 'checked' : '' }}> &nbsp; Nam &nbsp;
+							<label class="btn btn-default {{ (isset($params['gender']) && $params['gender'] == 0) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+							<input type="radio" name="gender" value="0" {{ (isset($params['gender']) && $params['gender'] == 0) ? 'checked' : '' }}> &nbsp; Nam &nbsp;
 							</label>
-							<label class="btn btn-primary {{ (isset($_POST['gender']) && $_POST['gender'] == 1) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-							<input type="radio" name="gender" value="1" {{ (isset($_POST['gender']) && $_POST['gender'] == 1) ? 'checked' : '' }}> &nbsp; Nữ &nbsp;&nbsp;
+							<label class="btn btn-primary {{ (isset($params['gender']) && $params['gender'] == 1) ? 'active' : '' }}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+							<input type="radio" name="gender" value="1" {{ (isset($params['gender']) && $params['gender'] == 1) ? 'checked' : '' }}> &nbsp; Nữ &nbsp;&nbsp;
 							</label>
 							@endif
 						</div>
 						</div>
+						@if(isset($errors['gender'])) <div class="alert">{{$errors['gender']}}</div> @endif
 					</div>
-					<div class="form-group">
+
+					<div class="item form-group @if(isset($errors['phone'])) bad @endif">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Số điện thoại <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						<input type="text" id="phone" class="form-control col-md-7 col-xs-12" name="phone" value="{{isset($params['phone']) ? $params['phone'] : '' }}"/>
+						</div>
+						@if(isset($errors['phone'])) <div class="alert">{{$errors['phone']}}</div> @endif
+					</div>
+
+					<div class="item form-group @if(isset($errors['address'])) bad @endif">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Địa chỉ <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<textarea  name="address" id="address" class="form-control" rows="5">{{isset($params['address']) ? $params['address'] : '' }}
+                  			</textarea>
+						</div>
+						@if(isset($errors['address'])) <div class="alert">{{$errors['address']}}</div> @endif
+					</div>
+
+					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Quyền hạn</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<select class="form-control" name="permission">
 							@if (isset($list_permission))
 								@foreach ($list_permission as $key => $value)
-									<?php $selected = ""; if(isset($_POST['permission']) && $key == $_POST['permission']) $selected = "selected"; ?>
+									<?php $selected = ""; if(isset($params['permission']) && $key == $params['permission']) $selected = "selected"; ?>
 										<option value="{{$key}}" {{$selected}}>{{$value}}</option>
 								@endforeach
 							@endif
 							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<div><label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
-						<span class="help-block">
-							<strong>
-								{{$errors }}
-							</strong>
-						</span>
 						</div>
 					</div>
 				</div>
@@ -91,5 +106,7 @@
 </div>
 </form>
 @endsection
-
+@section('js')
+    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif  </script>
+@endsection
 

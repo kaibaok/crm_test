@@ -5,7 +5,7 @@
         <ul>
             @foreach ($mProductCate as $value)
                 @php $active = ($cateID == $value->id) ? "active" : ""; @endphp
-                <li class="{{$active}}"><a href="/p/?category={{$value->id}}&c={{$value->seo_link}}"><i class="fa fa-angle-right"></i>{{$value->title}}</a> </li>
+                <li class="{{$active}}"><a href="/p/?category={{$value->id}}&t={{$value->seo_link}}"><i class="fa fa-angle-right"></i>{{$value->title}}</a> </li>
             @endforeach
         </ul>
     </div>

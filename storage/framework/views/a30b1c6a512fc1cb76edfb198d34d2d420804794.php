@@ -86,7 +86,10 @@
                             <div class="col-md-6">
                                 <div class="account-usd text-left">
                                     <ul>
-                                        <li><a href="/">Dot89 hân hạnh kính chào quý khách </a>
+                                        <li>
+                                            <?php if(!empty($userInfo)): ?>
+                                                <a href="/thong-tin-tai-khoan/<?php echo e($userInfo->id); ?>">Chào <?php echo e($userInfo->name); ?></a>
+                                            <?php endif; ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -95,9 +98,10 @@
                                 <div class="top-right">
                                     <div class="top-login-cart">
                                         <ul>
-                                            <li class=" hidden-xs"><a href="/public/user/account.html">Login or Register</a></li>
-                                            <li class=" hidden-xs"><a href="/public/user/checkout.html">Checkout</a></li>
-                                            <li><a href="/public/user/cart.html"><img src="/public/user/img/icon/cart_red.png" alt="cart">Cart (3)</a>
+                                            <li class=" hidden-xs"><a href="/dang-ky">Đăng ký</a></li>
+                                            <li class=" hidden-xs"><a href="/dang-nhap">Đăng nhập</a></li>
+                                            <li class=" hidden-xs"><a href="/don-hang">Đơn hàng</a></li>
+                                            <li><a href="/gio-hang"><img src="/public/user/img/icon/cart_red.png" alt="cart">(<span id="number_cart">2</span>)</a>
                                                 <ul class="submenu-mainmenu">
                                                     <li class="single-cart-item clearfix">
                                                         <span class="cart-img">
@@ -111,35 +115,11 @@
                                                                 <a href="/public/user/#"><i class="fa fa-trash-o"></i></a>
                                                             </span>
                                                     </li>
-                                                    <li class="single-cart-item clearfix">
-                                                        <span class="cart-img">
-                                                                <a href="/public/user/#"><img src="/public/user/img/cart/2.jpg" alt=""></a>
-                                                            </span>
-                                                        <span class="cart-info">
-                                                                <a href="/public/user/#">Celletria ostma</a>
-                                                                <span>$120 x 1</span>
-                                                        </span>
-                                                        <span class="trash-cart">
-                                                                <a href="/public/user/#"><i class="fa fa-trash-o"></i></a>
-                                                            </span>
-                                                    </li>
-                                                    <li class="single-cart-item clearfix">
-                                                        <span class="cart-img">
-                                                                <a href="/public/user/#"><img src="/public/user/img/cart/3.jpg" alt=""></a>
-                                                            </span>
-                                                        <span class="cart-info">
-                                                                <a href="/public/user/#">Pelletria ostma</a>
-                                                                <span>$100 x 2</span>
-                                                        </span>
-                                                        <span class="trash-cart">
-                                                                <a href="/public/user/#"><i class="fa fa-trash-o"></i></a>
-                                                            </span>
-                                                    </li>
                                                     <li>
                                                         <span class="sub-total-cart text-center">
-                                                                Sub Total <span>$620</span>
-                                                        <a href="/public/user/cart.html" class="view-cart active">View Cart</a>
-                                                        <a href="/public/user/checkout.html" class="view-cart">Checkout</a>
+                                                                Tổng tiền <span>$620</span>
+                                                        <a href="/gio-hang" class="view-cart active">Giỏ hàng</a>
+                                                        <a href="/don-hang" class="view-cart">Đơn hàng</a>
                                                         </span>
                                                     </li>
                                                 </ul>
@@ -156,14 +136,14 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="header-logo">
-                                    <a href="/public/user/index.html"><img src="/public/user/img/logo/1.png" alt="shofixe"></a>
+                                    <a href="/"><img src="/public/user/img/logo/1.png" alt="shofixe"></a>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="search-box">
                                     <img src="/public/user/img/icon/search.png" alt="">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search...">
+                                    <form action="/p/" method="GET">
+                                        <input type="text" name="keywords" placeholder="Search...">
                                     </form>
                                 </div>
                             </div>
@@ -188,7 +168,7 @@
                                         <div class="col-xs-12">
                                             <div class="single-client">
                                                 <div class="single-client-img plr-40">
-                                                    <a href="/bd/<?php echo e($value->id); ?>/<?php echo e($value->seo_link); ?>">
+                                                    <a href="/p/?brand=<?php echo e($value->id); ?>&t=<?php echo e($value->seo_link); ?>">
                                                         <img src="<?php echo e(URL_IMG."brand/".$value->bimg_detail); ?>" alt="<?php echo e($value->title); ?>">
                                                     </a>
                                                 </div>
@@ -349,9 +329,6 @@
         ============================================ -->
     <script src="/public/user/js/jquery.textillate.js"></script>
     <script src="/public/user/js/jquery.lettering.js"></script>
-    <!-- AJax Chimp JS
-        ============================================ -->
-    <script src="/public/user/js/jquery.ajaxchimp.min.js"></script>
     <!-- price slider JS
         ============================================ -->
     <script src="/public/user/js/jquery-price-slider.js"></script>
@@ -361,9 +338,6 @@
     <!-- scrollUp JS
         ============================================ -->
     <script src="/public/user/js/jquery.scrollUp.min.js"></script>
-    <!-- plugins JS
-        ============================================ -->
-    <script src="/public/user/js/plugins.js"></script>
     <!-- Nevo Slider js
         ============================================ -->
     <script type="text/javascript" src="/public/user/lib/custom-slider/js/jquery.nivo.slider.js"></script>
@@ -371,9 +345,6 @@
     <!-- animated headline js
         ============================================ -->
     <script src="/public/user/js/animate-heading.js"></script>
-    <!-- ajax js
-        ============================================ -->
-    <script src="/public/user/js/ajax-mail.js"></script>
     <!-- main JS
         ============================================ -->
     <script src="/public/user/js/main.js"></script>

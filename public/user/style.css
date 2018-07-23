@@ -3687,3 +3687,7 @@ textarea {
 }
 .banner-area.shop-left.product{background: #000}
 
+p.txt_error{
+    text-align: left;
+    color: red;
+}

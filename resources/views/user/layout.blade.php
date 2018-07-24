@@ -12,6 +12,7 @@
     {!! MetaTag::tag('author') !!}
     {!! MetaTag::openGraph() !!}
     {!! MetaTag::twitterCard() !!}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" type="image/x-icon" href="/public/user/img/favicon.ico">
     <!-- Bootstrap CSS
         ============================================ -->
@@ -95,23 +96,28 @@
                                             <li class=" hidden-xs"><a href="/dang-ky">Đăng ký</a></li>
                                             <li class=" hidden-xs"><a href="/dang-nhap">Đăng nhập</a></li>
                                             <li class=" hidden-xs"><a href="/don-hang">Đơn hàng</a></li>
-                                            <li><a href="/gio-hang"><img src="/public/user/img/icon/cart_red.png" alt="cart">(<span id="number_cart">2</span>)</a>
-                                                <ul class="submenu-mainmenu">
-                                                    <li class="single-cart-item clearfix">
-                                                        <span class="cart-img">
-                                                                <a href="/public/user/#"><img src="/public/user/img/cart/1.jpg" alt=""></a>
-                                                            </span>
-                                                        <span class="cart-info">
-                                                                <a href="/public/user/#">Eletria ostma</a>
-                                                                <span>$150 x 2</span>
-                                                        </span>
-                                                        <span class="trash-cart">
-                                                                <a href="/public/user/#"><i class="fa fa-trash-o"></i></a>
-                                                            </span>
-                                                    </li>
+                                            <li><a href="/gio-hang"><img src="/public/user/img/icon/cart_red.png" alt="cart">(<span id="number_cart">{{count($sCart)}}</span>)</a>
+                                                <ul class="submenu-mainmenu" id="listCart">
+                                                    @php $totalPrice = 0; @endphp
+                                                    @if (!empty($sCart))
+                                                        @foreach ($sCart as $value)
+                                                            <?php $totalPrice += ($value['price'] * $value['number']); ?>
+                                                            <li class="single-cart-item clearfix">
+                                                                <span class="cart-img">
+                                                                        <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}/"><img style='height:59px' src="{{$value['img']}}" alt=""></a>
+                                                                    </span>
+                                                                <span class="cart-info">
+                                                                        <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}/">{{$value['title']}}</a>
+                                                                        <span>{{$value['price']}} x {{$value['number']}}</span>
+                                                                </span>
+                                                                <span class="trash-cart">
+                                                                        <a href="/xoa-gio-hang/{{$value['productID']}}"><i class="fa fa-trash-o"></i></a>
+                                                                </span>
+                                                            </li>
+                                                        @endforeach
+                                                    @endif
                                                     <li>
-                                                        <span class="sub-total-cart text-center">
-                                                                Tổng tiền <span>$620</span>
+                                                        <span class="sub-total-cart text-center">Tổng tiền <span>{{$totalPrice}}</span>
                                                         <a href="/gio-hang" class="view-cart active">Giỏ hàng</a>
                                                         <a href="/don-hang" class="view-cart">Đơn hàng</a>
                                                         </span>
@@ -332,15 +338,11 @@
     <!-- scrollUp JS
         ============================================ -->
     <script src="/public/user/js/jquery.scrollUp.min.js"></script>
-    <!-- Nevo Slider js
-        ============================================ -->
+    <!-- Nevo Slider js -->
     <script type="text/javascript" src="/public/user/lib/custom-slider/js/jquery.nivo.slider.js"></script>
-    <script type="text/javascript" src="/public/user/lib/custom-slider/home.js"></script>
-    <!-- animated headline js
-        ============================================ -->
+
     <script src="/public/user/js/animate-heading.js"></script>
-    <!-- main JS
-        ============================================ -->
+    <script> var _token = $('meta[name="csrf-token"]').attr('content'); </script>
     <script src="/public/user/js/main.js"></script>
 </body>
 

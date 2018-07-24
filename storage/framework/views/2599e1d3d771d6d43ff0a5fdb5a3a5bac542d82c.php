@@ -84,7 +84,7 @@
                                                                 <div class="hover-text">
                                                                     <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
-                                                                        <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
@@ -118,7 +118,7 @@
                                                                         <div class="hover-text">
                                                                             <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                             <ul>
-                                                                                <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                                <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                                 <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
                                                                             </ul>
                                                                         </div>
@@ -270,7 +270,7 @@
                                                                 <div class="hover-text">
                                                                     <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
-                                                                        <li><a href="#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
@@ -304,7 +304,7 @@
                                                                     <div class="hover-text">
                                                                         <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                         <ul>
-                                                                            <li><a href="#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                            <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                             <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
                                                                         </ul>
                                                                     </div>
@@ -491,7 +491,7 @@
                                                                 <div class="hover-text">
                                                                     <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
-                                                                        <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                        <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                         <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
@@ -525,7 +525,7 @@
                                                                         <div class="hover-text">
                                                                             <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                             <ul>
-                                                                                <li><a href="/public/user/#" data-toggle="tooltip" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                                                                <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
                                                                                 <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
                                                                             </ul>
                                                                         </div>

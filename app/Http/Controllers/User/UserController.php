@@ -87,6 +87,5 @@ class UserController extends Controller {
         return view("user.user.register")
             ->with("errors",$errors)
             ->with("params",$params);
-
     }
 }

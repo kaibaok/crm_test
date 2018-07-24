@@ -254,4 +254,69 @@
         $('.as-mainwrapper').removeClass('wrapper-boxed');
     });
 
+/*--------------------------
+    Nivo slider top
+---------------------------- */
+    $('#nivoslider').nivoSlider({
+        effect: 'random',
+        slices: 15,
+        boxCols: 8,
+        boxRows: 4,
+        animSpeed: 500,
+        pauseTime: 5000,
+        startSlide: 0,
+        directionNav: true,
+        controlNavThumbs: false,
+        pauseOnHover: false,
+        manualAdvance: true,
+     });
+
+    $(document).on('click', '.btnCart', function(event) {
+        event.preventDefault();
+        var productID = $(this).data('id');
+        var number    = 1;
+        addCart(productID, number);
+    });
+
+    function addCart(productID, number){
+        $.ajax({
+            url: '/them-san-pham',
+            type: 'POST',
+            dataType: 'json',
+            data: {productID: productID, number : number, _token : _token},
+        }).done(function(data) {
+            if(data) {
+                var listCart = "";
+                var totalPrice = 0;
+                for (var i = 0; i < data.length; i++) {
+                    var item = data[i];
+                    listCart += "<li class='single-cart-item clearfix'>\
+                        <span class='cart-img'>\
+                            <a href='/pd/"+item.productID+"/"+item.seo_link+"/'><img style='height:59px' src='"+item.img+"'></a>\
+                        </span>\
+                        <span class='cart-info'>\
+                            <a href='/pd/"+item.productID+"/"+item.seo_link+"'>"+item.title+"</a>\
+                            <span>"+item.price+" x "+item.number+"</span>\
+                        </span>\
+                        <span class='trash-cart'>\
+                            <a href='/xoa-gio-hang/"+item.productID+"'><i class='fa fa-trash-o'></i></a>\
+                        </span>\
+                        </li>";
+                    totalPrice += (parseInt(item.number) * parseFloat(item.price));
+                }
+
+                if(listCart) {
+                    listCart +="<li>\
+                    <span class='sub-total-cart text-center'>Tổng tiền <span>"+totalPrice+"</span>\
+                        <a href='/gio-hang' class='view-cart active'>Giỏ hàng</a>\
+                        <a href='/don-hang' class='view-cart'>Đơn hàng</a>\
+                        </span>\
+                    </li>";
+                }
+
+                $("#number_cart").text(data.length);
+                $("#listCart").empty().append(listCart);
+            }
+        });
+    }
 })(jQuery);

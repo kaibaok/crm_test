@@ -14,6 +14,7 @@ use Illuminate\Routing\Route;
 use App\Models\Menu;
 use App\Models\Brand;
 use MetaTag;
+use Session;
 
 class Controller extends BaseController
 {
@@ -60,12 +61,11 @@ class Controller extends BaseController
                     Redirect::to('/admin/login')->send();
             }
         } else {
-            $listMenu  = Menu::findOrFail(1);
-            $arr       = json_decode($listMenu->list,true);
-            $arrSP     = json_decode($listMenu->list_sp,true);
+            $listMenu        = Menu::findOrFail(1);
+            $arr             = json_decode($listMenu->list,true);
+            $arrSP           = json_decode($listMenu->list_sp,true);
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
-
-            $userInfo = Auth::user();
+            $sCart           = Session::get('sCart');
 
             MetaTag::set('title', 'This is a detail page');
             MetaTag::set('description', 'All about this detail page');
@@ -73,7 +73,8 @@ class Controller extends BaseController
             MetaTag::set('image', asset('/public/images/detail-logo.png'));
             MetaTag::set('author','Dot 89 Shop');
 
-            View::share('userInfo', $userInfo);
+            View::share('sCart', $sCart);
+            View::share('userInfo', $user);
             View::share('listMenu', $arr);
             View::share('listMenuSP', $arrSP);
             View::share('listBrandLayout', $listBrandLayout);

@@ -10,7 +10,9 @@ use App\Models\ProductType;
 use App\Models\ProductCategory;
 use App\Models\Tag;
 use App\Models\Brand;
+use App\Helpers\Utils;
 use MetaTag;
+use Session;
 
 class ProductController extends Controller {
 
@@ -116,9 +118,42 @@ class ProductController extends Controller {
         return view("user.product.orderCart");
     }
 
-    public function addCart()
+    public function addCart(Request $request)
     {
-        dd("asda");
-        die;
+        $params = $request->all();
+        if(!empty($params)) {
+            $productID = (int) $params['productID'];
+            $number    = (int) $params['number'];
+            $product   = Product::getProductByConditions(array("product" => $productID))->first();
+            $sCart     = null;
+            if(!empty($product)) {
+                $data = array(
+                    "productID" => $productID,
+                    "number"    => $number,
+                    "title"     => $product->title,
+                    "seo_link"  => $product->seo_link,
+                    "price"     => ($product->discount) ? $product->discount : $product->price,
+                    "img"       => URL_IMG."product/".$product->pimg_list
+                );
+
+                if(Session::has('sCart')) {
+                    $sCart  = Session::get('sCart');
+                    $status = false;
+
+                    foreach ($sCart as $key => $value) {
+                        if(isset($value['productID']) && $value['productID'] == $productID) {
+                            $sCart[$key]['number'] += $number;
+                            $status = true;
+                        }
+                    }
+
+                    if(!$status) $sCart[] = $data;
+                } else {
+                    $sCart = array($data);
+                }
+                Session::put('sCart', $sCart);
+            }
+        }
+        return response()->json($sCart);
     }
 }

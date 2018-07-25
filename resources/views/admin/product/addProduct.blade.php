@@ -143,22 +143,14 @@
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
-                  			<textarea  name="short_desc" id="short_desc" class="form-control" rows="5">
-                  				@if(isset($params['short_desc']))
-                  					{{$params['short_desc']}}
-                  				@endif
-                  			</textarea>
+                  			<textarea  name="short_desc" id="short_desc" class="form-control" rows="5">@if(isset($params['short_desc'])){{$params['short_desc']}}@endif</textarea>
 						</div>
 					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
-                  			<textarea  name="desc" id="desc" class="ckedit">
-                  				@if(isset($params['desc']))
-                  					{{$params['desc']}}
-                  				@endif
-                  			</textarea>
+                  			<textarea  name="desc" id="desc" class="ckedit">@if(isset($params['desc'])){{$params['desc']}}@endif</textarea>
 						</div>
 					</div>
 

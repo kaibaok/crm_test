@@ -87,8 +87,8 @@ class ProductController extends Controller {
 
     public function cart()
     {
-        MetaTag::set('title', 'Đơn hàng');
-        MetaTag::set('description', 'Đơn hàng');
+        MetaTag::set('title', 'Giỏ hàng');
+        MetaTag::set('description', 'Giỏ hàng');
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
@@ -98,8 +98,8 @@ class ProductController extends Controller {
 
     public function checkout()
     {
-        MetaTag::set('title', 'Giỏ hàng');
-        MetaTag::set('description', 'Giỏ hàng');
+        MetaTag::set('title', 'Xác nhận đơn hàng');
+        MetaTag::set('description', 'Xác nhận đơn hàng');
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
@@ -128,12 +128,13 @@ class ProductController extends Controller {
             $sCart     = null;
             if(!empty($product)) {
                 $data = array(
-                    "productID" => $productID,
-                    "number"    => $number,
-                    "title"     => $product->title,
-                    "seo_link"  => $product->seo_link,
-                    "price"     => ($product->discount) ? $product->discount : $product->price,
-                    "img"       => URL_IMG."product/".$product->pimg_list
+                    "productID"  => $productID,
+                    "number"     => $number,
+                    "title"      => $product->title,
+                    "seo_link"   => $product->seo_link,
+                    "short_desc" => $product->short_desc,
+                    "price"      => ($product->discount) ? $product->discount : $product->price,
+                    "img"        => URL_IMG."product/".$product->pimg_list
                 );
 
                 if(Session::has('sCart')) {

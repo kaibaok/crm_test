@@ -14,9 +14,9 @@ Route::get('/n/', 'User\NewsController@index');
 Route::get('/nd/{id}/{seo_link}', 'User\NewsController@detail')->where(["id" => "[0-9]+","seo_link" => "[a-zA-Z 0-9]+"]);
 
 Route::any('/them-san-pham', 'User\ProductController@addCart');
-Route::get('/gio-hang', 'User\ProductController@cart');
-Route::get('/don-hang', 'User\ProductController@checkout');
-Route::get('/hoan-tat-don-hang', 'User\ProductController@orderCart');
+Route::any('/gio-hang', 'User\ProductController@cart');
+Route::any('/don-hang', 'User\ProductController@checkout');
+Route::any('/hoan-tat-don-hang', 'User\ProductController@orderCart');
 
 
 Route::any('/dang-nhap', 'User\UserController@login');

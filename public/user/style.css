@@ -3691,3 +3691,7 @@ p.txt_error{
     text-align: left;
     color: red;
 }
+
+p.txt_susscess{
+    color: green;
+}

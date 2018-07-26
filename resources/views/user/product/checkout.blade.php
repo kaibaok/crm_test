@@ -7,15 +7,15 @@
             <div class="col-xs-12">
                 <div class="banner-text">
                     <div class="banner-title">
-                        <h2 class="text-uppercase">Check Out</h2>
+                        <h2 class="text-uppercase">Xác nhận đơn hàng</h2>
                     </div>
-                    <div class="breadcrumbs">
+                    {{-- <div class="breadcrumbs">
                         <ul>
                             <li class="text-capitalize"><a href="index.html">Home</a> ></li>
                             <li class="text-capitalize"><a href="shop.html">shop</a> ></li>
                             <li class="text-capitalize">checkout</li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -29,9 +29,9 @@
             <div class="col-md-12">
                 <div class="cart-tab-menu section-tab-menu pb-50 text-center">
                     <ul>
-                        <li class="text-uppercase"><a href="cart.html">Shopping Cart</a></li>
-                        <li class="text-uppercase active"><a href="checkout.html">Checkout</a></li>
-                        <li class="text-uppercase"><a href="#">Order Complete</a></li>
+                        <li class="text-uppercase active"><a href="/gio-hang">Giỏ hàng</a></li>
+                        <li class="text-uppercase"><a href="/don-hang">Xác nhận</a></li>
+                        <li class="text-uppercase"><a href="javascript:void(0);">Hoàn tất</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,139 +40,38 @@
             <div class="col-md-6">
                 <div class="billing-detail">
                     <div class="section-title">
-                        <h4 class="text-uppercase mb-35">Billing detail</h4>
+                        <h4 class="text-uppercase mb-35">Thông tin cần điền</h4>
                     </div>
                     <form action="#">
-                        <p>Country <span>*</span><br>
-                        <select>
-                            <option value="">Bangladesh</option>
-                            <option value="">United State</option>
-                        </select>
+                        <p>Họ và tên <span>*</span><br>
+                            <input type="text" placeholder="Họ và tên" name="fullName">
                         </p>
                         <div class="row">
                             <p class="col-sm-6 col-xs-12">
-                                First Name <span>*</span><br>
-                                <input type="text" placeholder="First name">
+                                Email <span>*</span><br>
+                                <input type="email" placeholder="Email" name="email">
                             </p>
                             <p class="col-sm-6 col-xs-12">
-                                Last Name <span>*</span><br>
-                                <input type="text" placeholder="Last name">
+                                Số điện thoại <span>*</span><br>
+                                <input type="text" placeholder="Số điện thoại" name="phone">
                             </p>
                         </div>
-                        <p>Company Name <span>*</span><br>
-                        <input type="text" placeholder="Company name">
+                        <p id="address">Địa chỉ nhận <span>*</span><br>
+                        <input type="text" placeholder="Địa chỉ 1" name="address">
+                        <input type="text" placeholder="Địa chỉ 2" name="address2">
+                        </p>
+                        <p>Thành phố <span>*</span><br>
+                        <input type="text" placeholder="Thành phố" name="city">
                         </p>
                         <div class="row">
                             <p class="col-sm-6 col-xs-12">
-                                Email Address <span>*</span><br>
-                                <input type="text" placeholder="Email address">
+                                Phường/Xã <br>
+                                <input type="text" placeholder="Phường/Xã" name="stage">
                             </p>
                             <p class="col-sm-6 col-xs-12">
-                                Phone No. <span>*</span><br>
-                                <input type="text" placeholder="Phone no.">
+                                Quận <span>*</span><br>
+                                <input type="text" placeholder="Quận" name="district">
                             </p>
-                        </div>
-                        <p id="address">Address <span>*</span><br>
-                        <input type="text" placeholder="Address line 1">
-                        <input type="text" placeholder="Address line 2">
-                        </p>
-                        <p>Town/City <span>*</span><br>
-                        <input type="text" placeholder="Town/City">
-                        </p>
-                        <div class="row">
-                            <p class="col-sm-6 col-xs-12">
-                                State <span>*</span><br>
-                                <input type="text" placeholder="State">
-                            </p>
-                            <p class="col-sm-6 col-xs-12">
-                                Zip Code <span>*</span><br>
-                                <input type="text" placeholder="Zip Code">
-                            </p>
-                        </div>
-                        <div class="account-address">
-                            <label>
-                                <input type="radio" checked="checked" value="old-address" name="shipping-address">Ship to this address
-                            </label>
-                            <label>
-                                <input type="radio" id="add-new-address" value="new-address" name="shipping-address">Ship to different address
-                            </label>
-                        </div>
-                        <div id="add-new-address-info">
-                            <div class="customer-name">
-                                <div class="first-name">
-                                    <p>First Name<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="last-name">
-                                    <p>Last Name<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                            </div>
-                            <div class="customer-info">
-                                <div class="company-name">
-                                    <p>Company</p>
-                                    <input type="text">
-                                </div>
-                                <div class="email-address">
-                                    <p>Email Adress<span>*</span></p>
-                                    <input type="email" required="">
-                                </div>
-                            </div>
-                            <p>Address<span>*</span></p>
-                            <input type="text" required="">
-                            <input type="text">
-                            <div class="city-country">
-                                <div class="city">
-                                    <p>City<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="state">
-                                    <p>State/Province</p>
-                                    <select class="country">
-                                        <option value="state">Please select region, state or province</option>
-                                        <option value="indo">Bahasa Indonesia</option>
-                                        <option value="melyu">Bahasa Melayu</option>
-                                        <option value="deutsch">Deutsch (Deutschland)</option>
-                                        <option value="austra">English (Australia)</option>
-                                        <option value="canada">English (Canada)</option>
-                                        <option value="india">English (India)</option>
-                                        <option value="ireland">English (Ireland)</option>
-                                        <option value="maktoob">English (Maktoob)</option>
-                                        <option value="malaysia">English (Malaysia)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="city-country">
-                                <div class="city">
-                                    <p>Zip/Postal Code<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="state">
-                                    <p>Country<span>*</span></p>
-                                    <select class="country">
-                                        <option value="AF">Afghanistan</option>
-                                        <option value="AU">Australia</option>
-                                        <option value="BH">Bahrain</option>
-                                        <option value="BD">Bangladesh</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="DK">Denmark</option>
-                                        <option value="EG">Egypt</option>
-                                        <option value="FR">France</option>
-                                        <option value="GB">United Kingdom</option>
-                                        <option value="US" selected="selected">United States</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="customer-info">
-                                <div class="telephone">
-                                    <p>Telephone<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="fax">
-                                    <p>Fax</p>
-                                    <input type="text">
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -180,13 +79,13 @@
             <div class="col-md-6">
                 <div class="total-cart">
                     <div class="section-title">
-                        <h4 class="text-uppercase mb-48">Cart total</h4>
+                        <h4 class="text-uppercase mb-48">Chi tiết giỏ hàng</h4>
                     </div>
                     <div class="your-order">
                         <div class="order-table">
                             <ul>
                                 <li>
-                                    <h5 class="focus">Product <span>Total</span></h5>
+                                    <h5 class="focus">Sản phẩm <span>Thành tiền</span></h5>
                                     <p>Eletria ostma    <span> x  02</span><span>$300.00</span></p>
                                     <p>Celletria ostma  <span> x  01</span><span>$120.00</span></p>
                                     <p>Pelletria ostma  <span> x  02</span><span>$200.00</span></p>

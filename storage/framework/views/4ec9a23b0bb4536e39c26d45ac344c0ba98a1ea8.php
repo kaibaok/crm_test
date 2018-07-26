@@ -29,76 +29,122 @@
                 <div class="cart-tab-menu section-tab-menu pb-50 text-center">
                     <ul>
                         <li class="text-uppercase active"><a href="/gio-hang">Giỏ hàng</a></li>
-                        <li class="text-uppercase"><a href="checkout.html">Checkout</a></li>
-                        <li class="text-uppercase"><a href="#">Order Complete</a></li>
+                        <li class="text-uppercase"><a href="/don-hang">Xác nhận</a></li>
+                        <li class="text-uppercase"><a href="#">Hoàn tất</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <form action="#">
-                    <div class="cart-table table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="p-name">Sản phẩm</th>
-                                    <th class="p-amount">Giá</th>
-                                    <th class="p-quantity">Số lượng</th>
-                                    <th class="p-total">Tổng tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody class="pt-30">
-                                <?php if(!empty($sCart)): ?>
-                                    <?php foreach($sCart as $key => $value): ?>
-                                        <tr>
-                                            <td class="p-name text-left">
-                                                <div class="cart-img">
-                                                    <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>"><img src="<?php echo e($value['img']); ?>" alt="<?php echo e($value['title']); ?>"></a>
-                                                </div>
-                                                <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a>
-                                                <p><?php echo e($value['short_desc']); ?></p>
-                                            </td>
-                                            <td class="p-amount"><span class="amount"><?php echo e($value['price']); ?></span></td>
-                                            <td class="p-quantity"><input type="text" value="<?php echo e($value['number']); ?>"></td>
-                                            <td class="p-total"><?php echo e($value['price'] * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($value['productID']); ?>"><i class="fa fa-trash"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="cart-coupon-rightside pt-50">
-                    <div class="section-title">
-                        <h4 class="text-uppercase pb-15">cart total</h4>
-                    </div>
-                    <div class="amount-table table-responsive">
-                        <table>
-                            <tbody>
-                                <tr class="s-total">
-                                    <td>Sub Total <span>$760.00</span></td>
-                                </tr>
-                                <tr class="s-total">
-                                    <td>Shipping <span>$0.00</span></td>
-                                </tr>
-                                <tr class="g-total">
-                                    <td>Grand Total<span class="grand">$760.00</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="check-update pull-right">
-                        <a href="#" class="mt-25 mr-25 section-button">Update</a>
-                        <a href="checkout.html" class="checkout mt-25 section-button">Checkout</a>
+        <?php if(!empty($sCart)): ?>
+            <?php  $totalPrice = 0;  ?>
+            <form action="" method="post">
+                <?php echo e(csrf_field()); ?>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="cart-table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="p-name">Sản phẩm</th>
+                                        <th class="p-amount">Giá</th>
+                                        <th class="p-quantity">Số lượng</th>
+                                        <th class="p-total">Tổng tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pt-30">
+                                        <?php foreach($sCart as $key => $value): ?>
+                                        <?php  $totalPrice += $value['price'] * $value['number'];  ?>
+                                            <tr>
+                                                <td class="p-name text-left">
+                                                    <div class="cart-img">
+                                                        <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>"><img src="<?php echo e($value['img']); ?>" alt="<?php echo e($value['title']); ?>"></a>
+                                                    </div>
+                                                    <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a>
+                                                    <p><?php echo e($value['short_desc']); ?></p>
+                                                </td>
+                                                <td class="p-amount"><span class="amount"><?php echo e($value['price']); ?></span></td>
+                                                <td class="p-quantity"><input type="text" name="number[<?php echo e($value['productID']); ?>]" value="<?php echo e($value['number']); ?>"></td>
+                                                <td class="p-total"><?php echo e($value['price'] * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($value['productID']); ?>"><i class="fa fa-trash"></i></a></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                   <div class="col-sm-6 pt-50">
+                        <div class="cart-coupn-leftside">
+                            <div class="section-title">
+                                <h4 class="text-uppercase pb-15">Mã giảm giá</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="cpn-code">
+                                        <input type="text" placeholder="Code" name="discountCode">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="shipping-info">
+                                        <button name="btnAddCode">Kiểm tra mã</button> <br><br>
+                                        <?php if(!empty($discountPrice)): ?>
+                                         <button name="btnRemoveCode">Hủy mã</button><br><br>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php if(!empty($discountPrice)): ?>
+                                <p class="txt_susscess">Bạn đã áp dụng mã <?php echo e($discountPrice->code); ?> </p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cart-coupon-rightside pt-50">
+                            <div class="section-title">
+                                <h4 class="text-uppercase pb-15">Tổng tiền</h4>
+                            </div>
+                            <div class="amount-table table-responsive">
+                                <table>
+                                    <tbody>
+                                        <tr class="s-total">
+                                            <td>Tổng giá trước khi giảm <span><?php echo e($totalPrice); ?></span></td>
+                                        </tr>
+                                        <?php if(!empty($discountPrice)): ?>
+                                        <tr class="s-total">
+                                            <td>Giảm giá <span>
+                                                <?php if($discountPrice->type_discount): ?>
+                                                    <?php echo e($discountPrice->discount_price); ?>
+
+                                                <?php else: ?>
+                                                    <?php echo e($discountPrice->percent); ?>%
+                                                <?php endif; ?>
+                                            </span></td>
+                                        </tr>
+                                        <?php endif; ?>
+                                        <tr class="g-total">
+                                            <td>Thành tiền<span class="grand">
+                                            <?php if(!empty($discountPrice)): ?>
+                                                <?php if($discountPrice->type_discount): ?>
+                                                    <?php  $totalPrice = $totalPrice - $discountPrice->discount_price  ?>
+                                                <?php else: ?>
+                                                    <?php  $totalPrice -= ($totalPrice * $discountPrice->percent)/100  ?>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php echo e($totalPrice); ?></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="check-update pull-right">
+                                <button type="submit" class="mt-25 mr-25 section-button">Cập nhật</button>
+                                <a href="/don-hang" class="checkout mt-25 section-button">Xác nhận</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <?php endif; ?>
     </div>
 </div>
 <!-- cart end -->

@@ -10,6 +10,7 @@ use App\Models\ProductType;
 use App\Models\ProductCategory;
 use App\Models\Tag;
 use App\Models\Brand;
+use App\Models\DiscountCode;
 use App\Helpers\Utils;
 use MetaTag;
 use Session;
@@ -43,7 +44,6 @@ class ProductController extends Controller {
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
-
         $title = "Danh sách sản phẩm";
         self::leftMenu($request);
 
@@ -85,7 +85,7 @@ class ProductController extends Controller {
             ->with("listBrand", $listBrand);
     }
 
-    public function cart()
+    public function cart(Request $request)
     {
         MetaTag::set('title', 'Giỏ hàng');
         MetaTag::set('description', 'Giỏ hàng');
@@ -93,7 +93,44 @@ class ProductController extends Controller {
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
 
-        return view("user.product.cart");
+        $sCart  = Session::get('sCart');
+        $params = $request->all();
+        $discountPrice = null;
+
+        if(Session::has('discountPriceCode')) {
+            $discountPriceCode = Session::get('discountPriceCode');
+            $discountPrice   = DiscountCode::where("code", $discountPriceCode)->get()->first();
+        }
+
+        if($request->isMethod('post')) {
+            foreach ($sCart as $key => $value) {
+                if(isset($params['number'][$value['productID']])) {
+                    $number = (int) $params['number'][$value['productID']];
+                    if($number < 0) unset($sCart[$key]);
+                    else $sCart[$key]['number'] = $number;
+                }
+            }
+
+            if(isset($params['btnRemoveCode'])) {
+                $discountPrice = null;
+                Session::forget('discountPriceCode');
+            } else {
+                if(!empty($params['discountCode'])) {
+                    $discountPrice = DiscountCode::where("code", $params['discountCode'])->get()->first();
+                    if(!empty($discountPrice)) {
+                        Session::put('discountPriceCode', $discountPrice->code);
+                    } else {
+                        Session::forget('discountPriceCode');
+                    }
+                }
+            }
+
+            Session::put('sCart', $sCart);
+        }
+        return view("user.product.cart")
+            ->with("sCart", $sCart)
+            ->with("discountPrice", $discountPrice);
+
     }
 
     public function checkout()
@@ -104,7 +141,16 @@ class ProductController extends Controller {
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
 
-        return view("user.product.checkout");
+        $sCart  = Session::get('sCart');
+        $discountPrice = null;
+        if(Session::has('discountPriceCode')) {
+            $discountPriceCode = Session::get('discountPriceCode');
+            $discountPrice   = DiscountCode::where("code", $discountPriceCode)->get()->first();
+        }
+
+        return view("user.product.checkout")
+            ->with("sCart", $sCart)
+            ->with("discountPrice", $discountPrice);
     }
 
     public function orderCart()

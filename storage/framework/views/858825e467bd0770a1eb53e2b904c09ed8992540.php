@@ -6,15 +6,15 @@
             <div class="col-xs-12">
                 <div class="banner-text">
                     <div class="banner-title">
-                        <h2 class="text-uppercase">Check Out</h2>
+                        <h2 class="text-uppercase">Xác nhận đơn hàng</h2>
                     </div>
-                    <div class="breadcrumbs">
+                    <?php /* <div class="breadcrumbs">
                         <ul>
                             <li class="text-capitalize"><a href="index.html">Home</a> ></li>
                             <li class="text-capitalize"><a href="shop.html">shop</a> ></li>
                             <li class="text-capitalize">checkout</li>
                         </ul>
-                    </div>
+                    </div> */ ?>
                 </div>
             </div>
         </div>
@@ -28,9 +28,9 @@
             <div class="col-md-12">
                 <div class="cart-tab-menu section-tab-menu pb-50 text-center">
                     <ul>
-                        <li class="text-uppercase"><a href="cart.html">Shopping Cart</a></li>
-                        <li class="text-uppercase active"><a href="checkout.html">Checkout</a></li>
-                        <li class="text-uppercase"><a href="#">Order Complete</a></li>
+                        <li class="text-uppercase active"><a href="/gio-hang">Giỏ hàng</a></li>
+                        <li class="text-uppercase"><a href="/don-hang">Xác nhận</a></li>
+                        <li class="text-uppercase"><a href="javascript:void(0);">Hoàn tất</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,53 +39,37 @@
             <div class="col-md-6">
                 <div class="billing-detail">
                     <div class="section-title">
-                        <h4 class="text-uppercase mb-35">Billing detail</h4>
+                        <h4 class="text-uppercase mb-35">Thông tin cần điền</h4>
                     </div>
                     <form action="#">
-                        <p>Country <span>*</span><br>
-                        <select>
-                            <option value="">Bangladesh</option>
-                            <option value="">United State</option>
-                        </select>
+                        <p>Họ và tên <span>*</span><br>
+                            <input type="text" placeholder="Họ và tên" name="fullName">
                         </p>
                         <div class="row">
                             <p class="col-sm-6 col-xs-12">
-                                First Name <span>*</span><br>
-                                <input type="text" placeholder="First name">
+                                Email <span>*</span><br>
+                                <input type="email" placeholder="Email" name="email">
                             </p>
                             <p class="col-sm-6 col-xs-12">
-                                Last Name <span>*</span><br>
-                                <input type="text" placeholder="Last name">
+                                Số điện thoại <span>*</span><br>
+                                <input type="text" placeholder="Số điện thoại" name="phone">
                             </p>
                         </div>
-                        <p>Company Name <span>*</span><br>
-                        <input type="text" placeholder="Company name">
+                        <p id="address">Địa chỉ nhận <span>*</span><br>
+                        <input type="text" placeholder="Địa chỉ" name="address">
+                        <input type="text" placeholder="Địa chỉ" name="address2">
+                        </p>
+                        <p>Thành phố <span>*</span><br>
+                        <input type="text" placeholder="Thành phố" name="city">
                         </p>
                         <div class="row">
                             <p class="col-sm-6 col-xs-12">
-                                Email Address <span>*</span><br>
-                                <input type="text" placeholder="Email address">
+                                Phường/Xã <br>
+                                <input type="text" placeholder="Phường/Xã" name="stage">
                             </p>
                             <p class="col-sm-6 col-xs-12">
-                                Phone No. <span>*</span><br>
-                                <input type="text" placeholder="Phone no.">
-                            </p>
-                        </div>
-                        <p id="address">Address <span>*</span><br>
-                        <input type="text" placeholder="Address line 1">
-                        <input type="text" placeholder="Address line 2">
-                        </p>
-                        <p>Town/City <span>*</span><br>
-                        <input type="text" placeholder="Town/City">
-                        </p>
-                        <div class="row">
-                            <p class="col-sm-6 col-xs-12">
-                                State <span>*</span><br>
-                                <input type="text" placeholder="State">
-                            </p>
-                            <p class="col-sm-6 col-xs-12">
-                                Zip Code <span>*</span><br>
-                                <input type="text" placeholder="Zip Code">
+                                Quận <span>*</span><br>
+                                <input type="text" placeholder="Quận" name="district">
                             </p>
                         </div>
                         <div class="account-address">

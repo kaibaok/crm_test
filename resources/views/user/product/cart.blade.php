@@ -30,76 +30,120 @@
                 <div class="cart-tab-menu section-tab-menu pb-50 text-center">
                     <ul>
                         <li class="text-uppercase active"><a href="/gio-hang">Giỏ hàng</a></li>
-                        <li class="text-uppercase"><a href="checkout.html">Checkout</a></li>
-                        <li class="text-uppercase"><a href="#">Order Complete</a></li>
+                        <li class="text-uppercase"><a href="/don-hang">Xác nhận</a></li>
+                        <li class="text-uppercase"><a href="javascript:void(0);">Hoàn tất</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <form action="#">
-                    <div class="cart-table table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="p-name">Sản phẩm</th>
-                                    <th class="p-amount">Giá</th>
-                                    <th class="p-quantity">Số lượng</th>
-                                    <th class="p-total">Tổng tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody class="pt-30">
-                                @if (!empty($sCart))
-                                    @foreach ($sCart as $key => $value)
-                                        <tr>
-                                            <td class="p-name text-left">
-                                                <div class="cart-img">
-                                                    <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}"><img src="{{$value['img']}}" alt="{{$value['title']}}"></a>
-                                                </div>
-                                                <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}">{{$value['title']}}</a>
-                                                <p>{{$value['short_desc']}}</p>
-                                            </td>
-                                            <td class="p-amount"><span class="amount">{{$value['price']}}</span></td>
-                                            <td class="p-quantity"><input type="text" value="{{$value['number']}}"></td>
-                                            <td class="p-total">{{$value['price'] * $value['number']}} <a href="/xoa-gio-hang/{{$value['productID']}}"><i class="fa fa-trash"></i></a></td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="cart-coupon-rightside pt-50">
-                    <div class="section-title">
-                        <h4 class="text-uppercase pb-15">cart total</h4>
-                    </div>
-                    <div class="amount-table table-responsive">
-                        <table>
-                            <tbody>
-                                <tr class="s-total">
-                                    <td>Sub Total <span>$760.00</span></td>
-                                </tr>
-                                <tr class="s-total">
-                                    <td>Shipping <span>$0.00</span></td>
-                                </tr>
-                                <tr class="g-total">
-                                    <td>Grand Total<span class="grand">$760.00</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="check-update pull-right">
-                        <a href="#" class="mt-25 mr-25 section-button">Update</a>
-                        <a href="checkout.html" class="checkout mt-25 section-button">Checkout</a>
+        @if (!empty($sCart))
+            @php $totalPrice = 0; @endphp
+            <form action="" method="post">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="cart-table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="p-name">Sản phẩm</th>
+                                        <th class="p-amount">Giá</th>
+                                        <th class="p-quantity">Số lượng</th>
+                                        <th class="p-total">Tổng tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pt-30">
+                                        @foreach ($sCart as $key => $value)
+                                        @php $totalPrice += $value['price'] * $value['number']; @endphp
+                                            <tr>
+                                                <td class="p-name text-left">
+                                                    <div class="cart-img">
+                                                        <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}"><img src="{{$value['img']}}" alt="{{$value['title']}}"></a>
+                                                    </div>
+                                                    <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}">{{$value['title']}}</a>
+                                                    <p>{{$value['short_desc']}}</p>
+                                                </td>
+                                                <td class="p-amount"><span class="amount">{{$value['price']}}</span></td>
+                                                <td class="p-quantity"><input type="text" name="number[{{$value['productID']}}]" value="{{$value['number']}}"></td>
+                                                <td class="p-total">{{$value['price'] * $value['number']}} <a href="/xoa-gio-hang/{{$value['productID']}}"><i class="fa fa-trash"></i></a></td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                   <div class="col-sm-6 pt-50">
+                        <div class="cart-coupn-leftside">
+                            <div class="section-title">
+                                <h4 class="text-uppercase pb-15">Mã giảm giá</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="cpn-code">
+                                        <input type="text" placeholder="Code" name="discountCode">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="shipping-info">
+                                        <button name="btnAddCode">Kiểm tra mã</button> <br><br>
+                                        @if (!empty($discountPrice))
+                                         <button name="btnRemoveCode">Hủy mã</button><br><br>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            @if (!empty($discountPrice))
+                                <p class="txt_susscess">Bạn đã áp dụng mã {{$discountPrice->code}} </p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="cart-coupon-rightside pt-50">
+                            <div class="section-title">
+                                <h4 class="text-uppercase pb-15">Tổng tiền</h4>
+                            </div>
+                            <div class="amount-table table-responsive">
+                                <table>
+                                    <tbody>
+                                        <tr class="s-total">
+                                            <td>Tổng giá trước khi giảm <span>{{$totalPrice}}</span></td>
+                                        </tr>
+                                        @if (!empty($discountPrice))
+                                        <tr class="s-total">
+                                            <td>Giảm giá <span>
+                                                @if ($discountPrice->type_discount)
+                                                    {{$discountPrice->discount_price}}
+                                                @else
+                                                    {{$discountPrice->percent}}%
+                                                @endif
+                                            </span></td>
+                                        </tr>
+                                        @endif
+                                        <tr class="g-total">
+                                            <td>Thành tiền<span class="grand">
+                                            @if (!empty($discountPrice))
+                                                @if ($discountPrice->type_discount)
+                                                    @php $totalPrice = $totalPrice - $discountPrice->discount_price @endphp
+                                                @else
+                                                    @php $totalPrice -= ($totalPrice * $discountPrice->percent)/100 @endphp
+                                                @endif
+                                            @endif
+                                            {{$totalPrice}}</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="check-update pull-right">
+                                <button type="submit" class="mt-25 mr-25 section-button">Cập nhật</button>
+                                <a href="/don-hang" class="checkout mt-25 section-button">Xác nhận</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        @endif
     </div>
 </div>
 <!-- cart end -->

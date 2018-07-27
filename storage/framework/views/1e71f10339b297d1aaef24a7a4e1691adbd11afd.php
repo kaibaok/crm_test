@@ -71,8 +71,8 @@
                                                     <div class="hover-text">
                                                         <p><?php echo $value->short_desc; ?></p>
                                                         <ul>
-                                                            <li><a href="javascript:void(0);" data-toggle="tooltip" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                            <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                            <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($value->id); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
+                                                            <li><a class="modal-view" href="/pd/<?php echo e($value->id); ?>/<?php echo e($value->seo_link); ?>"><i class="fa fa-eye"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>

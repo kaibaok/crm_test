@@ -1,7 +1,7 @@
 <?php $__env->startSection('middlecontent'); ?>
 <!-- banner start -->
 <div class="banner-area details ptb-110" <?php if(!empty($product->pimg_detail) && file_exists(BASE_IMG."product/".$product->pimg_detail)): ?>
-                    style="background-image: url('<?php echo e(URL_IMG."product/".$product->pimg_detail); ?>')"<?php endif; ?>>
+    style="background-image: url('<?php echo e(URL_IMG."product/".$product->pimg_detail); ?>')"<?php endif; ?>>
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -23,8 +23,8 @@
                 <div class="zoomWrapper clearfix">
                     <div id="img-1" class="zoomWrapper single-zoom pull-right">
                         <a href="#">
-                            <?php if(!empty($product->pimg1) && file_exists(BASE_IMG."product/".$product->pimg1)): ?>
-                                <img id="zoom1" src="<?php echo e(URL_IMG."product/".$product->pimg1); ?>" data-zoom-image="<?php echo e(URL_IMG."product/".$product->pimg1); ?>">
+                            <?php if(!empty($product->pimg_detail) && file_exists(BASE_IMG."product/".$product->pimg_detail)): ?>
+                                <img id="zoom1" src="<?php echo e(URL_IMG."product/".$product->pimg_detail); ?>" data-zoom-image="<?php echo e(URL_IMG."product/".$product->pimg_detail); ?>">
                             <?php endif; ?>
                         </a>
                     </div>

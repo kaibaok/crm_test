@@ -13,7 +13,10 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'userid', 'name','email', 'address', 'phone', 'registered_date', 'ship_date', 'paid', 'note','type',
+        'id', 'userid', 'full_name','email',
+         'address1', 'address2', 'phone', 'stage',
+          'district', 'city', 'ship_date','paid',
+          'note','code','created_at','updated_at'
     ];
 
     public static function addCart($data){
@@ -21,22 +24,20 @@ class Cart extends Model
         if(isset($data)){
             try{
                 $status = Cart::create(array(
-                    "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
-                    "code_id"    => (int)$data['code_id'],
-                    "title"      => htmlspecialchars(trim($data["title"])),
-                    "desc"       => htmlspecialchars(trim($data["desc"])),
-                    "price"      => (int)$data["price"],
-                    "type"       => (int)$data["type"],
-                    "numbers"    => (int)$data['numbers'],
-                    "limit_at"   => htmlspecialchars(trim($data["limit_at"])),
-                    "status"     => (int)$data["status"],
-                    "img_list"   => $data['img_list'],
-                    "img_detail" => $data['img_detail'],
-                    "img1"       => $data['img1'],
-                    "img2"       => $data['img2'],
-                    "img3"       => $data['img3'],
-                    "img4"       => $data['img4'],
-                    "img5"       => $data['img5'],
+                   "userid"     => $data['userid'],
+                   "full_name"  => $data['full_name'],
+                   "email"      => $data['email'],
+                   "phone"      => $data['phone'],
+                   "address1"   => $data['address1'],
+                   "address2"   => $data['address2'],
+                   "city"       => $data['city'],
+                   "stage"      => $data['stage'],
+                   "district"   => $data['district'],
+                   "ship_date"  => "0000-00-00",
+                   "paid"       => 0,
+                   "note"       => $data['note'],
+                   "code"       => $data['code'],
+                   "created_at" => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
                 return $status;
@@ -49,22 +50,18 @@ class Cart extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-                "id_cate"    => (int)htmlspecialchars(trim($data["id_cate"])),
-                "code_id"    => (int)$data['code_id'],
-                "title"      => htmlspecialchars(trim($data["title"])),
-                "desc"       => htmlspecialchars(trim($data["desc"])),
-                "price"      => (int)$data["price"],
-                "type"       => (int)$data["type"],
-                "numbers"    => (int)$data['numbers'],
-                "limit_at"   => htmlspecialchars(trim($data["limit_at"])),
-                "status"     => (int)$data["status"],
-                "img_list"   => $data['img_list'],
-                "img_detail" => $data['img_detail'],
-                "img1"       => $data['img1'],
-                "img2"       => $data['img2'],
-                "img3"       => $data['img3'],
-                "img4"       => $data['img4'],
-                "img5"       => $data['img5'],
+                "full_name"  => $data['full_name'],
+                "email"      => $data['email'],
+                "phone"      => $data['phone'],
+                "address1"   => $data['address1'],
+                "address2"   => $data['address2'],
+                "city"       => $data['city'],
+                "stage"      => $data['stage'],
+                "district"   => $data['district'],
+                "ship_date"  => $data['ship_date'],
+                "paid"       => $data['paid'],
+                "note"       => $data['note'],
+                "code"       => $data['code'],
             );
             return Cart::where('id',(int)$data['id'])->update($arr_update);
         }

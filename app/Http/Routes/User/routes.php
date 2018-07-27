@@ -16,7 +16,7 @@ Route::get('/nd/{id}/{seo_link}', 'User\NewsController@detail')->where(["id" => 
 Route::any('/them-san-pham', 'User\ProductController@addCart');
 Route::any('/gio-hang', 'User\ProductController@cart');
 Route::any('/don-hang', 'User\ProductController@checkout');
-Route::any('/hoan-tat-don-hang', 'User\ProductController@orderCart');
+Route::get('/hoan-tat-don-hang', 'User\ProductController@orderCart');
 
 
 Route::any('/dang-nhap', 'User\UserController@login');

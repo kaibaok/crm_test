@@ -85,7 +85,7 @@
                                                                     <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                     <ul>
                                                                         <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}" ><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -119,7 +119,7 @@
                                                                             <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                             <ul>
                                                                                 <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                                <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -266,7 +266,7 @@
                                                                     <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                     <ul>
                                                                         <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}" ><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -300,7 +300,7 @@
                                                                         <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                         <ul>
                                                                             <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                            <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                            <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -481,7 +481,7 @@
                                                                     <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                     <ul>
                                                                         <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -515,7 +515,7 @@
                                                                             <div class="hidden-md">{{$item['short_desc']}}</div>
                                                                             <ul>
                                                                                 <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                                <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>

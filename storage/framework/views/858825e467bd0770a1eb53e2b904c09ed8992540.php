@@ -28,201 +28,133 @@
             <div class="col-md-12">
                 <div class="cart-tab-menu section-tab-menu pb-50 text-center">
                     <ul>
-                        <li class="text-uppercase active"><a href="/gio-hang">Giỏ hàng</a></li>
-                        <li class="text-uppercase"><a href="/don-hang">Xác nhận</a></li>
+                        <li class="text-uppercase"><a href="/gio-hang">Giỏ hàng</a></li>
+                        <li class="text-uppercase active"><a href="/don-hang">Xác nhận</a></li>
                         <li class="text-uppercase"><a href="javascript:void(0);">Hoàn tất</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="billing-detail">
-                    <div class="section-title">
-                        <h4 class="text-uppercase mb-35">Thông tin cần điền</h4>
-                    </div>
-                    <form action="#">
-                        <p>Họ và tên <span>*</span><br>
-                            <input type="text" placeholder="Họ và tên" name="fullName">
-                        </p>
-                        <div class="row">
-                            <p class="col-sm-6 col-xs-12">
-                                Email <span>*</span><br>
-                                <input type="email" placeholder="Email" name="email">
-                            </p>
-                            <p class="col-sm-6 col-xs-12">
-                                Số điện thoại <span>*</span><br>
-                                <input type="text" placeholder="Số điện thoại" name="phone">
-                            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="billing-detail">
+                        <div class="section-title">
+                            <h4 class="text-uppercase mb-35">Thông tin cần điền</h4>
                         </div>
-                        <p id="address">Địa chỉ nhận <span>*</span><br>
-                        <input type="text" placeholder="Địa chỉ" name="address">
-                        <input type="text" placeholder="Địa chỉ" name="address2">
-                        </p>
-                        <p>Thành phố <span>*</span><br>
-                        <input type="text" placeholder="Thành phố" name="city">
-                        </p>
-                        <div class="row">
-                            <p class="col-sm-6 col-xs-12">
-                                Phường/Xã <br>
-                                <input type="text" placeholder="Phường/Xã" name="stage">
-                            </p>
-                            <p class="col-sm-6 col-xs-12">
-                                Quận <span>*</span><br>
-                                <input type="text" placeholder="Quận" name="district">
-                            </p>
-                        </div>
-                        <div class="account-address">
-                            <label>
-                                <input type="radio" checked="checked" value="old-address" name="shipping-address">Ship to this address
-                            </label>
-                            <label>
-                                <input type="radio" id="add-new-address" value="new-address" name="shipping-address">Ship to different address
-                            </label>
-                        </div>
-                        <div id="add-new-address-info">
-                            <div class="customer-name">
-                                <div class="first-name">
-                                    <p>First Name<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="last-name">
-                                    <p>Last Name<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                            </div>
-                            <div class="customer-info">
-                                <div class="company-name">
-                                    <p>Company</p>
-                                    <input type="text">
-                                </div>
-                                <div class="email-address">
-                                    <p>Email Adress<span>*</span></p>
-                                    <input type="email" required="">
-                                </div>
-                            </div>
-                            <p>Address<span>*</span></p>
-                            <input type="text" required="">
-                            <input type="text">
-                            <div class="city-country">
-                                <div class="city">
-                                    <p>City<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="state">
-                                    <p>State/Province</p>
-                                    <select class="country">
-                                        <option value="state">Please select region, state or province</option>
-                                        <option value="indo">Bahasa Indonesia</option>
-                                        <option value="melyu">Bahasa Melayu</option>
-                                        <option value="deutsch">Deutsch (Deutschland)</option>
-                                        <option value="austra">English (Australia)</option>
-                                        <option value="canada">English (Canada)</option>
-                                        <option value="india">English (India)</option>
-                                        <option value="ireland">English (Ireland)</option>
-                                        <option value="maktoob">English (Maktoob)</option>
-                                        <option value="malaysia">English (Malaysia)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="city-country">
-                                <div class="city">
-                                    <p>Zip/Postal Code<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="state">
-                                    <p>Country<span>*</span></p>
-                                    <select class="country">
-                                        <option value="AF">Afghanistan</option>
-                                        <option value="AU">Australia</option>
-                                        <option value="BH">Bahrain</option>
-                                        <option value="BD">Bangladesh</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="DK">Denmark</option>
-                                        <option value="EG">Egypt</option>
-                                        <option value="FR">France</option>
-                                        <option value="GB">United Kingdom</option>
-                                        <option value="US" selected="selected">United States</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="customer-info">
-                                <div class="telephone">
-                                    <p>Telephone<span>*</span></p>
-                                    <input type="text" required="">
-                                </div>
-                                <div class="fax">
-                                    <p>Fax</p>
-                                    <input type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="total-cart">
-                    <div class="section-title">
-                        <h4 class="text-uppercase mb-48">Cart total</h4>
-                    </div>
-                    <div class="your-order">
-                        <div class="order-table">
-                            <ul>
-                                <li>
-                                    <h5 class="focus">Product <span>Total</span></h5>
-                                    <p>Eletria ostma    <span> x  02</span><span>$300.00</span></p>
-                                    <p>Celletria ostma  <span> x  01</span><span>$120.00</span></p>
-                                    <p>Pelletria ostma  <span> x  02</span><span>$200.00</span></p>
-                                </li>
-                                <li>
-                                    <h5>Sub total <span>$620.00</span></h5>
-                                </li>
-                                <li>
-                                    <h5>Shipping <span>$0.00</span></h5>
-                                </li>
-                                <li class="order-total-purple">
-                                    <h5 class="focus">Grand Total <span>$620.00</span></h5>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="section-title mt-50 mb-25">
-                        <h4 class="text-uppercase">Payment Method</h4>
-                    </div>
-                    <div class="your-order">
-                        <div class="order-table">
-                            <ul>
-                                <li>
-                                    <label class="checkbox-title">
-                                        <input id="transfer" value="bank" name="payment" type="radio">Direct bank tranfer
+                        <form action="" method="post">
+                            <?php echo e(csrf_field()); ?>
 
-                                    </label>
-                                    <p id="transfer-info">Make your payment directly into our bank account. Please use your order ID as the payment reference. Your order won’t be shippided until the funds have cleared in our account.</p>
-                                </li>
-                                <li>
-                                    <label class="checkbox-title">
-                                        <input id="payment" value="check" name="payment" type="radio">Cheque Payment
-                                    </label>
-                                    <p id="payment-info">Make your payment directly into our bank account. Please use your order ID as the payment reference. Your order won’t be shippided until the funds have cleared in our account.</p>
-                                </li>
-                                <li>
-                                    <label class="checkbox-title">
-                                        <input id="paypal" value="paypal" name="payment" type="radio">Paypal
-                                    </label>
-                                    <p id="paypal-info">Make your payment directly into our bank account. Please use your order ID as the payment reference. Your order won’t be shippided until the funds have cleared in our account.</p>
-                                </li>
-                                <li>
-                                    <label class="checkbox-title red">
-                                        <input type="radio">I’ve read &amp; Accept the terms &amp; Conditions.
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
+                            <p>Họ và tên <span>*</span><br>
+                                <input type="text" placeholder="Họ và tên" name="full_name" value="<?php echo e(!empty($info['full_name']) ? $info['full_name'] : ''); ?>">
+                                <?php if(isset($errors['full_name'])): ?>
+                                <span class="txt_error"><?php echo e($errors['full_name']); ?></span>
+                                <?php endif; ?>
+                            </p>
+                            <div class="row">
+                                <p class="col-sm-6 col-xs-12">
+                                    Email <span>*</span><br>
+                                    <input type="email" placeholder="Email" name="email" value="<?php echo e(!empty($info['email']) ? $info['email'] : ''); ?>">
+                                    <?php if(isset($errors['email'])): ?>
+                                    <span class="txt_error"><?php echo e($errors['email']); ?></span>
+                                    <?php endif; ?>
+                                </p>
+                                <p class="col-sm-6 col-xs-12">
+                                    Số điện thoại <span>*</span><br>
+                                    <input type="text" placeholder="Số điện thoại" name="phone" value="<?php echo e(!empty($info['phone']) ? $info['phone'] : ''); ?>">
+                                    <?php if(isset($errors['phone'])): ?>
+                                    <span class="txt_error"><?php echo e($errors['phone']); ?></span>
+                                    <?php endif; ?>
+                                </p>
+                            </div>
+                            <p id="address">Địa chỉ nhận <span>*</span><br>
+                            <input type="text" placeholder="Địa chỉ 1" name="address1" value="<?php echo e(!empty($info['address1']) ? $info['address1'] : ''); ?>">
+                            <input type="text" placeholder="Địa chỉ 2" name="address2" value="<?php echo e(!empty($info['address2']) ? $info['address2'] : ''); ?>">
+                            <?php if(isset($errors['address'])): ?>
+                            <span class="txt_error"><?php echo e($errors['address']); ?></span>
+                            <?php endif; ?>
+                            </p>
+                            <p>Thành phố <span>*</span><br>
+                            <input type="text" placeholder="Thành phố" name="city" value="<?php echo e(!empty($info['city']) ? $info['city'] : ''); ?>">
+                            </p>
+                            <div class="row">
+                                <p class="col-sm-6 col-xs-12">
+                                    Phường/Xã <br>
+                                    <input type="text" placeholder="Phường/Xã" name="stage" value="<?php echo e(!empty($info['stage']) ? $info['stage'] : ''); ?>">
+                                    <?php if(isset($errors['stage'])): ?>
+                                    <span class="txt_error"><?php echo e($errors['stage']); ?></span>
+                                    <?php endif; ?>
+                                </p>
+                                <p class="col-sm-6 col-xs-12">
+                                    Quận <span>*</span><br>
+                                    <input type="text" placeholder="Quận" name="district" value="<?php echo e(!empty($info['district']) ? $info['district'] : ''); ?>">
+                                    <?php if(isset($errors['district'])): ?>
+                                    <span class="txt_error"><?php echo e($errors['district']); ?></span>
+                                    <?php endif; ?>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p class="col-sm-6 col-xs-12">
+                                    Ghi chú <br><br>
+                                    <textarea name="note" id="" cols="30" rows="10"><?php echo e(!empty($info['note']) ? $info['note'] : ''); ?></textarea>
+                                </p>
+                            </div>
+                             <button type="submit" class="section-button">Đặt hàng</button>
+                        </form>
                     </div>
-                    <button class="section-button">Place Order</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="total-cart">
+                        <div class="section-title">
+                            <h4 class="text-uppercase mb-48">Chi tiết giỏ hàng</h4>
+                        </div>
+                        <div class="your-order">
+                            <?php if(!empty($sCart)): ?>
+                            <?php  $totalPrice = 0;  ?>
+                                <div class="order-table">
+                                    <ul>
+                                        <li>
+                                            <h5 class="focus">Sản phẩm <span>Thành tiền</span></h5>
+                                            <?php foreach($sCart as $value): ?>
+                                            <?php  $totalPrice += $value['price'] * $value['number'];  ?>
+                                                <p><?php echo e($value['title']); ?>    <span> x  <?php echo e($value['number']); ?></span><span><?php echo e($value['price'] * $value['number']); ?></span></p>
+                                            <?php endforeach; ?>
+
+                                        </li>
+                                        <li>
+                                            <h5>Tổng giá trước khi giảm <span><?php echo e($totalPrice); ?></span></h5>
+                                        </li>
+                                        <?php if(!empty($discountPrice)): ?>
+                                            <li>
+                                                <h5>Giảm giá <span> <?php if($discountPrice->type_discount): ?>
+                                                        <?php echo e($discountPrice->discount_price); ?>
+
+                                                    <?php else: ?>
+                                                        <?php echo e($discountPrice->percent); ?>%
+                                                    <?php endif; ?>
+                                                    </span>
+                                                </h5>
+                                            </li>
+                                        <?php endif; ?>
+                                        <li class="order-total-purple">
+                                            <h5 class="focus">Thành tiền <span>
+                                                <?php if(!empty($discountPrice)): ?>
+                                                    <?php if($discountPrice->type_discount): ?>
+                                                        <?php  $totalPrice = $totalPrice - $discountPrice->discount_price  ?>
+                                                    <?php else: ?>
+                                                        <?php  $totalPrice -= ($totalPrice * $discountPrice->percent)/100  ?>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                                <?php echo e($totalPrice); ?></span>
+                                            </h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 <!-- checkout end -->

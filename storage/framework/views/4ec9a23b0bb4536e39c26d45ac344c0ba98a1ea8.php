@@ -30,7 +30,7 @@
                     <ul>
                         <li class="text-uppercase active"><a href="/gio-hang">Giỏ hàng</a></li>
                         <li class="text-uppercase"><a href="/don-hang">Xác nhận</a></li>
-                        <li class="text-uppercase"><a href="#">Hoàn tất</a></li>
+                        <li class="text-uppercase"><a href="javascript:void(0);">Hoàn tất</a></li>
                     </ul>
                 </div>
             </div>
@@ -144,6 +144,8 @@
                     </div>
                 </div>
             </form>
+        <?php else: ?>
+             <p class="text-center">Hiện tại bạn chưa đặt sản phẩm nào</p>
         <?php endif; ?>
     </div>
 </div>

@@ -143,6 +143,8 @@
                     </div>
                 </div>
             </form>
+        @else
+             <p class="text-center">Hiện tại bạn chưa đặt sản phẩm nào</p>
         @endif
     </div>
 </div>

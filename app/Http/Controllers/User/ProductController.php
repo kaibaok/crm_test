@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Product;
@@ -11,9 +12,12 @@ use App\Models\ProductCategory;
 use App\Models\Tag;
 use App\Models\Brand;
 use App\Models\DiscountCode;
+use App\Models\Cart;
+use App\Models\CartDetail;
 use App\Helpers\Utils;
 use MetaTag;
 use Session;
+use Mail;
 
 class ProductController extends Controller {
 
@@ -85,6 +89,46 @@ class ProductController extends Controller {
             ->with("listBrand", $listBrand);
     }
 
+    public function addCart(Request $request)
+    {
+        $params = $request->all();
+        if(!empty($params)) {
+            $productID = (int) $params['productID'];
+            $number    = (int) $params['number'];
+            $product   = Product::getProductByConditions(array("product" => $productID))->first();
+            $sCart     = null;
+            if(!empty($product)) {
+                $data = array(
+                    "productID"  => $productID,
+                    "number"     => $number,
+                    "title"      => $product->title,
+                    "seo_link"   => $product->seo_link,
+                    "short_desc" => $product->short_desc,
+                    "price"      => ($product->discount < $product->price) ? $product->discount : $product->price,
+                    "dprice"     => $product->price,
+                    "img"        => URL_IMG."product/".$product->pimg_list
+                );
+
+                if(Session::has('sCart')) {
+                    $sCart  = Session::get('sCart');
+                    $status = false;
+
+                    foreach ($sCart as $key => $value) {
+                        if(isset($value['productID']) && $value['productID'] == $productID) {
+                            $sCart[$key]['number'] += $number;
+                            $status = true;
+                        }
+                    }
+                    if(!$status) $sCart[] = $data;
+                } else {
+                    $sCart = array($data);
+                }
+                Session::put('sCart', $sCart);
+            }
+        }
+        return response()->json($sCart);
+    }
+
     public function cart(Request $request)
     {
         MetaTag::set('title', 'Giỏ hàng');
@@ -133,7 +177,7 @@ class ProductController extends Controller {
 
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
         MetaTag::set('title', 'Xác nhận đơn hàng');
         MetaTag::set('description', 'Xác nhận đơn hàng');
@@ -141,15 +185,81 @@ class ProductController extends Controller {
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
 
+        if(!Session::has('sCart')) return redirect()->guest("/p");
+
         $sCart  = Session::get('sCart');
-        $discountPrice = null;
+        $errors = $info = $discountPrice = null;
         if(Session::has('discountPriceCode')) {
             $discountPriceCode = Session::get('discountPriceCode');
-            $discountPrice   = DiscountCode::where("code", $discountPriceCode)->get()->first();
+            $discountPrice     = DiscountCode::where("code", $discountPriceCode)->get()->first();
+        }
+
+        if($request->isMethod('post')) {
+            $info = $request->all();
+            if(empty($info['full_name'])) $errors['full_name'] = "Vui lòng kiểm tra họ tên";
+            if(!empty($info['email']) && !filter_var($info['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors['email']       = "Vui lòng kiểm tra format email";
+            }
+            if(empty($info['phone'])) $errors['phone']       = "Vui lòng kiểm tra số điện thoại";
+            if(empty($info['address1'])) $errors['address']  = "Vui lòng kiểm tra địa chỉ";
+            if(empty($info['city'])) $errors['city']         = "Vui lòng kiểm tra thành phố";
+            if(empty($info['stage'])) $errors['stage']       = "Vui lòng kiểm tra phường/xã";
+            if(empty($info['district'])) $errors['district'] = "Vui lòng kiểm tra quận";
+            if(empty($errors)) {
+                // luu data
+                $info['code'] = $info['userid'] = 0;
+                if (Auth::check()) {
+                    $user   = Auth::user();
+                    $info['userid'] = $user->id;
+                }
+
+                if(Session::has('discountPriceCode')) {
+                    $discountPriceCode = Session::get('discountPriceCode');
+                    $info['code']      = $discountPriceCode;
+                }
+
+                $status = Cart::addCart($info);
+                if($status) {
+                    $cartID = $status->id;
+                    foreach ($sCart as $key => $value) {
+                        $data  = array(
+                            "product_id" => $value['productID'],
+                            "cart_id"    => $cartID,
+                            "name"       => $value['title'],
+                            "number"     => $value['number'],
+                            "price"      => $value['price'],
+                            "dprice"     => $value['dprice'],
+                        );
+                        CartDetail::addCartDetail($data);
+                    }
+                    //send email
+
+                    // $send = Mail::send('mails.cartmail',
+                    //     array(
+                    //         'name'=> "Kai",
+                    //         'email'=> "tamvo@vinaresearch.net",
+                    //         'content'=> "content asdasd"
+                    //     ),
+                    //     function($message){
+                    //         $message->to('tamvo@vinaresearch.net', 'Visitor')->subject('Visitor Feedback!');
+                    // });
+
+                    // dd($send);
+
+                    Session::forget('discountPriceCode');
+                    Session::forget('sCart');
+                    // Session::flash('flash_message', 'Send message successfully!');
+
+                }
+                // hoan tat gio hang
+                return redirect()->guest("/hoan-tat-don-hang");
+            }
         }
 
         return view("user.product.checkout")
             ->with("sCart", $sCart)
+            ->with("info", $info)
+            ->with("errors", $errors)
             ->with("discountPrice", $discountPrice);
     }
 
@@ -160,47 +270,8 @@ class ProductController extends Controller {
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
-
         return view("user.product.orderCart");
     }
 
-    public function addCart(Request $request)
-    {
-        $params = $request->all();
-        if(!empty($params)) {
-            $productID = (int) $params['productID'];
-            $number    = (int) $params['number'];
-            $product   = Product::getProductByConditions(array("product" => $productID))->first();
-            $sCart     = null;
-            if(!empty($product)) {
-                $data = array(
-                    "productID"  => $productID,
-                    "number"     => $number,
-                    "title"      => $product->title,
-                    "seo_link"   => $product->seo_link,
-                    "short_desc" => $product->short_desc,
-                    "price"      => ($product->discount) ? $product->discount : $product->price,
-                    "img"        => URL_IMG."product/".$product->pimg_list
-                );
 
-                if(Session::has('sCart')) {
-                    $sCart  = Session::get('sCart');
-                    $status = false;
-
-                    foreach ($sCart as $key => $value) {
-                        if(isset($value['productID']) && $value['productID'] == $productID) {
-                            $sCart[$key]['number'] += $number;
-                            $status = true;
-                        }
-                    }
-
-                    if(!$status) $sCart[] = $data;
-                } else {
-                    $sCart = array($data);
-                }
-                Session::put('sCart', $sCart);
-            }
-        }
-        return response()->json($sCart);
-    }
 }

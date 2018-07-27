@@ -24,8 +24,8 @@
                 <div class="zoomWrapper clearfix">
                     <div id="img-1" class="zoomWrapper single-zoom pull-right">
                         <a href="#">
-                            @if (!empty($product->pimg1) && file_exists(BASE_IMG."product/".$product->pimg1))
-                                <img id="zoom1" src="{{URL_IMG."product/".$product->pimg1}}" data-zoom-image="{{URL_IMG."product/".$product->pimg1}}">
+                            @if (!empty($product->pimg_detail) && file_exists(BASE_IMG."product/".$product->pimg_detail))
+                                <img id="zoom1" src="{{URL_IMG."product/".$product->pimg_detail}}" data-zoom-image="{{URL_IMG."product/".$product->pimg_detail}}">
                             @endif
                         </a>
                     </div>

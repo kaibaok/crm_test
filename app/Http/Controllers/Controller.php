@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
 use App\Models\Menu;
 use App\Models\Brand;
+use App\Models\Product;
 use MetaTag;
 use Session;
 
@@ -52,7 +53,7 @@ class Controller extends BaseController
             if($user){
                 if( $user->permission < 1) {
                     Auth::logout();
-                    Redirect::to('/admin/login')->send();
+                    Redirect::to('/')->send();
                 }
                 // Redirect::to('403')->send();
             } else {
@@ -66,6 +67,7 @@ class Controller extends BaseController
             $arrSP           = json_decode($listMenu->list_sp,true);
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
             $sCart           = Session::get('sCart');
+            $sCart           = $this->fixCart($sCart);
 
             MetaTag::set('title', 'This is a detail page');
             MetaTag::set('description', 'All about this detail page');
@@ -79,6 +81,25 @@ class Controller extends BaseController
             View::share('listMenuSP', $arrSP);
             View::share('listBrandLayout', $listBrandLayout);
         }
+    }
+
+    public function fixCart($sCart)
+    {
+        if(!empty($sCart)) {
+            foreach ($sCart as $key => $value) {
+                $product = Product::getProductByConditions(array("product" => $value['productID']))->first();
+                if($product) {
+                    $sCart[$key]['title']      = $product->title;
+                    $sCart[$key]['seo_link']   = $product->seo_link;
+                    $sCart[$key]['short_desc'] = $product->short_desc;
+                    $sCart[$key]['price']      = ($product->discount < $product->price) ? $product->discount : $product->price;
+                    $sCart[$key]['dprice']     = $product->price;
+                    $sCart[$key]['img']        =  URL_IMG."product/".$product->pimg_list;
+                }
+            }
+            Session::put('sCart', $sCart);
+        }
+        return $sCart;
     }
 }
 

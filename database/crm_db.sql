@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2018 at 12:31 PM
+-- Generation Time: Jul 27, 2018 at 12:45 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -57,25 +57,29 @@ INSERT INTO `brand` (`id`, `status`, `title`, `seo_link`, `bimg_detail`, `update
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `userid` int(11) NOT NULL DEFAULT '0',
+  `full_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8_unicode_ci NOT NULL,
-  `phone` int(11) NOT NULL,
-  `registered_date` datetime NOT NULL,
+  `address1` text COLLATE utf8_unicode_ci NOT NULL,
+  `address2` text COLLATE utf8_unicode_ci,
+  `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `stage` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `district` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `ship_date` date NOT NULL,
-  `paid` tinyint(4) NOT NULL DEFAULT '1',
-  `type` int(11) NOT NULL,
-  `note` text COLLATE utf8_unicode_ci NOT NULL
+  `paid` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 chua tra 1 giao hang 2 hoan tat',
+  `note` text COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `userid`, `name`, `email`, `address`, `phone`, `registered_date`, `ship_date`, `paid`, `type`, `note`) VALUES
-(1, 7, 'tam hoai', 'asđá', '22/3 ha noi', 937472, '2017-02-01 09:00:00', '2017-02-25', 1, 1, 'luu y note'),
-(2, 78, 'tam hoai123123', NULL, '22/3 ha noi', 937474556, '2017-02-01 09:00:00', '2017-02-25', 2, 2, 'luu y note');
+INSERT INTO `cart` (`id`, `userid`, `full_name`, `email`, `address1`, `address2`, `phone`, `stage`, `district`, `city`, `ship_date`, `paid`, `note`, `code`, `created_at`, `updated_at`) VALUES
+(1, 7, 'asdasd asdas', 'kyra0590@gmail.com', 'asdas asd asd', '', '0937472503', 'nha be', 'nha be', 'ho chi minh', '0000-00-00', 0, 'asdasda\r\nsdasd', '123456', '2018-07-27 10:09:48', '2018-07-27 03:09:48');
 
 -- --------------------------------------------------------
 
@@ -85,20 +89,23 @@ INSERT INTO `cart` (`id`, `userid`, `name`, `email`, `address`, `phone`, `regist
 
 CREATE TABLE `cart_detail` (
   `id` int(11) NOT NULL,
-  `cartid` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'tránh mất dữ liệu khi không tìm thấy id',
   `price` int(11) NOT NULL,
-  `amount` int(11) NOT NULL
+  `dprice` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `cart_detail`
 --
 
-INSERT INTO `cart_detail` (`id`, `cartid`, `id_product`, `name`, `price`, `amount`) VALUES
-(1, 1, 73, 'SAN PHAM 1', 10, 12),
-(2, 1, 74, 'SAN PHAM 2', 10000, 2);
+INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `created_at`, `updated_at`) VALUES
+(1, 1, 81, 'san pham b', 50, 100, 12, '2018-07-27 10:09:48', '2018-07-27 03:09:48'),
+(2, 1, 80, 'san pham a', 100, 200, 14, '2018-07-27 10:09:48', '2018-07-27 03:09:48');
 
 -- --------------------------------------------------------
 
@@ -399,8 +406,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`) VALUES
-(80, 1, '1530088642', 'san pham a', 'aa', '', 1, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 0, 0, 0, 0, 0, 0, 0),
-(81, 2, '1532484050', 'san pham b', ' mo ta ngan gon xuc tich\r\n                                                            \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-24 19:00:59', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 3, 0, 0, 1, 0, 1, 1, 0);
+(80, 1, '1530088642', 'san pham a', 'aa', '', 200, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 100, 0, 0, 0, 0, 0, 0),
+(81, 2, '1532484050', 'san pham b', ' mo ta ngan gon xuc tich\r\n                                                            \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-24 19:00:59', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 3, 50, 0, 1, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -541,7 +548,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `gender`, `created_at`, `updated_at`, `remember_token`, `permission`, `phone`, `address`) VALUES
-(7, 'tam', 'kyra0590@gmail.com', '$2y$10$jLvBQdYmkVgz0aXAe0rxE.kqmy9nv.GgXBc3YlqO8FAlrlaxpjDRq', 0, '2016-12-14 01:26:26', '2018-07-23 03:05:53', 'fPYe7p7hYDDTPlz5MJWBOvWgFJieRDWHI8rTHx8R7SiiXjowvvaqKDOGjqnH', '2', NULL, NULL);
+(7, 'kyra0590', 'kyra0590@gmail.com', '$2y$10$jLvBQdYmkVgz0aXAe0rxE.kqmy9nv.GgXBc3YlqO8FAlrlaxpjDRq', 0, '2016-12-14 01:26:26', '2018-07-23 03:05:53', 'fPYe7p7hYDDTPlz5MJWBOvWgFJieRDWHI8rTHx8R7SiiXjowvvaqKDOGjqnH', '2', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -681,7 +688,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
@@ -777,7 +784,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

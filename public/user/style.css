@@ -3687,11 +3687,12 @@ textarea {
 }
 .banner-area.shop-left.product{background: #000}
 
-p.txt_error{
+.txt_error{
+    font-size: 13px !important;
     text-align: left;
-    color: red;
+    color: red !important;
 }
 
-p.txt_susscess{
+.txt_susscess{
     color: green;
 }

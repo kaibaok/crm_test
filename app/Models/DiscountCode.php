@@ -58,7 +58,6 @@ class DiscountCode extends Model
             $arr_update  = array(
                 'status'     => (int) $data['status'],
                 'code'       => $data['code'],
-                "created_at" => date("Y-m-d H:i:s"),
                 "end_date"   => $data['end_date'],
                 'number'     => (int) $data['number'],
             );

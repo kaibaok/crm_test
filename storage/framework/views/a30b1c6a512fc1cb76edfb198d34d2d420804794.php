@@ -107,23 +107,22 @@
                                                     <?php  $totalPrice = 0;  ?>
                                                     <?php if(!empty($sCart)): ?>
                                                         <?php foreach($sCart as $value): ?>
-                                                            <?php $totalPrice += ($value['price'] * $value['number']); ?>
                                                             <li class="single-cart-item clearfix">
                                                                 <span class="cart-img">
-                                                                        <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>/"><img style='height:59px' src="<?php echo e($value['img']); ?>" alt=""></a>
+                                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>/"><img style='height:59px' src="<?php echo e($value['img']); ?>" alt=""></a>
                                                                     </span>
                                                                 <span class="cart-info">
-                                                                        <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>/"><?php echo e($value['title']); ?></a>
-                                                                        <span><?php echo e($value['price']); ?> x <?php echo e($value['number']); ?></span>
+                                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>/"><?php echo e($value['title']); ?></a>
+                                                                        <span>Size <?php echo e($value['size']); ?> x <?php echo e($value['number']); ?> </span>
                                                                 </span>
                                                                 <span class="trash-cart">
-                                                                        <a href="/xoa-gio-hang/<?php echo e($value['productID']); ?>"><i class="fa fa-trash-o"></i></a>
+                                                                        <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>/<?php echo e($value['size']); ?>"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                             </li>
                                                         <?php endforeach; ?>
                                                     <?php endif; ?>
                                                     <li>
-                                                        <span class="sub-total-cart text-center">Tổng tiền <span><?php echo e($totalPrice); ?></span>
+                                                        <span class="sub-total-cart text-center">
                                                         <a href="/gio-hang" class="view-cart active">Giỏ hàng</a>
                                                         <a href="/don-hang" class="view-cart">Đơn hàng</a>
                                                         </span>

@@ -67,7 +67,7 @@ class Controller extends BaseController
             $arrSP           = json_decode($listMenu->list_sp,true);
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
             $sCart           = Session::get('sCart');
-            $sCart           = $this->fixCart($sCart);
+            // $sCart           = $this->fixCart($sCart);
 
             MetaTag::set('title', 'This is a detail page');
             MetaTag::set('description', 'All about this detail page');
@@ -85,21 +85,23 @@ class Controller extends BaseController
 
     public function fixCart($sCart)
     {
-        if(!empty($sCart)) {
-            foreach ($sCart as $key => $value) {
-                $product = Product::getProductByConditions(array("product" => $value['productID']))->first();
-                if($product) {
-                    $sCart[$key]['title']      = $product->title;
-                    $sCart[$key]['seo_link']   = $product->seo_link;
-                    $sCart[$key]['short_desc'] = $product->short_desc;
-                    $sCart[$key]['price']      = ($product->discount < $product->price) ? $product->discount : $product->price;
-                    $sCart[$key]['dprice']     = $product->price;
-                    $sCart[$key]['img']        =  URL_IMG."product/".$product->pimg_list;
-                }
-            }
-            Session::put('sCart', $sCart);
-        }
-        return $sCart;
+        // if(!empty($sCart)) {
+        //     foreach ($sCart as $key => $value) {
+        //         $product = Product::getProductByConditions(array("product" => $value['id']))->first();
+        //         if($product) {
+        //             $sCart[$key]['title']      = $product->title;
+        //             $sCart[$key]['seo_link']   = $product->seo_link;
+        //             $sCart[$key]['short_desc'] = $product->short_desc;
+        //             $sCart[$key]['price']      = ($product->discount < $product->price) ? $product->discount : $product->price;
+        //             $sCart[$key]['dprice']     = $product->price;
+        //             $sCart[$key]['img']        =  URL_IMG."product/".$product->pimg_list;
+        //         } else {
+
+                    // }
+        //     }
+        //     Session::put('sCart', $sCart);
+        // }
+        // return $sCart;
     }
 }
 

@@ -61,7 +61,7 @@ class ProductController extends Controller {
             ->with("paginator", $paginator);
     }
 
-    public function detail(Request $request, $id, $seo_link)
+    public function detail($id, $seo_link)
     {
         MetaTag::set('title', 'chi tiết  sản phẩm');
         MetaTag::set('description', 'danh sách sản phẩm');
@@ -71,48 +71,9 @@ class ProductController extends Controller {
 
         $product = Product::getProductByConditions(array("product" => $id))->first();
         if(empty($product)) return redirect()->guest("/p");
-
-        $params = $request->all();
-        if($request->isMethod('post')) {
-            $number  = (int) $params['number'];
-            $size    = strip_tags($params['size']);
-            $product = Product::getProductByConditions(array("product" => $id))->first();
-            $sCart   = null;
-            if(!empty($product)) {
-                $data = array(
-                    "id"         => $id,
-                    "number"     => $number,
-                    "title"      => $product->title,
-                    "seo_link"   => $product->seo_link,
-                    "size"       => $size,
-                    "img"        => URL_IMG."product/".$product->pimg_list
-                );
-
-                if(Session::has('sCart')) {
-                    $sCart  = Session::get('sCart');
-                    $status = false;
-
-                    foreach ($sCart as $key => $value) {
-                        if(isset($value['id']) &&
-                            $value['id'] == $id &&
-                            $value['size'] == $size) {
-                            $sCart[$key]['number'] += $number;
-                            $status = true;
-                        }
-                    }
-                    if(!$status) $sCart[] = $data;
-                } else {
-                    $sCart = array($data);
-                }
-                Session::put('sCart', $sCart);
-            }
-        }
-
-
         return view("user.product.detail")
             ->with("product", $product)
-            ->with("listSize", $this->getOption("listSize"))
-            ->with("id", $id);
+            ->with("listSize", $this->getOption("listSize"));
     }
 
     public function brand(Request $request)
@@ -128,6 +89,46 @@ class ProductController extends Controller {
             ->with("listBrand", $listBrand);
     }
 
+    public function addCart(Request $request)
+    {
+        $params = $request->all();
+        if(!empty($params)) {
+            $productID = (int) $params['productID'];
+            $number    = (int) $params['number'];
+            $product   = Product::getProductByConditions(array("product" => $productID))->first();
+            $sCart     = null;
+            if(!empty($product)) {
+                $data = array(
+                    "productID"  => $productID,
+                    "number"     => $number,
+                    "title"      => $product->title,
+                    "seo_link"   => $product->seo_link,
+                    "short_desc" => $product->short_desc,
+                    "price"      => ($product->discount < $product->price) ? $product->discount : $product->price,
+                    "dprice"     => $product->price,
+                    "img"        => URL_IMG."product/".$product->pimg_list
+                );
+
+                if(Session::has('sCart')) {
+                    $sCart  = Session::get('sCart');
+                    $status = false;
+
+                    foreach ($sCart as $key => $value) {
+                        if(isset($value['productID']) && $value['productID'] == $productID) {
+                            $sCart[$key]['number'] += $number;
+                            $status = true;
+                        }
+                    }
+                    if(!$status) $sCart[] = $data;
+                } else {
+                    $sCart = array($data);
+                }
+                Session::put('sCart', $sCart);
+            }
+        }
+        return response()->json($sCart);
+    }
+
     public function cart(Request $request)
     {
         MetaTag::set('title', 'Giỏ hàng');
@@ -136,9 +137,9 @@ class ProductController extends Controller {
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
 
-        $sCart  = null;
+        $sCart  = Session::get('sCart');
         $params = $request->all();
-        $errors = $discountPrice = $listProduct = null;
+        $errors = $discountPrice = null;
 
         if(Session::has('discountPriceCode')) {
             $discountPriceCode = Session::get('discountPriceCode');
@@ -148,21 +149,10 @@ class ProductController extends Controller {
                 ->first();
         }
 
-        if(Session::has('sCart')) {
-            $sCart = Session::get("sCart");
-            if(!empty($sCart)) {
-                $listID = null;
-                foreach ($sCart as $key => $value) {
-                    $listID[] = $value['id'];
-                }
-                $listProduct = Product::getListByIds($listID);
-            }
-        }
-
         if($request->isMethod('post')) {
             foreach ($sCart as $key => $value) {
-                if(isset($params['number'][$value['id']])) {
-                    $number = (int) $params['number'][$value['id']];
+                if(isset($params['number'][$value['productID']])) {
+                    $number = (int) $params['number'][$value['productID']];
                     if($number < 0) unset($sCart[$key]);
                     else $sCart[$key]['number'] = $number;
                 }
@@ -192,7 +182,6 @@ class ProductController extends Controller {
         return view("user.product.cart")
             ->with("sCart", $sCart)
             ->with("discountPrice", $discountPrice)
-            ->with("listProduct", $listProduct)
             ->with("errors", $errors);
 
     }
@@ -246,7 +235,7 @@ class ProductController extends Controller {
                     $cartID = $status->id;
                     foreach ($sCart as $key => $value) {
                         $data  = array(
-                            "product_id" => $value['id'],
+                            "product_id" => $value['productID'],
                             "cart_id"    => $cartID,
                             "name"       => $value['title'],
                             "number"     => $value['number'],

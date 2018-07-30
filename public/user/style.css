@@ -3693,6 +3693,7 @@ textarea {
     color: red !important;
 }
 
-.txt_susscess{
-    color: green;
+.txt_success{
+    font-size: 13px !important;
+    color: green !important;
 }

@@ -93,7 +93,7 @@
                                 </p>
                             </div>
                             <div class="row">
-                                <p class="col-sm-6 col-xs-12">
+                                <p class="col-sm-12 col-xs-12">
                                     Ghi chú <br><br>
                                     <textarea name="note" id="" cols="30" rows="10"><?php echo e(!empty($info['note']) ? $info['note'] : ''); ?></textarea>
                                 </p>

@@ -54,18 +54,21 @@
                                 </thead>
                                 <tbody class="pt-30">
                                         <?php foreach($sCart as $key => $value): ?>
-                                        <?php  $totalPrice += $value['price'] * $value['number'];  ?>
+                                        <?php 
+                                        $price = ($listProduct[$value['id']]['discount'] < $listProduct[$value['id']]['price'] )
+                                            ? $listProduct[$value['id']]['discount'] : $listProduct[$value['id']]['price'];
+                                        $totalPrice += $price * $value['number'];  ?>
                                             <tr>
                                                 <td class="p-name text-left">
                                                     <div class="cart-img">
-                                                        <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>"><img src="<?php echo e($value['img']); ?>" alt="<?php echo e($value['title']); ?>"></a>
+                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>"><img src="<?php echo e($value['img']); ?>" alt="<?php echo e($value['title']); ?>"></a>
                                                     </div>
-                                                    <a href="/pd/<?php echo e($value['productID']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a>
-                                                    <p><?php echo e($value['short_desc']); ?></p>
+                                                    <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a>
+                                                    <p>Size <?php echo e($value['size']); ?></p>
                                                 </td>
-                                                <td class="p-amount"><span class="amount"><?php echo e($value['price']); ?></span></td>
-                                                <td class="p-quantity"><input type="text" name="number[<?php echo e($value['productID']); ?>]" value="<?php echo e($value['number']); ?>"></td>
-                                                <td class="p-total"><?php echo e($value['price'] * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($value['productID']); ?>"><i class="fa fa-trash"></i></a></td>
+                                                <td class="p-amount"><?php echo e($price); ?></span></td>
+                                                <td class="p-quantity"><?php echo e($value['number']); ?></td>
+                                                <td class="p-total"><?php echo e($price * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                 </tbody>
@@ -94,8 +97,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if(!empty($discountPrice)): ?>
-                                <p class="txt_susscess">Bạn đã áp dụng mã <?php echo e($discountPrice->code); ?> </p>
+                            <?php if(!empty($errors)): ?>
+                                <?php if(isset($errors['success'])): ?>
+                                    <p class="txt_success"><?php echo e($errors['success']); ?></p>
+                                <?php else: ?>
+                                    <p class="txt_error"><?php echo e($errors['fail']); ?></p>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     </div>

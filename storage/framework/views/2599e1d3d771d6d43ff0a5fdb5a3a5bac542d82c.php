@@ -85,7 +85,7 @@
                                                                     <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
                                                                         <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        <li><a class="modal-view" href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>" ><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -119,7 +119,7 @@
                                                                             <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                             <ul>
                                                                                 <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                                <li><a class="modal-view" href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>"><i class="fa fa-eye"></i></a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -271,7 +271,7 @@
                                                                     <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
                                                                         <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        <li><a class="modal-view" href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>" ><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -305,7 +305,7 @@
                                                                         <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                         <ul>
                                                                             <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                            <li><a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                            <li><a class="modal-view" href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>"><i class="fa fa-eye"></i></a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -492,7 +492,7 @@
                                                                     <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                     <ul>
                                                                         <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                        <li><a class="modal-view" href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>"><i class="fa fa-eye"></i></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -526,7 +526,7 @@
                                                                             <div class="hidden-md"><?php echo e($item['short_desc']); ?></div>
                                                                             <ul>
                                                                                 <li><a class="btnCart" href="javascript:void(0);" data-id="<?php echo e($item['id']); ?>" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                <li><a class="modal-view" href="/public/user/#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a></li>
+                                                                                <li><a class="modal-view" href="/pd/<?php echo e($item['id']); ?>/<?php echo e($item['seo_link']); ?>"><i class="fa fa-eye"></i></a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>

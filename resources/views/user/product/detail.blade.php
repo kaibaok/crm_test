@@ -65,44 +65,37 @@
                             @endif
                         </h4>
                     </div>
-                    <h5>Trạng thái: <span>  @if ($product->type_price == EMPTY_PRODUCT) Hết hàng @else Còn hàng @endif</span> </h5>
+                    <h5>Trạng thái: <span>  @if ($product->type_price == EMPTY_PRODUCT || $product->numbers <= 0 ) Hết hàng @else Còn hàng @endif</span> </h5>
                     <h5>Thương hiệu: <span>{{$product->title_brand}}</span><br></h5>
                     <h5>Danh mục: <span>{{$product->title_category}}</span><br></h5>
                     <p class="detail">{!!$product->short_desc!!}</p>
                     <div class="size-quantity clearfix">
-                        <div class="single-size-quantity">
-                            <h4>Size:</h4>
-                            <div class="search-cat">
-                                <select name="size" class="category-items ">
-                                    @foreach ($listSize as $value)
-                                        <option value="{{$value}}">{{strtoupper($value)}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="single-size-quantity">
-                            <h4>Số lượng đặt:</h4>
-                            <div class="search-cat">
-                                <select name="number_cart" class="category-items ">
-                                    <option>01</option>
-                                    <option>02</option>
-                                    <option>03</option>
-                                    <option>04</option>
-                                    <option>05</option>
-                                    <option>06</option>
-                                    <option>07</option>
-                                    <option>08</option>
-                                    <option>09</option>
-                                    <option>10</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wish-icon-hover-list mt-30 mb-30 text-left">
-                        <ul>
-                            <li><a href="#" data-toggle="tooltip" title="shopping cart"><i class="fa fa-shopping-cart"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Like it!"><i class="fa fa-heart"></i></a></li>
-                        </ul>
+                        @if ($product->type_price == NORMAL_PRICE || $product->numbers > 0)
+                            <form action="" method="post">
+                                {{ csrf_field() }}
+                                <div class="single-size-quantity">
+                                    <h4>Size:</h4>
+                                    <div class="search-cat">
+                                        <select name="size" class="category-items">
+                                            @foreach ($listSize as $value)
+                                                <option value="{{$value}}">{{strtoupper($value)}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="single-size-quantity">
+                                    <h4>Số lượng đặt:</h4>
+                                    <div class="search-cat">
+                                        <select name="number" class="category-items">
+                                            @for ($i = 1; $i <= $product->numbers ; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
+                            </form>
+                        @endif
                     </div>
                     <div class="widget-color">
                        <h4 class="follow">Chia sẻ:</h4>

@@ -217,6 +217,19 @@ class Product extends Model
         $builder->orderByRaw("product.ord ASC, product.id DESC");
         return $builder;
     }
+
+    public static function getListByIds($listID){
+        $listProduct = self::whereIn("id", $listID)->get();
+        $arr_data = null;
+        foreach ($listProduct as $key => $value) {
+            $arr_data[$value->id] = array(
+                "price" => $value->price,
+                "discount" => $value->discount,
+            );
+        }
+        return $arr_data;
+    }
+
 }
 
 

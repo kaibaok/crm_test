@@ -54,18 +54,21 @@
                                 </thead>
                                 <tbody class="pt-30">
                                         @foreach ($sCart as $key => $value)
-                                        @php $totalPrice += $value['price'] * $value['number']; @endphp
+                                        @php
+                                        $price = ($listProduct[$value['id']]['discount'] < $listProduct[$value['id']]['price'] )
+                                            ? $listProduct[$value['id']]['discount'] : $listProduct[$value['id']]['price'];
+                                        $totalPrice += $price * $value['number']; @endphp
                                             <tr>
                                                 <td class="p-name text-left">
                                                     <div class="cart-img">
-                                                        <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}"><img src="{{$value['img']}}" alt="{{$value['title']}}"></a>
+                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}"><img src="{{$value['img']}}" alt="{{$value['title']}}"></a>
                                                     </div>
-                                                    <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}">{{$value['title']}}</a>
-                                                    <p>{{$value['short_desc']}}</p>
+                                                    <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}">{{$value['title']}}</a>
+                                                    <p>Size {{$value['size']}}</p>
                                                 </td>
-                                                <td class="p-amount"><span class="amount">{{$value['price']}}</span></td>
-                                                <td class="p-quantity"><input type="text" name="number[{{$value['productID']}}]" value="{{$value['number']}}"></td>
-                                                <td class="p-total">{{$value['price'] * $value['number']}} <a href="/xoa-gio-hang/{{$value['productID']}}"><i class="fa fa-trash"></i></a></td>
+                                                <td class="p-amount">{{$price}}</span></td>
+                                                <td class="p-quantity">{{$value['number']}}</td>
+                                                <td class="p-total">{{$price * $value['number']}} <a href="/xoa-gio-hang/{{$value['id']}}"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         @endforeach
                                 </tbody>
@@ -94,8 +97,12 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (!empty($discountPrice))
-                                <p class="txt_susscess">Bạn đã áp dụng mã {{$discountPrice->code}} </p>
+                            @if (!empty($errors))
+                                @if (isset($errors['success']))
+                                    <p class="txt_success">{{$errors['success']}}</p>
+                                @else
+                                    <p class="txt_error">{{$errors['fail']}}</p>
+                                @endif
                             @endif
                         </div>
                     </div>

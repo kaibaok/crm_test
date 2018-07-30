@@ -101,23 +101,22 @@
                                                     @php $totalPrice = 0; @endphp
                                                     @if (!empty($sCart))
                                                         @foreach ($sCart as $value)
-                                                            <?php $totalPrice += ($value['price'] * $value['number']); ?>
                                                             <li class="single-cart-item clearfix">
                                                                 <span class="cart-img">
-                                                                        <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}/"><img style='height:59px' src="{{$value['img']}}" alt=""></a>
+                                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/"><img style='height:59px' src="{{$value['img']}}" alt=""></a>
                                                                     </span>
                                                                 <span class="cart-info">
-                                                                        <a href="/pd/{{$value['productID']}}/{{$value['seo_link']}}/">{{$value['title']}}</a>
-                                                                        <span>{{$value['price']}} x {{$value['number']}}</span>
+                                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/">{{$value['title']}}</a>
+                                                                        <span>Size {{$value['size']}} x {{$value['number']}} </span>
                                                                 </span>
                                                                 <span class="trash-cart">
-                                                                        <a href="/xoa-gio-hang/{{$value['productID']}}"><i class="fa fa-trash-o"></i></a>
+                                                                        <a href="/xoa-gio-hang/{{$value['id']}}/{{$value['size']}}"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                             </li>
                                                         @endforeach
                                                     @endif
                                                     <li>
-                                                        <span class="sub-total-cart text-center">Tổng tiền <span>{{$totalPrice}}</span>
+                                                        <span class="sub-total-cart text-center">
                                                         <a href="/gio-hang" class="view-cart active">Giỏ hàng</a>
                                                         <a href="/don-hang" class="view-cart">Đơn hàng</a>
                                                         </span>

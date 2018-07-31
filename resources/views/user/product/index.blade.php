@@ -66,16 +66,12 @@
                                             <div class="single-product-img clearfix">
                                                 <a href="/pd/{{$value->id}}/{{$value->seo_link}}">
                                                     <img class="primary-image" src="{{URL_IMG."product/".$value->pimg_list}}" alt="">
-                                                </a>
-                                                <div class="wish-icon-hover text-center clearfix">
-                                                    <div class="hover-text">
-                                                        <p>{!!$value->short_desc!!}</p>
-                                                        <ul>
-                                                            <li><a class="btnCart" href="javascript:void(0);" data-id="{{$value->id}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                            <li><a class="modal-view" href="/pd/{{$value->id}}/{{$value->seo_link}}"><i class="fa fa-eye"></i></a></li>
-                                                        </ul>
+                                                    <div class="wish-icon-hover text-center clearfix">
+                                                        <div class="hover-text">
+                                                            <p>{!!$value->short_desc!!}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
                                             <div class="single-product-info clearfix">
                                                 <div class="pro-price">

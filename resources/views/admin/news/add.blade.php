@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="item form-group image_upload">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">*</span></label>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Hình ảnh trang list <span class="required">* 328x221</span></label>
                          <div class="col-md-4 col-sm-4 col-xs-12 ">
                             <div class="imageupload">
                                 <div class="file-tab">

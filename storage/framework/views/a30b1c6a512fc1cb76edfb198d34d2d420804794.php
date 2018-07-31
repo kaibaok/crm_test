@@ -109,14 +109,15 @@
                                                         <?php foreach($sCart as $value): ?>
                                                             <li class="single-cart-item clearfix">
                                                                 <span class="cart-img">
-                                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>/"><img style='height:59px' src="<?php echo e($value['img']); ?>" alt=""></a>
-                                                                    </span>
+                                                                    <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>/"><img style='width:70px;height:50px' src="<?php echo e($value['img']); ?>" alt=""></a>
+                                                                </span>
                                                                 <span class="cart-info">
-                                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>/"><?php echo e($value['title']); ?></a>
-                                                                        <span>Size <?php echo e($value['size']); ?> x <?php echo e($value['number']); ?> </span>
+                                                                    <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>/"><?php echo e($value['title']); ?></a>
+                                                                    <span class="span_color_small" style="background: <?php echo e($listColors[$value['color']]['code']); ?>"></span>
+                                                                    <span><?php echo e($value['size']); ?> x <?php echo e($value['number']); ?> </span>
                                                                 </span>
                                                                 <span class="trash-cart">
-                                                                        <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>/<?php echo e($value['size']); ?>"><i class="fa fa-trash-o"></i></a>
+                                                                    <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>/<?php echo e($value['size']); ?>"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                             </li>
                                                         <?php endforeach; ?>

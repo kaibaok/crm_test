@@ -70,47 +70,48 @@ class ProductController extends Controller {
         MetaTag::set('author','Dot 89 Shop');
 
         $product = Product::getProductByConditions(array("product" => $id))->first();
+
+
         if(empty($product)) return redirect()->guest("/p");
 
         $params = $request->all();
         if($request->isMethod('post')) {
             $number  = (int) $params['number'];
             $size    = strip_tags($params['size']);
+            $color   = (int) $params['color'];
             $product = Product::getProductByConditions(array("product" => $id))->first();
-            $sCart   = null;
+            $sCart   = Session::get('sCart');
             if(!empty($product)) {
+                $idCart = $id."_".$size."_".$color;
                 $data = array(
-                    "id"         => $id,
-                    "number"     => $number,
-                    "title"      => $product->title,
-                    "seo_link"   => $product->seo_link,
-                    "size"       => $size,
-                    "img"        => URL_IMG."product/".$product->pimg_list
+                    "id"       => $id,
+                    "number"   => $number,
+                    "title"    => $product->title,
+                    "seo_link" => $product->seo_link,
+                    "size"     => $size,
+                    "color"    => $color,
+                    "img"      => URL_IMG."product/".$product->pimg_list
                 );
 
-                if(Session::has('sCart')) {
-                    $sCart  = Session::get('sCart');
+                if(empty($sCart)) $sCart = array($idCart => $data);
+                else {
                     $status = false;
-
                     foreach ($sCart as $key => $value) {
-                        if(isset($value['id']) &&
-                            $value['id'] == $id &&
-                            $value['size'] == $size) {
-                            $sCart[$key]['number'] += $number;
+                        if($key == $idCart) {
+                            $sCart[$idCart]['number'] += $number;
                             $status = true;
                         }
                     }
-                    if(!$status) $sCart[] = $data;
-                } else {
-                    $sCart = array($data);
+                    if(!$status) $sCart[$idCart] = $data;
                 }
-                Session::put('sCart', $sCart);
             }
+            Session::put('sCart', $sCart);
+            return redirect()->guest("/gio-hang");
         }
-
 
         return view("user.product.detail")
             ->with("product", $product)
+            ->with("listColors", $listColors)
             ->with("listSize", $this->getOption("listSize"))
             ->with("id", $id);
     }
@@ -136,7 +137,7 @@ class ProductController extends Controller {
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
 
-        $sCart  = null;
+        $sCart  = Session::get("sCart");
         $params = $request->all();
         $errors = $discountPrice = $listProduct = null;
 
@@ -148,26 +149,15 @@ class ProductController extends Controller {
                 ->first();
         }
 
-        if(Session::has('sCart')) {
-            $sCart = Session::get("sCart");
-            if(!empty($sCart)) {
-                $listID = null;
-                foreach ($sCart as $key => $value) {
-                    $listID[] = $value['id'];
-                }
-                $listProduct = Product::getListByIds($listID);
+        if(!empty($sCart)) {
+            $listID = null;
+            foreach ($sCart as $key => $value) {
+                $listID[] = $value['id'];
             }
+            $listProduct = Product::getListByIds($listID);
         }
 
         if($request->isMethod('post')) {
-            foreach ($sCart as $key => $value) {
-                if(isset($params['number'][$value['id']])) {
-                    $number = (int) $params['number'][$value['id']];
-                    if($number < 0) unset($sCart[$key]);
-                    else $sCart[$key]['number'] = $number;
-                }
-            }
-
             if(isset($params['btnRemoveCode'])) {
                 $discountPrice = null;
                 Session::forget('discountPriceCode');
@@ -186,9 +176,8 @@ class ProductController extends Controller {
                     }
                 }
             }
-
-            Session::put('sCart', $sCart);
         }
+
         return view("user.product.cart")
             ->with("sCart", $sCart)
             ->with("discountPrice", $discountPrice)
@@ -209,12 +198,20 @@ class ProductController extends Controller {
 
         $sCart  = Session::get('sCart');
         $errors = $info = $discountPrice = null;
+
         if(Session::has('discountPriceCode')) {
             $discountPriceCode = Session::get('discountPriceCode');
             $discountPrice     = DiscountCode::where("code", $discountPriceCode)
                 ->where("number", ">", 0)
                 ->get()
                 ->first();
+        }
+
+        if(!empty($sCart)) {
+            $listID = null;
+            foreach ($sCart as $key => $value)
+                $listID[] = $value['id'];
+            $listProduct = Product::getListByIds($listID);
         }
 
         if($request->isMethod('post')) {
@@ -236,10 +233,7 @@ class ProductController extends Controller {
                     $info['userid'] = $user->id;
                 }
 
-                if(Session::has('discountPriceCode')) {
-                    $discountPriceCode = Session::get('discountPriceCode');
-                    $info['code']      = $discountPriceCode;
-                }
+                if(!empty($discountPrice)) $info['code'] = $discountPrice->code;
 
                 $status = Cart::addCart($info);
                 if($status) {
@@ -250,34 +244,18 @@ class ProductController extends Controller {
                             "cart_id"    => $cartID,
                             "name"       => $value['title'],
                             "number"     => $value['number'],
-                            "price"      => $value['price'],
-                            "dprice"     => $value['dprice'],
+                            "color"      => $value['color'],
+                            "price"      => $listProduct[$value['id']]['price'],
+                            "dprice"     => $listProduct[$value['id']]['discount'],
                         );
                         $addCartDetail = CartDetail::addCartDetail($data);
                         if($addCartDetail && !empty($discountPrice)) {
                             $discountPrice->number = $discountPrice->number - 1;
                             $discountPrice->save();
                         }
-
                     }
-                    //send email
-
-                    // $send = Mail::send('mails.cartmail',
-                    //     array(
-                    //         'name'=> "Kai",
-                    //         'email'=> "tamvo@vinaresearch.net",
-                    //         'content'=> "content asdasd"
-                    //     ),
-                    //     function($message){
-                    //         $message->to('tamvo@vinaresearch.net', 'Visitor')->subject('Visitor Feedback!');
-                    // });
-
-                    // dd($send);
-
                     Session::forget('discountPriceCode');
                     Session::forget('sCart');
-                    // Session::flash('flash_message', 'Send message successfully!');
-
                 }
                 // hoan tat gio hang
                 return redirect()->guest("/hoan-tat-don-hang");
@@ -288,6 +266,7 @@ class ProductController extends Controller {
             ->with("sCart", $sCart)
             ->with("info", $info)
             ->with("errors", $errors)
+            ->with("listProduct", $listProduct)
             ->with("discountPrice", $discountPrice);
     }
 

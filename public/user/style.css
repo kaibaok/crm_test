@@ -3697,3 +3697,24 @@ textarea {
     font-size: 13px !important;
     color: green !important;
 }
+
+.span_color_small{
+    display: inline-block !important;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.span_color_med{
+    display: inline-block !important;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.clear_margin {
+    margin:0px !important;
+}
+.clear_padding{
+    padding:0px !important;
+}

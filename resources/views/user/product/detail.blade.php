@@ -69,11 +69,11 @@
                     <h5>Thương hiệu: <span>{{$product->title_brand}}</span><br></h5>
                     <h5>Danh mục: <span>{{$product->title_category}}</span><br></h5>
                     <p class="detail">{!!$product->short_desc!!}</p>
-                    <div class="size-quantity clearfix">
+                    <div class="size-quantity clearfix mb-10">
                         @if ($product->type_price == NORMAL_PRICE || $product->numbers > 0)
                             <form action="" method="post">
                                 {{ csrf_field() }}
-                                <div class="single-size-quantity">
+                                <div class="single-size-quantity mb-10">
                                     <h4>Size:</h4>
                                     <div class="search-cat">
                                         <select name="size" class="category-items">
@@ -83,7 +83,17 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="single-size-quantity">
+
+                                <div class="wish-icon-hover-list mb-10">
+                                    <h4 class="clear_margin">Màu sắc:</h4>
+                                    <ul class="">
+                                        @foreach ($listColors as $key => $value)
+                                            <li> <label style="color:{{$value['code']}}"><input checked type="radio" name="color" value="{{$key}}"> {{$value['name']}}</label></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                                <div class="single-size-quantity mb-10">
                                     <h4>Số lượng đặt:</h4>
                                     <div class="search-cat">
                                         <select name="number" class="category-items">
@@ -93,6 +103,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
                             </form>
                         @endif

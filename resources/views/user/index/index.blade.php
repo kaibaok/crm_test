@@ -79,16 +79,13 @@
                                                 <div class="single-product">
                                                     <div class="single-product-item clearfix">
                                                         <div class="single-product-img clearfix">
-                                                            <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
-                                                            <div class="wish-icon-hover text-center clearfix">
-                                                                <div class="hover-text">
-                                                                    <div class="hidden-md">{{$item['short_desc']}}</div>
-                                                                    <ul>
-                                                                        <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}" ><i class="fa fa-eye"></i></a></li>
-                                                                    </ul>
+                                                            <a href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt="">
+                                                                <div class="wish-icon-hover text-center clearfix">
+                                                                    <div class="hover-text">
+                                                                        <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            </a>
                                                         </div>
                                                         <div class="single-product-info clearfix">
                                                             <div class="pro-price">
@@ -113,16 +110,13 @@
                                                         <div class="single-product">
                                                             <div class="single-product-item clearfix">
                                                                 <div class="single-product-img clearfix">
-                                                                    <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
-                                                                    <div class="wish-icon-hover text-center clearfix">
-                                                                        <div class="hover-text">
-                                                                            <div class="hidden-md">{{$item['short_desc']}}</div>
-                                                                            <ul>
-                                                                                <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
-                                                                            </ul>
+                                                                    <a href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt="">
+                                                                        <div class="wish-icon-hover text-center clearfix">
+                                                                            <div class="hover-text">
+                                                                                <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </a>
                                                                 </div>
                                                                 <div class="single-product-info clearfix">
                                                                     <div class="pro-price">
@@ -260,16 +254,13 @@
                                                 <div class="single-product">
                                                     <div class="single-product-item clearfix">
                                                         <div class="single-product-img clearfix">
-                                                            <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
-                                                            <div class="wish-icon-hover text-center clearfix">
-                                                                <div class="hover-text">
-                                                                    <div class="hidden-md">{{$item['short_desc']}}</div>
-                                                                    <ul>
-                                                                        <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}" ><i class="fa fa-eye"></i></a></li>
-                                                                    </ul>
+                                                            <a href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt="">
+                                                                <div class="wish-icon-hover text-center clearfix">
+                                                                    <div class="hover-text">
+                                                                        <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            </a>
                                                         </div>
                                                         <div class="single-product-info clearfix">
                                                             <div class="pro-price">
@@ -294,16 +285,13 @@
                                                     <div class="single-product">
                                                         <div class="single-product-item clearfix">
                                                             <div class="single-product-img clearfix">
-                                                                <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
-                                                                <div class="wish-icon-hover text-center clearfix">
-                                                                    <div class="hover-text">
-                                                                        <div class="hidden-md">{{$item['short_desc']}}</div>
-                                                                        <ul>
-                                                                            <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                            <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
-                                                                        </ul>
+                                                                <a href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt="">
+                                                                    <div class="wish-icon-hover text-center clearfix">
+                                                                        <div class="hover-text">
+                                                                            <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                </a>
                                                             </div>
                                                             <div class="single-product-info clearfix">
                                                                 <div class="pro-price">
@@ -475,16 +463,13 @@
                                                 <div class="single-product">
                                                     <div class="single-product-item clearfix">
                                                         <div class="single-product-img clearfix">
-                                                            <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
-                                                            <div class="wish-icon-hover text-center clearfix">
-                                                                <div class="hover-text">
-                                                                    <div class="hidden-md">{{$item['short_desc']}}</div>
-                                                                    <ul>
-                                                                        <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
-                                                                    </ul>
+                                                            <a href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt="">
+                                                                <div class="wish-icon-hover text-center clearfix">
+                                                                    <div class="hover-text">
+                                                                        <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            </a>
                                                         </div>
                                                         <div class="single-product-info clearfix">
                                                             <div class="pro-price">
@@ -509,16 +494,13 @@
                                                         <div class="single-product">
                                                             <div class="single-product-item clearfix">
                                                                 <div class="single-product-img clearfix">
-                                                                    <a href="#"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt=""></a>
-                                                                    <div class="wish-icon-hover text-center clearfix">
-                                                                        <div class="hover-text">
-                                                                            <div class="hidden-md">{{$item['short_desc']}}</div>
-                                                                            <ul>
-                                                                                <li><a class="btnCart" href="javascript:void(0);" data-id="{{$item['id']}}" title="Đặt hàng"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                <li><a class="modal-view" href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><i class="fa fa-eye"></i></a></li>
-                                                                            </ul>
+                                                                    <a href="/pd/{{$item['id']}}/{{$item['seo_link']}}"><img class="primary-image" src="{{URL_IMG."product/".$item['pimg_list']}}" alt="">
+                                                                        <div class="wish-icon-hover text-center clearfix">
+                                                                            <div class="hover-text">
+                                                                                <div class="hidden-md">{{$item['short_desc']}}</div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </a>
                                                                 </div>
                                                                 <div class="single-product-info clearfix">
                                                                     <div class="pro-price">

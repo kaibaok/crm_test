@@ -47,25 +47,31 @@
                                 <thead>
                                     <tr>
                                         <th class="p-name">Sản phẩm</th>
+                                        <th class="p-amount">Màu</th>
+                                        <th class="p-amount">Màu</th>
+                                        <th class="p-amount">Kích thước</th>
                                         <th class="p-amount">Giá</th>
                                         <th class="p-quantity">Số lượng</th>
-                                        <th class="p-total">Tổng tiền</th>
+                                        <th class="p-total">Thành tiền</th>
                                     </tr>
                                 </thead>
                                 <tbody class="pt-30">
                                         @foreach ($sCart as $key => $value)
-                                        @php
-                                        $price = ($listProduct[$value['id']]['discount'] < $listProduct[$value['id']]['price'] )
-                                            ? $listProduct[$value['id']]['discount'] : $listProduct[$value['id']]['price'];
-                                        $totalPrice += $price * $value['number']; @endphp
+                                        @php $price = ($listProduct[$value['id']]['discount'] < $listProduct[$value['id']]['price'] )
+                                                ? $listProduct[$value['id']]['discount'] : $listProduct[$value['id']]['price'];
+                                            $totalPrice += $price * $value['number'];
+                                        @endphp
                                             <tr>
                                                 <td class="p-name text-left">
                                                     <div class="cart-img">
-                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}"><img src="{{$value['img']}}" alt="{{$value['title']}}"></a>
+                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}">
+                                                        <img src="{{$value['img']}}" alt="{{$value['title']}}"></a>
                                                     </div>
-                                                    <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}">{{$value['title']}}</a>
-                                                    <p>Size {{$value['size']}}</p>
+
                                                 </td>
+                                                <td class="p-amount"><a href="/pd/{{$value['id']}}/{{$value['seo_link']}}">{{$value['title']}}</a></td>
+                                                <td class="p-amount"><span class="span_color_med" style="background: {{$listColors[$value['color']]['code']}}"></span></span></td>
+                                                <td class="p-amount">{{$value['size']}}</span></td>
                                                 <td class="p-amount">{{$price}}</span></td>
                                                 <td class="p-quantity">{{$value['number']}}</td>
                                                 <td class="p-total">{{$price * $value['number']}} <a href="/xoa-gio-hang/{{$value['id']}}"><i class="fa fa-trash"></i></a></td>

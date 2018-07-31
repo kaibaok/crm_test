@@ -70,12 +70,12 @@
                     <h5>Thương hiệu: <span><?php echo e($product->title_brand); ?></span><br></h5>
                     <h5>Danh mục: <span><?php echo e($product->title_category); ?></span><br></h5>
                     <p class="detail"><?php echo $product->short_desc; ?></p>
-                    <div class="size-quantity clearfix">
+                    <div class="size-quantity clearfix mb-10">
                         <?php if($product->type_price == NORMAL_PRICE || $product->numbers > 0): ?>
                             <form action="" method="post">
                                 <?php echo e(csrf_field()); ?>
 
-                                <div class="single-size-quantity">
+                                <div class="single-size-quantity mb-10">
                                     <h4>Size:</h4>
                                     <div class="search-cat">
                                         <select name="size" class="category-items">
@@ -85,7 +85,17 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="single-size-quantity">
+
+                                <div class="wish-icon-hover-list mb-10">
+                                    <h4 class="clear_margin">Màu sắc:</h4>
+                                    <ul class="">
+                                        <?php foreach($listColors as $key => $value): ?>
+                                            <li> <label style="color:<?php echo e($value['code']); ?>"><input checked type="radio" name="color" value="<?php echo e($key); ?>"> <?php echo e($value['name']); ?></label></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+
+                                <div class="single-size-quantity mb-10">
                                     <h4>Số lượng đặt:</h4>
                                     <div class="search-cat">
                                         <select name="number" class="category-items">
@@ -95,6 +105,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
                             </form>
                         <?php endif; ?>

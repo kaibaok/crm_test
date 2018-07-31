@@ -47,25 +47,31 @@
                                 <thead>
                                     <tr>
                                         <th class="p-name">Sản phẩm</th>
+                                        <th class="p-amount">Màu</th>
+                                        <th class="p-amount">Màu</th>
+                                        <th class="p-amount">Kích thước</th>
                                         <th class="p-amount">Giá</th>
                                         <th class="p-quantity">Số lượng</th>
-                                        <th class="p-total">Tổng tiền</th>
+                                        <th class="p-total">Thành tiền</th>
                                     </tr>
                                 </thead>
                                 <tbody class="pt-30">
                                         <?php foreach($sCart as $key => $value): ?>
-                                        <?php 
-                                        $price = ($listProduct[$value['id']]['discount'] < $listProduct[$value['id']]['price'] )
-                                            ? $listProduct[$value['id']]['discount'] : $listProduct[$value['id']]['price'];
-                                        $totalPrice += $price * $value['number'];  ?>
+                                        <?php  $price = ($listProduct[$value['id']]['discount'] < $listProduct[$value['id']]['price'] )
+                                                ? $listProduct[$value['id']]['discount'] : $listProduct[$value['id']]['price'];
+                                            $totalPrice += $price * $value['number'];
+                                         ?>
                                             <tr>
                                                 <td class="p-name text-left">
                                                     <div class="cart-img">
-                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>"><img src="<?php echo e($value['img']); ?>" alt="<?php echo e($value['title']); ?>"></a>
+                                                        <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>">
+                                                        <img src="<?php echo e($value['img']); ?>" alt="<?php echo e($value['title']); ?>"></a>
                                                     </div>
-                                                    <a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a>
-                                                    <p>Size <?php echo e($value['size']); ?></p>
+
                                                 </td>
+                                                <td class="p-amount"><a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a></td>
+                                                <td class="p-amount"><span class="span_color_med" style="background: <?php echo e($listColors[$value['color']]['code']); ?>"></span></span></td>
+                                                <td class="p-amount"><?php echo e($value['size']); ?></span></td>
                                                 <td class="p-amount"><?php echo e($price); ?></span></td>
                                                 <td class="p-quantity"><?php echo e($value['number']); ?></td>
                                                 <td class="p-total"><?php echo e($price * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>"><i class="fa fa-trash"></i></a></td>

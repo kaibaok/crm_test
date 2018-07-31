@@ -211,6 +211,11 @@ class Img
           $arr_info['width']  =  599;
           $arr_info['height'] =  338;
         break;
+        // news
+        case 'nimg_list':
+          $arr_info['width']  =  328;
+          $arr_info['height'] =  221;
+        break;
         default:
           $arr_info['width']  =  'auto';
           $arr_info['height'] =  'auto';

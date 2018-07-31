@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2018 at 12:45 PM
+-- Generation Time: Jul 31, 2018 at 01:02 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -79,7 +79,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `userid`, `full_name`, `email`, `address1`, `address2`, `phone`, `stage`, `district`, `city`, `ship_date`, `paid`, `note`, `code`, `created_at`, `updated_at`) VALUES
-(1, 7, 'asdasd asdas', 'kyra0590@gmail.com', 'asdas asd asd', '', '0937472503', 'nha be', 'nha be', 'ho chi minh', '0000-00-00', 0, 'asdasda\r\nsdasd', '123456', '2018-07-27 10:09:48', '2018-07-27 03:09:48');
+(3, 0, 'Võ hoài tâm', 'kyra0590@gmail.com', '34/1 kp4 thị trấn nhà bè', '', '0937472503', '1', '1', 'hcm', '0000-00-00', 0, 'áđấ\r\nsđá', '123456', '2018-07-31 03:46:53', '2018-07-30 20:46:53');
 
 -- --------------------------------------------------------
 
@@ -95,6 +95,7 @@ CREATE TABLE `cart_detail` (
   `price` int(11) NOT NULL,
   `dprice` int(11) NOT NULL,
   `number` int(11) NOT NULL,
+  `color` int(11) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -103,9 +104,8 @@ CREATE TABLE `cart_detail` (
 -- Dumping data for table `cart_detail`
 --
 
-INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `created_at`, `updated_at`) VALUES
-(1, 1, 81, 'san pham b', 50, 100, 12, '2018-07-27 10:09:48', '2018-07-27 03:09:48'),
-(2, 1, 80, 'san pham a', 100, 200, 14, '2018-07-27 10:09:48', '2018-07-27 03:09:48');
+INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `color`, `created_at`, `updated_at`) VALUES
+(5, 3, 80, 'san pham a', 200, 100, 30, 0, '2018-07-31 03:46:54', '2018-07-30 20:46:54');
 
 -- --------------------------------------------------------
 
@@ -153,7 +153,7 @@ CREATE TABLE `discount_code` (
 --
 
 INSERT INTO `discount_code` (`id`, `status`, `code`, `number`, `end_date`, `percent`, `type_discount`, `discount_price`, `updated_at`, `created_at`) VALUES
-(1, 0, '123456', 2, '2018-07-31', 10, 0, 150, '2018-07-26 09:56:04', '0000-00-00 00:00:00');
+(1, 0, '123456', 0, '2018-07-31', 10, 0, 150, '2018-07-30 20:46:54', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -406,8 +406,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`) VALUES
-(80, 1, '1530088642', 'san pham a', 'aa', '', 200, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 100, 0, 0, 0, 0, 0, 0),
-(81, 2, '1532484050', 'san pham b', ' mo ta ngan gon xuc tich\r\n                                                            \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 1, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-24 19:00:59', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 3, 50, 0, 1, 0, 1, 1, 0);
+(80, 1, '1530088642', 'san pham a', 'aa', '', 200, 1, 20, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-03 21:04:29', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 100, 0, 0, 0, 0, 0, 0),
+(81, 2, '1532484050', 'san pham b', ' mo ta ngan gon xuc tich\r\n                                                            \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 20, '1', '2018-05-23', '2018-05-23 09:13:26', '2018-07-24 19:00:59', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 3, 50, 0, 1, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -688,13 +688,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `colors`

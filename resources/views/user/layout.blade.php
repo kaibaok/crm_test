@@ -103,14 +103,15 @@
                                                         @foreach ($sCart as $value)
                                                             <li class="single-cart-item clearfix">
                                                                 <span class="cart-img">
-                                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/"><img style='height:59px' src="{{$value['img']}}" alt=""></a>
-                                                                    </span>
+                                                                    <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/"><img style='width:70px;height:50px' src="{{$value['img']}}" alt=""></a>
+                                                                </span>
                                                                 <span class="cart-info">
-                                                                        <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/">{{$value['title']}}</a>
-                                                                        <span>Size {{$value['size']}} x {{$value['number']}} </span>
+                                                                    <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/">{{$value['title']}}</a>
+                                                                    <span class="span_color_small" style="background: {{$listColors[$value['color']]['code']}}"></span>
+                                                                    <span>{{$value['size']}} x {{$value['number']}} </span>
                                                                 </span>
                                                                 <span class="trash-cart">
-                                                                        <a href="/xoa-gio-hang/{{$value['id']}}/{{$value['size']}}"><i class="fa fa-trash-o"></i></a>
+                                                                    <a href="/xoa-gio-hang/{{$value['id']}}/{{$value['size']}}"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                             </li>
                                                         @endforeach

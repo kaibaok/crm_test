@@ -31,10 +31,7 @@ class Controller extends BaseController
     			return array( 0 => "Hiển thị" , 1 => "Ẩn" );
     		break;
     		case 'listPaid':
-    			return array( 'all' => "Tất cả" , 1 => "Đã thanh toán" , 2 => 'Chưa thanh toán' );
-    		break;
-    		case 'typePaid':
-    			return array( 'all' => "Tất cả" , 1 => "Member đặt" , 2 => 'Admin đặt' );
+    			return array( 0 => 'Chưa thanh toán', 1 => "Đã thanh toán");
     		break;
             case 'typePrice':
                 return array( 1 => "Giá bình thường", 2 => "Giá Liên hệ", 3 => "Hết hàng");
@@ -69,8 +66,6 @@ class Controller extends BaseController
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
             $sCart           = Session::get('sCart');
             $listColors      = Colors::getList();
-
-
             MetaTag::set('title', 'This is a detail page');
             MetaTag::set('description', 'All about this detail page');
             MetaTag::set('keywords', 'All about this detail page,c,asd,as,da,d,s');

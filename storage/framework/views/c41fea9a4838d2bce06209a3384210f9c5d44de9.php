@@ -26,7 +26,7 @@
               <div class="menu_section">
                 <h3>Quản lý</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-archive"></i> Danh mục sản phẩm <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-cubes"></i> Danh mục sản phẩm <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/admin/product">Sản phẩm</a></li>
                       <li><a href="/admin/item-product">Danh mục</a></li>
@@ -37,14 +37,14 @@
                       <li><a href="/admin/inventory">Tồn kho</a></li>
                     </ul>
                   </li>
-                 <?php /*  <li><a><i class="fa fa-book"></i> Đặt hàng <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-shopping-cart"></i> Đặt hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/admin/product/cart">Danh sách đặt hàng</a></li>
                       <li><a href="/admin/delivery">Giao hàng</a></li>
                       <li><a href="/admin/re-product">Trả hàng</a></li>
                     </ul>
-                  </li> */ ?>
-                  <li><a><i class="fa fa-archive"></i> Danh mục tin tức <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                  <li><a><i class="fa fa-newspaper-o"></i> Danh mục tin tức <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/admin/news">Tin tức</a></li>
                       <li><a href="/admin/news-cate">Loại tin</a></li>

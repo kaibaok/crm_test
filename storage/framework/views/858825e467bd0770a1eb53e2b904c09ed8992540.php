@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <div class="banner-text">
+                <div class="banner-text text-center">
                     <div class="banner-title">
                         <h2 class="text-uppercase">Xác nhận đơn hàng</h2>
                     </div>
@@ -73,13 +73,14 @@
                         <p>Thành phố <span>*</span>
                             <br>
                             <input type="text" placeholder="Thành phố" name="city" value="<?php echo e(!empty($info['city']) ? $info['city'] : ''); ?>">
+                            <?php if(isset($errors['city'])): ?>
+                                <span class="txt_error"><?php echo e($errors['city']); ?></span> <?php endif; ?>
                         </p>
                         <div class="row">
                             <p class="col-sm-6 col-xs-12">
                                 Phường/Xã
                                 <br>
-                                <input type="text" placeholder="Phường/Xã" name="stage" value="<?php echo e(!empty($info['stage']) ? $info['stage'] : ''); ?>"> <?php if(isset($errors['stage'])): ?>
-                                <span class="txt_error"><?php echo e($errors['stage']); ?></span> <?php endif; ?>
+                                <input type="text" placeholder="Phường/Xã" name="stage" value="<?php echo e(!empty($info['stage']) ? $info['stage'] : ''); ?>">
                             </p>
                             <p class="col-sm-6 col-xs-12">
                                 Quận <span>*</span>

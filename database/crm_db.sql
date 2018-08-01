@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2018 at 01:02 PM
+-- Generation Time: Aug 01, 2018 at 12:41 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -79,7 +79,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `userid`, `full_name`, `email`, `address1`, `address2`, `phone`, `stage`, `district`, `city`, `ship_date`, `paid`, `note`, `code`, `created_at`, `updated_at`) VALUES
-(3, 0, 'Võ hoài tâm', 'kyra0590@gmail.com', '34/1 kp4 thị trấn nhà bè', '', '0937472503', '1', '1', 'hcm', '0000-00-00', 0, 'áđấ\r\nsđá', '123456', '2018-07-31 03:46:53', '2018-07-30 20:46:53');
+(3, 0, 'Võ hoài tâm', 'kyra0590@gmail.com', '34/1 kp4 thị trấn nhà bè', '', '0937472503', '1', '1', 'hcm', '0000-00-00', 0, 'áđấ\r\nsđá', '123456', '2018-07-31 03:46:53', '2018-07-30 20:46:53'),
+(4, 7, 'vohoaitam', 'asdkla@gmail.com', '34/1 kp4 thi tran nha be', '', '09375467979', '1', '1', 'asdasd', '0000-00-00', 0, 'asda', '123456', '2018-08-01 02:39:25', '2018-07-31 19:39:25');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,8 @@ CREATE TABLE `cart_detail` (
 --
 
 INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `color`, `created_at`, `updated_at`) VALUES
-(5, 3, 80, 'san pham a', 200, 100, 30, 0, '2018-07-31 03:46:54', '2018-07-30 20:46:54');
+(5, 3, 80, 'san pham a', 200, 100, 30, 0, '2018-07-31 03:46:54', '2018-07-30 20:46:54'),
+(6, 4, 80, 'san pham a', 200, 100, 1, 2, '2018-08-01 02:39:25', '2018-07-31 19:39:25');
 
 -- --------------------------------------------------------
 
@@ -153,7 +155,7 @@ CREATE TABLE `discount_code` (
 --
 
 INSERT INTO `discount_code` (`id`, `status`, `code`, `number`, `end_date`, `percent`, `type_discount`, `discount_price`, `updated_at`, `created_at`) VALUES
-(1, 0, '123456', 0, '2018-07-31', 10, 0, 150, '2018-07-30 20:46:54', '0000-00-00 00:00:00');
+(1, 0, '123456', 0, '2018-07-31', 10, 0, 150, '2018-07-31 19:39:25', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -688,13 +690,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `colors`

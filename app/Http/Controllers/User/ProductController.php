@@ -111,7 +111,6 @@ class ProductController extends Controller {
 
         return view("user.product.detail")
             ->with("product", $product)
-            ->with("listColors", $listColors)
             ->with("listSize", $this->getOption("listSize"))
             ->with("id", $id);
     }
@@ -223,7 +222,6 @@ class ProductController extends Controller {
             if(empty($info['phone'])) $errors['phone']       = "Vui lòng kiểm tra số điện thoại";
             if(empty($info['address1'])) $errors['address']  = "Vui lòng kiểm tra địa chỉ";
             if(empty($info['city'])) $errors['city']         = "Vui lòng kiểm tra thành phố";
-            if(empty($info['stage'])) $errors['stage']       = "Vui lòng kiểm tra phường/xã";
             if(empty($info['district'])) $errors['district'] = "Vui lòng kiểm tra quận";
             if(empty($errors)) {
                 // luu data
@@ -236,6 +234,8 @@ class ProductController extends Controller {
                 if(!empty($discountPrice)) $info['code'] = $discountPrice->code;
 
                 $status = Cart::addCart($info);
+
+
                 if($status) {
                     $cartID = $status->id;
                     foreach ($sCart as $key => $value) {

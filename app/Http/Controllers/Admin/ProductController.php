@@ -14,7 +14,8 @@ use App\Models\ProductItem;
 use App\Events\Img;
 use DateTime,Session;
 use App\User;
-use App\Models\Admin\Cart;
+use App\Models\Cart;
+use App\Models\CartDetail;
 
 class ProductController extends Controller
 {
@@ -462,56 +463,6 @@ class ProductController extends Controller
         return redirect()->guest($back_url);
     }
 
-    //  crod Cart Product
-    public function listCart (){
-        $title  = "Danh Sách Đặt Hàng";
-        $m_cart = new Cart();
-        if(!empty($_GET)){
-            if(!empty($_GET['userid'])) $m_cart  = $m_cart->where('userid','like',"%{$_GET['userid']}%");
-            if(!empty($_GET['name'])) $m_cart    = $m_cart->where('name','like',"%{$_GET['name']}%");
-            if(!empty($_GET['email'])) $m_cart   = $m_cart->where('email','like',"%{$_GET['email']}%");
-            if(!empty($_GET['address'])) $m_cart = $m_cart->where('address','like',"%{$_GET['address']}%");
-            if(!empty($_GET['phone'])) $m_cart   = $m_cart->where('phone','like',"%{$_GET['phone']}%");
-            if(!empty($_GET['paid'])) {
-                $paid      = ($_GET['paid'] == "all" || $_GET['paid'] == "") ? "" : $_GET['paid'] ;
-                $m_cart    = $m_cart->where('paid','like',"%{$paid}%");
-            }
-            if(!empty($_GET['type'])) {
-                $type      = ($_GET['type'] == "all" || $_GET['type'] == "") ? "" : $_GET['type'] ;
-                $m_cart    = $m_cart->where('type','like',"%{$type}%");
-            }
-            if(!empty($_GET['cb_dat']) &&!empty($_GET['registered_date'])) $m_cart = $m_cart->where('registered_date','like',"%{$_GET['registered_date']}%");
-            if(!empty($_GET['cb_ship']) && !empty($_GET['ship_date'])) $m_cart = $m_cart->where('ship_date','like',"%{$_GET['ship_date']}%");
-        }
-        $list_cart = $m_cart->paginate(LIMIT_PAGE);
-        $list_type = $this->getOption('typePaid');
-        $list_paid = $this->getOption('listPaid');
-        return view("admin.product.listCart")->with("view",array(
-            "title"         => $title,
-            "list_cart"     => $list_cart,
-            "list_type"     => $list_type,
-            "list_paid"     => $list_paid,
-        ));
-    }
-
-    public function addCart(){
-        $title         = "Thêm đơn hàng";
-        $errors        = NULL;
-        if(!empty($_POST)){
-
-        //     $s_new_typeproduct = ProductType::addTypeProduct($_POST);
-        //     if($s_new_typeproduct) {
-        //         $_POST  = empty($_POST);
-        //         $errors = "Thêm thành công";
-        //     }else{
-        //         $errors = "Thêm thất bại";
-        //     }
-        }
-        return view("admin.product.addCart")->with("view",array(
-            "title" => $title,
-            "errors" => $errors));
-    }
-
     //  crod ProductItem
     public function statusItemProduct($id){
         $getItemProduct = ProductItem::findOrFail((int)$id);
@@ -701,4 +652,46 @@ class ProductController extends Controller
         $back_url = redirect()->getUrlGenerator()->previous();
         return redirect()->guest($back_url);
     }
+
+    //  crod Cart Product
+    public function listCart (){
+        $title     = "Danh Sách Đặt Hàng";
+        $listPaid  = $this->getOption('listPaid');
+        $page      = isset($request->page) ? $request->page : 1;
+        $builder   = Cart::select();
+        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+
+        if(!empty($txtSearch)) {
+            $builder->where('title','like',"%{$txtSearch}%")
+                ->orWhere('userid', '=', $txtSearch)
+                ->orWhere('email','like',"%{$txtSearch}%")
+                ->orWhere('address1','like',"%{$txtSearch}%")
+                ->orWhere('address2','like',"%{$txtSearch}%")
+                ->orWhere('phone','like',"%{$txtSearch}%")
+                ->orWhere('district','like',"%{$txtSearch}%")
+                ->orWhere('ship_date','=', $txtSearch)
+                ->orWhere('city','like', "%{$txtSearch}%");
+        }
+
+        $builder->orderByRaw("id DESC, paid ASC");
+        $totalResult   = $builder->count();
+        $listCart      = $builder->paginate(LIMIT_PAGE);
+        $conditionPage = array('txtSearch' => $txtSearch);
+
+        return view("admin.product.listCart")
+            ->with("title", $title)
+            ->with("listCart", $listCart)
+            ->with("listPaid", $listPaid)
+            ->with("conditionPage", $conditionPage);
+    }
+
+     public function editCart(Request $request){
+        $title         = "Sửa đơn hàng";
+        $errors        = NULL;
+
+        return view("admin.product.addCart")->with("view",array(
+            "title" => $title,
+            "errors" => $errors));
+    }
+
 }

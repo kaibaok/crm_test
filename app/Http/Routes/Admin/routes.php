@@ -43,10 +43,6 @@ Route::any('colors/add', 'Admin\ProductController@addColors');
 Route::any('colors/edit/{id?}', 'Admin\ProductController@editColors');
 Route::get('colors/del/{id?}', 'Admin\ProductController@delColors');
 
-// Cart Product
-Route::any('product/cart', 'Admin\ProductController@listCart');
-Route::any('product/cart/add', 'Admin\ProductController@addCart');
-
 // tag
 Route::any('tag', 'Admin\TagController@index');
 Route::any('tag/add', 'Admin\TagController@addTag');
@@ -101,7 +97,7 @@ Route::get('event/del/{id?}', 'Admin\IndexController@delEvent');
 Route::get('event/status/{id?}', 'Admin\IndexController@statusEvent');
 
 // tag
-Route::get('/tag', 'Admin\IndexController@tag');
+Route::get('tag', 'Admin\IndexController@tag');
 Route::any('tag/add', 'Admin\IndexController@addTag');
 Route::any('tag/edit/{id?}', 'Admin\IndexController@editTag');
 Route::get('tag/del/{id?}', 'Admin\IndexController@delTag');
@@ -109,3 +105,9 @@ Route::get('tag/status/{id?}', 'Admin\IndexController@statusTag');
 
 //menu top
 Route::any('menu-top', 'Admin\MenuController@index');
+
+// Cart Product
+Route::any('cart', 'Admin\ProductController@listCart');
+Route::any('cart/edit/{id?}', 'Admin\ProductController@editCart');
+Route::any('cart/del/{id?}', 'Admin\ProductController@delCart');
+Route::any('cart/add', 'Admin\ProductController@addCart');

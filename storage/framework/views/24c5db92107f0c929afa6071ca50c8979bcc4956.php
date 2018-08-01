@@ -38,7 +38,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="email" id="email" class="form-control col-md-7 col-xs-12" name="email" data-parsley-trigger="change" value="<?php echo e($detail_user['email']); ?>" required />
+						<input type="email" id="email" class="form-control col-md-7 col-xs-12" name="email" value="<?php echo e($detail_user['email']); ?>" required />
 						</div>
 						<?php if(isset($errors['email'])): ?> <div class="alert"><?php echo e($errors['email']); ?></div> <?php endif; ?>
 					</div>
@@ -70,7 +70,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Số điện thoại <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="phone" class="form-control col-md-7 col-xs-12" name="phone" data-parsley-trigger="change" value="<?php echo e($detail_user['phone']); ?>" required />
+						<input type="text" id="phone" class="form-control col-md-7 col-xs-12" name="phone" value="<?php echo e($detail_user['phone']); ?>" required />
 						</div>
 						<?php if(isset($errors['phone'])): ?> <div class="alert"><?php echo e($errors['phone']); ?></div> <?php endif; ?>
 					</div>

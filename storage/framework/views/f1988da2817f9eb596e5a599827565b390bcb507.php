@@ -1,16 +1,15 @@
-@extends("admin.layout")
-@section('title') {{$title}} @endsection
-@section('rightcontent')
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('rightcontent'); ?>
 <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>{{$title}}</h3>
+        <h3><?php echo e($title); ?></h3>
       </div>
       <div class="title_right">
         <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
           <form method="get">
             <div class="input-group">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                   <input type="hidden" name="page" value="1">
                   <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
                   <span class="input-group-btn">
@@ -54,29 +53,30 @@
                 </thead>
 
                 <tbody id="tbl_aluser">
-                  @php
+                  <?php 
                     $no = 1;
-                  @endphp
-                  @foreach ($listCart as $value)
+                   ?>
+                  <?php foreach($listCart as $value): ?>
                   <tr class="even pointer">
-                    <td>{{$no++}}</td>
-                    <td>{{($value->ship_date != "0000-00-00") ? $value->ship_date : ""}}</td>
-                    <td>{{$listPaid[$value->paid]}}</td>
-                    <td> @if (!empty($value->userid)) <a href="/admin/user/edit/{{$value->userid}}" target="_blank">{{$value->userid}}</a> @endif </td>
-                    <td>{{$value->full_name}}</td>
-                    <td>{{$value->address1}}</td>
-                    <td>{{$value->phone}}</td>
-                    <td>{{$value->stage}}</td>
-                    <td>{{$value->district}}</td>
-                    <td>{{$value->city}}</td>
-                    <td>{{$value->created_at}}</td>
-                    <td class="last"> <a href="/admin/cart/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cart/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
+                    <td><?php echo e($no++); ?></td>
+                    <td><?php echo e(($value->ship_date != "0000-00-00") ? $value->ship_date : ""); ?></td>
+                    <td><?php echo e($listPaid[$value->paid]); ?></td>
+                    <td> <?php if(!empty($value->userid)): ?> <a href="/admin/user/edit/<?php echo e($value->userid); ?>" target="_blank"><?php echo e($value->userid); ?></a> <?php endif; ?> </td>
+                    <td><?php echo e($value->full_name); ?></td>
+                    <td><?php echo e($value->address1); ?></td>
+                    <td><?php echo e($value->phone); ?></td>
+                    <td><?php echo e($value->stage); ?></td>
+                    <td><?php echo e($value->district); ?></td>
+                    <td><?php echo e($value->city); ?></td>
+                    <td><?php echo e($value->created_at); ?></td>
+                    <td class="last"> <a href="/admin/cart/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cart/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
                   </tr>
-                  @endforeach
+                  <?php endforeach; ?>
                 </tbody>
               </table>
               <div class="btn-toolbar pull-right">
-                {{$listCart->appends($conditionPage)->links()}}
+                <?php echo e($listCart->appends($conditionPage)->links()); ?>
+
               </div>
             </div>
           </div>
@@ -84,4 +84,5 @@
       </div>
     </div>
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

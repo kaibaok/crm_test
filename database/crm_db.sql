@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 12:41 PM
+-- Generation Time: Aug 02, 2018 at 12:59 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.35
 
@@ -97,6 +97,7 @@ CREATE TABLE `cart_detail` (
   `dprice` int(11) NOT NULL,
   `number` int(11) NOT NULL,
   `color` int(11) NOT NULL DEFAULT '0',
+  `size` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -105,9 +106,9 @@ CREATE TABLE `cart_detail` (
 -- Dumping data for table `cart_detail`
 --
 
-INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `color`, `created_at`, `updated_at`) VALUES
-(5, 3, 80, 'san pham a', 200, 100, 30, 0, '2018-07-31 03:46:54', '2018-07-30 20:46:54'),
-(6, 4, 80, 'san pham a', 200, 100, 1, 2, '2018-08-01 02:39:25', '2018-07-31 19:39:25');
+INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `color`, `size`, `created_at`, `updated_at`) VALUES
+(5, 3, 80, 'san pham a', 200, 100, 30, 1, 's', '2018-07-31 03:46:54', '2018-08-02 10:57:14'),
+(6, 3, 80, 'san pham a', 200, 100, 1, 2, 'xs', '2018-08-01 02:39:25', '2018-08-02 10:01:44');
 
 -- --------------------------------------------------------
 

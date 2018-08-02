@@ -235,7 +235,6 @@ class ProductController extends Controller {
 
                 $status = Cart::addCart($info);
 
-
                 if($status) {
                     $cartID = $status->id;
                     foreach ($sCart as $key => $value) {
@@ -245,6 +244,7 @@ class ProductController extends Controller {
                             "name"       => $value['title'],
                             "number"     => $value['number'],
                             "color"      => $value['color'],
+                            "size"       => $value['size'],
                             "price"      => $listProduct[$value['id']]['price'],
                             "dprice"     => $listProduct[$value['id']]['discount'],
                         );

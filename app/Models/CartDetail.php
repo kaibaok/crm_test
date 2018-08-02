@@ -54,4 +54,16 @@ class CartDetail extends Model
         }
         return $status;
     }
+
+    public static function getListByID($id)
+    {
+      $data = self::selectRaw("cart_detail.id , cart_detail.cart_id, cart_detail.product_id, product.title,
+        cart_detail.price, cart_detail.dprice, cart_detail.number, colors.code, cart_detail.created_at, cart_detail.size")
+      ->leftJoin("product", "cart_detail.product_id", "=", "product.id")
+      ->leftJoin("colors", "cart_detail.color", "=", "colors.id")
+      ->where("cart_detail.cart_id", "=", $id)
+      ->orderBy("cart_detail.id", "ASC")
+      ->get();
+      return $data;
+    }
 }

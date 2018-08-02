@@ -686,12 +686,32 @@ class ProductController extends Controller
     }
 
      public function editCart(Request $request){
-        $title         = "Sửa đơn hàng";
-        $errors        = NULL;
-
-        return view("admin.product.addCart")->with("view",array(
-            "title" => $title,
-            "errors" => $errors));
+        $title      = "Sửa đơn hàng";
+        $errors     = NULL;
+        $id         = (int) $request->route('id');
+        $errors     = NULL;
+        $cart       = Cart::findOrFail((int)$id)->toArray();
+        $cartDetail = CartDetail::getListByID($id);
+        $params  = $request->all();
+        if ($request->isMethod('post')) {
+            if(empty($params['full_name'])) $errors['full_name'] = "Vui lòng nhập tên";
+            if(empty($params['Email'])) $errors['Email']         = "Vui lòng nhập Email";
+            if(empty($params['address1'])) $errors['address1']   = "Vui lòng nhập địa chỉ";
+            if(empty($params['phone'])) $errors['phone']         = "Vui lòng nhập số điện thoại";
+            if(empty($params['district'])) $errors['district']   = "Vui lòng nhập quận";
+            if(empty($params['city'])) $errors['city']           = "Vui lòng nhập thành phố";
+            if(empty($errors)) {
+                $editCart = Cart::editCart($params);
+                if($editCart) $errors['finish'] = "Sửa thành công";
+                else $errors['finish'] = "Sửa thất bại";
+            }
+            $cart = $params;
+        }
+        return view("admin.product.editCart")
+            ->with("title", $title)
+            ->with("cart", $cart)
+            ->with("cartDetail", $cartDetail)
+            ->with("errors",$errors);
     }
 
 }

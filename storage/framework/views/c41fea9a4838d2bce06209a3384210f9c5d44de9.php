@@ -39,7 +39,7 @@
                   </li>
                   <li><a><i class="fa fa-shopping-cart"></i> Đặt hàng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/admin/product/cart">Danh sách đặt hàng</a></li>
+                      <li><a href="/admin/cart">Danh sách đặt hàng</a></li>
                       <li><a href="/admin/delivery">Giao hàng</a></li>
                       <li><a href="/admin/re-product">Trả hàng</a></li>
                     </ul>

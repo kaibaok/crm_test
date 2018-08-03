@@ -230,6 +230,32 @@ class Product extends Model
         return $arr_data;
     }
 
+    // get list product autocompelete
+    public static function getProductByKey($keywords)
+    {
+        $listProduct  = self::where("title" , "like", "%{$keywords}%")
+            ->where("numbers" , ">" , 0)
+            ->get();
+        $arr = null;
+        foreach ($listProduct as $key => $value) {
+            $arr[] = array(
+                "id"       => $value->id,
+                "label"    => $value->title,
+                "value"    => $value->title,
+                "price"    => $value->price,
+                "discount" => $value->discount,
+                "numbers"  => $value->numbers,
+                "colors"   => explode("|", $value->colors),
+                "size_xs"  => $value->size_xs,
+                "size_s"   => $value->size_s,
+                "size_m"   => $value->size_m,
+                "size_l"   => $value->size_l,
+                "size_xl"  => $value->size_xl,
+            );
+        }
+        return $arr;
+    }
+
 }
 
 

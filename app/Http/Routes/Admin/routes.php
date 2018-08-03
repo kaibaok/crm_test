@@ -111,3 +111,9 @@ Route::any('cart', 'Admin\ProductController@listCart');
 Route::any('cart/edit/{id?}', 'Admin\ProductController@editCart');
 Route::any('cart/del/{id?}', 'Admin\ProductController@delCart');
 Route::any('cart/add', 'Admin\ProductController@addCart');
+// Cart Detail
+Route::any('cartDetail/edit/{id?}', 'Admin\ProductController@editCartDetail');
+Route::any('cartDetail/del/{id?}', 'Admin\ProductController@delCartDetail');
+Route::any('cartDetail/add/{id?}', 'Admin\ProductController@addCartDetail');
+Route::any('product/ajax-get-product', 'Admin\ProductController@ajaxGetProduct');
+

@@ -14,7 +14,8 @@ class CartDetail extends Model
      */
     protected $fillable = [
         'id', 'cart_id', 'product_id','name',
-         'price','dprice','number', 'color', 'created_at','updated_at'
+        'price','dprice','number', 'color',
+        'created_at','updated_at'
     ];
 
     public static function addCartDetail($data){
@@ -42,7 +43,6 @@ class CartDetail extends Model
         $status = false;
         if(isset($data)){
             $arr_update  = array(
-              'cart_id'    => $data['cart_id'],
               'product_id' => (int) $data['product_id'],
               'name'       => trim(strip_tags($data['name'])),
               'price'      => $data['price'],

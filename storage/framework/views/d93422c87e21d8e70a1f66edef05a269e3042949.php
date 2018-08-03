@@ -2,83 +2,83 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    {{-- Meta, title, CSS, favicons, etc. --}}
+    <?php /* Meta, title, CSS, favicons, etc. */ ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>@yield("title")</title>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+    <title><?php echo $__env->yieldContent("title"); ?></title>
 
-    {{-- Bootstrap --}}
+    <?php /* Bootstrap */ ?>
     <link href="/public/admin/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/public/admin/js/jquery/dist/jquery-ui.min.css" rel="stylesheet">
-    {{-- Font Awesome --}}
+    <?php /* Font Awesome */ ?>
     <link href="/public/admin/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    {{-- NProgress --}}
+    <?php /* NProgress */ ?>
     <link href="/public/admin/js/nprogress/nprogress.css" rel="stylesheet">
-    {{-- bootstrap-progressbar --}}
+    <?php /* bootstrap-progressbar */ ?>
     <link href="/public/admin/js/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    {{-- Custom Theme Style --}}
+    <?php /* Custom Theme Style */ ?>
     <link href="/public/admin/css/custom.css" rel="stylesheet">
-    {{-- iCheck --}}
+    <?php /* iCheck */ ?>
     <link href="/public/admin/js/iCheck/skins/flat/green.css" rel="stylesheet">
 
 
    <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
    <link href="/public/admin/js/imageupload/dist/css/bootstrap-imageupload.css" rel="stylesheet">
    <link href="/public/admin/js/pnotify/pnotify.custom.min.css" rel="stylesheet">
-   @yield("css")
+   <?php echo $__env->yieldContent("css"); ?>
 
   </head>
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        {{-- menu left --}}
-       @include("admin.menuleft")
-        {{-- end menu lef --}}
+        <?php /* menu left */ ?>
+       <?php echo $__env->make("admin.menuleft", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php /* end menu lef */ ?>
 
-        {{-- top navigation --}}
-        @include("admin.menutop")
-        {{-- /top navigation --}}
+        <?php /* top navigation */ ?>
+        <?php echo $__env->make("admin.menutop", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php /* /top navigation */ ?>
 
-        {{-- page content --}}
+        <?php /* page content */ ?>
         <div class="right_col" role="main">
-         @yield("rightcontent")
+         <?php echo $__env->yieldContent("rightcontent"); ?>
         </div>
-        {{-- /page content --}}
+        <?php /* /page content */ ?>
 
-        {{-- footer content --}}
+        <?php /* footer content */ ?>
         <footer>
           <div class="pull-right">
             Gentelella - Bootstrap Admin Template by <a href="/">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
-        {{-- /footer content --}}
+        <?php /* /footer content */ ?>
       </div>
     </div>
 
-    {{-- jQuery --}}
+    <?php /* jQuery */ ?>
     <script src="/public/admin/js/jquery/dist/jquery.min.js"></script>
     <script src="/public/admin/js/jquery/dist/jquery-ui.min.js"></script>
-    {{-- Bootstrap --}}
+    <?php /* Bootstrap */ ?>
     <script src="/public/admin/js/bootstrap/dist/js/bootstrap.min.js"></script>
-    {{-- NProgress --}}
+    <?php /* NProgress */ ?>
     <script src="/public/admin/js/nprogress/nprogress.js"></script>
-    {{-- bootstrap-progressbar --}}
+    <?php /* bootstrap-progressbar */ ?>
     <script src="/public/admin/js/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    {{-- Custom Theme Scripts --}}
+    <?php /* Custom Theme Scripts */ ?>
     <script src="/public/admin/js/custom.js"></script>
-    {{-- FastClick --}}
+    <?php /* FastClick */ ?>
     <script src="/public/admin/js/fastclick/lib/fastclick.js"></script>
-    {{-- Chart.js --}}
-    {{-- <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script> --}}
-    {{-- iCheck --}}
+    <?php /* Chart.js */ ?>
+    <?php /* <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script> */ ?>
+    <?php /* iCheck */ ?>
     <script src="/public/admin/js/iCheck/icheck.min.js"></script>
-    {{-- DateJS --}}
-    {{-- <script src="/public/admin/js/DateJS/build/date.js"></script> --}}
-    {{-- Parsley --}}
+    <?php /* DateJS */ ?>
+    <?php /* <script src="/public/admin/js/DateJS/build/date.js"></script> */ ?>
+    <?php /* Parsley */ ?>
     <script src="/public/admin/js/parsleyjs/dist/parsley.js"></script>
     <script src="/public/admin/js/ckeditor/ckeditor.js"></script>
     <script src="/public/admin/js/ckeditor/ckfinder/ckfinder.js"></script>
@@ -108,7 +108,7 @@
             new PNotify(opts);
         }
     </script>
-    @yield("js")
+    <?php echo $__env->yieldContent("js"); ?>
     <script src="/public/admin/js/cus_admin.js"></script>
   </body>
 </html>

@@ -685,11 +685,11 @@ class ProductController extends Controller
             ->with("conditionPage", $conditionPage);
     }
 
-     public function editCart(Request $request){
+    public function editCart(Request $request)
+    {
         $title      = "Sửa đơn hàng";
         $errors     = NULL;
         $id         = (int) $request->route('id');
-        $errors     = NULL;
         $cart       = Cart::findOrFail((int)$id)->toArray();
         $cartDetail = CartDetail::getListByID($id);
         $params  = $request->all();
@@ -714,4 +714,49 @@ class ProductController extends Controller
             ->with("errors",$errors);
     }
 
+     public function delCart($id){
+        $existCart = CartDetail::where("cart_id","=" , $id)->count();
+        if(!$existCart) Cart::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
+    public function editCartDetail(Request $request)
+    {
+        $title      = "Sửa chi tiết đơn hàng";
+        $errors     = NULL;
+        $id         = (int) $request->route('id');
+        $cartDetail = CartDetail::findOrFail((int)$id)->toArray();
+        $params     = $request->all();
+        $listColors = Colors::getList();
+        if ($request->isMethod('post')) {
+            if(empty($params['product_id'])) $errors['product_id'] = "Vui lòng chọn sản phẩm";
+            if(empty($params['price'])) $errors['price']           = "Vui lòng nhập giá";
+            if(empty($params['number'])) $errors['number']         = "Vui lòng nhập số lượng";
+            if(empty($params['color'])) $errors['color']           = "Vui lòng chọn màu sắc";
+            if(empty($params['size'])) $errors['size']             = "Vui lòng chọn kích thước";
+            if(empty($errors)) {
+                $editCart = CartDetail::editCartDetail($params);
+                if($editCart) $errors['finish'] = "Sửa thành công";
+                else $errors['finish']          = "Sửa thất bại";
+            }
+            $cartDetail = $params;
+        }
+        return view("admin.product.editCartDetail")
+            ->with("title", $title)
+            ->with("listColors", $listColors)
+            ->with("cartDetail", $cartDetail)
+            ->with("errors",$errors);
+    }
+
+    public function ajaxGetProduct(Request $request)
+    {
+        $params = $request->all();
+        $listProduct = null;
+        if(!empty($params['term'])){
+            $keywords = $params['term'];
+            $listProduct = Product::getProductByKey($keywords);
+        }
+        return response()->json($listProduct);
+    }
 }

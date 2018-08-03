@@ -161,7 +161,6 @@ $(document).ready(function() {
 
         $('#btnAdd').click(function(){editor.add(); $("#out").val(editor.getString()); });
         $('#btnAddSP').click(function(){
-            console.log("asd");
             editorSP.add(); $("#outSP").val(editorSP.getString()); });
 
         $('#btnSave').click(function(event){
@@ -169,6 +168,40 @@ $(document).ready(function() {
             $("#out").val(editor.getString());
             $("#outSP").val(editorSP.getString());
             $("#demo-form").submit();
+        });
+    }
+
+
+     if($("div").hasClass('autocomp')) {
+        var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++",
+        "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell",
+          "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
+        $( "#product_name" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "/admin/product/ajax-get-product",
+                    type: 'POST',
+                    dataType: "json",
+                    data: {
+                        term : request.term,
+                        _token : _token
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                } );
+            },
+            select: function( event, ui ) {
+                // console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+                $("#product_id").val(ui.item.id);
+                $("#price").val(ui.item.price);
+                $("#dprice").val(ui.item.discount);
+                $("#color").val(ui.item.colors);
+                $("#size").val(ui.item.size_s);
+                for (var i = Things.length - 1; i >= 0; i--) {
+                    Things[i]
+                }
+            }
         });
     }
 });

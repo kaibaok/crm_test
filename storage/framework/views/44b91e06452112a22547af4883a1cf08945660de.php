@@ -10,7 +10,7 @@
             <div class=" pull-right">
               <div class="input-group">
                 <button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                <a class="btn btn-info" href="/admin/item-product/">Trở về</a>
+                <a class="btn btn-info" href="/admin/cart/edit/<?php echo e($cartDetail['cart_id']); ?>">Trở về</a>
               </div>
             </div>
           </div>
@@ -25,6 +25,7 @@
               <div class="x_content autocomp">
                     <?php echo e(csrf_field()); ?>
 
+                    <input type="hidden" name="cart_id" value="<?php echo e($cartDetail['cart_id']); ?>">
                     <input type="hidden" name="id" id="id" value="<?php echo e(isset($cartDetail['id']) ? $cartDetail['id'] : ''); ?>">
                     <input type="hidden" name="product_id" id="product_id" value="<?php echo e(isset($cartDetail['product_id']) ? $cartDetail['product_id'] : ''); ?>">
                      <div class="item form-group  <?php if(isset($errors['name'])): ?> bad <?php endif; ?>">
@@ -58,27 +59,35 @@
                         </div>
                         <?php if(isset($errors['number'])): ?> <div class="alert"><?php echo e($errors['number']); ?></div> <?php endif; ?>
                     </div>
+                    <?php  $chooseColor = explode("|",$product->colors);  ?>
                     <div class="item form-group  <?php if(isset($errors['color'])): ?> bad <?php endif; ?>">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">Màu sắc <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select id="color" class="form-control col-md-7 col-xs-12" name="color">
-                                <option value="0"></option>
                                 <?php foreach($listColors as $key => $value): ?>
-                                    <?php 
-                                        $select = ($cartDetail['color'] == $key) ? "selected" : "";
-                                     ?>
-                                    <option value="<?php echo e($key); ?>" style="color:<?php echo e($value['code']); ?>" <?php echo e($select); ?>> <span style="background: <?php echo e($value['code']); ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>  <?php echo e($value['name']); ?></option>
+                                    <?php if(in_array($key, $chooseColor)): ?>
+                                        <?php  $select = ($key == $cartDetail['color']) ? 'selected' : ''  ?>
+                                        <option value="<?php echo e($key); ?>" style="color:<?php echo e($value['code']); ?>" <?php echo e($select); ?>> <?php echo e($value['name']); ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <?php if(isset($errors['color'])): ?> <div class="alert"><?php echo e($errors['color']); ?></div> <?php endif; ?>
                     </div>
+                    <?php  $listSize = json_decode($product->size)  ?>
                     <div class="item form-group  <?php if(isset($errors['size'])): ?> bad <?php endif; ?>">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">Kích thước <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="size" class="form-control col-md-7 col-xs-12" name="size" value="<?php echo e(isset($cartDetail['size']) ? $cartDetail['size'] : ''); ?>">
+                            <select id="size" class="form-control col-md-7 col-xs-12" name="size">
+                                <?php foreach($listSize as $key => $value): ?>
+                                    <?php if($value): ?>
+                                        <?php  $select = ($cartDetail['size'] == $key) ? "selected" : "";  ?>
+                                        <option value="<?php echo e($key); ?>" style="color:<?php echo e($key); ?>" <?php echo e($select); ?>> <?php echo e(strtoupper($key)); ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <?php if(isset($errors['size'])): ?> <div class="alert"><?php echo e($errors['size']); ?></div> <?php endif; ?>
                     </div>
@@ -91,9 +100,9 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
     <script>
-        var listColors = null;
+        var listColors = listSize = null;
         <?php if(isset($errors['finish'])): ?> popupNotice("<?php echo e($errors['finish']); ?>");  <?php endif; ?>
-        <?php if(!empty($listColors)): ?> listColors = <?php echo json_encode($listColors); ?>  <?php endif; ?>
+        <?php if(!empty($listColors)): ?> listColors = <?php echo json_encode($listColors); ?>;  <?php endif; ?>
      </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

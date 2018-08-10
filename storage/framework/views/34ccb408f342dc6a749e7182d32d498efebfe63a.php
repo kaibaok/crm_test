@@ -89,11 +89,13 @@
                         <?php endforeach; ?>
                     </td>
                     <td>
-                    <?php if(!empty($value->size_xs)): ?> XS - <?php endif; ?>
-                    <?php if(!empty($value->size_s)): ?> S - <?php endif; ?>
-                    <?php if(!empty($value->size_m)): ?> M - <?php endif; ?>
-                    <?php if(!empty($value->size_l)): ?> L - <?php endif; ?>
-                    <?php if(!empty($value->size_xl)): ?> XL <?php endif; ?>
+                    <?php if(!empty($value->size)): ?>
+                        <?php   $listSize = json_decode($value->size);  ?>
+                        <?php foreach($listSize as $key => $item): ?>
+                          <?php echo e(($item) ? $key." - " : ''); ?>
+
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> <?php echo e($value->limit_at); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> <?php echo e($value->created_at); ?></td>

@@ -117,3 +117,5 @@ Route::any('cartDetail/del/{id?}', 'Admin\ProductController@delCartDetail');
 Route::any('cartDetail/add/{id?}', 'Admin\ProductController@addCartDetail');
 Route::any('product/ajax-get-product', 'Admin\ProductController@ajaxGetProduct');
 
+Route::any('/chart-bar', 'Admin\IndexController@chartBar');
+Route::any('/chart-Pie', 'Admin\IndexController@chartPie');

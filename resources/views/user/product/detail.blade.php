@@ -54,7 +54,7 @@
                 <div class="product-detail">
                     <div class="product-title">
                         <h2>{{$product->title}}</h2><br>
-                        <h4>Giá:
+                    <h4>Giá:
                             @if($product->type_price == CONTACT_PHONE) {{CONTACT_PHONE}}
                             @else
                                 @if ($product->discount >0)
@@ -73,25 +73,39 @@
                         @if ($product->type_price == NORMAL_PRICE || $product->numbers > 0)
                             <form action="" method="post">
                                 {{ csrf_field() }}
-                                <div class="single-size-quantity mb-10">
-                                    <h4>Size:</h4>
-                                    <div class="search-cat">
-                                        <select name="size" class="category-items">
-                                            @foreach ($listSize as $value)
-                                                <option value="{{$value}}">{{strtoupper($value)}}</option>
+                                @if(!empty($product->size))
+                                    @php $listSize = json_decode($product->size) @endphp
+                                    <div class="single-size-quantity mb-10">
+                                        <h4>Size:</h4>
+                                        <div class="search-cat">
+                                            <select name="size" class="category-items">
+                                                @foreach ($listSize as $keySize => $valueSize)
+                                                    @if($valueSize)
+                                                        <option value="{{$keySize}}">{{strtoupper($keySize)}}</option>
+                                                    @endif
                                             @endforeach
-                                        </select>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+                                <br>
 
-                                <div class="wish-icon-hover-list mb-10">
-                                    <h4 class="clear_margin">Màu sắc:</h4>
-                                    <ul class="">
-                                        @foreach ($listColors as $key => $value)
-                                            <li> <label style="color:{{$value['code']}}"><input checked type="radio" name="color" value="{{$key}}"> {{$value['name']}}</label></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                @if(!empty($product->colors))
+                                    @php $chooseColor = explode("|",$product->colors) @endphp
+                                    <div class="single-size-quantity mb-10">
+                                        <h4>Màu sắc:</h4>
+                                        <div class="search-cat">
+                                            <select name="color" class="category-items">
+                                                @foreach ($listColors as $keyColor => $valueColor)
+                                                    @if(in_array($keyColor, $chooseColor))
+                                                        <option value="{{$keyColor}}" style="color:{{$valueColor['code']}}">{{strtoupper($valueColor['name'])}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                @endif
+                                <br>
 
                                 <div class="single-size-quantity mb-10">
                                     <h4>Số lượng đặt:</h4>

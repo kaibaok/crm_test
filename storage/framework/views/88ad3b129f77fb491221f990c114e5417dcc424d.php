@@ -127,6 +127,7 @@
                  <div class="x_panel">
                       <div class="x_title">
                         <h2>Giỏ hàng</h2>
+                        <a href="/admin/cartDetail/add/<?php echo e($cart['id']); ?>" class="pull-right btn btn-success">&nbsp;Thêm&nbsp;</a>
                         <div class="clearfix"></div>
                       </div>
                        <div class="x_content">
@@ -135,28 +136,74 @@
                                     <table class="table table-striped jambo_table bulk_action">
                                         <thead>
                                             <th>Sản phẩm</th>
-                                            <th>Giá</th>
-                                            <th>Giá giảm</th>
-                                            <th>Số lượng</th>
                                             <th>Màu sắc</th>
                                             <th>Kích thước</th>
+                                            <th>Gía</th>
+                                            <th>Gía giảm</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
                                             <th>Xử lý</th>
                                         </thead>
                                         <thbody>
                                             <?php if(!empty($cartDetail)): ?>
+                                            <?php  $totalCart = 0;   ?>
                                             <?php foreach($cartDetail as $value): ?>
+                                                <?php 
+                                                    $total = ($value->dprice) ? $value->dprice * $value->number : $value->price * $value->number;
+                                                    $totalCart += $total;
+                                                 ?>
                                                 <tr>
                                                     <td><a href="/admin/product/edit/<?php echo e($value->product_id); ?>"><?php echo e($value->title); ?></a></td>
-                                                    <td><?php echo e($value->price); ?></td>
-                                                    <td><?php echo e($value->dprice); ?></td>
-                                                    <td><?php echo e($value->number); ?></td>
                                                     <td><span style="background:  <?php echo e($value->code); ?> ; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                                                     </td>
                                                     <td><?php echo e($value->size); ?></td>
+                                                    <td><?php echo e($value->price); ?></td>
+                                                    <td><?php echo e($value->dprice); ?></td>
+                                                    <td><?php echo e($value->number); ?></td>
+                                                    <td> <?php echo e($total); ?> </td>
                                                     <td class="last"> <a href="/admin/cartDetail/edit/<?php echo e($value->id); ?>"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cartDetail/del/<?php echo e($value->id); ?>"><i class="success fa fa-remove"></i> Xóa</a> </td>
                                                 </tr>
                                             <?php endforeach; ?>
+                                                <tr>
+                                                    <td colspan="6">Tổng tiền chưa giảm</td>
+                                                    <td colspan="2"><?php echo e($totalCart); ?></td>
+                                                </tr>
+                                                <?php if(!empty($discountCode)): ?>
+                                                    <?php 
+                                                        $isShow = $discountCode->number > 0 && $discountCode->end_date > date("Y-m-d");
+                                                        if($isShow) {
+                                                            $typeDiscount   = "phần trăm";
+                                                            $totalDiscount  = $totalCart * $discountCode->percent / 100;
+                                                            $discountPrice =  $discountCode->percent. "%";
+                                                            if($discountCode->type_discount) {
+                                                                $typeDiscount   = "tiền";
+                                                                $discountPrice = $discountCode->discount_price;
+                                                                $totalDiscount  = $discountCode->discount_price;
+                                                            }
+                                                        } else {
+                                                            $totalDiscount = 0;
+                                                        }
+                                                     ?>
+                                                    <tr>
+                                                        <td>Mã giảm :</td>
+                                                        <td><?php echo e($discountCode->code); ?></td>
+                                                        <?php if($isShow): ?>
+                                                        <td>Loại giảm :</td>
+                                                        <td><?php echo e($typeDiscount); ?></td>
+                                                        <td colspan="2" align="right">Giảm :</td>
+                                                        <td colspan="2"> <?php echo e($discountPrice); ?> </td>
+                                                        <?php else: ?>
+                                                        <td colspan="6" style="color:red">Mã hết hạng hoặc số lượng mã đã hểt</td>
+                                                        <?php endif; ?>
+                                                    </tr>
+                                                <?php endif; ?>
+                                                <tr>
+                                                    <td colspan="6">Tổng tiền</td>
+                                                    <td colspan="2"><?php echo e($totalCart - $totalDiscount); ?></td>
+                                                </tr>
                                             <?php endif; ?>
+
+
                                         </thbody>
                                     </table>
                                 </div>

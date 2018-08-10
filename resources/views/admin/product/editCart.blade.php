@@ -127,6 +127,7 @@
                  <div class="x_panel">
                       <div class="x_title">
                         <h2>Giỏ hàng</h2>
+                        <a href="/admin/cartDetail/add/{{ $cart['id'] }}" class="pull-right btn btn-success">&nbsp;Thêm&nbsp;</a>
                         <div class="clearfix"></div>
                       </div>
                        <div class="x_content">
@@ -135,28 +136,74 @@
                                     <table class="table table-striped jambo_table bulk_action">
                                         <thead>
                                             <th>Sản phẩm</th>
-                                            <th>Giá</th>
-                                            <th>Giá giảm</th>
-                                            <th>Số lượng</th>
                                             <th>Màu sắc</th>
                                             <th>Kích thước</th>
+                                            <th>Gía</th>
+                                            <th>Gía giảm</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
                                             <th>Xử lý</th>
                                         </thead>
                                         <thbody>
                                             @if(!empty($cartDetail))
+                                            @php $totalCart = 0;  @endphp
                                             @foreach ($cartDetail as $value)
+                                                @php
+                                                    $total = ($value->dprice) ? $value->dprice * $value->number : $value->price * $value->number;
+                                                    $totalCart += $total;
+                                                @endphp
                                                 <tr>
                                                     <td><a href="/admin/product/edit/{{$value->product_id}}">{{$value->title}}</a></td>
-                                                    <td>{{$value->price}}</td>
-                                                    <td>{{$value->dprice}}</td>
-                                                    <td>{{$value->number}}</td>
                                                     <td><span style="background:  {{$value->code}} ; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                                                     </td>
                                                     <td>{{$value->size}}</td>
+                                                    <td>{{$value->price}}</td>
+                                                    <td>{{$value->dprice}}</td>
+                                                    <td>{{$value->number}}</td>
+                                                    <td> {{ $total }} </td>
                                                     <td class="last"> <a href="/admin/cartDetail/edit/{{$value->id}}"><i class="success fa fa-edit"></i> Sửa</a> | <a href="/admin/cartDetail/del/{{$value->id}}"><i class="success fa fa-remove"></i> Xóa</a> </td>
                                                 </tr>
                                             @endforeach
+                                                <tr>
+                                                    <td colspan="6">Tổng tiền chưa giảm</td>
+                                                    <td colspan="2">{{ $totalCart }}</td>
+                                                </tr>
+                                                @if(!empty($discountCode))
+                                                    @php
+                                                        $isShow = $discountCode->number > 0 && $discountCode->end_date > date("Y-m-d");
+                                                        if($isShow) {
+                                                            $typeDiscount   = "phần trăm";
+                                                            $totalDiscount  = $totalCart * $discountCode->percent / 100;
+                                                            $discountPrice =  $discountCode->percent. "%";
+                                                            if($discountCode->type_discount) {
+                                                                $typeDiscount   = "tiền";
+                                                                $discountPrice = $discountCode->discount_price;
+                                                                $totalDiscount  = $discountCode->discount_price;
+                                                            }
+                                                        } else {
+                                                            $totalDiscount = 0;
+                                                        }
+                                                    @endphp
+                                                    <tr>
+                                                        <td>Mã giảm :</td>
+                                                        <td>{{ $discountCode->code }}</td>
+                                                        @if($isShow)
+                                                        <td>Loại giảm :</td>
+                                                        <td>{{ $typeDiscount }}</td>
+                                                        <td colspan="2" align="right">Giảm :</td>
+                                                        <td colspan="2"> {{ $discountPrice }} </td>
+                                                        @else
+                                                        <td colspan="6" style="color:red">Mã hết hạng hoặc số lượng mã đã hểt</td>
+                                                        @endif
+                                                    </tr>
+                                                @endif
+                                                <tr>
+                                                    <td colspan="6">Tổng tiền</td>
+                                                    <td colspan="2">{{ $totalCart - $totalDiscount }}</td>
+                                                </tr>
                                             @endif
+
+
                                         </thbody>
                                     </table>
                                 </div>

@@ -173,9 +173,6 @@ $(document).ready(function() {
 
 
      if($("div").hasClass('autocomp')) {
-        var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++",
-        "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell",
-          "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
         $( "#product_name" ).autocomplete({
             source: function( request, response ) {
                 $.ajax( {
@@ -192,15 +189,27 @@ $(document).ready(function() {
                 } );
             },
             select: function( event, ui ) {
-                // console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
                 $("#product_id").val(ui.item.id);
                 $("#price").val(ui.item.price);
                 $("#dprice").val(ui.item.discount);
-                $("#color").val(ui.item.colors);
-                $("#size").val(ui.item.size_s);
-                for (var i = Things.length - 1; i >= 0; i--) {
-                    Things[i]
+                $("#color").empty();
+                $("#size").empty();
+                colorRange = ui.item.colors;
+                for (var i in colorRange) {
+                    var option = new Option(listColors[colorRange[i]].name, colorRange[i]);
+                    $(option).attr('style', 'color:'+listColors[colorRange[i]].code);
+                    $('#color').append($(option));
                 }
+                sizeRange = ui.item.sizes;
+                for (var key in sizeRange) {
+                    if(sizeRange[key]) {
+                        var res = key.toUpperCase();
+                        var option = new Option(res,key);
+                        $('#size').append($(option));
+                    }
+                }
+
+                $("#number").val('Nhỏ hơn '+ui.item.numbers);
             }
         });
     }

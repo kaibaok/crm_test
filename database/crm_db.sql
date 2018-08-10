@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2018 at 05:30 PM
+-- Generation Time: Aug 10, 2018 at 05:46 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 5.6.33-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -104,8 +104,7 @@ CREATE TABLE `cart_detail` (
 --
 
 INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `name`, `price`, `dprice`, `number`, `color`, `size`, `created_at`, `updated_at`) VALUES
-(5, 3, 80, 'san pham a', 200, 100, 30, 2, 's', '2018-07-31 03:46:54', '2018-08-03 03:27:08'),
-(6, 3, 80, 'san pham a', 200, 100, 1, 2, 'xs', '2018-08-01 02:39:25', '2018-08-02 10:01:44');
+(5, 3, 81, 'san pham b', 200, 100, 1, 1, 'xs', '2018-07-31 03:46:54', '2018-08-10 02:00:07');
 
 -- --------------------------------------------------------
 
@@ -153,7 +152,7 @@ CREATE TABLE `discount_code` (
 --
 
 INSERT INTO `discount_code` (`id`, `status`, `code`, `number`, `end_date`, `percent`, `type_discount`, `discount_price`, `updated_at`, `created_at`) VALUES
-(1, 0, '123456', 0, '2018-07-31', 10, 0, 150, '2018-07-31 19:39:25', '0000-00-00 00:00:00');
+(1, 0, '123456', 1, '2018-08-24', 10, 0, 150, '2018-08-10 08:57:46', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -268,7 +267,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `list`, `list_sp`, `created_at`, `updated_at`) VALUES
-(1, '[{"text":"5675","href":"7567","icon":"empty","target":"_self","title":"","children":[{"text":"5675","href":"222","icon":"empty","target":"_self","title":"","children":[{"text":"56757","href":"","icon":"empty","target":"_self","title":""}]}]},{"text":"aaa","href":"","icon":"empty","target":"_self","title":"","children":[{"text":"5675","href":"7567","icon":"empty","target":"_blank","title":""}]}]', '[{"text":"asd","href":"asd","icon":"empty","target":"_self","title":"","children":[{"text":"aaa","href":"","target":"_self"}]}]', '2018-06-25 00:00:00', '2018-07-04 20:07:48');
+(1, '[{"text":"5675","href":"7567","icon":"empty","target":"_self","title":""},{"text":"5675â","href":"22222","icon":"empty","target":"_self","title":"","children":[{"text":"56757","href":"","icon":"empty","target":"_self","title":""}]}]', '[{"text":"asd","href":"asd","icon":"empty","target":"_self","title":"","children":[{"text":"aaa","href":"","icon":"empty","target":"_self","title":""}]}]', '2018-06-25 00:00:00', '2018-08-10 02:44:31');
 
 -- --------------------------------------------------------
 
@@ -398,16 +397,17 @@ CREATE TABLE `product` (
   `size_s` tinyint(4) NOT NULL DEFAULT '0',
   `size_m` tinyint(4) NOT NULL DEFAULT '0',
   `size_l` tinyint(4) NOT NULL DEFAULT '0',
-  `size_xl` tinyint(4) NOT NULL DEFAULT '0'
+  `size_xl` tinyint(4) NOT NULL DEFAULT '0',
+  `size` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`) VALUES
-(80, 1, '1533290262', 'san pham a', 'aa', '', 200, 1, 20, '1|2', '2018-05-23', '2018-05-23 09:13:26', '2018-08-03 02:57:47', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 100, 0, 0, 0, 0, 0, 0),
-(81, 2, '1533289857', 'san pham b', ' mo ta ngan gon xuc tich\r\n                                                            \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 20, '1|2', '2018-05-23', '2018-05-23 09:13:26', '2018-08-03 02:53:11', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 1, 50, 0, 1, 0, 1, 1, 0);
+INSERT INTO `product` (`id`, `id_cate`, `code_id`, `title`, `short_desc`, `desc`, `price`, `type`, `numbers`, `colors`, `limit_at`, `created_at`, `updated_at`, `status`, `ord`, `pimg_list`, `pimg_detail`, `pimg1`, `pimg2`, `pimg3`, `pimg4`, `pimg5`, `is_new`, `is_best_sell`, `seo_link`, `brand`, `type_price`, `discount`, `percent`, `size_xs`, `size_s`, `size_m`, `size_l`, `size_xl`, `size`) VALUES
+(80, 1, '1533867616', 'san pham a', 'aa', '', 200, 1, 20, '1|2', '2018-05-23', '2018-05-23 09:13:26', '2018-08-09 19:20:20', 1, 12, '5b334ccad1c26_104c87c133f36b2592329a926380bb89.jpg', '', '', '', '', '', '', 1, 0, 'test', 4, 2, 100, 0, 1, 0, 0, 0, 1, '{"xs":1,"s":0,"m":0,"l":0,"xl":1}'),
+(81, 2, '1533867179', 'san pham b', ' mo ta ngan gon xuc tich\r\n                                                            \r\n                                                            ', '<p>mo ta dai</p>\r\n', 100, 1, 20, '1|2', '2018-05-23', '2018-05-23 09:13:26', '2018-08-09 19:14:01', 1, 11, '5b334cbb5aa6d_c0e9d6ae30b739bf3fa54a71317779ae.jpg', '5b4f14c02cda7_2c2316af3fae3a4dc685e67d0c7b2ff2.jpg', '5b501c60c84e7_d2833bc6eb8fd8e2c17cb1aaba8fcf2b.jpg', '5b501c60c8cb6_16aa0686a449ce5a6cf1a3fac49a3946.jpg', '5b501c60c9484_bdac18e013c96aa596e2e593012745c4.jpg', '5b501c60c9c57_23feaea8a5b1e4000e20fc8aa77f5164.jpg', '5b501c60ca427_f5e484c9b7506c65794bac15811b920f.jpg', 1, 1, 'test', 4, 1, 50, 0, 1, 0, 1, 1, 0, '{"xs":1,"s":0,"m":1,"l":1,"xl":0}');
 
 -- --------------------------------------------------------
 
@@ -687,12 +687,12 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `cart_detail`
 --
 ALTER TABLE `cart_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `colors`
 --

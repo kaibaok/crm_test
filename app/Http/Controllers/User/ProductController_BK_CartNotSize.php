@@ -72,8 +72,8 @@ class ProductController extends Controller {
         $product = Product::getProductByConditions(array("product" => $id))->first();
         if(empty($product)) return redirect()->guest("/p");
         return view("user.product.detail")
-            ->with("product", $product)
-            ->with("listSize", $this->getOption("listSize"));
+            ->with("product", $product);
+            // ->with("listSize", $this->getOption("listSize"));
     }
 
     public function brand(Request $request)

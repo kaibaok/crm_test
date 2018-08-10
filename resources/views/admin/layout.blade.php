@@ -39,7 +39,15 @@
         {{-- end menu lef --}}
 
         {{-- top navigation --}}
-        @include("admin.menutop")
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+            </nav>
+          </div>
+        </div>
         {{-- /top navigation --}}
 
         {{-- page content --}}
@@ -73,7 +81,7 @@
     {{-- FastClick --}}
     <script src="/public/admin/js/fastclick/lib/fastclick.js"></script>
     {{-- Chart.js --}}
-    {{-- <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script> --}}
+    <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script>
     {{-- iCheck --}}
     <script src="/public/admin/js/iCheck/icheck.min.js"></script>
     {{-- DateJS --}}

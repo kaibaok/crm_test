@@ -16,6 +16,7 @@ use DateTime,Session;
 use App\User;
 use App\Models\Cart;
 use App\Models\CartDetail;
+use App\Models\DiscountCode;
 
 class ProductController extends Controller
 {
@@ -182,7 +183,7 @@ class ProductController extends Controller
     public function editProduct(Request $request){
         $title        = "Sửa sản phẩm";
         $id           = (int) $request->route('id');
-        $clsImg      = new Img();
+        $clsImg       = new Img();
         $errors       = NULL;
         $listColors   = Colors::getList();
         $listCategory = ProductCategory::getList();
@@ -687,10 +688,14 @@ class ProductController extends Controller
 
     public function editCart(Request $request)
     {
-        $title      = "Sửa đơn hàng";
-        $errors     = NULL;
-        $id         = (int) $request->route('id');
-        $cart       = Cart::findOrFail((int)$id)->toArray();
+        $title    = "Sửa đơn hàng";
+        $errors   = NULL;
+        $id       = (int) $request->route('id');
+        $cart     = Cart::findOrFail((int)$id)->toArray();
+        $discountCode = NULL;
+        if($cart['code']) {
+            $discountCode = DiscountCode::where("code" ,$cart['code'])->first();
+        }
         $cartDetail = CartDetail::getListByID($id);
         $params  = $request->all();
         if ($request->isMethod('post')) {
@@ -711,6 +716,7 @@ class ProductController extends Controller
             ->with("title", $title)
             ->with("cart", $cart)
             ->with("cartDetail", $cartDetail)
+            ->with("discountCode", $discountCode)
             ->with("errors",$errors);
     }
 
@@ -727,6 +733,7 @@ class ProductController extends Controller
         $errors     = NULL;
         $id         = (int) $request->route('id');
         $cartDetail = CartDetail::findOrFail((int)$id)->toArray();
+        $product    = Product::findOrFail((int)$cartDetail['product_id']);
         $params     = $request->all();
         $listColors = Colors::getList();
         if ($request->isMethod('post')) {
@@ -744,9 +751,50 @@ class ProductController extends Controller
         }
         return view("admin.product.editCartDetail")
             ->with("title", $title)
-            ->with("listColors", $listColors)
             ->with("cartDetail", $cartDetail)
+            ->with("listColors", $listColors)
+            ->with("product", $product)
             ->with("errors",$errors);
+    }
+
+    public function addCartDetail(Request $request)
+    {
+        $title  = "Thêm chi tiết đơn hàng";
+        $errors = NULL;
+        $cartID = (int) $request->route('id');
+        $params = $request->all();
+        $product    = null;
+        $listColors = Colors::getList();
+        if ($request->isMethod('post')) {
+            if(empty($params['product_id'])) $errors['product_id'] = "Vui lòng chọn sản phẩm";
+            if(empty($params['price'])) $errors['price']           = "Vui lòng nhập giá";
+            if(empty($params['number'])) $errors['number']         = "Vui lòng nhập số lượng";
+            if(empty($params['color'])) $errors['color']           = "Vui lòng chọn màu sắc";
+            if(empty($params['size'])) $errors['size']             = "Vui lòng chọn kích thước";
+            if(empty($errors)) {
+                $addCartDetail = CartDetail::addCartDetail($params);
+                if($addCartDetail) {
+                    $params = array();
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $product = Product::findOrFail((int)$params['product_id']);
+                    $errors['finish'] = "Thêm thất bại";
+                }
+            }
+        }
+        return view("admin.product.addCartDetail")
+            ->with("title", $title)
+            ->with("errors", $errors)
+            ->with("cartID", $cartID)
+            ->with("listColors", $listColors)
+            ->with("product", $product)
+            ->with("params", $params);
+    }
+
+    public function delCartDetail($id){
+        CartDetail::find((int)$id)->delete();
+        $back_url = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
     }
 
     public function ajaxGetProduct(Request $request)

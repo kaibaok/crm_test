@@ -39,7 +39,15 @@
         <?php /* end menu lef */ ?>
 
         <?php /* top navigation */ ?>
-        <?php echo $__env->make("admin.menutop", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+            </nav>
+          </div>
+        </div>
         <?php /* /top navigation */ ?>
 
         <?php /* page content */ ?>
@@ -73,7 +81,7 @@
     <?php /* FastClick */ ?>
     <script src="/public/admin/js/fastclick/lib/fastclick.js"></script>
     <?php /* Chart.js */ ?>
-    <?php /* <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script> */ ?>
+    <script src="/public/admin/js/Chart.js/dist/Chart.min.js"></script>
     <?php /* iCheck */ ?>
     <script src="/public/admin/js/iCheck/icheck.min.js"></script>
     <?php /* DateJS */ ?>

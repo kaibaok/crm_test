@@ -90,11 +90,12 @@
                         @endforeach
                     </td>
                     <td>
-                    @if (!empty($value->size_xs)) XS - @endif
-                    @if (!empty($value->size_s)) S - @endif
-                    @if (!empty($value->size_m)) M - @endif
-                    @if (!empty($value->size_l)) L - @endif
-                    @if (!empty($value->size_xl)) XL @endif
+                    @if (!empty($value->size))
+                        @php  $listSize = json_decode($value->size); @endphp
+                        @foreach ($listSize as $key => $item)
+                          {{ ($item) ? $key." - " : '' }}
+                        @endforeach
+                    @endif
                     </td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value->limit_at}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value->created_at}}</td>

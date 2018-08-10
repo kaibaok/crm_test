@@ -68,12 +68,8 @@ class ProductController extends Controller {
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
-
         $product = Product::getProductByConditions(array("product" => $id))->first();
-
-
         if(empty($product)) return redirect()->guest("/p");
-
         $params = $request->all();
         if($request->isMethod('post')) {
             $number  = (int) $params['number'];

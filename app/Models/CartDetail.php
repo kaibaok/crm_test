@@ -14,7 +14,7 @@ class CartDetail extends Model
      */
     protected $fillable = [
         'id', 'cart_id', 'product_id','name',
-        'price','dprice','number', 'color',
+        'price','dprice','number', 'color','size',
         'created_at','updated_at'
     ];
 
@@ -30,6 +30,7 @@ class CartDetail extends Model
                   'dprice'     => $data['dprice'],
                   'number'     => (int) $data['number'],
                   'color'      => (int) $data['color'],
+                  'size'       =>  $data['size'],
                   'created_at' => date("Y-m-d H:i:s"),
                 ));
             } catch (QueryException $ex){
@@ -49,6 +50,7 @@ class CartDetail extends Model
               'dprice'     => $data['dprice'],
               'number'     => (int) $data['number'],
               'color'      => (int) $data['color'],
+              'size'       =>  $data['size'],
             );
             return CartDetail::where('id',(int)$data['id'])->update($arr_update);
         }

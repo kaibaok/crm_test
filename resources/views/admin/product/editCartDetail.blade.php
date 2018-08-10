@@ -11,7 +11,7 @@
             <div class=" pull-right">
               <div class="input-group">
                 <button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-                <a class="btn btn-info" href="/admin/item-product/">Trở về</a>
+                <a class="btn btn-info" href="/admin/cart/edit/{{ $cartDetail['cart_id'] }}">Trở về</a>
               </div>
             </div>
           </div>
@@ -25,6 +25,7 @@
             <div class="x_panel">
               <div class="x_content autocomp">
                     {{ csrf_field() }}
+                    <input type="hidden" name="cart_id" value="{{ $cartDetail['cart_id'] }}">
                     <input type="hidden" name="id" id="id" value="{{isset($cartDetail['id']) ? $cartDetail['id'] : ''}}">
                     <input type="hidden" name="product_id" id="product_id" value="{{isset($cartDetail['product_id']) ? $cartDetail['product_id'] : ''}}">
                      <div class="item form-group  @if(isset($errors['name'])) bad @endif">
@@ -58,27 +59,35 @@
                         </div>
                         @if(isset($errors['number'])) <div class="alert">{{$errors['number']}}</div> @endif
                     </div>
+                    @php $chooseColor = explode("|",$product->colors); @endphp
                     <div class="item form-group  @if(isset($errors['color'])) bad @endif">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">Màu sắc <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <select id="color" class="form-control col-md-7 col-xs-12" name="color">
-                                <option value="0"></option>
                                 @foreach($listColors as $key => $value)
-                                    @php
-                                        $select = ($cartDetail['color'] == $key) ? "selected" : "";
-                                    @endphp
-                                    <option value="{{$key}}" style="color:{{ $value['code'] }}" {{ $select }}> {{ $value['name'] }}</option>
+                                    @if(in_array($key, $chooseColor))
+                                        @php $select = ($key == $cartDetail['color']) ? 'selected' : '' @endphp
+                                        <option value="{{$key}}" style="color:{{ $value['code'] }}" {{ $select }}> {{ $value['name'] }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
                         @if(isset($errors['color'])) <div class="alert">{{$errors['color']}}</div> @endif
                     </div>
+                    @php $listSize = json_decode($product->size) @endphp
                     <div class="item form-group  @if(isset($errors['size'])) bad @endif">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">Kích thước <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="size" class="form-control col-md-7 col-xs-12" name="size" value="{{isset($cartDetail['size']) ? $cartDetail['size'] : ''}}">
+                            <select id="size" class="form-control col-md-7 col-xs-12" name="size">
+                                @foreach($listSize as $key => $value)
+                                    @if($value)
+                                        @php $select = ($cartDetail['size'] == $key) ? "selected" : ""; @endphp
+                                        <option value="{{$key}}" style="color:{{ $key }}" {{ $select }}> {{ strtoupper($key) }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                         @if(isset($errors['size'])) <div class="alert">{{$errors['size']}}</div> @endif
                     </div>
@@ -91,8 +100,8 @@
 @endsection
 @section('js')
     <script>
-        var listColors = null;
+        var listColors = listSize = null;
         @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif
-        @if(!empty($listColors)) listColors = {!! json_encode($listColors)!!}  @endif
+        @if(!empty($listColors)) listColors = {!! json_encode($listColors)!!};  @endif
      </script>
 @endsection

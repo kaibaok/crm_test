@@ -11,15 +11,23 @@ use App\Models\HomePage;
 use App\Models\ProductItem;
 use App\Models\ProductType;
 use App\Models\Tag;
+use App\Models\Cart;
 use App\Events\Img;
 use DateTime,Session;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 		$title = "Admin CRM";
-    	return view("admin.index.index")->with("view",array("title"=>$title));
+        $params = $request->all();
+        $year = !empty($params['year']) ? $params['year'] : date("Y");
+        $listData = Cart::getBarChart($year);
+        ksort($listData);
+    	return view("admin.index.index")
+            ->with("title", $title)
+            ->with("year", $year)
+            ->with("listData", $listData);
     }
 
     public function statusSlider($id)

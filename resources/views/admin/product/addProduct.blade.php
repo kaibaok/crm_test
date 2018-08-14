@@ -9,7 +9,7 @@
 			<h3>{{$title}}</h3>
 		</div>
 		<div class="title_right">
-	        <div class=" pull-right">
+	        <div class="pull-right">
 	          <div class="input-group">
 	          	<button type ="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
 	            <a class="btn btn-info" href="/admin/product">Trở về</a>

@@ -47,7 +47,7 @@ class ProductController extends Controller
         $errors = NULL;
         $params = $request->all();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tiêu đề";
+            if(empty($params['name'])) $errors['name'] = "Vui lòng nhập tiêu đề";
             if(empty($errors)) {
                 $s_new_colors = Colors::addColors($params);
                 if($s_new_colors) {
@@ -71,7 +71,7 @@ class ProductController extends Controller
         $params    = $request->all();
         $getColors = Colors::findOrFail((int)$id)->toArray();
         if ($request->isMethod('post')) {
-            if(empty($params['title'])) $errors['title'] = "Vui lòng nhập tiêu đề";
+            if(empty($params['name'])) $errors['name'] = "Vui lòng nhập tiêu đề";
             if(empty($errors)) {
                 $editColors = Colors::editColors($params);
                 if($editColors) $errors['finish'] = "Sửa thành công";

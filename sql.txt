@@ -1,0 +1,71 @@
+SELECT
+cart_id,
+SUM((case when (`dprice` > 0) THEN `dprice` * `number` ELSE `price` * `number` END)) as total,
+MONTH(cart.created_at) as month
+FROM cart_detail
+INNER JOIN cart ON cart.id = cart_detail.cart_id
+GROUP BY cart_id, month
+
+
+
+SELECT
+
+CASE WHEN (cart.code != '')
+THEN
+    case when (cart_detail.dprice > 0)
+    THEN cart_detail.dprice * cart_detail.number
+    ELSE cart_detail.price * cart_detail.number
+    END
+ELSE
+    CASE WHEN (cart_detail.dprice > 0)
+    THEN cart_detail.dprice * cart_detail.number
+    ELSE cart_detail.price * cart_detail.number
+    END
+END
+
+FROM cart
+INNER JOIN cart_detail ON cart.id = cart_detail.cart_id
+LEFT JOIN discount_code ON cart.code = discount_code.code
+
+
+
+SELECT
+    SUM(data.value) ,
+    month
+FROM
+(SELECT
+    cart_id,
+    (CASE WHEN (discount_code.type_discount is null)
+    THEN
+        total
+    ELSE
+
+        CASE WHEN (discount_code.type_discount > 0)
+        THEN
+            total - discount_code.discount_price
+        ELSE
+            total - (total * discount_code.percent / 100)
+        END
+    END) as value,
+    month
+FROM
+    (SELECT cart.id as cart_id,
+    SUM(CASE WHEN (cart_detail.dprice > 0)
+    THEN cart_detail.dprice * cart_detail.number
+    ELSE cart_detail.price * cart_detail.number
+    END) as total,
+    cart.code,
+    MONTH(cart.created_at) as month
+    FROM cart
+    INNER JOIN cart_detail
+    ON cart.id = cart_detail.cart_id
+    GROUP BY cart.id, cart.code, month) as tt
+LEFT JOIN discount_code
+ON tt.code = discount_code.code) as data
+GROUP BY month
+
+
+
+
+
+

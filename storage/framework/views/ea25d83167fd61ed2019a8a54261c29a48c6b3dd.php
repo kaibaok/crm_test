@@ -76,14 +76,14 @@
                                 <?php echo e(csrf_field()); ?>
 
                                 <?php if(!empty($product->size)): ?>
-                                    <?php  $listSize = json_decode($product->size)  ?>
+                                    <?php  $listSize = explode("|", $product->size)  ?>
                                     <div class="single-size-quantity mb-10">
                                         <h4>Size:</h4>
                                         <div class="search-cat">
                                             <select name="size" class="category-items">
                                                 <?php foreach($listSize as $keySize => $valueSize): ?>
                                                     <?php if($valueSize): ?>
-                                                        <option value="<?php echo e($keySize); ?>"><?php echo e(strtoupper($keySize)); ?></option>
+                                                        <option value="<?php echo e($valueSize); ?>"><?php echo e(strtoupper($valueSize)); ?></option>
                                                     <?php endif; ?>
                                             <?php endforeach; ?>
                                             </select>

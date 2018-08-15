@@ -89,14 +89,7 @@
                         <span style="background: @if(isset($listColors[$item]['code'])) {{$listColors[$item]['code']}} @endif; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         @endforeach
                     </td>
-                    <td>
-                    @if (!empty($value->size))
-                        @php  $listSize = json_decode($value->size); @endphp
-                        @foreach ($listSize as $key => $item)
-                          {{ ($item) ? $key." - " : '' }}
-                        @endforeach
-                    @endif
-                    </td>
+                    <td>{{ $value->size }}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> {{$value->limit_at}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> {{$value->created_at}}</td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> {{$value->updated_at}}</td>

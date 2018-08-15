@@ -138,7 +138,7 @@ class ProductController extends Controller {
 
         if(Session::has('discountPriceCode')) {
             $discountPriceCode = Session::get('discountPriceCode');
-            $discountPrice   = DiscountCode::where("code", $discountPriceCode)
+            $discountPrice     = DiscountCode::where("code", $discountPriceCode)
                 ->where("number", ">", 0)
                 ->get()
                 ->first();

@@ -74,14 +74,14 @@
                             <form action="" method="post">
                                 {{ csrf_field() }}
                                 @if(!empty($product->size))
-                                    @php $listSize = json_decode($product->size) @endphp
+                                    @php $listSize = explode("|", $product->size) @endphp
                                     <div class="single-size-quantity mb-10">
                                         <h4>Size:</h4>
                                         <div class="search-cat">
                                             <select name="size" class="category-items">
                                                 @foreach ($listSize as $keySize => $valueSize)
                                                     @if($valueSize)
-                                                        <option value="{{$keySize}}">{{strtoupper($keySize)}}</option>
+                                                        <option value="{{$valueSize}}">{{strtoupper($valueSize)}}</option>
                                                     @endif
                                             @endforeach
                                             </select>

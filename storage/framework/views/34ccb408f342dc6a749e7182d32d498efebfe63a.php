@@ -88,15 +88,7 @@
                         <span style="background: <?php if(isset($listColors[$item]['code'])): ?> <?php echo e($listColors[$item]['code']); ?> <?php endif; ?>; width: 15px;height: 15px;display: inline-block; margin-right: 2px;border-radius: 50%"></span>
                         <?php endforeach; ?>
                     </td>
-                    <td>
-                    <?php if(!empty($value->size)): ?>
-                        <?php   $listSize = json_decode($value->size);  ?>
-                        <?php foreach($listSize as $key => $item): ?>
-                          <?php echo e(($item) ? $key." - " : ''); ?>
-
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                    </td>
+                    <td><?php echo e($value->size); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày hết hạn"></i> <?php echo e($value->limit_at); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày nhập hàng"></i> <?php echo e($value->created_at); ?></td>
                     <td><i class="success fa fa-clock-o" title="Ngày cập nhật"></i> <?php echo e($value->updated_at); ?></td>

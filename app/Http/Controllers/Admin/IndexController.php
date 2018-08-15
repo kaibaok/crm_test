@@ -12,6 +12,7 @@ use App\Models\ProductItem;
 use App\Models\ProductType;
 use App\Models\Tag;
 use App\Models\Cart;
+use App\Models\MemberOnline;
 use App\Events\Img;
 use DateTime,Session;
 
@@ -24,9 +25,27 @@ class IndexController extends Controller
         $year = !empty($params['year']) ? $params['year'] : date("Y");
         $listData = Cart::getBarChart($year);
         ksort($listData);
+
+        $cart         = Cart::totalCart($year);
+        $pCart        = Cart::totalCart($year, 0);
+        $gCart        = Cart::totalCart($year, 1);
+        $sCart        = Cart::totalCart($year, 2);
+        $totalMember  = file_exists(COUNTER_FILE) ? file_get_contents(COUNTER_FILE) : 0;
+        $memberOnline = MemberOnline::totalMember();
+
+        $data = array(
+            'total'        => $cart->totalCart,
+            'pCart'        => $pCart->totalCart,
+            'gCart'        => $gCart->totalCart,
+            'sCart'        => $sCart->totalCart,
+            'totalMember'  => $totalMember,
+            'memberOnline' => $memberOnline->counter,
+        );
+
     	return view("admin.index.index")
             ->with("title", $title)
             ->with("year", $year)
+            ->with("data", $data)
             ->with("listData", $listData);
     }
 

@@ -66,27 +66,29 @@
 						</div>
 					</div>
 
-                    <div class="item form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Size</label>
+                    <div class="item form-group <?php if(isset($errors['size'])): ?> bad <?php endif; ?>">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Size </label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
-                            <div class="btn-group" data-toggle="buttons">
-                                <label><input type="checkbox" name="size_xs" value="1" class="flat"
-                                <?php if(isset($product['size_xs']) && $product['size_xs'] == 1): ?> checked <?php endif; ?> /> XS
-                                </label> <br>
-                                <label><input type="checkbox" name="size_s" value="1" class="flat"
-                                <?php if(isset($product['size_s']) && $product['size_s'] == 1): ?> checked <?php endif; ?> /> S
-                                </label><br>
-                                <label><input type="checkbox" name="size_m" value="1" class="flat"
-                                <?php if(isset($product['size_m']) && $product['size_m'] == 1): ?> checked <?php endif; ?> /> M
-                                </label><br>
-                                <label><input type="checkbox" name="size_l" value="1" class="flat"
-                                <?php if(isset($product['size_l']) && $product['size_l'] == 1): ?> checked <?php endif; ?> /> L
-                                </label><br>
-                                <label><input type="checkbox" name="size_xl" value="1" class="flat"
-                                <?php if(isset($product['size_xl']) && $product['size_xl'] == 1): ?> checked <?php endif; ?> /> XL
-                                </label>
+                            <div class="row">
+                                <div class="col-xs-12"><button id="addMoreSize" type ="button" class="btn btn-success btn-submit">&nbsp;Thêm&nbsp;</button></div>
+                            </div>
+                            <div id="addSize">
+                                <?php if(!empty($product['size'])): ?>
+                                    <?php  $listSize = is_array($product['size']) ? $product['size'] : explode("|", $product['size'])  ?>
+                                    <?php foreach($listSize as $value): ?>
+                                        <?php if(!empty($value)): ?>
+                                            <div class="input-group input-group-sm">
+                                              <input type="text" name="size[]" class="form-control" value="<?php echo e($value); ?>">
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                <div class="input-group input-group-sm">
+                                  <input type="text" name="size[]" class="form-control">
+                                </div>
                             </div>
                         </div>
+                        <?php if(isset($errors['size'])): ?> <div class="alert"><?php echo e($errors['size']); ?></div> <?php endif; ?>
                     </div>
 
                     <div class="item form-group <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">

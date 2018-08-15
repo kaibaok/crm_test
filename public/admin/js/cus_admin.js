@@ -172,7 +172,7 @@ $(document).ready(function() {
     }
 
 
-     if($("div").hasClass('autocomp')) {
+    if($("div").hasClass('autocomp')) {
         $( "#product_name" ).autocomplete({
             source: function( request, response ) {
                 $.ajax( {
@@ -202,15 +202,25 @@ $(document).ready(function() {
                 }
                 sizeRange = ui.item.sizes;
                 for (var key in sizeRange) {
+
                     if(sizeRange[key]) {
-                        var res = key.toUpperCase();
-                        var option = new Option(res,key);
+                        var res = sizeRange[key].toUpperCase();
+                        var option = new Option(res,res);
                         $('#size').append($(option));
                     }
                 }
 
                 $("#number").val('Nhỏ hơn '+ui.item.numbers);
             }
+        });
+    }
+
+    if($("#addMoreSize").length){
+        $("#addMoreSize").bind('click', function(event) {
+            var option = "<div class='input-group input-group-sm'>\
+                <input type='text' name='size[]' class='form-control'>\
+                </div>";
+            $("#addSize").append(option);
         });
     }
 });

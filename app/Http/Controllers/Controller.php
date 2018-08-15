@@ -15,6 +15,7 @@ use App\Models\Menu;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Colors;
+use App\Models\MemberOnline;
 use MetaTag;
 use Session;
 
@@ -31,13 +32,17 @@ class Controller extends BaseController
     			return array( 0 => "Hiển thị" , 1 => "Ẩn" );
     		break;
     		case 'listPaid':
-    			return array( 0 => 'Chưa thanh toán', 1 => "Đã thanh toán");
+    			return array( 0 => "<span class='btn btn-warning btn-xs'>Chưa thanh toán</span>",
+                    1 => "<span class='btn btn-info btn-xs'>Giao hàng</span>", 2 => "<span class='btn btn-success btn-xs'>Hoàn tất</span>");
     		break;
             case 'typePrice':
                 return array( 1 => "Giá bình thường", 2 => "Giá Liên hệ", 3 => "Hết hàng");
             case 'listSize':
                 return array("xs","s","m","l","xl");
-    		default:
+    	$sd     = time();
+            $count  = 1;
+            dd($sd);
+	default:
     			return NULL;
     		break;
     	}
@@ -46,7 +51,7 @@ class Controller extends BaseController
     public function __construct(Route $route)
     {
         $prefix = $this->getRouter()->getCurrentRoute()->getPrefix();
-        $user = Auth::user();
+        $user   = Auth::user();
         if($prefix == "/admin") {
             if($user){
                 if( $user->permission < 1) {
@@ -66,6 +71,7 @@ class Controller extends BaseController
             $listBrandLayout = Brand::select()->where(array("status" => 1))->orderByRaw("id DESC")->get();
             $sCart           = Session::get('sCart');
             $listColors      = Colors::getList();
+
             MetaTag::set('title', 'This is a detail page');
             MetaTag::set('description', 'All about this detail page');
             MetaTag::set('keywords', 'All about this detail page,c,asd,as,da,d,s');
@@ -79,6 +85,33 @@ class Controller extends BaseController
             View::share('listMenuSP', $arrSP);
             View::share('listBrandLayout', $listBrandLayout);
         }
+
+
+        // set Member online
+        $sid       = Session::getId();
+        $ip        = $_SERVER['REMOTE_ADDR'];
+        $time      = time();
+        $timeCheck = $time-600;
+
+        $isOnline = MemberOnline::where("sid", $sid)->first();
+        if($isOnline) {
+            $isOnline->update(array("created_at" => $time));
+        } else {
+            MemberOnline::insert(array(
+                "sid"        => $sid,
+                "ip"         => $ip,
+                "created_at" => $time,
+            ));
+        }
+        MemberOnline::checkOnline($timeCheck);
+        // Set total Member
+        if(!in_array($ip, file(IP_FILE, FILE_IGNORE_NEW_LINES))) {
+            $current_val =  (file_exists(COUNTER_FILE)) ? file_get_contents(COUNTER_FILE) : 0;
+            file_put_contents(IP_FILE, $ip."\n", FILE_APPEND);
+            file_put_contents(COUNTER_FILE, ++$current_val);
+        }
+
+
     }
 }
 

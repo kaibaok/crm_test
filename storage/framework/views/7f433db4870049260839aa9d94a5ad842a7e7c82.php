@@ -60,7 +60,7 @@
                   <tr class="even pointer">
                     <td><?php echo e($no++); ?></td>
                     <td><?php echo e(($value->ship_date != "0000-00-00") ? $value->ship_date : ""); ?></td>
-                    <td><?php echo e($listPaid[$value->paid]); ?></td>
+                    <td><?php echo $listPaid[$value->paid]; ?></td>
                     <td> <?php if(!empty($value->userid)): ?> <a href="/admin/user/edit/<?php echo e($value->userid); ?>" target="_blank"><?php echo e($value->userid); ?></a> <?php endif; ?> </td>
                     <td><?php echo e($value->full_name); ?></td>
                     <td><?php echo e($value->address1); ?></td>

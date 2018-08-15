@@ -70,7 +70,8 @@
 
                                                 </td>
                                                 <td class="p-amount"><a href="/pd/{{$value['id']}}/{{$value['seo_link']}}">{{$value['title']}}</a></td>
-                                                <td class="p-amount"><span class="span_color_med" style="background: {{$listColors[$value['color']]['code']}}"></span></span></td>
+                                                <td class="p-amount"><span class="span_color_med"
+                                                style="background: {{$listColors[$value['color']]['code']}}"></span></span></td>
                                                 <td class="p-amount">{{$value['size']}}</span></td>
                                                 <td class="p-amount">{{$price}}</span></td>
                                                 <td class="p-quantity">{{$value['number']}}</td>

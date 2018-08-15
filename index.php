@@ -10,7 +10,8 @@ defined('CONTACT_PRICE')||define('CONTACT_PRICE', 2);
 defined('EMPTY_PRODUCT')||define('EMPTY_PRODUCT', 3);
 defined('CONTACT_PHONE')||define('CONTACT_PHONE', "0937472503");
 defined('CONTACT_PHONE2')||define('CONTACT_PHONE2', "0935355527");
-
+defined('COUNTER_FILE')||define('COUNTER_FILE', $_SERVER['DOCUMENT_ROOT']."/public/user/counter_online/counter.txt");
+defined('IP_FILE')||define('IP_FILE', $_SERVER['DOCUMENT_ROOT']."/public/user/counter_online/ip.txt");
 
 /**
  * Laravel - A PHP Framework For Web Artisans

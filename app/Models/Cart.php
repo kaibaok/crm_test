@@ -101,4 +101,11 @@ class Cart extends Model
         for ($i=1; $i <= 12 ; $i++) if(empty($list[$i])) $list[$i] = 0;
         return $list;
     }
+
+    public static function totalCart($year, $paid = -1){
+      $builder = self::selectRaw("COUNT(*) as totalCart")
+          ->whereRaw("YEAR(created_at) = {$year}");
+      if($paid >= 0) $builder->where("paid", $paid);
+      return $builder->first();
+    }
 }

@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="/public/user/css/jquery.mb.YTPlayer.css">
     <!-- style CSS
         ============================================ -->
-    <link rel="stylesheet" href="/public/user/style.css">
+    <link rel="stylesheet" href="/public/user/css/style.css">
     <!-- responsive CSS
         ============================================ -->
     <link rel="stylesheet" href="/public/user/css/responsive.css">

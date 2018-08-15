@@ -61,7 +61,7 @@
                   <tr class="even pointer">
                     <td>{{$no++}}</td>
                     <td>{{($value->ship_date != "0000-00-00") ? $value->ship_date : ""}}</td>
-                    <td>{{$listPaid[$value->paid]}}</td>
+                    <td>{!! $listPaid[$value->paid] !!}</td>
                     <td> @if (!empty($value->userid)) <a href="/admin/user/edit/{{$value->userid}}" target="_blank">{{$value->userid}}</a> @endif </td>
                     <td>{{$value->full_name}}</td>
                     <td>{{$value->address1}}</td>

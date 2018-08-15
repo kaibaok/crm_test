@@ -155,6 +155,7 @@ class ProductController extends Controller
             if(empty($params['price'])) $errors['price']       = "Vui lòng nhập giá (Nhập 0 = SĐT)";
             if(empty($params['numbers'])) $errors['numbers']   = "Vui lòng nhập số lượng";
             if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
+            if(empty($params['size']) || $params['size'][0] === "") $errors['size'] = "Vui lòng nhập kích thước";
             if(empty($errors)) {
                 $clsImg = new Img();
                 $result = $clsImg->uploadImages("product/");
@@ -198,6 +199,7 @@ class ProductController extends Controller
             if(empty($params['price'])) $errors['price']       = "Vui lòng nhập giá (Nhập 0 = SĐT)";
             if(empty($params['numbers'])) $errors['numbers']   = "Vui lòng nhập số lượng";
             if(empty($params['colors'])) $errors['colors']     = "Vui lòng chọn màu sắc";
+            if(empty($params['size'])  || $params['size'][0] === "") $errors['size'] = "Vui lòng nhập kích thước";
             if(empty($errors)) {
                 $result = $clsImg->uploadImages("product/");
                 foreach ($_FILES as $key => $value) {

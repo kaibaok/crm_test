@@ -70,7 +70,8 @@
 
                                                 </td>
                                                 <td class="p-amount"><a href="/pd/<?php echo e($value['id']); ?>/<?php echo e($value['seo_link']); ?>"><?php echo e($value['title']); ?></a></td>
-                                                <td class="p-amount"><span class="span_color_med" style="background: <?php echo e($listColors[$value['color']]['code']); ?>"></span></span></td>
+                                                <td class="p-amount"><span class="span_color_med"
+                                                style="background: <?php echo e($listColors[$value['color']]['code']); ?>"></span></span></td>
                                                 <td class="p-amount"><?php echo e($value['size']); ?></span></td>
                                                 <td class="p-amount"><?php echo e($price); ?></span></td>
                                                 <td class="p-quantity"><?php echo e($value['number']); ?></td>

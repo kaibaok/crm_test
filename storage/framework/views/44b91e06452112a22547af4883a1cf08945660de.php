@@ -75,7 +75,7 @@
                         </div>
                         <?php if(isset($errors['color'])): ?> <div class="alert"><?php echo e($errors['color']); ?></div> <?php endif; ?>
                     </div>
-                    <?php  $listSize = json_decode($product->size)  ?>
+                    <?php  $listSize = explode("|", $product->size)  ?>
                     <div class="item form-group  <?php if(isset($errors['size'])): ?> bad <?php endif; ?>">
                         <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">Kích thước <span class="required">*</span>
                         </label>
@@ -83,8 +83,8 @@
                             <select id="size" class="form-control col-md-7 col-xs-12" name="size">
                                 <?php foreach($listSize as $key => $value): ?>
                                     <?php if($value): ?>
-                                        <?php  $select = ($cartDetail['size'] == $key) ? "selected" : "";  ?>
-                                        <option value="<?php echo e($key); ?>" style="color:<?php echo e($key); ?>" <?php echo e($select); ?>> <?php echo e(strtoupper($key)); ?></option>
+                                        <?php  $select = ($cartDetail['size'] == $value) ? "selected" : "";  ?>
+                                        <option value="<?php echo e($value); ?>" <?php echo e($select); ?>> <?php echo e(strtoupper($value)); ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>

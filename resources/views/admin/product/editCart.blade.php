@@ -168,9 +168,11 @@
                                                     <td colspan="6">Tổng tiền chưa giảm</td>
                                                     <td colspan="2">{{ $totalCart }}</td>
                                                 </tr>
+                                                @php $totalDiscount = 0 @endphp
                                                 @if(!empty($discountCode))
                                                     @php
                                                         $isShow = $discountCode->number > 0 && $discountCode->end_date > date("Y-m-d");
+
                                                         if($isShow) {
                                                             $typeDiscount   = "phần trăm";
                                                             $totalDiscount  = $totalCart * $discountCode->percent / 100;
@@ -180,8 +182,6 @@
                                                                 $discountPrice = $discountCode->discount_price;
                                                                 $totalDiscount  = $discountCode->discount_price;
                                                             }
-                                                        } else {
-                                                            $totalDiscount = 0;
                                                         }
                                                     @endphp
                                                     <tr>

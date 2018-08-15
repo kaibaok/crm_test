@@ -1,12 +1,11 @@
-@extends("admin.layout")
-@section('title') {{$title}} @endsection
-@section('rightcontent')
+<?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
+<?php $__env->startSection('rightcontent'); ?>
 <form id="demo-form" data-parsley-validate class="form-horizontal" method="post" enctype="multipart/form-data">
 
 <div class="">
 	<div class="page-title">
 		<div class="title_left">
-			<h3>{{$title}}</h3>
+			<h3><?php echo e($title); ?></h3>
 		</div>
 		<div class="title_right">
 	        <div class="pull-right">
@@ -25,8 +24,9 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="x_panel">
 	          <div class="x_content">
-					{{ csrf_field() }}
-					<input  type ="hidden" value="{{time()}}" name="code_id">
+					<?php echo e(csrf_field()); ?>
+
+					<input  type ="hidden" value="<?php echo e(time()); ?>" name="code_id">
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Hiển thị</label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
@@ -42,7 +42,7 @@
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="is_new" class="btn-group" data-toggle="buttons">
 								<input type="checkbox" name="is_new" value="1" class="flat"
-								@if (isset($params['is_new']) && $params['is_new'] == 1) checked @endif />
+								<?php if(isset($params['is_new']) && $params['is_new'] == 1): ?> checked <?php endif; ?> />
 							</div>
 						</div>
 					</div>
@@ -52,63 +52,63 @@
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div id="editProduct" class="btn-group" data-toggle="buttons">
 								<input type="checkbox" name="is_best_sell" value="1" class="flat"
-								@if (isset($params['is_best_sell']) && $params['is_best_sell'] == 1) checked @endif />
+								<?php if(isset($params['is_best_sell']) && $params['is_best_sell'] == 1): ?> checked <?php endif; ?> />
 							</div>
 						</div>
 					</div>
 
-					<div class="item form-group  @if(isset($errors['size'])) bad @endif">
+					<div class="item form-group  <?php if(isset($errors['size'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Size </label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<div class="row">
 								<div class="col-xs-12"><button id="addMoreSize" type ="button" class="btn btn-success btn-submit">&nbsp;Thêm&nbsp;</button></div>
 							</div>
 							<div id="addSize">
-								@if(!empty($params['size']))
-		                        	@php $listSize = is_array($params['size']) ? $params['size'] :  explode("|", $params['size']) @endphp
-		                        	@foreach($listSize as $value)
-		                        		@if(!empty($value))
+								<?php if(!empty($params['size'])): ?>
+		                        	<?php  $listSize = is_array($params['size']) ? $params['size'] :  explode("|", $params['size'])  ?>
+		                        	<?php foreach($listSize as $value): ?>
+		                        		<?php if(!empty($value)): ?>
 				                        	<div class="input-group input-group-sm">
-					                          <input type="text" name="size[]" class="form-control" value="{{ $value }}">
+					                          <input type="text" name="size[]" class="form-control" value="<?php echo e($value); ?>">
 					                        </div>
-				                        @endif
-		                        	@endforeach
-		                        @endif
+				                        <?php endif; ?>
+		                        	<?php endforeach; ?>
+		                        <?php endif; ?>
 		                        <div class="input-group input-group-sm">
 			                        <input type="text" name="size[]" class="form-control">
 		                        </div>
 							</div>
 						</div>
-						@if(isset($errors['size'])) <div class="alert">{{$errors['size']}}</div> @endif
+						<?php if(isset($errors['size'])): ?> <div class="alert"><?php echo e($errors['size']); ?></div> <?php endif; ?>
 					</div>
 
 
-					<div class="item form-group @if(isset($errors['title'])) bad @endif">
+					<div class="item form-group <?php if(isset($errors['title'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Tên sản phẩm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="{{isset($params['title']) ? $params['title'] : '' }}" >
+						<input type="text" id="title" class="form-control col-md-7 col-xs-12" name="title" value="<?php echo e(isset($params['title']) ? $params['title'] : ''); ?>" >
 						</div>
-						@if(isset($errors['title'])) <div class="alert">{{$errors['title']}}</div> @endif
+						<?php if(isset($errors['title'])): ?> <div class="alert"><?php echo e($errors['title']); ?></div> <?php endif; ?>
 					</div>
-					<div class="item form-group @if(isset($errors['seo_link'])) bad @endif">
+					<div class="item form-group <?php if(isset($errors['seo_link'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Seo Link <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="{{isset($params['seo_link']) ? $params['seo_link'] : '' }}" >
+						<input type="text" id="seo_link" class="form-control col-md-7 col-xs-12" name="seo_link" value="<?php echo e(isset($params['seo_link']) ? $params['seo_link'] : ''); ?>" >
 						</div>
-						@if(isset($errors['seo_link'])) <div class="alert">{{$errors['seo_link']}}</div> @endif
+						<?php if(isset($errors['seo_link'])): ?> <div class="alert"><?php echo e($errors['seo_link']); ?></div> <?php endif; ?>
 					</div>
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Loại sản phẩm <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="id_cate">
-								@if (isset($listCategory))
-									@foreach ($listCategory as $key => $value)
+								<?php if(isset($listCategory)): ?>
+									<?php foreach($listCategory as $key => $value): ?>
 										<?php $selected = ""; if(isset($params['id_cate']) && $key == $params['id_cate']) $selected = "selected"; ?>
-											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
-									@endforeach
-								@endif
+											<option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</select>
 						</div>
 					</div>
@@ -117,12 +117,12 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Thương hiệu <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="brand">
-								@if (isset($listBrand))
-									@foreach ($listBrand as $key => $value)
+								<?php if(isset($listBrand)): ?>
+									<?php foreach($listBrand as $key => $value): ?>
 										<?php $selected = ""; if(isset($params['brand']) && $key == $params['brand']) $selected = "selected"; ?>
-											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
-									@endforeach
-								@endif
+											<option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</select>
 						</div>
 					</div>
@@ -132,12 +132,12 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Thể loại <span class="required">*</span></label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
 							<select class="form-control" name="type">
-								@if (isset($listType))
-									@foreach ($listType as $key => $value)
+								<?php if(isset($listType)): ?>
+									<?php foreach($listType as $key => $value): ?>
 										<?php $selected = ""; if(isset($params['type']) && $key == $params['type']) $selected = "selected"; ?>
-											<option value="{{$key}}" {{$selected}}>{{$value}}</option>
-									@endforeach
-								@endif
+											<option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</select>
 						</div>
 					</div>
@@ -145,14 +145,14 @@
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả ngắn <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
-                  			<textarea  name="short_desc" id="short_desc" class="form-control" rows="5">@if(isset($params['short_desc'])){{$params['short_desc']}}@endif</textarea>
+                  			<textarea  name="short_desc" id="short_desc" class="form-control" rows="5"><?php if(isset($params['short_desc'])): ?><?php echo e($params['short_desc']); ?><?php endif; ?></textarea>
 						</div>
 					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả <span class="required">*</span></label>
 						<div class="col-md-10 col-sm-12 col-xs-12">
-                  			<textarea  name="desc" id="desc" class="ckedit">@if(isset($params['desc'])){{$params['desc']}}@endif</textarea>
+                  			<textarea  name="desc" id="desc" class="ckedit"><?php if(isset($params['desc'])): ?><?php echo e($params['desc']); ?><?php endif; ?></textarea>
 						</div>
 					</div>
 
@@ -167,19 +167,19 @@
 						</div>
 					</div>
 
-					<div class="item form-group @if(isset($errors['price'])) bad @endif">
+					<div class="item form-group <?php if(isset($errors['price'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="{{isset($params['price']) ? $params['price'] : '' }}" >
+						<input type="number" id="price" class="form-control col-md-7 col-xs-12" name="price" value="<?php echo e(isset($params['price']) ? $params['price'] : ''); ?>" >
 						</div>
-						@if(isset($errors['price'])) <div class="alert">{{$errors['price']}}</div> @endif
+						<?php if(isset($errors['price'])): ?> <div class="alert"><?php echo e($errors['price']); ?></div> <?php endif; ?>
 					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Giá giảm</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="discount" class="form-control col-md-7 col-xs-12" name="discount" value="{{isset($params['discount']) ? $params['discount'] : '' }}" >
+						<input type="number" id="discount" class="form-control col-md-7 col-xs-12" name="discount" value="<?php echo e(isset($params['discount']) ? $params['discount'] : ''); ?>" >
 						</div>
 					</div>
 
@@ -187,41 +187,41 @@
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Phần trăm giảm <span class="required">*</span>
 						</label>
 						<div class="col-md-4 col-sm-4 col-xs-12">
-						<input type="number" id="percent" class="form-control col-md-7 col-xs-12" name="percent" value="{{isset($params['percent']) ? $params['percent'] : '' }}" >
+						<input type="number" id="percent" class="form-control col-md-7 col-xs-12" name="percent" value="<?php echo e(isset($params['percent']) ? $params['percent'] : ''); ?>" >
 						</div>
 					</div>
 
-					<div class="item form-group @if(isset($errors['numbers'])) bad @endif">
+					<div class="item form-group <?php if(isset($errors['numbers'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Số Lượng <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                       <input type="number" id="numbers" name="numbers" class="form-control" value="{{isset($params['numbers']) ? $params['numbers'] : '' }}" >
+	                       <input type="number" id="numbers" name="numbers" class="form-control" value="<?php echo e(isset($params['numbers']) ? $params['numbers'] : ''); ?>" >
                       	</div>
-                      	@if(isset($errors['numbers'])) <div class="alert">{{$errors['numbers']}}</div> @endif
+                      	<?php if(isset($errors['numbers'])): ?> <div class="alert"><?php echo e($errors['numbers']); ?></div> <?php endif; ?>
 					</div>
 
-					<div class="item form-group @if(isset($errors['colors'])) bad @endif">
+					<div class="item form-group <?php if(isset($errors['colors'])): ?> bad <?php endif; ?>">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Màu sắc<span class="required">*</span> </label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-	                    @php
+	                    <?php 
 							$colors        = $listColors;
 							$chooseColors = (!empty($params['colors'])) ? $params['colors'] : array();
 							$count = 0;
-	                    @endphp
-	                    @foreach ($colors as $key => $item)
-	                    	@php $checked = in_array($key,$chooseColors) ? "checked" : ""; $count++; @endphp
-		                    <input type="checkbox" name="colors[]" value="{{$key}}" class="flat" <?= $checked; ?> />
-		                    <span style="background: {{$item['code']}}; vertical-align:bottom; width: 20px; height: 20px; display: inline-block; margin-right: 5px;border-radius: 50%"></span>
-		                @endforeach
+	                     ?>
+	                    <?php foreach($colors as $key => $item): ?>
+	                    	<?php  $checked = in_array($key,$chooseColors) ? "checked" : ""; $count++;  ?>
+		                    <input type="checkbox" name="colors[]" value="<?php echo e($key); ?>" class="flat" <?= $checked; ?> />
+		                    <span style="background: <?php echo e($item['code']); ?>; vertical-align:bottom; width: 20px; height: 20px; display: inline-block; margin-right: 5px;border-radius: 50%"></span>
+		                <?php endforeach; ?>
                       	</div>
-                      	@if(isset($errors['colors'])) <div class="alert">{{$errors['colors']}}</div> @endif
+                      	<?php if(isset($errors['colors'])): ?> <div class="alert"><?php echo e($errors['colors']); ?></div> <?php endif; ?>
 					</div>
 
 					<div class="item form-group ">
 						<label class="control-label col-md-2 col-sm-2 col-xs-12" for="title">Ngày hết hạn <span class="required">*</span>
 						</label>
 	                    <div class="col-md-4 col-sm-4 col-xs-12 xdisplay_inputx form-group has-feedback">
-	                        <input type="text" class="form-control has-feedback-left date_picker" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="{{isset( $params['limit_at']) ?  $params['limit_at'] : '' }}">
+	                        <input type="text" class="form-control has-feedback-left date_picker" id="limit_at" aria-describedby="inputSuccess2Status" name="limit_at" value="<?php echo e(isset( $params['limit_at']) ?  $params['limit_at'] : ''); ?>">
 	                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 	                        <span id="inputSuccess2Status" class="sr-only">(success)</span>
                       	</div>
@@ -339,8 +339,10 @@
 	</div>
 </div>
 </form>
-@endsection
-@section('js')
-    <script>  @if(isset($errors['finish'])) popupNotice("{{$errors['finish']}}");  @endif  </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+    <script>  <?php if(isset($errors['finish'])): ?> popupNotice("<?php echo e($errors['finish']); ?>");  <?php endif; ?>  </script>
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make("admin.layout", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

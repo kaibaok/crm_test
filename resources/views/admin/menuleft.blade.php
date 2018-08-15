@@ -66,12 +66,6 @@
               <li><a href="/admin/user">Danh sách User</a></li>
             </ul>
           </li>
-          <li><a><i class="fa fa-bar-chart"></i> Quản Lý doanh thu <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="/admin/index/chart-bar">Doanh thu 12 tháng</a></li>
-              <li><a href="/admin/index/chart-pie">Doanh thu 6 tháng</a></li>
-            </ul>
-          </li>
           <li><a href="/"><i class="fa fa-home"></i>Trang Chủ</a></li>
           <li><a href="/admin/logout"><i class="fa fa-sign-out"></i>Đăng Xuất</a></li>
         </ul>

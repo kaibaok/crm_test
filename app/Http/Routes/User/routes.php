@@ -21,3 +21,6 @@ Route::get('/hoan-tat-don-hang', 'User\ProductController@orderCart');
 
 Route::any('/dang-nhap', 'User\UserController@login');
 Route::any('/dang-ky', 'User\UserController@register');
+
+Route::any('/profile', 'User\UserController@profile');
+Route::get('/logout', 'User\UserController@logout');

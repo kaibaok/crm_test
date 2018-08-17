@@ -1,7 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
-<div class="">
+<div>
     <div class="page-title">
       <div class="title_left">
         <h3>{{$title}}</h3>
@@ -12,14 +12,14 @@
           <div class="input-group">
                 <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
                 <input type="hidden" name="page" value="1">
-                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm..." value="{{ !empty($conditionPage['txtSearch']) ? $conditionPage['txtSearch'] : ''}}">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="submit" >Tìm</button>
                 </span>
           </div>
           </form>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+        <div class="form-group pull-right">
           <div class="input-group">
             <a class="btn btn-primary" href="/admin/slider/add">Thêm mới</a>
           </div>

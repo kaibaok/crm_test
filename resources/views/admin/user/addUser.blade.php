@@ -2,7 +2,7 @@
 @section('title') {{$title}} @endsection
 @section('rightcontent')
 <form id="demo-form" data-parsley-validate class="form-horizontal form-label-left" method="post" action="">
-<div class="">
+<div>
 	<div class="page-title">
 		<div class="title_left">
 			<h3>{{$title}}</h3>

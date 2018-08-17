@@ -15,7 +15,7 @@
               </span>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-5 form-group pull-right top_search">
+        <div class="form-group pull-right">
           <div class="input-group">
             <a class="btn btn-primary" href="/admin/user/add">Thêm mới</a>
           </div>

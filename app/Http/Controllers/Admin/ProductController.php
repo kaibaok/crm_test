@@ -663,7 +663,6 @@ class ProductController extends Controller
         $page      = isset($request->page) ? $request->page : 1;
         $builder   = Cart::select();
         $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
-
         if(!empty($txtSearch)) {
             $builder->where('title','like',"%{$txtSearch}%")
                 ->orWhere('userid', '=', $txtSearch)
@@ -688,13 +687,47 @@ class ProductController extends Controller
             ->with("conditionPage", $conditionPage);
     }
 
+    public function addCart(Request $request)
+    {
+        $title        = "Thêm mới giỏ hàng";
+        $errors       = NULL;
+        $listStatus   = $this->getOption('listStatus');
+        $params       = $request->all();
+        $listPaid     = $this->getOption('listPaidT');
+        $discountCode = DiscountCode::select()->get();
+        if ($request->isMethod('post')) {
+            if(empty($params['full_name'])) $errors['full_name'] = "Vui lòng nhập tên";
+            if(empty($params['email'])) $errors['email']         = "Vui lòng nhập Email";
+            if(empty($params['address1'])) $errors['address1']   = "Vui lòng nhập địa chỉ";
+            if(empty($params['phone'])) $errors['phone']         = "Vui lòng nhập số điện thoại";
+            if(empty($params['district'])) $errors['district']   = "Vui lòng nhập quận";
+            if(empty($params['city'])) $errors['city']           = "Vui lòng nhập thành phố";
+            if(empty($errors)) {
+                $addCart = Cart::addCart($params);
+                if($addCart) {
+                    $params = array();
+                    $errors['finish'] = "Thêm thành công";
+                }else{
+                    $errors['finish'] = "Thêm thất bại";
+                }
+            }
+        }
+        return view("admin.product.addCart")
+            ->with("title", $title)
+            ->with("listPaid", $listPaid)
+            ->with("discountCode", $discountCode)
+            ->with("errors", $errors)
+            ->with("params", $params);
+    }
+
     public function editCart(Request $request)
     {
         $title    = "Sửa đơn hàng";
-        $errors   = NULL;
+        $errors   = $discountCode  = NULL;
         $id       = (int) $request->route('id');
         $cart     = Cart::findOrFail((int)$id)->toArray();
-        $discountCode = NULL;
+        $listPaid = $this->getOption('listPaidT');
+        $listCode = DiscountCode::select()->get();
         if($cart['code']) {
             $discountCode = DiscountCode::where("code" ,$cart['code'])->first();
         }
@@ -702,7 +735,7 @@ class ProductController extends Controller
         $params  = $request->all();
         if ($request->isMethod('post')) {
             if(empty($params['full_name'])) $errors['full_name'] = "Vui lòng nhập tên";
-            if(empty($params['Email'])) $errors['Email']         = "Vui lòng nhập Email";
+            if(empty($params['email'])) $errors['email']         = "Vui lòng nhập Email";
             if(empty($params['address1'])) $errors['address1']   = "Vui lòng nhập địa chỉ";
             if(empty($params['phone'])) $errors['phone']         = "Vui lòng nhập số điện thoại";
             if(empty($params['district'])) $errors['district']   = "Vui lòng nhập quận";
@@ -719,6 +752,8 @@ class ProductController extends Controller
             ->with("cart", $cart)
             ->with("cartDetail", $cartDetail)
             ->with("discountCode", $discountCode)
+            ->with("id", $id)
+            ->with("listPaid", $listPaid)
             ->with("errors",$errors);
     }
 
@@ -761,11 +796,10 @@ class ProductController extends Controller
 
     public function addCartDetail(Request $request)
     {
-        $title  = "Thêm chi tiết đơn hàng";
-        $errors = NULL;
-        $cartID = (int) $request->route('id');
-        $params = $request->all();
-        $product    = null;
+        $title      = "Thêm chi tiết đơn hàng";
+        $errors     = $product = NULL;
+        $cartID     = (int) $request->route('id');
+        $params     = $request->all();
         $listColors = Colors::getList();
         if ($request->isMethod('post')) {
             if(empty($params['product_id'])) $errors['product_id'] = "Vui lòng chọn sản phẩm";

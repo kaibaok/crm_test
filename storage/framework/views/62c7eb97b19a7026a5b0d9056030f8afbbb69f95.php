@@ -2,7 +2,7 @@
 <?php $__env->startSection('rightcontent'); ?>
 <?php  $url = URL_IMG."/product/"   ?>
 <form id="demo-form" class="form-horizontal" method="post" action="" enctype="multipart/form-data">
-<div class="">
+<div>
     <div class="page-title">
         <div class="title_left">
             <h3><?php echo e($title); ?></h3>

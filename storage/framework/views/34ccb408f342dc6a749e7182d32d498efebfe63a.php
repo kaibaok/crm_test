@@ -1,6 +1,6 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
-<div class="">
+<div>
     <div class="page-title">
       <div class="title_left">
         <h3><?php echo e($title); ?></h3>
@@ -11,16 +11,16 @@
           <div class="input-group">
                 <input type="hidden" name="_token" id="token_alproduct" value="<?php echo e(csrf_token()); ?>">
                 <input type="hidden" name="page" value="1">
-                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm..." value="<?php echo e(!empty($conditionPage['txtSearch']) ? $conditionPage['txtSearch'] : ''); ?>">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="submit" >Tìm</button>
                 </span>
           </div>
           </form>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+        <div class="form-group pull-right">
           <div class="input-group">
-            <a class="btn btn-primary" href="/admin/product/add">Thêm mới</a> &nbsp;
+            <a class="btn btn-primary" href="/admin/product/add">Thêm mới</a>
             <a class="btn btn-success" href="/admin/product/sort-product">Sắp xếp</a>
           </div>
         </div>

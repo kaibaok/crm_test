@@ -1,19 +1,21 @@
 @extends("admin.layout")
-@section('title') {{$view['title']}} @endsection
+@section('title') {{$title}} @endsection
 @section('css')
     <link href="/public/admin/js/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  @endsection
 @section('rightcontent')
-<div class="">
+<form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
+<div>
     <div class="page-title">
         <div class="title_left">
-            <h3>{{$view['title']}}</h3>
+            <h3>{{$title}}</h3>
         </div>
         <div class="title_right">
             <div class=" pull-right">
               <div class="input-group">
-                <a class="btn btn-info" href="/admin/product/cart">Trở về</a>
+                <button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
+                <a class="btn btn-info" href="/admin/cart">Trở về</a>
               </div>
             </div>
           </div>
@@ -26,119 +28,123 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form class="form-horizontal form-label-left" method="get">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã khách hàng
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="userid" name="userid" class="form-control col-md-7 col-xs-12" value="{{!empty($_POST['userid']) ? $_POST['userid'] : '' }}">
-                            </div>
+                    {{ csrf_field() }}
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Trạng thái
+                        </label>
+                         <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control" name="paid">
+                                @if (isset($listPaid))
+                                    @foreach ($listPaid as $key => $value)
+                                        <?php $selected = ""; if(isset($params['paid']) && $key == $params['paid']) $selected = "selected"; ?>
+                                            <option value="{{$key}}" {{$selected}}>{{$value}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên khách hàng
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12" value="{{!empty($_POST['name']) ? $_POST['name'] : '' }}">
-                            </div>
+                    </div>
+                   <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã Giảm giá
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                           <select class="form-control" name="code">
+                               @if(!empty($discountCode))
+                                    @foreach($discountCode as $value)
+                                        <option value="{{ $value->code }}" > {{ $value->code }} - {{ $value->type_discount ? "tiền giảm ".$value->discount_price  : "phần trăm giảm ".$value->percent."%"  }} - hết hạn {{ $value->end_date }}
+                                        </option>
+                                    @endforeach
+                               @endif
+                           </select>
                         </div>
-                        <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="email" class="form-control col-md-7 col-xs-12" type="text" name="email" value="{{!empty($_POST['email']) ? $_POST['email'] : '' }}">
-                            </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã khách hàng
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="userid" name="userid" class="form-control col-md-7 col-xs-12" value="{{!empty($params['userid']) ? $params['userid'] : '' }}">
                         </div>
-                        <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address" value="{{!empty($_POST['address']) ? $_POST['address'] : '' }}">
-                            </div>
+                    </div>
+                    <div class="item form-group @if(isset($errors['full_name'])) bad @endif">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên khách hàng
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="name" name="full_name" class="form-control col-md-7 col-xs-12" value="{{!empty($params['full_name']) ? $params['full_name'] : '' }}">
                         </div>
-                         <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="phone" class="form-control col-md-7 col-xs-12" type="text" name="phone" value="{{!empty($_POST['phone']) ? $_POST['phone'] : '' }}">
-                            </div>
+                        @if(isset($errors['full_name'])) <div class="alert">{{$errors['full_name']}}</div> @endif
+                    </div>
+                    <div class="item form-group  @if(isset($errors['email'])) bad @endif">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="email" class="form-control col-md-7 col-xs-12" type="text" name="email" value="{{!empty($params['email']) ? $params['email'] : '' }}">
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày đặt hàng</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" id="registered_date" aria-describedby="inputSuccess2Status" name="registered_date" value="{{!empty($_POST['registered_date']) ? $_POST['registered_date'] : '' }}">
-                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                            </div>
+                        @if(isset($errors['email'])) <div class="alert">{{$errors['email']}}</div> @endif
+                    </div>
+                    <div class="item form-group @if(isset($errors['address1'])) bad @endif">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address1" value="{{!empty($params['address1']) ? $params['address1'] : '' }}">
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày giao hàng</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" id="ship_date" aria-describedby="inputSuccess2Status" name="ship_date" value="{{!empty($_POST['ship_date']) ? $_POST['ship_date'] : '' }}">
-                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                            </div>
+                        @if(isset($errors['address1'])) <div class="alert">{{$errors['address1']}}</div> @endif
+                    </div>
+                    <div class="item form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ 2</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address2" value="{{!empty($params['address2']) ? $params['address2'] : '' }}">
                         </div>
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button type="submit" class="btn btn-success">Tìm kiếm</button>
-                            </div>
+                    </div>
+                     <div class="item form-group @if(isset($errors['phone'])) bad @endif">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="phone" class="form-control col-md-7 col-xs-12" type="text" name="phone" value="{{!empty($params['phone']) ? $params['phone'] : '' }}">
                         </div>
-                    </form>
+                         @if(isset($errors['phone'])) <div class="alert">{{$errors['phone']}}</div> @endif
+                    </div>
+                      <div class="item form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Phường/xã</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="stage" value="{{!empty($params['stage']) ? $params['stage'] : '' }}">
+                        </div>
+                    </div>
+                      <div class="item form-group @if(isset($errors['district'])) bad @endif">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Quận</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="district" value="{{!empty($params['district']) ? $params['district'] : '' }}">
+                        </div>
+                        @if(isset($errors['district'])) <div class="alert">{{$errors['district']}}</div> @endif
+                    </div>
+                      <div class="item form-group @if(isset($errors['city'])) bad @endif">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Thành phố</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="city" value="{{!empty($params['city']) ? $params['city'] : '' }}">
+                        </div>
+                        @if(isset($errors['city'])) <div class="alert">{{$errors['city']}}</div> @endif
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày đặt hàng</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                            <input type="text" class="form-control has-feedback-left" id="registered_date" aria-describedby="inputSuccess2Status" value="{{!empty($params['created_at']) ? $params['created_at'] : '' }}">
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày giao hàng</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                            <input type="text" class="form-control has-feedback-left" id="ship_date" aria-describedby="inputSuccess2Status" name="ship_date" value="{{(!empty($params['ship_date']) && $params['ship_date'] != '0000-00-00') ? $params['ship_date'] : ''}}">
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ghi chú</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                            <textarea name="note" id="note" class="form-control" rows="5">{{ !empty($params['note']) ? $params['note'] : ''}}</textarea>
+                        </div>
+                    </div>
               </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 col-xs-12">
-             <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Sản Phẩm</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã sản phẩm
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="tags" name="name" class="form-control col-md-7 col-xs-12" value="{{!empty($_POST['name']) ? $_POST['name'] : '' }}">
-                            </div>
-                        </div>
-                  </div>
-                   <div class="x_content">
-                        <div class="form-group">
-
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                            <table class="table table-striped jambo_table bulk_action">
-                            <thead>
-                                <th>Mã sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Loại sản phẩm</th>
-                                <th>Màu sắc</th>
-                                <th>Xử lý</th>
-                            </thead>
-                            </table>
-                            </div>
-                        </div>
-                  </div>
-            </div>
-        </div>
-
-         <div class="col-md-6 col-xs-12">
-             <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Giỏ hàng</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã sản phẩm
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="tags" name="name" class="form-control col-md-7 col-xs-12" value="{{!empty($_POST['name']) ? $_POST['name'] : '' }}">
-                            </div>
-                        </div>
-                  </div>
-                </div>
-        </div>
-    </div>
 </div>
+</form>
 
 
 @endsection

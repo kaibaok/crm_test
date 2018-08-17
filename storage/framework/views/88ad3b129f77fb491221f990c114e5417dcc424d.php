@@ -33,15 +33,30 @@
                     <div class="x_content">
                         <?php echo e(csrf_field()); ?>
 
+                        <input type="hidden" name="id" value="<?php echo e($cart['id']); ?>">
                         <div class="item form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="first-name">Mã Giảm giá
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Trạng thái
                             </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input readonly="readonly" type="text" id="code" name="code" class="form-control col-md-7 col-xs-12" value="<?php echo e(!empty($cart['code']) ? $cart['code'] : ''); ?>">
+                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control" name="paid">
+                                    <?php if(isset($listPaid)): ?>
+                                        <?php foreach($listPaid as $key => $value): ?>
+                                            <?php $selected = ""; if(isset($cart['paid']) && $key == $cart['paid']) $selected = "selected"; ?>
+                                                <option value="<?php echo e($key); ?>" <?php echo e($selected); ?>><?php echo e($value); ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="first-name">Mã khách hàng
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã Giảm giá
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input readonly="readonly" type="text" id="code" name="code" class="form-control col-md-7 col-xs-12" value="<?php if(!empty($discountCode)): ?> <?php echo e($discountCode->code); ?> - <?php echo e($discountCode->type_discount ? "tiền giảm ".$discountCode->discount_price  : "phần trăm giảm ".$discountCode->percent."%"); ?> - hết hạn <?php echo e($discountCode->end_date); ?> <?php endif; ?> ">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã khách hàng
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <a href="/admin/user/edit/<?php echo e($cart['userid']); ?>"></a>
@@ -49,7 +64,7 @@
                             </div>
                         </div>
                         <div class="item form-group <?php if(isset($errors['full_name'])): ?> bad <?php endif; ?>">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="last-name">Tên khách hàng
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên khách hàng
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="name" name="full_name" class="form-control col-md-7 col-xs-12" value="<?php echo e(!empty($cart['full_name']) ? $cart['full_name'] : ''); ?>">
@@ -57,64 +72,70 @@
                             <?php if(isset($errors['full_name'])): ?> <div class="alert"><?php echo e($errors['full_name']); ?></div> <?php endif; ?>
                         </div>
                         <div class="item form-group <?php if(isset($errors['email'])): ?> bad <?php endif; ?>">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Email</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="email" class="form-control col-md-7 col-xs-12" type="text" name="email" value="<?php echo e(!empty($cart['email']) ? $cart['email'] : ''); ?>">
                             </div>
                             <?php if(isset($errors['email'])): ?> <div class="alert"><?php echo e($errors['email']); ?></div> <?php endif; ?>
                         </div>
                         <div class="item form-group <?php if(isset($errors['address1'])): ?> bad <?php endif; ?>">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Địa chỉ</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address1" value="<?php echo e(!empty($cart['address1']) ? $cart['address1'] : ''); ?>">
                             </div>
                             <?php if(isset($errors['address1'])): ?> <div class="alert"><?php echo e($errors['address1']); ?></div> <?php endif; ?>
                         </div>
                         <div class="item form-group">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Địa chỉ 2</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ 2</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="address2" value="<?php echo e(!empty($cart['address2']) ? $cart['address2'] : ''); ?>">
                             </div>
                         </div>
                          <div class="item form-group <?php if(isset($errors['phone'])): ?> bad <?php endif; ?>">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Điện thoại</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="phone" class="form-control col-md-7 col-xs-12" type="text" name="phone" value="<?php echo e(!empty($cart['phone']) ? $cart['phone'] : ''); ?>">
                             </div>
                              <?php if(isset($errors['phone'])): ?> <div class="alert"><?php echo e($errors['phone']); ?></div> <?php endif; ?>
                         </div>
                           <div class="item form-group">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Phường/xã</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Phường/xã</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="stage" value="<?php echo e(!empty($cart['stage']) ? $cart['stage'] : ''); ?>">
                             </div>
                         </div>
                           <div class="item form-group <?php if(isset($errors['district'])): ?> bad <?php endif; ?>">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Quận</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Quận</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="district" value="<?php echo e(!empty($cart['district']) ? $cart['district'] : ''); ?>">
                             </div>
                             <?php if(isset($errors['district'])): ?> <div class="alert"><?php echo e($errors['district']); ?></div> <?php endif; ?>
                         </div>
                           <div class="item form-group <?php if(isset($errors['city'])): ?> bad <?php endif; ?>">
-                            <label for="middle-name" class="control-label col-md-4 col-sm-4 col-xs-12">Thành phố</label>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Thành phố</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="address" class="form-control col-md-7 col-xs-12" type="text" name="city" value="<?php echo e(!empty($cart['city']) ? $cart['city'] : ''); ?>">
                             </div>
                             <?php if(isset($errors['city'])): ?> <div class="alert"><?php echo e($errors['city']); ?></div> <?php endif; ?>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Ngày đặt hàng</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày đặt hàng</label>
                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" id="registered_date" aria-describedby="inputSuccess2Status" value="<?php echo e(!empty($cart['created_at']) ? $cart['created_at'] : ''); ?>">
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title">Ngày giao hàng</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ngày giao hàng</label>
                             <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" id="ship_date" aria-describedby="inputSuccess2Status" name="ship_date" value="<?php echo e((!empty($cart['ship_date']) && $cart['ship_date'] != '0000-00-00') ? $cart['ship_date'] : ''); ?>">
                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Ghi chú</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
+                                <textarea name="note" id="note" class="form-control" rows="5"><?php if(isset($cart['note'])): ?><?php echo e($cart['note']); ?><?php endif; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -127,7 +148,7 @@
                  <div class="x_panel">
                       <div class="x_title">
                         <h2>Giỏ hàng</h2>
-                        <a href="/admin/cartDetail/add/<?php echo e($cart['id']); ?>" class="pull-right btn btn-success">&nbsp;Thêm&nbsp;</a>
+                        <a href="/admin/cartDetail/add/<?php echo e($id); ?>" class="pull-right btn btn-success">&nbsp;Thêm&nbsp;</a>
                         <div class="clearfix"></div>
                       </div>
                        <div class="x_content">

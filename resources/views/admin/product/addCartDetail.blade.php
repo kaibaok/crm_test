@@ -2,7 +2,7 @@
 @section('title') {{$title}} @endsection
 @section('rightcontent')
 <form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
-<div class="">
+<div>
     <div class="page-title">
         <div class="title_left">
             <h3>{{$title}}</h3>
@@ -54,7 +54,7 @@
                         <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">Số lượng <span class="required">*</span>
                         </label>
                         <div class="col-md-4 col-sm-4 col-xs-12">
-                        <input type="text" id="number" class="form-control col-md-7 col-xs-12" name="number" value="{{isset($params['number']) ? $params['number'] : ''}}">
+                        <input type="text" id="number" class="form-control col-md-7 col-xs-12" name="number" value="{{isset($params['number']) ? $params['number'] : 1 }}">
                         </div>
                         @if(isset($errors['number'])) <div class="alert">{{$errors['number']}}</div> @endif
                     </div>

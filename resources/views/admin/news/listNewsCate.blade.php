@@ -1,7 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
-<div class="">
+<div>
     <div class="page-title">
       <div class="title_left">
         <h3>{{$title}}</h3>
@@ -12,7 +12,7 @@
           <div class="input-group">
                 <input type="hidden" name="_token" id="token_alproduct" value="{{ csrf_token() }}">
                 <input type="hidden" name="page" value="1">
-                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm...">
+                <input type="text" name="txtSearch" class="form-control" placeholder="Tìm kiếm..." value="{{ !empty($conditionPage['txtSearch']) ? $conditionPage['txtSearch'] : ''}}">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="submit" >Tìm</button>
                 </span>

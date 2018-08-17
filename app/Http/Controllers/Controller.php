@@ -35,6 +35,9 @@ class Controller extends BaseController
     			return array( 0 => "<span class='btn btn-warning btn-xs'>Chưa thanh toán</span>",
                     1 => "<span class='btn btn-info btn-xs'>Giao hàng</span>", 2 => "<span class='btn btn-success btn-xs'>Hoàn tất</span>");
     		break;
+            case 'listPaidT':
+                return array( 0 => "Chưa thanh toán", 1 => "Giao hàng", 2 => "Hoàn tất");
+            break;
             case 'typePrice':
                 return array( 1 => "Giá bình thường", 2 => "Giá Liên hệ", 3 => "Hết hàng");
             case 'listSize':

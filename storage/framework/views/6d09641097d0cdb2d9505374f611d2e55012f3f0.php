@@ -84,18 +84,32 @@
                 <div class="header-top-area ptb-10 hidden-sm hidden-xs">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="account-usd text-left">
+                                    <?php if(!empty($userInfo)): ?>
                                     <ul>
                                         <li>
-                                            <?php if(!empty($userInfo)): ?>
-                                                <a href="/thong-tin-tai-khoan/<?php echo e($userInfo->id); ?>">Chào <?php echo e($userInfo->name); ?></a>
-                                            <?php endif; ?>
+                                                <a href="/profile">Chào <?php echo e($userInfo->name); ?></a>
                                         </li>
+                                        <li>
+                                            <a href="/logout">Logout</a>
+                                        </li>
+                                    </ul>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="social-icons text-center">
+                                    <ul>
+                                    <li><a href="#" target="_blank" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="#" target="_blank" title="Google-plus"><i class="zmdi zmdi-google-plus"></i></a></li>
+                                    <li><a href="#" target="_blank" title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a href="#" target="_blank" title="Linkedin"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                    <li><a href="#" target="_blank" title="Instagram"><i class="zmdi zmdi-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="top-right">
                                     <div class="top-login-cart">
                                         <ul>

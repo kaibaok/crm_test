@@ -28,7 +28,7 @@ class CartDetail extends Model
                   'name'       => trim(strip_tags($data['name'])),
                   'price'      => $data['price'],
                   'dprice'     => $data['dprice'],
-                  'number'     => (int) $data['number'],
+                  'number'     => ((int) $data['number']) ? $data['number'] : 1,
                   'color'      => (int) $data['color'],
                   'size'       =>  $data['size'],
                   'created_at' => date("Y-m-d H:i:s"),
@@ -48,7 +48,7 @@ class CartDetail extends Model
               'name'       => trim(strip_tags($data['name'])),
               'price'      => $data['price'],
               'dprice'     => $data['dprice'],
-              'number'     => (int) $data['number'],
+              'number'     => ((int) $data['number']) ? $data['number'] : 1,
               'color'      => (int) $data['color'],
               'size'       =>  $data['size'],
             );

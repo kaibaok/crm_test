@@ -213,7 +213,7 @@ class IndexController extends Controller
         $title     = "Danh sách sự kiện";
         $page      = isset($request->page) ? $request->page : 1;
         $builder   = Event::select();
-        $txtSearch = isset($request->txtSearch) ? $request->txtSearch : '';
+        $txtSearch = !empty($request->txtSearch) ? $request->txtSearch : '';
         if(!empty($txtSearch)) {
             $builder->where('title','like',"%{$txtSearch}%");
         }
@@ -334,7 +334,7 @@ class IndexController extends Controller
         $title        = "Danh Sách Tag";
         $page         = isset($request->page) ? $request->page : 1;
         $builder      = Tag::select();
-        $txtSearch    = isset($request->txtSearch) ? $request->txtSearch : '';
+        $txtSearch    = !empty($request->txtSearch) ? $request->txtSearch : '';
 
         if(!empty($txtSearch)) {
             $builder->where('title','like',"%{$txtSearch}%");

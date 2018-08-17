@@ -3,7 +3,7 @@
 @section('rightcontent')
 @php $url = URL_IMG."event/"  @endphp
 <form id="demo-form" class="form-horizontal form-label-left" method="post" action="" enctype="multipart/form-data">
-<div class="">
+<div>
     <div class="page-title">
         <div class="title_left">
             <h3>{{$title}}</h3>

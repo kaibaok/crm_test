@@ -4,7 +4,7 @@
 
 @section('rightcontent')
 <form id="demo-form" class="form-horizontal" method="post" enctype="multipart/form-data">
-<div class="">
+<div>
     <div class="page-title">
         <div class="title_left">
             <h3>{{$title}}</h3>

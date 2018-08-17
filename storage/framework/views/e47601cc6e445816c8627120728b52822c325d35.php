@@ -1,7 +1,7 @@
 <?php $__env->startSection('title'); ?> <?php echo e($title); ?> <?php $__env->stopSection(); ?>
 <?php $__env->startSection('rightcontent'); ?>
 <form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
-<div class="">
+<div>
 	<div class="page-title">
 		<div class="title_left">
 			<h3><?php echo e($title); ?></h3>

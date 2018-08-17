@@ -2,7 +2,7 @@
 @section('title') {{$title}} @endsection
 @section('rightcontent')
 <form id="demo-form" class="form-horizontal form-label-left" method="post" action="">
-<div class="">
+<div>
 	<div class="page-title">
 		<div class="title_left">
 			<h3>{{$title}}</h3>
@@ -11,7 +11,7 @@
 	        <div class=" pull-right">
 	          <div class="input-group">
 	          	<button type="submit" class="btn btn-success btn-submit">&nbsp;Save&nbsp;</button>
-	            <a class="btn btn-info" href="/admin/cate-product/">Trở về</a>
+	            <a class="btn btn-info" href="/admin/item-product/">Trở về</a>
 	          </div>
 	        </div>
 	      </div>

@@ -88,4 +88,62 @@ class UserController extends Controller {
             ->with("errors",$errors)
             ->with("params",$params);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->guest("/");
+    }
+
+    public function profile(Request $request)
+    {
+        MetaTag::set('title', 'Thông tin cá nhân');
+        MetaTag::set('description', 'Thông tin cá nhân');
+        MetaTag::set('keywords', 'keyword');
+        MetaTag::set('image', asset('/public/images/detail-logo.png'));
+        MetaTag::set('author','Dot 89 Shop');
+        if (!Auth::check()) return redirect()->guest("/");
+        $userID = Auth::user()->id;
+        $info   = User::find($userID)->first()->toArray();
+        $errors = NULL;
+        $params = $request->all();
+
+        if ($request->isMethod('post')) {
+            $name     = trim(htmlspecialchars(strip_tags($params['name'])));
+            $password = trim(htmlspecialchars(strip_tags($params['password'])));
+            $gender   = (int) $params['gender'];
+            $email    = $params['email'];
+            $phone    = strip_tags($params['phone']);
+            $address  = strip_tags($params['address']);
+            if(empty($name)) $errors['name']         = "Vui lòng nhập tên tài khoản";
+            if(empty($password)) $errors['password'] = "Vui lòng nhập mật khẩu";
+            if(empty($phone)) $errors['phone']       = "Vui lòng nhập số điện thoại";
+            if(empty($address)) $errors['address']   = "Vui lòng nhập địa chỉ";
+            if(empty($errors)) {
+            //     $get_user = User::where('name',$name)->where('email', $email)->get()->toArray();
+            //     if(!empty($get_user)) {
+            //         $errors['email'] = "Tài khoản hoặc Email này đã được đăng ký";
+            //     } else {
+            //         $status = User::update(array(
+            //             'name'       => $name,
+            //             'password'   => bcrypt($password),
+            //             'email'      => $email,
+            //             'gender'     => $gender,
+            //             'permission' => 0,
+            //             'phone'      => $phone,
+            //             'address'    => $address,
+            //         )
+            //     );
+            //         Auth::logout();
+            //         if (Auth::attempt(['name' => $name, 'password' => $password], false)) {
+            //             return redirect()->guest('/');
+            //         }
+            //     }
+            }
+        }
+
+        return view("user.user.profile")
+            ->with("errors",$errors)
+            ->with("info",$info);
+    }
 }

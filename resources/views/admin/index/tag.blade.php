@@ -1,7 +1,7 @@
 @extends("admin.layout")
 @section('title') {{$title}} @endsection
 @section('rightcontent')
-<div class="">
+<div>
     <div class="page-title">
       <div class="title_left">
         <h3>{{$title}}</h3>
@@ -19,7 +19,7 @@
             </div>
           </form>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+        <div class="form-group pull-right">
           <div class="input-group">
             <a class="btn btn-primary" href="/admin/tag/add">Thêm mới</a>
           </div>

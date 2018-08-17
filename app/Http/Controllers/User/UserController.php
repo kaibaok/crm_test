@@ -53,7 +53,6 @@ class UserController extends Controller {
             $name     = trim(htmlspecialchars(strip_tags($params['name'])));
             $password = trim(htmlspecialchars(strip_tags($params['password'])));
             $gender   = (int) $params['gender'];
-            $email    = $params['email'];
             $phone    = strip_tags($params['phone']);
             $address  = strip_tags($params['address']);
             if(empty($name)) $errors['name']         = "Vui lòng nhập tên tài khoản";
@@ -66,19 +65,19 @@ class UserController extends Controller {
                 if(!empty($get_user)) {
                     $errors['email'] = "Tài khoản hoặc Email này đã được đăng ký";
                 } else {
-                    $status = User::addUser(array(
+                    $status = User::editUser(array(
                         'name'       => $name,
                         'password'   => bcrypt($password),
-                        'email'      => $email,
                         'gender'     => $gender,
                         'permission' => 0,
                         'phone'      => $phone,
                         'address'    => $address,
-                    )
-                );
-                    Auth::logout();
-                    if (Auth::attempt(['name' => $name, 'password' => $password], false)) {
-                        return redirect()->guest('/');
+                    ));
+                    if($status) {
+                        Auth::logout();
+                        if (Auth::attempt(['name' => $name, 'password' => $password], false)) {
+                            return redirect()->guest('/');
+                        }
                     }
                 }
             }
@@ -102,17 +101,16 @@ class UserController extends Controller {
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
+
         if (!Auth::check()) return redirect()->guest("/");
         $userID = Auth::user()->id;
         $info   = User::find($userID)->first()->toArray();
         $errors = NULL;
         $params = $request->all();
-
         if ($request->isMethod('post')) {
             $name     = trim(htmlspecialchars(strip_tags($params['name'])));
             $password = trim(htmlspecialchars(strip_tags($params['password'])));
             $gender   = (int) $params['gender'];
-            $email    = $params['email'];
             $phone    = strip_tags($params['phone']);
             $address  = strip_tags($params['address']);
             if(empty($name)) $errors['name']         = "Vui lòng nhập tên tài khoản";
@@ -120,26 +118,22 @@ class UserController extends Controller {
             if(empty($phone)) $errors['phone']       = "Vui lòng nhập số điện thoại";
             if(empty($address)) $errors['address']   = "Vui lòng nhập địa chỉ";
             if(empty($errors)) {
-            //     $get_user = User::where('name',$name)->where('email', $email)->get()->toArray();
-            //     if(!empty($get_user)) {
-            //         $errors['email'] = "Tài khoản hoặc Email này đã được đăng ký";
-            //     } else {
-            //         $status = User::update(array(
-            //             'name'       => $name,
-            //             'password'   => bcrypt($password),
-            //             'email'      => $email,
-            //             'gender'     => $gender,
-            //             'permission' => 0,
-            //             'phone'      => $phone,
-            //             'address'    => $address,
-            //         )
-            //     );
-            //         Auth::logout();
-            //         if (Auth::attempt(['name' => $name, 'password' => $password], false)) {
-            //             return redirect()->guest('/');
-            //         }
-            //     }
+                $status = User::where("id", $userID)-> update(
+                    array(
+                    'name'     => $name,
+                    'password' => bcrypt($password),
+                    'gender'   => $gender,
+                    'phone'    => $phone,
+                    'address'  => $address,
+                ));
+                if($status) {
+                    Auth::logout();
+                    if (Auth::attempt(['name' => $name, 'password' => $password], false)) {
+                        return redirect()->guest('/');
+                    }
+                }
             }
+            $info = $params;
         }
 
         return view("user.user.profile")

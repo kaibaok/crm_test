@@ -88,12 +88,13 @@
                                 <div class="account-usd text-left">
                                     <?php if(!empty($userInfo)): ?>
                                     <ul>
-                                        <li>
-                                                <a href="/profile">Chào <?php echo e($userInfo->name); ?></a>
-                                        </li>
-                                        <li>
-                                            <a href="/logout">Logout</a>
-                                        </li>
+                                        <li><a href="/profile">Chào <?php echo e($userInfo->name); ?></a> </li>
+                                        <li><a href="/logout">Logout</a></li>
+                                    </ul>
+                                    <?php else: ?>
+                                     <ul>
+                                        <li><a href="/dang-ky">Đăng ký</a></li>
+                                        <li><a href="/dang-nhap">Đăng nhập</a></li>
                                     </ul>
                                     <?php endif; ?>
                                 </div>
@@ -113,10 +114,6 @@
                                 <div class="top-right">
                                     <div class="top-login-cart">
                                         <ul>
-                                            <?php if(empty($userInfo)): ?>
-                                            <li class=" hidden-xs"><a href="/dang-ky">Đăng ký</a></li>
-                                            <li class=" hidden-xs"><a href="/dang-nhap">Đăng nhập</a></li>
-                                            <?php endif; ?>
                                             <li class=" hidden-xs"><a href="/lien-he">Liên hệ : <?php echo e(CONTACT_PHONE); ?> - <?php echo e(CONTACT_PHONE2); ?></a></li>
                                             <li><a href="/gio-hang"><img src="/public/user/img/icon/cart_red.png" alt="cart">(<span id="number_cart"><?php echo e(count($sCart)); ?></span>)</a>
                                                 <ul class="submenu-mainmenu" id="listCart">

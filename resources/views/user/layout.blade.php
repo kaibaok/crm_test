@@ -82,12 +82,13 @@
                                 <div class="account-usd text-left">
                                     @if (!empty($userInfo))
                                     <ul>
-                                        <li>
-                                                <a href="/profile">Chào {{$userInfo->name}}</a>
-                                        </li>
-                                        <li>
-                                            <a href="/logout">Logout</a>
-                                        </li>
+                                        <li><a href="/profile">Chào {{$userInfo->name}}</a> </li>
+                                        <li><a href="/logout">Logout</a></li>
+                                    </ul>
+                                    @else
+                                     <ul>
+                                        <li><a href="/dang-ky">Đăng ký</a></li>
+                                        <li><a href="/dang-nhap">Đăng nhập</a></li>
                                     </ul>
                                     @endif
                                 </div>
@@ -107,10 +108,6 @@
                                 <div class="top-right">
                                     <div class="top-login-cart">
                                         <ul>
-                                            @if (empty($userInfo))
-                                            <li class=" hidden-xs"><a href="/dang-ky">Đăng ký</a></li>
-                                            <li class=" hidden-xs"><a href="/dang-nhap">Đăng nhập</a></li>
-                                            @endif
                                             <li class=" hidden-xs"><a href="/lien-he">Liên hệ : {{CONTACT_PHONE}} - {{CONTACT_PHONE2}}</a></li>
                                             <li><a href="/gio-hang"><img src="/public/user/img/icon/cart_red.png" alt="cart">(<span id="number_cart">{{count($sCart)}}</span>)</a>
                                                 <ul class="submenu-mainmenu" id="listCart">

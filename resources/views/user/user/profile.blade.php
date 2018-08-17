@@ -42,18 +42,28 @@
                             <div class="form-top">
                                 <div class="form-group col-xs-12">
                                     <label>Tài khoản<span class="required" title="required">*</span></label>
-                                    <input name="name" type="text" class="form-control" value="@if(!empty($user['name'])){{$user['name']}}@endif">
+                                    <input name="name" type="text" class="form-control" value="@if(!empty($info['name'])){{$info['name']}}@endif">
                                     @if (!empty($errors['name'])) <p class="form-message-two txt_error">{{$errors['name']}}</p>@endif
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Giới tính<span class="required" title="required">*</span></label><br>
-                                    <label><input type="radio" name="gender" value="0" @if (isset($user['gender']) && $user['gender'] == 0) checked @endif>Nam</label>
-                                    <label><input type="radio" name="gender" value="1" @if (isset($user['gender']) && $user['gender'] == 1) checked @endif>Nữ</label>
+                                    <label><input type="radio" name="gender" value="0" @if (isset($info['gender']) && $info['gender'] == 0) checked @endif>Nam</label>
+                                    <label><input type="radio" name="gender" value="1" @if (isset($info['gender']) && $info['gender'] == 1) checked @endif>Nữ</label>
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Mật khẩu<span class="required" title="required">*</span></label>
                                     <input name="password" type="password" class="form-control">
                                     @if (!empty($errors['password'])) <p class="form-message-two txt_error">{{$errors['password']}}</p>@endif
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Số điện thoại<span class="required" title="required">*</span></label>
+                                    <input name="phone" type="phone" class="form-control" value="{{ $info['phone'] }}">
+                                    @if (!empty($errors['phone'])) <p class="form-message-two txt_error">{{$errors['phone']}}</p>@endif
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Địa chỉ<span class="required" title="required">*</span></label>
+                                    <textarea name="address" id="" cols="30" rows="10" class="form-control">{{ $info['address'] }}</textarea>
+                                    @if (!empty($errors['address'])) <p class="form-message-two txt_error">{{$errors['address']}}</p>@endif
                                 </div>
                             </div>
                             <div class="submit-form form-group col-xs-12 submit-review text-center">

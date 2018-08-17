@@ -42,18 +42,28 @@
                             <div class="form-top">
                                 <div class="form-group col-xs-12">
                                     <label>Tài khoản<span class="required" title="required">*</span></label>
-                                    <input name="name" type="text" class="form-control" value="<?php if(!empty($user['name'])): ?><?php echo e($user['name']); ?><?php endif; ?>">
+                                    <input name="name" type="text" class="form-control" value="<?php if(!empty($info['name'])): ?><?php echo e($info['name']); ?><?php endif; ?>">
                                     <?php if(!empty($errors['name'])): ?> <p class="form-message-two txt_error"><?php echo e($errors['name']); ?></p><?php endif; ?>
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Giới tính<span class="required" title="required">*</span></label><br>
-                                    <label><input type="radio" name="gender" value="0" <?php if(isset($user['gender']) && $user['gender'] == 0): ?> checked <?php endif; ?>>Nam</label>
-                                    <label><input type="radio" name="gender" value="1" <?php if(isset($user['gender']) && $user['gender'] == 1): ?> checked <?php endif; ?>>Nữ</label>
+                                    <label><input type="radio" name="gender" value="0" <?php if(isset($info['gender']) && $info['gender'] == 0): ?> checked <?php endif; ?>>Nam</label>
+                                    <label><input type="radio" name="gender" value="1" <?php if(isset($info['gender']) && $info['gender'] == 1): ?> checked <?php endif; ?>>Nữ</label>
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <label>Mật khẩu<span class="required" title="required">*</span></label>
                                     <input name="password" type="password" class="form-control">
                                     <?php if(!empty($errors['password'])): ?> <p class="form-message-two txt_error"><?php echo e($errors['password']); ?></p><?php endif; ?>
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Số điện thoại<span class="required" title="required">*</span></label>
+                                    <input name="phone" type="phone" class="form-control" value="<?php echo e($info['phone']); ?>">
+                                    <?php if(!empty($errors['phone'])): ?> <p class="form-message-two txt_error"><?php echo e($errors['phone']); ?></p><?php endif; ?>
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label>Địa chỉ<span class="required" title="required">*</span></label>
+                                    <textarea name="address" id="" cols="30" rows="10" class="form-control"><?php echo e($info['address']); ?></textarea>
+                                    <?php if(!empty($errors['address'])): ?> <p class="form-message-two txt_error"><?php echo e($errors['address']); ?></p><?php endif; ?>
                                 </div>
                             </div>
                             <div class="submit-form form-group col-xs-12 submit-review text-center">

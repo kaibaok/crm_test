@@ -54,10 +54,11 @@
                 <div class="product-detail">
                     <div class="product-title">
                         <h2>{{$product->title}}</h2><br>
-                    <h4>Giá:
-                            @if($product->type_price == CONTACT_PHONE) {{CONTACT_PHONE}}
+                    <h4>
+                            @if($product->type_price == CONTACT_PRICE)
+                                Liên hệ : {{CONTACT_PHONE}}
                             @else
-                                @if ($product->discount >0)
+                                Giá : @if ($product->discount >0)
                                     {{$product->discount}} <del>{{$product->price}}</del>
                                 @else
                                     {{$product->price}}
@@ -69,59 +70,61 @@
                     <h5>Thương hiệu: <span>{{$product->title_brand}}</span><br></h5>
                     <h5>Danh mục: <span>{{$product->title_category}}</span><br></h5>
                     <p class="detail">{!!$product->short_desc!!}</p>
-                    <div class="size-quantity clearfix mb-10">
-                        @if ($product->type_price == NORMAL_PRICE || $product->numbers > 0)
-                            <form action="" method="post">
-                                {{ csrf_field() }}
-                                @if(!empty($product->size))
-                                    @php $listSize = explode("|", $product->size) @endphp
-                                    <div class="single-size-quantity mb-10">
-                                        <h4>Size:</h4>
-                                        <div class="search-cat">
-                                            <select name="size" class="category-items">
-                                                @foreach ($listSize as $keySize => $valueSize)
-                                                    @if($valueSize)
-                                                        <option value="{{$valueSize}}">{{strtoupper($valueSize)}}</option>
-                                                    @endif
-                                            @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                @endif
-                                <br>
-
-                                @if(!empty($product->colors))
-                                    @php $chooseColor = explode("|",$product->colors) @endphp
-                                    <div class="single-size-quantity mb-10">
-                                        <h4>Màu sắc:</h4>
-                                        <div class="search-cat">
-                                            <select name="color" class="category-items">
-                                                @foreach ($listColors as $keyColor => $valueColor)
-                                                    @if(in_array($keyColor, $chooseColor))
-                                                        <option value="{{$keyColor}}" style="color:{{$valueColor['code']}}">{{strtoupper($valueColor['name'])}}</option>
-                                                    @endif
+                    @if($product->type_price == NORMAL_PRICE)
+                        <div class="size-quantity clearfix mb-10">
+                            @if ($product->type_price == NORMAL_PRICE || $product->numbers > 0)
+                                <form action="" method="post">
+                                    {{ csrf_field() }}
+                                    @if(!empty($product->size))
+                                        @php $listSize = explode("|", $product->size) @endphp
+                                        <div class="single-size-quantity mb-10">
+                                            <h4>Size:</h4>
+                                            <div class="search-cat">
+                                                <select name="size" class="category-items">
+                                                    @foreach ($listSize as $keySize => $valueSize)
+                                                        @if($valueSize)
+                                                            <option value="{{$valueSize}}">{{strtoupper($valueSize)}}</option>
+                                                        @endif
                                                 @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <br>
+
+                                    @if(!empty($product->colors))
+                                        @php $chooseColor = explode("|",$product->colors) @endphp
+                                        <div class="single-size-quantity mb-10">
+                                            <h4>Màu sắc:</h4>
+                                            <div class="search-cat">
+                                                <select name="color" class="category-items">
+                                                    @foreach ($listColors as $keyColor => $valueColor)
+                                                        @if(in_array($keyColor, $chooseColor))
+                                                            <option value="{{$keyColor}}" style="color:{{$valueColor['code']}}">{{strtoupper($valueColor['name'])}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <br>
+
+                                    <div class="single-size-quantity mb-10">
+                                        <h4>Số lượng đặt:</h4>
+                                        <div class="search-cat">
+                                            <select name="number" class="category-items">
+                                                @for ($i = 1; $i <= $product->numbers ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
                                             </select>
                                         </div>
                                     </div>
-                                @endif
-                                <br>
 
-                                <div class="single-size-quantity mb-10">
-                                    <h4>Số lượng đặt:</h4>
-                                    <div class="search-cat">
-                                        <select name="number" class="category-items">
-                                            @for ($i = 1; $i <= $product->numbers ; $i++)
-                                                <option value="{{$i}}">{{$i}}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
-                            </form>
-                        @endif
-                    </div>
+                                    <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
+                                </form>
+                            @endif
+                        </div>
+                    @endif
                     <div class="widget-color">
                        <h4 class="follow">Chia sẻ:</h4>
                        <ul>

@@ -33,23 +33,18 @@
                 @else
                 <div class="row">
                     <div class="shop-item-filter">
-                        <div class="col-lg-5 col-md-6 hidden-sm hidden-xs">
+                        <div class="col-lg-12 col-md-12 col-md-12 hidden-sm hidden-xs pull-left">
                             <div class="filter-by">
                                 <h4>Sắp xếp theo :</h4>
-                                <form action="#">
+                                <form id="form_sort" action="" method="GET">
                                     <div class="select-filter">
-                                        <select name="filter">
-                                            <option value="name">Tên</option>
-                                            <option value="priceA">Giá thấp lên cao</option>
-                                            <option value="priceD">Giá cao xuống thấp</option>
+                                        <select name="order" onchange="document.getElementById('form_sort').submit();">
+                                            <option value="1">Tên</option>
+                                            <option value="2">Giá thấp lên cao</option>
+                                            <option value="3">Giá cao xuống thấp</option>
                                         </select>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                            <div class="page-menu2 float-right">
-                                {{$paginator->links()}}
                             </div>
                         </div>
                     </div>
@@ -75,10 +70,10 @@
                                             </div>
                                             <div class="single-product-info clearfix">
                                                 <div class="pro-price">
-                                                    @if ($value->type_price == EMPTY_PRODUCT)
+                                                    @if ($value->type_price == EMPTY_PRODUCT || $value->numbers == 0)
                                                         <span class="new-price">Hết hàng</span>
-                                                    @elseif($value->type_price == CONTACT_PHONE)
-                                                        <span class="new-price">{{CONTACT_PHONE}}</span>
+                                                    @elseif($value->type_price == CONTACT_PRICE)
+                                                        <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                     @else
                                                         @if ($value->discount >0)
                                                             <span class="new-price">{{$value->discount}}</span>
@@ -104,10 +99,8 @@
                 </div>
                 <div class="row">
                     <div class="shop-item-filter margin-none">
-                        <div class="col-lg-5 col-md-6 hidden-sm hidden-xs">
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                            <div class="page-menu2 float-right">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="page-menu2 float-right pull-right">
                                 {{$paginator->links()}}
                             </div>
                         </div>

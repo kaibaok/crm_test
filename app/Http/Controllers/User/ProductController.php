@@ -48,14 +48,13 @@ class ProductController extends Controller {
         MetaTag::set('keywords', 'keyword');
         MetaTag::set('image', asset('/public/images/detail-logo.png'));
         MetaTag::set('author','Dot 89 Shop');
-        $title = "Danh sách sản phẩm";
+        $title   = "Danh sách sản phẩm";
         self::leftMenu($request);
-
-        $params = $request->all();
-        $builder = Product::getProductByConditions($params);
-        $totalResult   = $builder->count();
-        $listProduct   = $builder->paginate(LIMIT_PAGE_PRODUCT);
-        $paginator = $listProduct->appends($params);
+        $params      = $request->all();
+        $builder     = Product::getProductByConditions($params);
+        $totalResult = $builder->count();
+        $listProduct = $builder->paginate(LIMIT_PAGE_PRODUCT);
+        $paginator   = $listProduct->appends($params);
         return view("user.product.index")
             ->with("listProduct", $listProduct)
             ->with("paginator", $paginator);

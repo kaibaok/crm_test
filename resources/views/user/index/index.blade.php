@@ -93,7 +93,7 @@
                                                                     <span class="new-price">{{$item['discount']}}</span>
                                                                     <span class="old-price">{{$item['price']}}</span>
                                                                 @elseif ($item['type_price'] == 2)
-                                                                    <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                    <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                                 @else
                                                                     <span class="new-price">Hết hàng</span>
                                                                 @endif
@@ -124,7 +124,7 @@
                                                                             <span class="new-price">{{$item['discount']}}</span>
                                                                             <span class="old-price">{{$item['price']}}</span>
                                                                         @elseif ($item['type_price'] == 2)
-                                                                            <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                            <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                                         @else
                                                                             <span class="new-price">Hết hàng</span>
                                                                         @endif
@@ -268,7 +268,7 @@
                                                                     <span class="new-price">{{$item['discount']}}</span>
                                                                     <span class="old-price">{{$item['price']}}</span>
                                                                 @elseif ($item['type_price'] == 2)
-                                                                    <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                    <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                                 @else
                                                                     <span class="new-price">Hết hàng</span>
                                                                 @endif
@@ -299,7 +299,7 @@
                                                                         <span class="new-price">{{$item['discount']}}</span>
                                                                         <span class="old-price">{{$item['price']}}</span>
                                                                     @elseif ($item['type_price'] == 2)
-                                                                        <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                        <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                                     @else
                                                                         <span class="new-price">Hết hàng</span>
                                                                     @endif
@@ -477,7 +477,7 @@
                                                                     <span class="new-price">{{$item['discount']}}</span>
                                                                     <span class="old-price">{{$item['price']}}</span>
                                                                 @elseif ($item['type_price'] == 2)
-                                                                    <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                    <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                                 @else
                                                                     <span class="new-price">Hết hàng</span>
                                                                 @endif
@@ -508,7 +508,7 @@
                                                                             <span class="new-price">{{$item['discount']}}</span>
                                                                             <span class="old-price">{{$item['price']}}</span>
                                                                         @elseif ($item['type_price'] == 2)
-                                                                            <span class="new-price">Liên lạc : {{CONTACT_PHONE}}</span>
+                                                                            <span class="new-price">Liên hệ : {{CONTACT_PHONE}}</span>
                                                                         @else
                                                                             <span class="new-price">Hết hàng</span>
                                                                         @endif

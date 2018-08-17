@@ -53,11 +53,12 @@
                 <div class="product-detail">
                     <div class="product-title">
                         <h2><?php echo e($product->title); ?></h2><br>
-                    <h4>Giá:
-                            <?php if($product->type_price == CONTACT_PHONE): ?> <?php echo e(CONTACT_PHONE); ?>
+                    <h4>
+                            <?php if($product->type_price == CONTACT_PRICE): ?>
+                                Liên hệ : <?php echo e(CONTACT_PHONE); ?>
 
                             <?php else: ?>
-                                <?php if($product->discount >0): ?>
+                                Giá : <?php if($product->discount >0): ?>
                                     <?php echo e($product->discount); ?> <del><?php echo e($product->price); ?></del>
                                 <?php else: ?>
                                     <?php echo e($product->price); ?>
@@ -70,60 +71,62 @@
                     <h5>Thương hiệu: <span><?php echo e($product->title_brand); ?></span><br></h5>
                     <h5>Danh mục: <span><?php echo e($product->title_category); ?></span><br></h5>
                     <p class="detail"><?php echo $product->short_desc; ?></p>
-                    <div class="size-quantity clearfix mb-10">
-                        <?php if($product->type_price == NORMAL_PRICE || $product->numbers > 0): ?>
-                            <form action="" method="post">
-                                <?php echo e(csrf_field()); ?>
+                    <?php if($product->type_price == NORMAL_PRICE): ?>
+                        <div class="size-quantity clearfix mb-10">
+                            <?php if($product->type_price == NORMAL_PRICE || $product->numbers > 0): ?>
+                                <form action="" method="post">
+                                    <?php echo e(csrf_field()); ?>
 
-                                <?php if(!empty($product->size)): ?>
-                                    <?php  $listSize = explode("|", $product->size)  ?>
-                                    <div class="single-size-quantity mb-10">
-                                        <h4>Size:</h4>
-                                        <div class="search-cat">
-                                            <select name="size" class="category-items">
-                                                <?php foreach($listSize as $keySize => $valueSize): ?>
-                                                    <?php if($valueSize): ?>
-                                                        <option value="<?php echo e($valueSize); ?>"><?php echo e(strtoupper($valueSize)); ?></option>
-                                                    <?php endif; ?>
-                                            <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                                <br>
-
-                                <?php if(!empty($product->colors)): ?>
-                                    <?php  $chooseColor = explode("|",$product->colors)  ?>
-                                    <div class="single-size-quantity mb-10">
-                                        <h4>Màu sắc:</h4>
-                                        <div class="search-cat">
-                                            <select name="color" class="category-items">
-                                                <?php foreach($listColors as $keyColor => $valueColor): ?>
-                                                    <?php if(in_array($keyColor, $chooseColor)): ?>
-                                                        <option value="<?php echo e($keyColor); ?>" style="color:<?php echo e($valueColor['code']); ?>"><?php echo e(strtoupper($valueColor['name'])); ?></option>
-                                                    <?php endif; ?>
+                                    <?php if(!empty($product->size)): ?>
+                                        <?php  $listSize = explode("|", $product->size)  ?>
+                                        <div class="single-size-quantity mb-10">
+                                            <h4>Size:</h4>
+                                            <div class="search-cat">
+                                                <select name="size" class="category-items">
+                                                    <?php foreach($listSize as $keySize => $valueSize): ?>
+                                                        <?php if($valueSize): ?>
+                                                            <option value="<?php echo e($valueSize); ?>"><?php echo e(strtoupper($valueSize)); ?></option>
+                                                        <?php endif; ?>
                                                 <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <br>
+
+                                    <?php if(!empty($product->colors)): ?>
+                                        <?php  $chooseColor = explode("|",$product->colors)  ?>
+                                        <div class="single-size-quantity mb-10">
+                                            <h4>Màu sắc:</h4>
+                                            <div class="search-cat">
+                                                <select name="color" class="category-items">
+                                                    <?php foreach($listColors as $keyColor => $valueColor): ?>
+                                                        <?php if(in_array($keyColor, $chooseColor)): ?>
+                                                            <option value="<?php echo e($keyColor); ?>" style="color:<?php echo e($valueColor['code']); ?>"><?php echo e(strtoupper($valueColor['name'])); ?></option>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <br>
+
+                                    <div class="single-size-quantity mb-10">
+                                        <h4>Số lượng đặt:</h4>
+                                        <div class="search-cat">
+                                            <select name="number" class="category-items">
+                                                <?php for($i = 1; $i <= $product->numbers ; $i++): ?>
+                                                    <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
+                                                <?php endfor; ?>
                                             </select>
                                         </div>
                                     </div>
-                                <?php endif; ?>
-                                <br>
 
-                                <div class="single-size-quantity mb-10">
-                                    <h4>Số lượng đặt:</h4>
-                                    <div class="search-cat">
-                                        <select name="number" class="category-items">
-                                            <?php for($i = 1; $i <= $product->numbers ; $i++): ?>
-                                                <option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
-                            </form>
-                        <?php endif; ?>
-                    </div>
+                                    <p><button type="submit" class="section-button"><i class="fa fa-shopping-cart"></i> Đặt hàng</button></p>
+                                </form>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="widget-color">
                        <h4 class="follow">Chia sẻ:</h4>
                        <ul>

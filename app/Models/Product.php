@@ -182,31 +182,23 @@ class Product extends Model
         if(!empty($params['type'])) $builder->where('product.type', (int) $params['type']);
         if(!empty($params['item'])) $builder->where('product_category.item_id', (int) $params['item']);
         if(!empty($params['keywords'])) $builder->where("product.title","like", "%".htmlspecialchars(strip_tags($params['keywords']))."%");
-
-        if(!empty($params['size'])) {
-            switch ($params['size']) {
-                case 'xs':
-                    $builder->where('product.size_xs', 1);
-                    break;
-                case 's':
-                    $builder->where('product.size_s', 1);
-                    break;
-                case 'm':
-                    $builder->where('product.size_m', 1);
-                    break;
-                case 'l':
-                    $builder->where('product.size_l', 1);
-                    break;
-                case 'xl':
-                    $builder->where('product.size_xl', 1);
-                    break;
-            }
-        }
-
         if(!empty($params['minimum_price']) && !empty($params['maximum_price']))
             $builder->whereBetween('product.price', [(int) $params['minimum_price'], (int) $params['maximum_price']]);
-
-        $builder->orderByRaw("product.ord ASC, product.id DESC");
+        if(empty($params['order'])) $builder->orderByRaw("product.ord ASC, product.id DESC");
+        else {
+            switch ($params['order']) {
+                case 1:
+                    $params['order'] = "product.title ASC";
+                    break;
+                case 2:
+                    $params['order'] = "product.price ASC";
+                    break;
+                case 3:
+                    $params['order'] = "product.price DESC";
+                    break;
+            }
+            $builder->orderByRaw($params['order']);
+        }
         return $builder;
     }
 

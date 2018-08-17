@@ -93,7 +93,7 @@
                                                                     <span class="new-price"><?php echo e($item['discount']); ?></span>
                                                                     <span class="old-price"><?php echo e($item['price']); ?></span>
                                                                 <?php elseif($item['type_price'] == 2): ?>
-                                                                    <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                    <span class="new-price">Liên hệ : <?php echo e(CONTACT_PHONE); ?></span>
                                                                 <?php else: ?>
                                                                     <span class="new-price">Hết hàng</span>
                                                                 <?php endif; ?>
@@ -124,7 +124,7 @@
                                                                             <span class="new-price"><?php echo e($item['discount']); ?></span>
                                                                             <span class="old-price"><?php echo e($item['price']); ?></span>
                                                                         <?php elseif($item['type_price'] == 2): ?>
-                                                                            <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                            <span class="new-price">Liên hệ : <?php echo e(CONTACT_PHONE); ?></span>
                                                                         <?php else: ?>
                                                                             <span class="new-price">Hết hàng</span>
                                                                         <?php endif; ?>
@@ -273,7 +273,7 @@
                                                                     <span class="new-price"><?php echo e($item['discount']); ?></span>
                                                                     <span class="old-price"><?php echo e($item['price']); ?></span>
                                                                 <?php elseif($item['type_price'] == 2): ?>
-                                                                    <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                    <span class="new-price">Liên hệ : <?php echo e(CONTACT_PHONE); ?></span>
                                                                 <?php else: ?>
                                                                     <span class="new-price">Hết hàng</span>
                                                                 <?php endif; ?>
@@ -304,7 +304,7 @@
                                                                         <span class="new-price"><?php echo e($item['discount']); ?></span>
                                                                         <span class="old-price"><?php echo e($item['price']); ?></span>
                                                                     <?php elseif($item['type_price'] == 2): ?>
-                                                                        <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                        <span class="new-price">Liên hệ : <?php echo e(CONTACT_PHONE); ?></span>
                                                                     <?php else: ?>
                                                                         <span class="new-price">Hết hàng</span>
                                                                     <?php endif; ?>
@@ -488,7 +488,7 @@
                                                                     <span class="new-price"><?php echo e($item['discount']); ?></span>
                                                                     <span class="old-price"><?php echo e($item['price']); ?></span>
                                                                 <?php elseif($item['type_price'] == 2): ?>
-                                                                    <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                    <span class="new-price">Liên hệ : <?php echo e(CONTACT_PHONE); ?></span>
                                                                 <?php else: ?>
                                                                     <span class="new-price">Hết hàng</span>
                                                                 <?php endif; ?>
@@ -519,7 +519,7 @@
                                                                             <span class="new-price"><?php echo e($item['discount']); ?></span>
                                                                             <span class="old-price"><?php echo e($item['price']); ?></span>
                                                                         <?php elseif($item['type_price'] == 2): ?>
-                                                                            <span class="new-price">Liên lạc : <?php echo e(CONTACT_PHONE); ?></span>
+                                                                            <span class="new-price">Liên hệ : <?php echo e(CONTACT_PHONE); ?></span>
                                                                         <?php else: ?>
                                                                             <span class="new-price">Hết hàng</span>
                                                                         <?php endif; ?>

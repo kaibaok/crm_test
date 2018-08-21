@@ -113,7 +113,7 @@
                                                 <ul class="submenu-mainmenu" id="listCart">
                                                     @php $totalPrice = 0; @endphp
                                                     @if (!empty($sCart))
-                                                        @foreach ($sCart as $value)
+                                                        @foreach ($sCart as $key => $value)
                                                             <li class="single-cart-item clearfix">
                                                                 <span class="cart-img">
                                                                     <a href="/pd/{{$value['id']}}/{{$value['seo_link']}}/"><img style='width:70px;height:50px' src="{{$value['img']}}" alt=""></a>
@@ -124,7 +124,7 @@
                                                                     <span>{{$value['size']}} x {{$value['number']}} </span>
                                                                 </span>
                                                                 <span class="trash-cart">
-                                                                    <a href="/xoa-gio-hang/{{$value['id']}}/{{$value['size']}}"><i class="fa fa-trash-o"></i></a>
+                                                                    <a href="/xoa-gio-hang/{{$key}}"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                             </li>
                                                         @endforeach

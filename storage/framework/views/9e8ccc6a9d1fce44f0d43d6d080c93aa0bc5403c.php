@@ -75,7 +75,7 @@
                                                 <td class="p-amount"><?php echo e($value['size']); ?></span></td>
                                                 <td class="p-amount"><?php echo e($price); ?></span></td>
                                                 <td class="p-quantity"><?php echo e($value['number']); ?></td>
-                                                <td class="p-total"><?php echo e($price * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>"><i class="fa fa-trash"></i></a></td>
+                                                <td class="p-total"><?php echo e($price * $value['number']); ?> <a href="/xoa-gio-hang/<?php echo e($key); ?>"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                 </tbody>

@@ -130,7 +130,7 @@
                                                                     <span><?php echo e($value['size']); ?> x <?php echo e($value['number']); ?> </span>
                                                                 </span>
                                                                 <span class="trash-cart">
-                                                                    <a href="/xoa-gio-hang/<?php echo e($value['id']); ?>/<?php echo e($value['size']); ?>"><i class="fa fa-trash-o"></i></a>
+                                                                    <a href="/xoa-gio-hang/<?php echo e($key); ?>"><i class="fa fa-trash-o"></i></a>
                                                                 </span>
                                                             </li>
                                                         <?php endforeach; ?>

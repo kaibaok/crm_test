@@ -275,5 +275,14 @@ class ProductController extends Controller {
         return view("user.product.orderCart");
     }
 
+     public function delCart($id){
+        if(!Session::has('sCart')) return redirect()->guest("/gio-hang");
+        $sCart  = Session::get('sCart');
+        if(isset($sCart[$id])) unset($sCart[$id]);
+        Session::put('sCart', $sCart);
+        $back_url  = redirect()->getUrlGenerator()->previous();
+        return redirect()->guest($back_url);
+    }
+
 
 }

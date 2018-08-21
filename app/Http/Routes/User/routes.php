@@ -17,6 +17,7 @@ Route::any('/them-san-pham', 'User\ProductController@addCart');
 Route::any('/gio-hang', 'User\ProductController@cart');
 Route::any('/don-hang', 'User\ProductController@checkout');
 Route::get('/hoan-tat-don-hang', 'User\ProductController@orderCart');
+Route::get('/xoa-gio-hang/{id}', 'User\ProductController@delCart');
 
 
 Route::any('/dang-nhap', 'User\UserController@login');

@@ -75,7 +75,7 @@
                                                 <td class="p-amount">{{$value['size']}}</span></td>
                                                 <td class="p-amount">{{$price}}</span></td>
                                                 <td class="p-quantity">{{$value['number']}}</td>
-                                                <td class="p-total">{{$price * $value['number']}} <a href="/xoa-gio-hang/{{$value['id']}}"><i class="fa fa-trash"></i></a></td>
+                                                <td class="p-total">{{$price * $value['number']}} <a href="/xoa-gio-hang/{{$key}}"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         @endforeach
                                 </tbody>

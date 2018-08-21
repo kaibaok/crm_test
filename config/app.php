@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://dev.crm.com'),
+    'url' => env('APP_URL', 'http://shop.phucminhanh.com'),
 
     /*
     |--------------------------------------------------------------------------
